@@ -1,0 +1,627 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D70D5F4324B0641400675E89 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D70D5F4224B0641400675E89 /* AppDelegate.m */; };
+		D70D5F4824B0641800675E89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D70D5F4724B0641800675E89 /* Assets.xcassets */; };
+		D70D5F4B24B0641800675E89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D70D5F4924B0641800675E89 /* Main.storyboard */; };
+		D70D5F4E24B0641800675E89 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D70D5F4D24B0641800675E89 /* main.m */; };
+		D70D5F5924B0641800675E89 /* CodeGenerationToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D70D5F5824B0641800675E89 /* CodeGenerationToolTests.m */; };
+		D70D5F6424B0641800675E89 /* CodeGenerationToolUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D70D5F6324B0641800675E89 /* CodeGenerationToolUITests.m */; };
+		D70D5F7B24B0655D00675E89 /* CGTBaseWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D70D5F7924B0655D00675E89 /* CGTBaseWindowController.m */; };
+		D70D5F7F24B0657700675E89 /* CGTBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D70D5F7E24B0657700675E89 /* CGTBaseViewController.m */; };
+		D70D5F8324B0659E00675E89 /* CGTMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D70D5F8224B0659E00675E89 /* CGTMainWindowController.m */; };
+		D70D5F8624B065B700675E89 /* CGTMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D70D5F8524B065B700675E89 /* CGTMainViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D70D5F5524B0641800675E89 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D70D5F3624B0641400675E89 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D70D5F3D24B0641400675E89;
+			remoteInfo = CodeGenerationTool;
+		};
+		D70D5F6024B0641800675E89 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D70D5F3624B0641400675E89 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D70D5F3D24B0641400675E89;
+			remoteInfo = CodeGenerationTool;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D70D5F3E24B0641400675E89 /* CodeGenerationTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodeGenerationTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D70D5F4124B0641400675E89 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D70D5F4224B0641400675E89 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D70D5F4724B0641800675E89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D70D5F4A24B0641800675E89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D70D5F4C24B0641800675E89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D70D5F4D24B0641800675E89 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D70D5F4F24B0641800675E89 /* CodeGenerationTool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CodeGenerationTool.entitlements; sourceTree = "<group>"; };
+		D70D5F5424B0641800675E89 /* CodeGenerationToolTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CodeGenerationToolTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D70D5F5824B0641800675E89 /* CodeGenerationToolTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CodeGenerationToolTests.m; sourceTree = "<group>"; };
+		D70D5F5A24B0641800675E89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D70D5F5F24B0641800675E89 /* CodeGenerationToolUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CodeGenerationToolUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D70D5F6324B0641800675E89 /* CodeGenerationToolUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CodeGenerationToolUITests.m; sourceTree = "<group>"; };
+		D70D5F6524B0641800675E89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D70D5F7824B0655D00675E89 /* CGTBaseWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTBaseWindowController.h; sourceTree = "<group>"; };
+		D70D5F7924B0655D00675E89 /* CGTBaseWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTBaseWindowController.m; sourceTree = "<group>"; };
+		D70D5F7D24B0657700675E89 /* CGTBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTBaseViewController.h; sourceTree = "<group>"; };
+		D70D5F7E24B0657700675E89 /* CGTBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTBaseViewController.m; sourceTree = "<group>"; };
+		D70D5F8124B0659E00675E89 /* CGTMainWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTMainWindowController.h; sourceTree = "<group>"; };
+		D70D5F8224B0659E00675E89 /* CGTMainWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTMainWindowController.m; sourceTree = "<group>"; };
+		D70D5F8424B065B700675E89 /* CGTMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTMainViewController.h; sourceTree = "<group>"; };
+		D70D5F8524B065B700675E89 /* CGTMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTMainViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D70D5F3B24B0641400675E89 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D70D5F5124B0641800675E89 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D70D5F5C24B0641800675E89 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D70D5F3524B0641400675E89 = {
+			isa = PBXGroup;
+			children = (
+				D70D5F4024B0641400675E89 /* CodeGenerationTool */,
+				D70D5F5724B0641800675E89 /* CodeGenerationToolTests */,
+				D70D5F6224B0641800675E89 /* CodeGenerationToolUITests */,
+				D70D5F3F24B0641400675E89 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D70D5F3F24B0641400675E89 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D70D5F3E24B0641400675E89 /* CodeGenerationTool.app */,
+				D70D5F5424B0641800675E89 /* CodeGenerationToolTests.xctest */,
+				D70D5F5F24B0641800675E89 /* CodeGenerationToolUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D70D5F4024B0641400675E89 /* CodeGenerationTool */ = {
+			isa = PBXGroup;
+			children = (
+				D70D5F4124B0641400675E89 /* AppDelegate.h */,
+				D70D5F4224B0641400675E89 /* AppDelegate.m */,
+				D70D5F7124B0647000675E89 /* Base */,
+				D70D5F7424B0649500675E89 /* UI */,
+				D70D5F4724B0641800675E89 /* Assets.xcassets */,
+				D70D5F4924B0641800675E89 /* Main.storyboard */,
+				D70D5F4C24B0641800675E89 /* Info.plist */,
+				D70D5F4D24B0641800675E89 /* main.m */,
+				D70D5F4F24B0641800675E89 /* CodeGenerationTool.entitlements */,
+			);
+			path = CodeGenerationTool;
+			sourceTree = "<group>";
+		};
+		D70D5F5724B0641800675E89 /* CodeGenerationToolTests */ = {
+			isa = PBXGroup;
+			children = (
+				D70D5F5824B0641800675E89 /* CodeGenerationToolTests.m */,
+				D70D5F5A24B0641800675E89 /* Info.plist */,
+			);
+			path = CodeGenerationToolTests;
+			sourceTree = "<group>";
+		};
+		D70D5F6224B0641800675E89 /* CodeGenerationToolUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D70D5F6324B0641800675E89 /* CodeGenerationToolUITests.m */,
+				D70D5F6524B0641800675E89 /* Info.plist */,
+			);
+			path = CodeGenerationToolUITests;
+			sourceTree = "<group>";
+		};
+		D70D5F7124B0647000675E89 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				D70D5F7224B0647900675E89 /* WindowCol */,
+				D70D5F7324B0648000675E89 /* ViewCol */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		D70D5F7224B0647900675E89 /* WindowCol */ = {
+			isa = PBXGroup;
+			children = (
+				D70D5F7824B0655D00675E89 /* CGTBaseWindowController.h */,
+				D70D5F7924B0655D00675E89 /* CGTBaseWindowController.m */,
+			);
+			path = WindowCol;
+			sourceTree = "<group>";
+		};
+		D70D5F7324B0648000675E89 /* ViewCol */ = {
+			isa = PBXGroup;
+			children = (
+				D70D5F7D24B0657700675E89 /* CGTBaseViewController.h */,
+				D70D5F7E24B0657700675E89 /* CGTBaseViewController.m */,
+			);
+			path = ViewCol;
+			sourceTree = "<group>";
+		};
+		D70D5F7424B0649500675E89 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				D70D5F8024B0658600675E89 /* Main */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		D70D5F8024B0658600675E89 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				D70D5F8124B0659E00675E89 /* CGTMainWindowController.h */,
+				D70D5F8224B0659E00675E89 /* CGTMainWindowController.m */,
+				D70D5F8424B065B700675E89 /* CGTMainViewController.h */,
+				D70D5F8524B065B700675E89 /* CGTMainViewController.m */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D70D5F3D24B0641400675E89 /* CodeGenerationTool */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D70D5F6824B0641800675E89 /* Build configuration list for PBXNativeTarget "CodeGenerationTool" */;
+			buildPhases = (
+				D70D5F3A24B0641400675E89 /* Sources */,
+				D70D5F3B24B0641400675E89 /* Frameworks */,
+				D70D5F3C24B0641400675E89 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CodeGenerationTool;
+			productName = CodeGenerationTool;
+			productReference = D70D5F3E24B0641400675E89 /* CodeGenerationTool.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D70D5F5324B0641800675E89 /* CodeGenerationToolTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D70D5F6B24B0641800675E89 /* Build configuration list for PBXNativeTarget "CodeGenerationToolTests" */;
+			buildPhases = (
+				D70D5F5024B0641800675E89 /* Sources */,
+				D70D5F5124B0641800675E89 /* Frameworks */,
+				D70D5F5224B0641800675E89 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D70D5F5624B0641800675E89 /* PBXTargetDependency */,
+			);
+			name = CodeGenerationToolTests;
+			productName = CodeGenerationToolTests;
+			productReference = D70D5F5424B0641800675E89 /* CodeGenerationToolTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D70D5F5E24B0641800675E89 /* CodeGenerationToolUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D70D5F6E24B0641800675E89 /* Build configuration list for PBXNativeTarget "CodeGenerationToolUITests" */;
+			buildPhases = (
+				D70D5F5B24B0641800675E89 /* Sources */,
+				D70D5F5C24B0641800675E89 /* Frameworks */,
+				D70D5F5D24B0641800675E89 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D70D5F6124B0641800675E89 /* PBXTargetDependency */,
+			);
+			name = CodeGenerationToolUITests;
+			productName = CodeGenerationToolUITests;
+			productReference = D70D5F5F24B0641800675E89 /* CodeGenerationToolUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D70D5F3624B0641400675E89 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = dingbinbin;
+				TargetAttributes = {
+					D70D5F3D24B0641400675E89 = {
+						CreatedOnToolsVersion = 11.5;
+					};
+					D70D5F5324B0641800675E89 = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = D70D5F3D24B0641400675E89;
+					};
+					D70D5F5E24B0641800675E89 = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = D70D5F3D24B0641400675E89;
+					};
+				};
+			};
+			buildConfigurationList = D70D5F3924B0641400675E89 /* Build configuration list for PBXProject "CodeGenerationTool" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D70D5F3524B0641400675E89;
+			productRefGroup = D70D5F3F24B0641400675E89 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D70D5F3D24B0641400675E89 /* CodeGenerationTool */,
+				D70D5F5324B0641800675E89 /* CodeGenerationToolTests */,
+				D70D5F5E24B0641800675E89 /* CodeGenerationToolUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D70D5F3C24B0641400675E89 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D70D5F4824B0641800675E89 /* Assets.xcassets in Resources */,
+				D70D5F4B24B0641800675E89 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D70D5F5224B0641800675E89 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D70D5F5D24B0641800675E89 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D70D5F3A24B0641400675E89 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D70D5F4E24B0641800675E89 /* main.m in Sources */,
+				D70D5F7F24B0657700675E89 /* CGTBaseViewController.m in Sources */,
+				D70D5F8624B065B700675E89 /* CGTMainViewController.m in Sources */,
+				D70D5F7B24B0655D00675E89 /* CGTBaseWindowController.m in Sources */,
+				D70D5F4324B0641400675E89 /* AppDelegate.m in Sources */,
+				D70D5F8324B0659E00675E89 /* CGTMainWindowController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D70D5F5024B0641800675E89 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D70D5F5924B0641800675E89 /* CodeGenerationToolTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D70D5F5B24B0641800675E89 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D70D5F6424B0641800675E89 /* CodeGenerationToolUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D70D5F5624B0641800675E89 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D70D5F3D24B0641400675E89 /* CodeGenerationTool */;
+			targetProxy = D70D5F5524B0641800675E89 /* PBXContainerItemProxy */;
+		};
+		D70D5F6124B0641800675E89 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D70D5F3D24B0641400675E89 /* CodeGenerationTool */;
+			targetProxy = D70D5F6024B0641800675E89 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D70D5F4924B0641800675E89 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D70D5F4A24B0641800675E89 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D70D5F6624B0641800675E89 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		D70D5F6724B0641800675E89 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		D70D5F6924B0641800675E89 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CodeGenerationTool/CodeGenerationTool.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = CodeGenerationTool/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dingbinbin.demo.CodeGenerationTool;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D70D5F6A24B0641800675E89 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CodeGenerationTool/CodeGenerationTool.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = CodeGenerationTool/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dingbinbin.demo.CodeGenerationTool;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		D70D5F6C24B0641800675E89 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = CodeGenerationToolTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dingbinbin.demo.CodeGenerationToolTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CodeGenerationTool.app/Contents/MacOS/CodeGenerationTool";
+			};
+			name = Debug;
+		};
+		D70D5F6D24B0641800675E89 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = CodeGenerationToolTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dingbinbin.demo.CodeGenerationToolTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CodeGenerationTool.app/Contents/MacOS/CodeGenerationTool";
+			};
+			name = Release;
+		};
+		D70D5F6F24B0641800675E89 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = CodeGenerationToolUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dingbinbin.demo.CodeGenerationToolUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = CodeGenerationTool;
+			};
+			name = Debug;
+		};
+		D70D5F7024B0641800675E89 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = CodeGenerationToolUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dingbinbin.demo.CodeGenerationToolUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = CodeGenerationTool;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D70D5F3924B0641400675E89 /* Build configuration list for PBXProject "CodeGenerationTool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D70D5F6624B0641800675E89 /* Debug */,
+				D70D5F6724B0641800675E89 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D70D5F6824B0641800675E89 /* Build configuration list for PBXNativeTarget "CodeGenerationTool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D70D5F6924B0641800675E89 /* Debug */,
+				D70D5F6A24B0641800675E89 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D70D5F6B24B0641800675E89 /* Build configuration list for PBXNativeTarget "CodeGenerationToolTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D70D5F6C24B0641800675E89 /* Debug */,
+				D70D5F6D24B0641800675E89 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D70D5F6E24B0641800675E89 /* Build configuration list for PBXNativeTarget "CodeGenerationToolUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D70D5F6F24B0641800675E89 /* Debug */,
+				D70D5F7024B0641800675E89 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D70D5F3624B0641400675E89 /* Project object */;
+}
