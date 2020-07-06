@@ -1,0 +1,21 @@
+//
+//  CGTPrefixHeader.pch
+//  CodeGenerationTool
+//
+//  Created by dingbinbin on 2020/7/6.
+//  Copyright © 2020 dingbinbin. All rights reserved.
+//
+
+#ifndef CGTPrefixHeader_pch
+#define CGTPrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+// 第三方
+#import "Masonry.h"
+
+// 工程定义
+#import "CGTColorDefine.h"
+
+#endif /* CGTPrefixHeader_pch */

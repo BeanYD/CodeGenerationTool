@@ -1,0 +1,6 @@
+framework module Pods_CodeGenerationTool {
+  umbrella header "Pods-CodeGenerationTool-umbrella.h"
+
+  export *
+  module * { export * }
+}

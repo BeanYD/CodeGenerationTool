@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43C11816E38B44FB1932AEC9 /* Pods_CodeGenerationTool_CodeGenerationToolUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7157C1C24A046B11838466DE /* Pods_CodeGenerationTool_CodeGenerationToolUITests.framework */; };
+		A47A75996D596E4CF449CEBC /* Pods_CodeGenerationToolTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B86CFA6999CA1026AA62E68 /* Pods_CodeGenerationToolTests.framework */; };
 		D70D5F4324B0641400675E89 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D70D5F4224B0641400675E89 /* AppDelegate.m */; };
 		D70D5F4824B0641800675E89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D70D5F4724B0641800675E89 /* Assets.xcassets */; };
 		D70D5F4B24B0641800675E89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D70D5F4924B0641800675E89 /* Main.storyboard */; };
@@ -17,6 +19,9 @@
 		D70D5F7F24B0657700675E89 /* CGTBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D70D5F7E24B0657700675E89 /* CGTBaseViewController.m */; };
 		D70D5F8324B0659E00675E89 /* CGTMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D70D5F8224B0659E00675E89 /* CGTMainWindowController.m */; };
 		D70D5F8624B065B700675E89 /* CGTMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D70D5F8524B065B700675E89 /* CGTMainViewController.m */; };
+		D7F42C1D24B2D1B300EF1C38 /* CGTMainModelLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F42C1C24B2D1B300EF1C38 /* CGTMainModelLayer.m */; };
+		D7F42C2124B2D1C700EF1C38 /* CGTFilePathPlistMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F42C2024B2D1C700EF1C38 /* CGTFilePathPlistMgr.m */; };
+		E75D09A20E5E8977B0F9DF16 /* Pods_CodeGenerationTool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B187A328932D431717A2517C /* Pods_CodeGenerationTool.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +42,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1C5AAB70915A693E8B031E33 /* Pods-CodeGenerationTool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodeGenerationTool.release.xcconfig"; path = "Target Support Files/Pods-CodeGenerationTool/Pods-CodeGenerationTool.release.xcconfig"; sourceTree = "<group>"; };
+		3B86CFA6999CA1026AA62E68 /* Pods_CodeGenerationToolTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CodeGenerationToolTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B30D908BD2AEBA57070A513 /* Pods-CodeGenerationTool-CodeGenerationToolUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodeGenerationTool-CodeGenerationToolUITests.release.xcconfig"; path = "Target Support Files/Pods-CodeGenerationTool-CodeGenerationToolUITests/Pods-CodeGenerationTool-CodeGenerationToolUITests.release.xcconfig"; sourceTree = "<group>"; };
+		714A04910DB9E1F2EDC440A1 /* Pods-CodeGenerationTool-CodeGenerationToolUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodeGenerationTool-CodeGenerationToolUITests.debug.xcconfig"; path = "Target Support Files/Pods-CodeGenerationTool-CodeGenerationToolUITests/Pods-CodeGenerationTool-CodeGenerationToolUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		7157C1C24A046B11838466DE /* Pods_CodeGenerationTool_CodeGenerationToolUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CodeGenerationTool_CodeGenerationToolUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A89E47EAFEFD119815F8FA6 /* Pods-CodeGenerationTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodeGenerationTool.debug.xcconfig"; path = "Target Support Files/Pods-CodeGenerationTool/Pods-CodeGenerationTool.debug.xcconfig"; sourceTree = "<group>"; };
+		B187A328932D431717A2517C /* Pods_CodeGenerationTool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CodeGenerationTool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D70D5F3E24B0641400675E89 /* CodeGenerationTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodeGenerationTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D70D5F4124B0641400675E89 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D70D5F4224B0641400675E89 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -59,6 +71,14 @@
 		D70D5F8224B0659E00675E89 /* CGTMainWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTMainWindowController.m; sourceTree = "<group>"; };
 		D70D5F8424B065B700675E89 /* CGTMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTMainViewController.h; sourceTree = "<group>"; };
 		D70D5F8524B065B700675E89 /* CGTMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTMainViewController.m; sourceTree = "<group>"; };
+		D70D5F8724B2B46C00675E89 /* CGTPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTPrefixHeader.pch; sourceTree = "<group>"; };
+		D7F42C1824B2C3A500EF1C38 /* CGTColorDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTColorDefine.h; sourceTree = "<group>"; };
+		D7F42C1B24B2D1B300EF1C38 /* CGTMainModelLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTMainModelLayer.h; sourceTree = "<group>"; };
+		D7F42C1C24B2D1B300EF1C38 /* CGTMainModelLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTMainModelLayer.m; sourceTree = "<group>"; };
+		D7F42C1F24B2D1C700EF1C38 /* CGTFilePathPlistMgr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTFilePathPlistMgr.h; sourceTree = "<group>"; };
+		D7F42C2024B2D1C700EF1C38 /* CGTFilePathPlistMgr.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTFilePathPlistMgr.m; sourceTree = "<group>"; };
+		E734CF580DA38A2E089EF96C /* Pods-CodeGenerationToolTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodeGenerationToolTests.release.xcconfig"; path = "Target Support Files/Pods-CodeGenerationToolTests/Pods-CodeGenerationToolTests.release.xcconfig"; sourceTree = "<group>"; };
+		E9402F7BDF328AA0417A7BAE /* Pods-CodeGenerationToolTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodeGenerationToolTests.debug.xcconfig"; path = "Target Support Files/Pods-CodeGenerationToolTests/Pods-CodeGenerationToolTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E75D09A20E5E8977B0F9DF16 /* Pods_CodeGenerationTool.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A47A75996D596E4CF449CEBC /* Pods_CodeGenerationToolTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,12 +102,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43C11816E38B44FB1932AEC9 /* Pods_CodeGenerationTool_CodeGenerationToolUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6D10A181CCCCE0B4472A02CD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B187A328932D431717A2517C /* Pods_CodeGenerationTool.framework */,
+				7157C1C24A046B11838466DE /* Pods_CodeGenerationTool_CodeGenerationToolUITests.framework */,
+				3B86CFA6999CA1026AA62E68 /* Pods_CodeGenerationToolTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		86E7C805A34284EC5FB013C3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9A89E47EAFEFD119815F8FA6 /* Pods-CodeGenerationTool.debug.xcconfig */,
+				1C5AAB70915A693E8B031E33 /* Pods-CodeGenerationTool.release.xcconfig */,
+				714A04910DB9E1F2EDC440A1 /* Pods-CodeGenerationTool-CodeGenerationToolUITests.debug.xcconfig */,
+				6B30D908BD2AEBA57070A513 /* Pods-CodeGenerationTool-CodeGenerationToolUITests.release.xcconfig */,
+				E9402F7BDF328AA0417A7BAE /* Pods-CodeGenerationToolTests.debug.xcconfig */,
+				E734CF580DA38A2E089EF96C /* Pods-CodeGenerationToolTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		D70D5F3524B0641400675E89 = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +139,8 @@
 				D70D5F5724B0641800675E89 /* CodeGenerationToolTests */,
 				D70D5F6224B0641800675E89 /* CodeGenerationToolUITests */,
 				D70D5F3F24B0641400675E89 /* Products */,
+				86E7C805A34284EC5FB013C3 /* Pods */,
+				6D10A181CCCCE0B4472A02CD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -111,11 +159,13 @@
 			children = (
 				D70D5F4124B0641400675E89 /* AppDelegate.h */,
 				D70D5F4224B0641400675E89 /* AppDelegate.m */,
+				D7F42C1624B2C37200EF1C38 /* Common */,
 				D70D5F7124B0647000675E89 /* Base */,
-				D70D5F7424B0649500675E89 /* UI */,
+				D70D5F8024B0658600675E89 /* Main */,
 				D70D5F4724B0641800675E89 /* Assets.xcassets */,
 				D70D5F4924B0641800675E89 /* Main.storyboard */,
 				D70D5F4C24B0641800675E89 /* Info.plist */,
+				D70D5F8724B2B46C00675E89 /* CGTPrefixHeader.pch */,
 				D70D5F4D24B0641800675E89 /* main.m */,
 				D70D5F4F24B0641800675E89 /* CodeGenerationTool.entitlements */,
 			);
@@ -167,15 +217,33 @@
 			path = ViewCol;
 			sourceTree = "<group>";
 		};
-		D70D5F7424B0649500675E89 /* UI */ = {
+		D70D5F8024B0658600675E89 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				D70D5F8024B0658600675E89 /* Main */,
+				D7F42C1E24B2D1B700EF1C38 /* Model */,
+				D7F42C1A24B2CEF800EF1C38 /* Data */,
+				D7F42C1924B2CEEC00EF1C38 /* Controller */,
 			);
-			path = UI;
+			path = Main;
 			sourceTree = "<group>";
 		};
-		D70D5F8024B0658600675E89 /* Main */ = {
+		D7F42C1624B2C37200EF1C38 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				D7F42C1724B2C37800EF1C38 /* Header */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		D7F42C1724B2C37800EF1C38 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				D7F42C1824B2C3A500EF1C38 /* CGTColorDefine.h */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		D7F42C1924B2CEEC00EF1C38 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				D70D5F8124B0659E00675E89 /* CGTMainWindowController.h */,
@@ -183,7 +251,25 @@
 				D70D5F8424B065B700675E89 /* CGTMainViewController.h */,
 				D70D5F8524B065B700675E89 /* CGTMainViewController.m */,
 			);
-			path = Main;
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D7F42C1A24B2CEF800EF1C38 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				D7F42C1F24B2D1C700EF1C38 /* CGTFilePathPlistMgr.h */,
+				D7F42C2024B2D1C700EF1C38 /* CGTFilePathPlistMgr.m */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		D7F42C1E24B2D1B700EF1C38 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D7F42C1B24B2D1B300EF1C38 /* CGTMainModelLayer.h */,
+				D7F42C1C24B2D1B300EF1C38 /* CGTMainModelLayer.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,9 +279,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D70D5F6824B0641800675E89 /* Build configuration list for PBXNativeTarget "CodeGenerationTool" */;
 			buildPhases = (
+				67B2B51588C32324684ED3A3 /* [CP] Check Pods Manifest.lock */,
 				D70D5F3A24B0641400675E89 /* Sources */,
 				D70D5F3B24B0641400675E89 /* Frameworks */,
 				D70D5F3C24B0641400675E89 /* Resources */,
+				69F2A4CEC48EE658A63D912C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -210,6 +298,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D70D5F6B24B0641800675E89 /* Build configuration list for PBXNativeTarget "CodeGenerationToolTests" */;
 			buildPhases = (
+				4962DB504E2AA7077903F2E4 /* [CP] Check Pods Manifest.lock */,
 				D70D5F5024B0641800675E89 /* Sources */,
 				D70D5F5124B0641800675E89 /* Frameworks */,
 				D70D5F5224B0641800675E89 /* Resources */,
@@ -228,9 +317,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D70D5F6E24B0641800675E89 /* Build configuration list for PBXNativeTarget "CodeGenerationToolUITests" */;
 			buildPhases = (
+				21F3779B2B7AF4111F90465F /* [CP] Check Pods Manifest.lock */,
 				D70D5F5B24B0641800675E89 /* Sources */,
 				D70D5F5C24B0641800675E89 /* Frameworks */,
 				D70D5F5D24B0641800675E89 /* Resources */,
+				E190DFA8F22B45EF85B0ED6F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -310,16 +401,121 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		21F3779B2B7AF4111F90465F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CodeGenerationTool-CodeGenerationToolUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4962DB504E2AA7077903F2E4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CodeGenerationToolTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		67B2B51588C32324684ED3A3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CodeGenerationTool-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		69F2A4CEC48EE658A63D912C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CodeGenerationTool/Pods-CodeGenerationTool-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CodeGenerationTool/Pods-CodeGenerationTool-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CodeGenerationTool/Pods-CodeGenerationTool-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E190DFA8F22B45EF85B0ED6F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CodeGenerationTool-CodeGenerationToolUITests/Pods-CodeGenerationTool-CodeGenerationToolUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CodeGenerationTool-CodeGenerationToolUITests/Pods-CodeGenerationTool-CodeGenerationToolUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CodeGenerationTool-CodeGenerationToolUITests/Pods-CodeGenerationTool-CodeGenerationToolUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D70D5F3A24B0641400675E89 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				D70D5F4E24B0641800675E89 /* main.m in Sources */,
+				D7F42C2124B2D1C700EF1C38 /* CGTFilePathPlistMgr.m in Sources */,
 				D70D5F7F24B0657700675E89 /* CGTBaseViewController.m in Sources */,
 				D70D5F8624B065B700675E89 /* CGTMainViewController.m in Sources */,
 				D70D5F7B24B0655D00675E89 /* CGTBaseWindowController.m in Sources */,
 				D70D5F4324B0641400675E89 /* AppDelegate.m in Sources */,
+				D7F42C1D24B2D1B300EF1C38 /* CGTMainModelLayer.m in Sources */,
 				D70D5F8324B0659E00675E89 /* CGTMainWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -478,11 +674,13 @@
 		};
 		D70D5F6924B0641800675E89 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A89E47EAFEFD119815F8FA6 /* Pods-CodeGenerationTool.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CodeGenerationTool/CodeGenerationTool.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREFIX_HEADER = /Users/dingbinbin/CodeGenerationTool/CodeGenerationTool/CodeGenerationTool/CGTPrefixHeader.pch;
 				INFOPLIST_FILE = CodeGenerationTool/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -495,11 +693,13 @@
 		};
 		D70D5F6A24B0641800675E89 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C5AAB70915A693E8B031E33 /* Pods-CodeGenerationTool.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CodeGenerationTool/CodeGenerationTool.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREFIX_HEADER = /Users/dingbinbin/CodeGenerationTool/CodeGenerationTool/CodeGenerationTool/CGTPrefixHeader.pch;
 				INFOPLIST_FILE = CodeGenerationTool/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -512,6 +712,7 @@
 		};
 		D70D5F6C24B0641800675E89 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9402F7BDF328AA0417A7BAE /* Pods-CodeGenerationToolTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -531,6 +732,7 @@
 		};
 		D70D5F6D24B0641800675E89 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E734CF580DA38A2E089EF96C /* Pods-CodeGenerationToolTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -550,6 +752,7 @@
 		};
 		D70D5F6F24B0641800675E89 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 714A04910DB9E1F2EDC440A1 /* Pods-CodeGenerationTool-CodeGenerationToolUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -567,6 +770,7 @@
 		};
 		D70D5F7024B0641800675E89 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6B30D908BD2AEBA57070A513 /* Pods-CodeGenerationTool-CodeGenerationToolUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
