@@ -14,8 +14,10 @@
 
 // 第三方
 #import "Masonry.h"
+#import "AFNetworking.h"
 
 // 工程定义
 #import "CGTColorDefine.h"
+#import "CGTCmdTool.h"
 
 #endif /* CGTPrefixHeader_pch */

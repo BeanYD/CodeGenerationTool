@@ -17,6 +17,9 @@
 
 @property (nonatomic, strong) CGTMainModelLayer *model;
 
+
+@property (nonatomic, strong) NSButton *updateButton;
+
 @end
 
 @implementation CGTMainViewController
@@ -31,6 +34,7 @@
 	[self.view addSubview:self.titleLabel];
 	[self.view addSubview:self.filePathBox];
 	[self.view addSubview:self.selectButton];
+	[self.view addSubview:self.updateButton];
 	
 	
 	[self layoutSubViews];
@@ -50,6 +54,11 @@
 		make.left.equalTo(self.titleLabel.mas_right).offset(10);
 		make.top.equalTo(self.titleLabel);
 		make.right.equalTo(self.selectButton.mas_left);
+	}];
+	
+	[self.updateButton mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.left.equalTo(self.titleLabel);
+		make.top.equalTo(self.titleLabel.mas_bottom).offset(20);
 	}];
 }
 
@@ -71,6 +80,50 @@
 		}
 	}];
 }
+
+- (void)update:(NSButton *)button {
+	NSString * libraryDir = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
+	NSString * cachePath = [libraryDir stringByAppendingPathComponent:@"Caches"];
+	NSString * lastDestinationFileName = [cachePath stringByAppendingPathComponent:@"CodeGenerationTool.app"];
+	[CGTCmdTool cmd:[NSString stringWithFormat:@"cd %@; open CodeGenerationTool.app", cachePath]];
+
+//	NSString * lastDestinationFileName = [cachePath stringByAppendingPathComponent:@"iOS架构概述.key"];
+
+//	[CGTCmdTool cmd:[NSString stringWithFormat:@"cd %@; open CodeGenerationTool.dmg", cachePath]];
+
+//	[self downloadDmgFileFromTargetUrl:@"http://127.0.0.1:8902/" destinationFileNamePath:lastDestinationFileName WithProgress:^(CGFloat progress) {
+//
+//	} doneCallback:^{
+//		[CGTCmdTool cmd:[NSString stringWithFormat:@"cd %@; open CodeGenerationTool.app", cachePath]];
+//	} errorCallback:^(NSString *errorDomine, NSInteger errorCode) {
+//
+//	}];
+}
+
+//- (void)downloadDmgFileFromTargetUrl:(NSString *)targetUrl destinationFileNamePath:(NSString *)path WithProgress:(void(^)(CGFloat progress))progressCallback doneCallback:(void(^)(void))doneCallback errorCallback:(void(^)(NSString * errorDomine, NSInteger errorCode))errorCallback {
+//
+//	AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];;
+//
+//	NSURLRequest * request = [NSURLRequest requestWithURL: [NSURL URLWithString:targetUrl]];
+//	NSURLSessionDownloadTask *downTask = [manager downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
+//		NSLog(@"下载进度：%.0f％", downloadProgress.fractionCompleted * 100);
+//		progressCallback(downloadProgress.fractionCompleted);
+//	} destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+//		return [NSURL fileURLWithPath:path];
+//	} completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
+//		if (!error) {
+//			if (doneCallback) {
+//				doneCallback();
+//			}
+//		} else {
+//			if (errorCallback) {
+//				errorCallback(error.domain, error.code);
+//			}
+//		}
+//	}];
+//	[downTask resume];
+//}
+
 
 #pragma mark - NSComboBoxDataSource
 - (NSInteger)numberOfItemsInComboBox:(NSComboBox *)comboBox {
@@ -130,6 +183,15 @@
 	}
 	
 	return _selectButton;
+}
+
+- (NSButton *)updateButton {
+	if (!_updateButton) {
+		_updateButton = [NSButton buttonWithTitle:@"更新" target:self action:@selector(update:)];
+		_updateButton.contentTintColor = NSColorFromRGB(0x000000);
+	}
+	
+	return _updateButton;
 }
 
 - (CGTMainModelLayer *)model {
