@@ -16,8 +16,8 @@
 @implementation CGTBaseWindowController
 
 + (instancetype)defaultWindowCol {
-	// NSRectFromCGRect(CGRectMake(100, 100, 800, 600)) content的size跟随内部NSViewController.view的frame变动
-	NSWindow *window = [[NSWindow alloc] initWithContentRect:NSRectFromCGRect(CGRectMake(100, 100, 0, 0))
+	// NSRectFromCGRect(CGRectZero) content的size跟随内部NSViewController.view的frame变动，可以直接在window上设置zero，不需要关注
+	NSWindow *window = [[NSWindow alloc] initWithContentRect:NSRectFromCGRect(CGRectZero)
 												   styleMask:NSWindowStyleMaskBorderless | NSWindowStyleMaskTitled | NSWindowStyleMaskClosable | NSWindowStyleMaskMiniaturizable | NSWindowStyleMaskResizable
 													 backing:NSBackingStoreBuffered
 													   defer:YES];

@@ -8,18 +8,26 @@
 
 #import "CGTBaseViewController.h"
 
-@interface CGTBaseViewController ()
-
+@interface CGTBaseViewController () {
+	CGRect _frame;
+}
 
 
 @end
 
 @implementation CGTBaseViewController
 
+- (instancetype)initWithFrame:(CGRect)frame {
+	if (self = [super init]) {
+		_frame = frame;
+	}
+	
+	return self;
+}
+
 // 不使用nib加载NSViewController时，需要在loadView中创建view，进而调用viewDidLoad
 - (void)loadView {
-	[NSScreen mainScreen];
-	NSView *view = [[NSView alloc] initWithFrame:CGRectMake(0, 0, 800, 600)];
+	NSView *view = [[NSView alloc] initWithFrame:_frame];
 	self.view = view;
 }
 

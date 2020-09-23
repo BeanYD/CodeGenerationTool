@@ -30,7 +30,7 @@
 }
 
 - (NSViewController *)vc {
-	NSViewController *vc = [[NSClassFromString(@"CGTMainViewController") alloc] init];
+	NSViewController *vc = [[NSClassFromString(@"CGTMainViewController") alloc] initWithFrame:CGRectMake(0, 0, 1200, 600)];
 	return vc;
 }
 

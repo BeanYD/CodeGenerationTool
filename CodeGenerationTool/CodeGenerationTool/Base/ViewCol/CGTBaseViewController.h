@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CGTBaseViewController : NSViewController
 
+- (instancetype)initWithFrame:(CGRect)frame;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -30,6 +30,10 @@
 	
 	self.view.wantsLayer = YES;
 	self.view.layer.backgroundColor = [NSColor colorWithWhite:0.3 alpha:1].CGColor;
+	
+	CGRect frame = self.view.frame;
+	frame.size.width = 1200;
+	self.view.frame = frame;
 
 	[self.view addSubview:self.titleLabel];
 	[self.view addSubview:self.filePathBox];
