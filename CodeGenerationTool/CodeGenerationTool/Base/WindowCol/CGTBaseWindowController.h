@@ -12,8 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CGTBaseWindowController : NSWindowController
 
-+ (instancetype)defaultWindowCol;
-
 @end
 
 NS_ASSUME_NONNULL_END

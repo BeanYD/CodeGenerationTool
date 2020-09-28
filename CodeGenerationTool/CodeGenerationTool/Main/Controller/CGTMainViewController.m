@@ -20,6 +20,12 @@
 
 @property (nonatomic, strong) NSButton *updateButton;
 
+@property (nonatomic, strong) NSButton *tableViewButton;
+@property (nonatomic, strong) NSButton *collectionViewButton;
+
+
+@property (nonatomic, strong) NSWindowController *tableWindowCol;
+
 @end
 
 @implementation CGTMainViewController
@@ -30,16 +36,13 @@
 	
 	self.view.wantsLayer = YES;
 	self.view.layer.backgroundColor = [NSColor colorWithWhite:0.3 alpha:1].CGColor;
-	
-	CGRect frame = self.view.frame;
-	frame.size.width = 1200;
-	self.view.frame = frame;
 
 	[self.view addSubview:self.titleLabel];
 	[self.view addSubview:self.filePathBox];
 	[self.view addSubview:self.selectButton];
 	[self.view addSubview:self.updateButton];
-	
+	[self.view addSubview:self.tableViewButton];
+	[self.view addSubview:self.collectionViewButton];
 	
 	[self layoutSubViews];
 	
@@ -59,10 +62,17 @@
 		make.top.equalTo(self.titleLabel);
 		make.right.equalTo(self.selectButton.mas_left);
 	}];
-	
 	[self.updateButton mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.left.equalTo(self.titleLabel);
 		make.top.equalTo(self.titleLabel.mas_bottom).offset(20);
+	}];
+	[self.tableViewButton mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.left.equalTo(self.titleLabel);
+		make.top.equalTo(self.updateButton.mas_bottom).offset(20);
+	}];
+	[self.collectionViewButton mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.left.equalTo(self.tableViewButton.mas_right).offset(12);
+		make.top.equalTo(self.tableViewButton);
 	}];
 }
 
@@ -128,6 +138,19 @@
 //	[downTask resume];
 //}
 
+- (void)showTableView:(NSButton *)button {
+	NSWindowController *windowCol = [super windowColMakingFromWindowColName:@"CGTDDTableWindowController"];
+	if (windowCol == nil) {
+		NSLog(@"不存在 CGTDDTableWindowController");
+		return;
+	}
+	self.tableWindowCol = windowCol;
+	[self.tableWindowCol.window makeKeyAndOrderFront:nil];
+}
+
+- (void)showCollectionView:(NSButton *)button {
+	
+}
 
 #pragma mark - NSComboBoxDataSource
 - (NSInteger)numberOfItemsInComboBox:(NSComboBox *)comboBox {
@@ -204,6 +227,22 @@
 	}
 	
 	return _model;
+}
+
+- (NSButton *)tableViewButton {
+	if (!_tableViewButton) {
+		_tableViewButton = [NSButton buttonWithTitle:@"列表" target:self action:@selector(showTableView:)];
+	}
+	
+	return _tableViewButton;
+}
+
+- (NSButton *)collectionViewButton {
+	if (!_collectionViewButton) {
+		_collectionViewButton = [NSButton buttonWithTitle:@"网格" target:self action:@selector(showCollectionView:)];
+	}
+	
+	return _collectionViewButton;
 }
 
 @end

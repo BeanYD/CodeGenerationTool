@@ -7,11 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "CGTMainWindowController.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
-@property (strong) CGTMainWindowController *mainWindow;
+@property (strong) NSWindowController *mainWindow;
 
 @end
 

@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithFrame:(CGRect)frame;
 
+- (NSWindowController *)windowColMakingFromWindowColName:(NSString *)colName;
+
 @end
 
 NS_ASSUME_NONNULL_END

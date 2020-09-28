@@ -17,7 +17,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	// Insert code here to initialize your application
 		
-	self.mainWindow = [CGTMainWindowController defaultWindowCol];
+	self.mainWindow = [CGTInvokeConfig className:@"CGTMainWindowController" invokeMethodName:@"CGTMainWindowController"];
 	[[self.mainWindow window] orderFront:nil];
 	
 }

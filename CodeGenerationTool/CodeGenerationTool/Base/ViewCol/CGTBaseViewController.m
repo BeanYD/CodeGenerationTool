@@ -39,6 +39,15 @@
 	self.view.wantsLayer = YES;
 }
 
+- (NSWindowController *)windowColMakingFromWindowColName:(NSString *)colName {
+	id res = [CGTInvokeConfig className:colName invokeMethodName:@"defaultWindowCol"];
+	if ([res isKindOfClass:[NSWindowController class]]) {
+		return  res;
+	} else {
+		return nil;
+	}
+}
+
 
 - (void)dealloc {
 	NSLog(@"%@ dealloc", [self class]);

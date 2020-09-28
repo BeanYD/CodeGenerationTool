@@ -19,5 +19,8 @@
 // 工程定义
 #import "CGTColorDefine.h"
 #import "CGTCmdTool.h"
+#import "CGTFrameConfig.h"
+#import "CGTInvokeConfig.h"
+#import "CGTColName.h"
 
 #endif /* CGTPrefixHeader_pch */

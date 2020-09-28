@@ -1,23 +1,23 @@
 //
-//  CGTMainWindowController.m
+//  CGTDDTableWindowController.m
 //  CodeGenerationTool
 //
-//  Created by dingbinbin on 2020/7/4.
+//  Created by dingbinbin on 2020/9/24.
 //  Copyright © 2020 dingbinbin. All rights reserved.
 //
 
-#import "CGTMainWindowController.h"
+#import "CGTDDTableWindowController.h"
 
-@interface CGTMainWindowController ()
+@interface CGTDDTableWindowController ()
 
 @end
 
-@implementation CGTMainWindowController
+@implementation CGTDDTableWindowController
 
 - (instancetype)initWithWindow:(NSWindow *)window {
 	if (self = [super initWithWindow:window]) {
-		window.title = @"自动生成工具";
-		self.contentViewController = [self vc];
+		window.title = @"列表视图";
+		self.contentViewController = self.vc;
 	}
 	
 	return self;
@@ -30,7 +30,7 @@
 }
 
 - (NSViewController *)vc {
-	NSViewController *vc = [[NSClassFromString(@"CGTMainViewController") alloc] initWithFrame:[CGTFrameConfig getDefaultWindowFrame]];
+	NSViewController *vc = [[NSClassFromString(@"CGTDDTableViewController") alloc] initWithFrame:[CGTFrameConfig getDefaultWindowFrame]];
 	return vc;
 }
 
