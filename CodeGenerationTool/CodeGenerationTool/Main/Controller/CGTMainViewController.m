@@ -25,6 +25,7 @@
 
 
 @property (nonatomic, strong) NSWindowController *tableWindowCol;
+@property (nonatomic, strong) NSWindowController *collectionWindowCol;
 
 @end
 
@@ -139,17 +140,27 @@
 //}
 
 - (void)showTableView:(NSButton *)button {
-	NSWindowController *windowCol = [super windowColMakingFromWindowColName:@"CGTDDTableWindowController"];
+	NSWindowController *windowCol = [self windowColMakingFromWindowColName:@"CGTDDTableWindowController"];
 	if (windowCol == nil) {
 		NSLog(@"不存在 CGTDDTableWindowController");
 		return;
 	}
+	// 先关闭原有的window
+	[self.tableWindowCol.window close];
 	self.tableWindowCol = windowCol;
 	[self.tableWindowCol.window makeKeyAndOrderFront:nil];
 }
 
 - (void)showCollectionView:(NSButton *)button {
-	
+	NSWindowController *windowCol = [self windowColMakingFromWindowColName:@"CGTDDCollectionWindowController"];
+	if (windowCol == nil) {
+		NSLog(@"不存在 CGTDDCollectionWindowController");
+		return;
+	}
+	// 先关闭原有的window
+	[self.collectionWindowCol.window close];
+	self.collectionWindowCol = windowCol;
+	[self.collectionWindowCol.window makeKeyAndOrderFront:nil];
 }
 
 #pragma mark - NSComboBoxDataSource

@@ -16,7 +16,7 @@
 @implementation CGTBaseWindowController
 
 + (instancetype)defaultWindowCol {
-	// NSRectFromCGRect(CGRectZero) content的size跟随内部NSViewController.view的frame变动，可以直接在window上设置zero，不需要关注
+	// Rect设置window的默认窗口size，如果在window中添加了view，按view的大小进行显示
 	NSWindow *window = [[NSWindow alloc] initWithContentRect:[CGTFrameConfig getDefaultWindowFrame]
 												   styleMask:NSWindowStyleMaskBorderless | NSWindowStyleMaskTitled | NSWindowStyleMaskClosable | NSWindowStyleMaskMiniaturizable | NSWindowStyleMaskResizable
 													 backing:NSBackingStoreBuffered

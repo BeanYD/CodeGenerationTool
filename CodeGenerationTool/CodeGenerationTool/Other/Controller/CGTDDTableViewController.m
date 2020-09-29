@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) NSTableView *stringTableView;
 
+@property (nonatomic, strong) NSScrollView *scrollView;
 @property (nonatomic, strong) NSTableView *objcTableView;
 
 @property (nonatomic, strong) NSMutableArray *stringDataSource;
@@ -27,6 +28,32 @@
     [super viewDidLoad];
     // Do view setup here.
 	
+	[self initData];
+	
+	[self.view addSubview:self.stringTableView];
+	// 通过scrollView来滚动内部的tableview
+	[self.view addSubview:self.scrollView];
+	
+	[self layoutSubviews];
+	
+}
+
+- (void)layoutSubviews {
+	[self.stringTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.top.left.bottom.equalTo(self.view);
+		make.width.equalTo(@100);
+	}];
+	
+	[self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.top.right.bottom.equalTo(self.view);
+		make.height.equalTo(@400);
+		make.left.equalTo(self.stringTableView.mas_right).offset(10);
+	}];
+	[self.scrollView setDocumentView:self.objcTableView];
+	
+}
+
+- (void)initData {
 	self.stringDataSource = [@[@"111", @"222", @"333"] mutableCopy];
 //	self.objcDataSource = [@[@"444", @"555", @"666", @"777"] mutableCopy];
 	
@@ -34,7 +61,7 @@
 	self.objcDataSource = [@{
 		@"column1": @[@"1", @"2", @"3"],
 		@"column2": @[@"4", @"5", @"6"],
-		@"column3": @[@"7", @"8", @"9"],
+		@"column3": @[@"7", @"8"],
 		@"column4": @[@"10", @"11", @"12"],
 
 	} mutableCopy];
@@ -42,23 +69,6 @@
 	for (NSArray *array in self.objcDataSource.allValues) {
 		self.maxRowNum = MAX(self.maxRowNum, array.count);
 	}
-	
-	[self.view addSubview:self.stringTableView];
-	[self.stringTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.top.left.bottom.equalTo(self.view);
-		make.width.equalTo(@100);
-	}];
-	
-	NSScrollView *scrollView = [[NSScrollView alloc] init];
-	[self.view addSubview:scrollView];
-	[scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.top.right.bottom.equalTo(self.view);
-		make.height.equalTo(@400);
-		make.left.equalTo(self.stringTableView.mas_right).offset(10);
-	}];
-	
-	[scrollView setDocumentView:self.objcTableView];
-
 }
 
 #pragma mark - NSTableViewDataSource
@@ -101,6 +111,12 @@
 	}
 	
 	NSArray *stringArr = self.objcDataSource[tableColumn.identifier];
+	
+	// 数组保护
+	if (stringArr.count <= row) {
+		return nil;
+	}
+	
 	textField.stringValue = stringArr[row];
 	
 	return  cellView;
@@ -128,6 +144,14 @@
 	}
 	
 	return _stringTableView;
+}
+
+- (NSScrollView *)scrollView {
+	if (!_scrollView) {
+		_scrollView = [[NSScrollView alloc] init];
+	}
+	
+	return _scrollView;
 }
 
 - (NSTableView *)objcTableView {
