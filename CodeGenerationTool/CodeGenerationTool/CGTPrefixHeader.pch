@@ -21,6 +21,5 @@
 #import "CGTCmdTool.h"
 #import "CGTFrameConfig.h"
 #import "CGTInvokeConfig.h"
-#import "CGTColName.h"
 
 #endif /* CGTPrefixHeader_pch */

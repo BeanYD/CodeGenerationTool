@@ -24,7 +24,6 @@
 		D7574AE724C692CD00EEEA98 /* CGTCmdTool.m in Sources */ = {isa = PBXBuildFile; fileRef = D7574AE624C692CD00EEEA98 /* CGTCmdTool.m */; };
 		D7D11797251C44270019212F /* CGTDDTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D11796251C44270019212F /* CGTDDTableViewController.m */; };
 		D7D1179E251C44390019212F /* CGTDDCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D1179C251C44390019212F /* CGTDDCollectionViewController.m */; };
-		D7D1179F251C44390019212F /* CGTDDCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7D1179D251C44390019212F /* CGTDDCollectionViewController.xib */; };
 		D7D117A6251C6B050019212F /* CGTDDTableWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D117A5251C6B050019212F /* CGTDDTableWindowController.m */; };
 		D7D117AF251C6B1B0019212F /* CGTDDCollectionWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D117AE251C6B1B0019212F /* CGTDDCollectionWindowController.m */; };
 		D7D117C5251C6D7B0019212F /* CGTFrameConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D117C4251C6D7B0019212F /* CGTFrameConfig.m */; };
@@ -92,7 +91,6 @@
 		D7D11796251C44270019212F /* CGTDDTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTDDTableViewController.m; sourceTree = "<group>"; };
 		D7D1179B251C44390019212F /* CGTDDCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTDDCollectionViewController.h; sourceTree = "<group>"; };
 		D7D1179C251C44390019212F /* CGTDDCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTDDCollectionViewController.m; sourceTree = "<group>"; };
-		D7D1179D251C44390019212F /* CGTDDCollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CGTDDCollectionViewController.xib; sourceTree = "<group>"; };
 		D7D117A4251C6B050019212F /* CGTDDTableWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTDDTableWindowController.h; sourceTree = "<group>"; };
 		D7D117A5251C6B050019212F /* CGTDDTableWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTDDTableWindowController.m; sourceTree = "<group>"; };
 		D7D117AD251C6B1B0019212F /* CGTDDCollectionWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTDDCollectionWindowController.h; sourceTree = "<group>"; };
@@ -101,7 +99,6 @@
 		D7D117C4251C6D7B0019212F /* CGTFrameConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTFrameConfig.m; sourceTree = "<group>"; };
 		D7D117CF251C842D0019212F /* CGTInvokeConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTInvokeConfig.h; sourceTree = "<group>"; };
 		D7D117D0251C842D0019212F /* CGTInvokeConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTInvokeConfig.m; sourceTree = "<group>"; };
-		D7D1180D251CA08D0019212F /* CGTColName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTColName.h; sourceTree = "<group>"; };
 		D7F42C1824B2C3A500EF1C38 /* CGTColorDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTColorDefine.h; sourceTree = "<group>"; };
 		D7F42C1B24B2D1B300EF1C38 /* CGTMainModelLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTMainModelLayer.h; sourceTree = "<group>"; };
 		D7F42C1C24B2D1B300EF1C38 /* CGTMainModelLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTMainModelLayer.m; sourceTree = "<group>"; };
@@ -307,7 +304,6 @@
 				D7D117AE251C6B1B0019212F /* CGTDDCollectionWindowController.m */,
 				D7D1179B251C44390019212F /* CGTDDCollectionViewController.h */,
 				D7D1179C251C44390019212F /* CGTDDCollectionViewController.m */,
-				D7D1179D251C44390019212F /* CGTDDCollectionViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -360,7 +356,6 @@
 			isa = PBXGroup;
 			children = (
 				D7F42C1824B2C3A500EF1C38 /* CGTColorDefine.h */,
-				D7D1180D251CA08D0019212F /* CGTColName.h */,
 			);
 			path = Header;
 			sourceTree = "<group>";
@@ -502,7 +497,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7D1179F251C44390019212F /* CGTDDCollectionViewController.xib in Resources */,
 				D70D5F4824B0641800675E89 /* Assets.xcassets in Resources */,
 				D70D5F4B24B0641800675E89 /* Main.storyboard in Resources */,
 			);

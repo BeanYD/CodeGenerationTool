@@ -17,7 +17,7 @@
 - (instancetype)initWithWindow:(NSWindow *)window {
 	if (self = [super initWithWindow:window]) {
 		window.title = @"列表视图";
-		self.contentViewController = self.vc;
+		self.contentViewController = [self vc];
 	}
 	
 	return self;

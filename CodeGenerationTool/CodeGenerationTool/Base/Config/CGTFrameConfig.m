@@ -18,4 +18,13 @@
 	return screenFrame;
 }
 
++ (CGRect)getHalfWidthDefaultWindowFrame {
+	CGRect screenFrame = [NSScreen mainScreen].frame;
+	screenFrame.size.width = screenFrame.size.width / 4;
+	screenFrame.size.height = screenFrame.size.height / 2;
+	return screenFrame;
+}
+
+
+
 @end

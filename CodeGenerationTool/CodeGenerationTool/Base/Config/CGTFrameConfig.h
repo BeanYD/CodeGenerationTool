@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (CGRect)getDefaultWindowFrame;
 
++ (CGRect)getHalfWidthDefaultWindowFrame;
+
 @end
 
 NS_ASSUME_NONNULL_END
