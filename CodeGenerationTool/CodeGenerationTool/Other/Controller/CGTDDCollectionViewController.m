@@ -26,33 +26,42 @@
 	
 	NSScrollView *scrollView = [[NSScrollView alloc] init];
 	[self.view addSubview:scrollView];
+
+	
+	NSClipView *clipView = [[NSClipView alloc] init];
+	
+	[scrollView setContentView:clipView];
+	scrollView.needsLayout = true;
+	// 使用约束的话 下面这句话是必须有的 否则会影响window，导致window不能用鼠标改变大小
+	scrollView.translatesAutoresizingMaskIntoConstraints = false;
+	
+	[clipView setDocumentView:self.collectionView];
+	
 	[scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.edges.equalTo(self.view);
 		make.height.equalTo(@200);
 	}];
-	
-	[scrollView setDocumentView:self.collectionView];
 }
 
 - (void)initData {
-	self.dataSource = [@[@[@"1", @"2", @"3", @"4", @"5", @"1", @"2", @"3", @"4", @"5", @"1", @"2", @"3", @"4", @"5"], @[@"1", @"2", @"3", @"4", @"5", @"1", @"2", @"3", @"4", @"5"]] mutableCopy];
+	self.dataSource = [@[@"1", @"2", @"3", @"4", @"5", @"1", @"2", @"3", @"4", @"5", @"1", @"2", @"3", @"4", @"5"] mutableCopy];
+
 }
 
 #pragma mark - NSCollectionViewDataSource
-- (NSInteger)numberOfSectionsInCollectionView:(NSCollectionView *)collectionView {
-	return self.dataSource.count;
-}
-
 - (NSInteger)collectionView:(NSCollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-	NSArray *array = self.dataSource[section];
-	return array.count;
+	
+	return self.dataSource.count;
 }
 
 - (NSCollectionViewItem *)collectionView:(NSCollectionView *)collectionView itemForRepresentedObjectAtIndexPath:(NSIndexPath *)indexPath {
 	
-	NSCollectionViewItem *item = [collectionView makeItemWithIdentifier:@"itemIdentifier" forIndexPath:indexPath];
+	NSCollectionViewItem *item = [collectionView makeItemWithIdentifier:@"collectionViewItemId" forIndexPath:indexPath];
+	if (!item) {
+		item = [[NSCollectionViewItem alloc] init];
+	}
 	NSTextField *textField = [[NSTextField alloc] init];
-	textField.stringValue = self.dataSource[indexPath.section][indexPath.item];
+	textField.stringValue = self.dataSource[indexPath.item];
 	item.textField = textField;
 	
 	return item;
@@ -65,10 +74,10 @@
 
 - (NSCollectionView *)collectionView {
 	if (!_collectionView) {
-//		NSCollectionViewFlowLayout *flowLayout = [[NSCollectionViewFlowLayout alloc] init];
-//		flowLayout.scrollDirection = NSCollectionViewScrollDirectionVertical;
 		_collectionView = [[NSCollectionView alloc] init];
-//		_collectionView.collectionViewLayout = flowLayout;
+		NSCollectionViewFlowLayout *layout = [[NSCollectionViewFlowLayout alloc] init];
+		layout.scrollDirection = NSCollectionViewScrollDirectionVertical;
+		_collectionView.collectionViewLayout = layout;
 		_collectionView.dataSource = self;
 		_collectionView.delegate = self;
 		[_collectionView registerClass:[NSCollectionViewItem class] forItemWithIdentifier:@"collectionViewItemId"];

@@ -284,9 +284,17 @@
 			path = ModelLayer;
 			sourceTree = "<group>";
 		};
+		D79FDE422524270000AC4E3B /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		D7D11786251C43A10019212F /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				D79FDE422524270000AC4E3B /* View */,
 				D7D11788251C43C90019212F /* ModelLayer */,
 				D7D11787251C43C20019212F /* Controller */,
 			);

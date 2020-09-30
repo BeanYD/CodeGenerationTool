@@ -49,7 +49,10 @@
 		make.height.equalTo(@400);
 		make.left.equalTo(self.stringTableView.mas_right).offset(10);
 	}];
-	[self.scrollView setDocumentView:self.objcTableView];
+	
+	NSClipView *clipView = [[NSClipView alloc] init];
+	[self.scrollView setContentView:clipView];
+	[clipView setDocumentView:self.objcTableView];
 	
 }
 
