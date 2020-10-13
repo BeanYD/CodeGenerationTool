@@ -27,5 +27,50 @@
 	// Insert code here to tear down your application
 }
 
+- (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
+
+    return NSTerminateNow;
+}
+
+- (void)applicationWillFinishLaunching:(NSNotification *)notification {
+    
+}
+- (void)applicationWillHide:(NSNotification *)notification {
+    
+}
+- (void)applicationDidHide:(NSNotification *)notification {
+    
+}
+- (void)applicationWillUnhide:(NSNotification *)notification {
+    
+}
+- (void)applicationDidUnhide:(NSNotification *)notification {
+    
+}
+- (void)applicationWillBecomeActive:(NSNotification *)notification {
+    
+}
+- (void)applicationDidBecomeActive:(NSNotification *)notification {
+    
+}
+- (void)applicationWillResignActive:(NSNotification *)notification {
+    
+}
+- (void)applicationDidResignActive:(NSNotification *)notification {
+    
+}
+- (void)applicationWillUpdate:(NSNotification *)notification {
+    
+}
+- (void)applicationDidUpdate:(NSNotification *)notification {
+    
+}
+- (void)applicationDidChangeScreenParameters:(NSNotification *)notification {
+    
+}
+- (void)applicationDidChangeOcclusionState:(NSNotification *)notification API_AVAILABLE(macos(10.9)) {
+    
+}
+
 
 @end
