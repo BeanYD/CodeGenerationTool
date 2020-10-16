@@ -7,6 +7,8 @@
 //
 
 #import "CGTMainWindowController.h"
+#import "CGTTitleBarViewController.h"
+#import "CGTCommonTitleView.h"
 
 @interface CGTMainWindowController ()
 
@@ -27,6 +29,23 @@
     [super windowDidLoad];
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    
+    // 重新设置titleBar，先通过xib实现，后续进行无xib探究
+    CGTCommonTitleView *titleView = [[CGTCommonTitleView alloc] initWithFrame:NSMakeRect(0, 0, NSWidth(self.window.frame), 30)];
+    [titleView setTitleLabelText:@"自动生成工具"];
+    [titleView setAutoresizingMask:NSViewWidthSizable|NSViewMinYMargin|NSViewMaxXMargin];
+    self.window.titleVisibility = NSWindowTitleHidden;
+    self.window.titlebarAppearsTransparent = YES;
+    CGTTitleBarViewController *titleBar = [[CGTTitleBarViewController alloc] init];
+    [titleBar.view setWantsLayer:YES];
+    [titleBar.view.layer setBackgroundColor:[NSColor colorWithRed:51.0/256 green:53.0/256 blue:60.0/256 alpha:1.0].CGColor];
+    [self.window addTitlebarAccessoryViewController:titleBar];
+    NSView *themeView = [self.window.contentView superview];
+    NSView* v = themeView.subviews[1].subviews[0];
+    [v setWantsLayer:YES];
+    [v.layer setBackgroundColor:[[NSColor clearColor] CGColor]];
+    [v addSubview:titleView positioned:NSWindowBelow relativeTo:nil];
+    
 }
 
 - (NSViewController *)vc {

@@ -22,10 +22,12 @@
 
 @property (nonatomic, strong) NSButton *tableViewButton;
 @property (nonatomic, strong) NSButton *collectionViewButton;
+@property (nonatomic, strong) NSButton *deviceTestButton;
 
 
 @property (nonatomic, strong) NSWindowController *tableWindowCol;
 @property (nonatomic, strong) NSWindowController *collectionWindowCol;
+@property (nonatomic, strong) NSWindowController *deviceTestWindowCol;
 
 @end
 
@@ -44,6 +46,7 @@
 	[self.view addSubview:self.updateButton];
 	[self.view addSubview:self.tableViewButton];
 	[self.view addSubview:self.collectionViewButton];
+    [self.view addSubview:self.deviceTestButton];
 	
 	[self layoutSubViews];
 	
@@ -75,6 +78,10 @@
 		make.left.equalTo(self.tableViewButton.mas_right).offset(12);
 		make.top.equalTo(self.tableViewButton);
 	}];
+    [self.deviceTestButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.titleLabel);
+        make.top.equalTo(self.tableViewButton.mas_bottom).offset(20);
+    }];
 }
 
 #pragma mark - button action
@@ -161,6 +168,17 @@
 	[self.collectionWindowCol.window close];
 	self.collectionWindowCol = windowCol;
 	[self.collectionWindowCol.window makeKeyAndOrderFront:nil];
+}
+
+- (void)showDeviceTestView:(NSButton *)button {
+    NSWindowController *windowCol = [self windowColMakingFromWindowColName:@"CGTDeviceTestWindowController"];
+    if (windowCol == nil) {
+        NSLog(@"不存在 CGTDeviceTestWindowController");
+        return;
+    }
+    [self.deviceTestWindowCol.window close];
+    self.deviceTestWindowCol = windowCol;
+    [self.deviceTestWindowCol.window makeKeyAndOrderFront:nil];
 }
 
 #pragma mark - NSComboBoxDataSource
@@ -254,6 +272,14 @@
 	}
 	
 	return _collectionViewButton;
+}
+
+- (NSButton *)deviceTestButton {
+    if (!_deviceTestButton) {
+        _deviceTestButton = [NSButton buttonWithTitle:@"设备检测" target:self action:@selector(showDeviceTestView:)];
+    }
+    
+    return _deviceTestButton;
 }
 
 @end
