@@ -28,9 +28,14 @@
 		D70D5F7F24B0657700675E89 /* CGTBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D70D5F7E24B0657700675E89 /* CGTBaseViewController.m */; };
 		D70D5F8324B0659E00675E89 /* CGTMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D70D5F8224B0659E00675E89 /* CGTMainWindowController.m */; };
 		D70D5F8624B065B700675E89 /* CGTMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D70D5F8524B065B700675E89 /* CGTMainViewController.m */; };
+		D72A36612528370700C82A44 /* CGTMouseEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72A36602528370700C82A44 /* CGTMouseEventViewController.m */; };
+		D72A36672528372000C82A44 /* CGTMouseEventWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72A36662528372000C82A44 /* CGTMouseEventWindowController.m */; };
+		D72A368425283BF300C82A44 /* CGTDDCollectionViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D72A368225283BF300C82A44 /* CGTDDCollectionViewItem.m */; };
 		D7574AA424C681D800EEEA98 /* CGTUpdateView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7574AA324C681D800EEEA98 /* CGTUpdateView.m */; };
 		D7574AA824C6826200EEEA98 /* CGTUpdateModelLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D7574AA724C6826200EEEA98 /* CGTUpdateModelLayer.m */; };
 		D7574AE724C692CD00EEEA98 /* CGTCmdTool.m in Sources */ = {isa = PBXBuildFile; fileRef = D7574AE624C692CD00EEEA98 /* CGTCmdTool.m */; };
+		D793D8582526E26B00497562 /* CGTOpenglWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D793D8572526E26B00497562 /* CGTOpenglWindowController.m */; };
+		D793D85B2526E27F00497562 /* CGTOpenglViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D793D85A2526E27F00497562 /* CGTOpenglViewController.m */; };
 		D7D11797251C44270019212F /* CGTDDTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D11796251C44270019212F /* CGTDDTableViewController.m */; };
 		D7D1179E251C44390019212F /* CGTDDCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D1179C251C44390019212F /* CGTDDCollectionViewController.m */; };
 		D7D117A6251C6B050019212F /* CGTDDTableWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D117A5251C6B050019212F /* CGTDDTableWindowController.m */; };
@@ -107,12 +112,22 @@
 		D70D5F8424B065B700675E89 /* CGTMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTMainViewController.h; sourceTree = "<group>"; };
 		D70D5F8524B065B700675E89 /* CGTMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTMainViewController.m; sourceTree = "<group>"; };
 		D70D5F8724B2B46C00675E89 /* CGTPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTPrefixHeader.pch; sourceTree = "<group>"; };
+		D72A365F2528370700C82A44 /* CGTMouseEventViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTMouseEventViewController.h; sourceTree = "<group>"; };
+		D72A36602528370700C82A44 /* CGTMouseEventViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTMouseEventViewController.m; sourceTree = "<group>"; };
+		D72A36652528372000C82A44 /* CGTMouseEventWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTMouseEventWindowController.h; sourceTree = "<group>"; };
+		D72A36662528372000C82A44 /* CGTMouseEventWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTMouseEventWindowController.m; sourceTree = "<group>"; };
+		D72A368125283BF300C82A44 /* CGTDDCollectionViewItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTDDCollectionViewItem.h; sourceTree = "<group>"; };
+		D72A368225283BF300C82A44 /* CGTDDCollectionViewItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTDDCollectionViewItem.m; sourceTree = "<group>"; };
 		D7574AA224C681D800EEEA98 /* CGTUpdateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTUpdateView.h; sourceTree = "<group>"; };
 		D7574AA324C681D800EEEA98 /* CGTUpdateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTUpdateView.m; sourceTree = "<group>"; };
 		D7574AA624C6826200EEEA98 /* CGTUpdateModelLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTUpdateModelLayer.h; sourceTree = "<group>"; };
 		D7574AA724C6826200EEEA98 /* CGTUpdateModelLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTUpdateModelLayer.m; sourceTree = "<group>"; };
 		D7574AE524C692CD00EEEA98 /* CGTCmdTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTCmdTool.h; sourceTree = "<group>"; };
 		D7574AE624C692CD00EEEA98 /* CGTCmdTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTCmdTool.m; sourceTree = "<group>"; };
+		D793D8562526E26B00497562 /* CGTOpenglWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTOpenglWindowController.h; sourceTree = "<group>"; };
+		D793D8572526E26B00497562 /* CGTOpenglWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTOpenglWindowController.m; sourceTree = "<group>"; };
+		D793D8592526E27F00497562 /* CGTOpenglViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTOpenglViewController.h; sourceTree = "<group>"; };
+		D793D85A2526E27F00497562 /* CGTOpenglViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTOpenglViewController.m; sourceTree = "<group>"; };
 		D7D11795251C44270019212F /* CGTDDTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTDDTableViewController.h; sourceTree = "<group>"; };
 		D7D11796251C44270019212F /* CGTDDTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTDDTableViewController.m; sourceTree = "<group>"; };
 		D7D1179B251C44390019212F /* CGTDDCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTDDCollectionViewController.h; sourceTree = "<group>"; };
@@ -266,6 +281,8 @@
 				D7F42C1624B2C37200EF1C38 /* Common */,
 				D70D5F7124B0647000675E89 /* Base */,
 				D70D5F8024B0658600675E89 /* Main */,
+				D793D8532526E22800497562 /* Opengl */,
+				D72A364F2528369600C82A44 /* MouseEvent */,
 				D7574A9F24C6819100EEEA98 /* Update */,
 				D7D11786251C43A10019212F /* Other */,
 				045C63E82536C5C3009F6922 /* 设备检测 */,
@@ -336,6 +353,34 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		D72A364F2528369600C82A44 /* MouseEvent */ = {
+			isa = PBXGroup;
+			children = (
+				D72A3650252836C300C82A44 /* Controller */,
+			);
+			path = MouseEvent;
+			sourceTree = "<group>";
+		};
+		D72A3650252836C300C82A44 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D72A36652528372000C82A44 /* CGTMouseEventWindowController.h */,
+				D72A36662528372000C82A44 /* CGTMouseEventWindowController.m */,
+				D72A365F2528370700C82A44 /* CGTMouseEventViewController.h */,
+				D72A36602528370700C82A44 /* CGTMouseEventViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D72A368025283BE400C82A44 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D72A368125283BF300C82A44 /* CGTDDCollectionViewItem.h */,
+				D72A368225283BF300C82A44 /* CGTDDCollectionViewItem.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		D7574A9F24C6819100EEEA98 /* Update */ = {
 			isa = PBXGroup;
 			children = (
@@ -363,18 +408,37 @@
 			path = ModelLayer;
 			sourceTree = "<group>";
 		};
-		D79FDE422524270000AC4E3B /* View */ = {
+		D793D8532526E22800497562 /* Opengl */ = {
+			isa = PBXGroup;
+			children = (
+				D793D8552526E24B00497562 /* Model */,
+				D793D8542526E24300497562 /* Controller */,
+			);
+			path = Opengl;
+			sourceTree = "<group>";
+		};
+		D793D8542526E24300497562 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D793D8562526E26B00497562 /* CGTOpenglWindowController.h */,
+				D793D8572526E26B00497562 /* CGTOpenglWindowController.m */,
+				D793D8592526E27F00497562 /* CGTOpenglViewController.h */,
+				D793D85A2526E27F00497562 /* CGTOpenglViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D793D8552526E24B00497562 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = View;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		D7D11786251C43A10019212F /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				D79FDE422524270000AC4E3B /* View */,
-				D7D11788251C43C90019212F /* ModelLayer */,
+				D72A368025283BE400C82A44 /* View */,
 				D7D11787251C43C20019212F /* Controller */,
 			);
 			path = Other;
@@ -393,13 +457,6 @@
 				D7D1179C251C44390019212F /* CGTDDCollectionViewController.m */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		D7D11788251C43C90019212F /* ModelLayer */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ModelLayer;
 			sourceTree = "<group>";
 		};
 		D7D117BC251C6D4A0019212F /* Config */ = {
@@ -723,11 +780,18 @@
 				D70D5F4E24B0641800675E89 /* main.m in Sources */,
 				D7F42C2124B2D1C700EF1C38 /* CGTFilePathPlistMgr.m in Sources */,
 				D7D11797251C44270019212F /* CGTDDTableViewController.m in Sources */,
+				D72A36612528370700C82A44 /* CGTMouseEventViewController.m in Sources */,
 				D7D117A6251C6B050019212F /* CGTDDTableWindowController.m in Sources */,
 				D7D117AF251C6B1B0019212F /* CGTDDCollectionWindowController.m in Sources */,
+<<<<<<< Updated upstream
 				045C63EC2536C633009F6922 /* CGTDeviceTestWindowController.m in Sources */,
 				045C640C25370184009F6922 /* AudioPlugin.mm in Sources */,
+=======
+				D793D85B2526E27F00497562 /* CGTOpenglViewController.m in Sources */,
+>>>>>>> Stashed changes
 				D70D5F7F24B0657700675E89 /* CGTBaseViewController.m in Sources */,
+				D793D8582526E26B00497562 /* CGTOpenglWindowController.m in Sources */,
+				D72A368425283BF300C82A44 /* CGTDDCollectionViewItem.m in Sources */,
 				D7D1179E251C44390019212F /* CGTDDCollectionViewController.m in Sources */,
 				0440122025398FE500798BCD /* CGTCustomButton.m in Sources */,
 				D70D5F8624B065B700675E89 /* CGTMainViewController.m in Sources */,
@@ -738,6 +802,7 @@
 				0440118D2537DB6900798BCD /* AudioVoicePlugin.mm in Sources */,
 				044012032539694500798BCD /* CGTTitleBarViewController.m in Sources */,
 				D7574AA824C6826200EEEA98 /* CGTUpdateModelLayer.m in Sources */,
+				D72A36672528372000C82A44 /* CGTMouseEventWindowController.m in Sources */,
 				D7574AE724C692CD00EEEA98 /* CGTCmdTool.m in Sources */,
 				045C63F52536C646009F6922 /* CGTDeviceTestViewController.m in Sources */,
 				044011FC2539685D00798BCD /* CGTCommonTitleView.m in Sources */,

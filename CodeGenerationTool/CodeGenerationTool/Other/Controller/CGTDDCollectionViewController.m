@@ -8,6 +8,8 @@
 
 #import "CGTDDCollectionViewController.h"
 
+#import "CGTDDCollectionViewItem.h"
+
 @interface CGTDDCollectionViewController ()<NSCollectionViewDataSource, NSCollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) NSCollectionView *collectionView;
@@ -56,13 +58,17 @@
 
 - (NSCollectionViewItem *)collectionView:(NSCollectionView *)collectionView itemForRepresentedObjectAtIndexPath:(NSIndexPath *)indexPath {
 	
-	NSCollectionViewItem *item = [collectionView makeItemWithIdentifier:@"collectionViewItemId" forIndexPath:indexPath];
+	CGTDDCollectionViewItem *item = [collectionView makeItemWithIdentifier:@"collectionViewItemId" forIndexPath:indexPath];
 	if (!item) {
-		item = [[NSCollectionViewItem alloc] init];
+		item = [[CGTDDCollectionViewItem alloc] init];
 	}
-	NSTextField *textField = [[NSTextField alloc] init];
-	textField.stringValue = self.dataSource[indexPath.item];
-	item.textField = textField;
+//	NSTextField *textField = [[NSTextField alloc] in
+    
+    it];
+//	textField.stringValue = self.dataSource[indexPath.item];
+//	item.textField = textField;
+    
+    [item loadName:self.dataSource[indexPath.item]];
 	
 	return item;
 }
@@ -80,7 +86,7 @@
 		_collectionView.collectionViewLayout = layout;
 		_collectionView.dataSource = self;
 		_collectionView.delegate = self;
-		[_collectionView registerClass:[NSCollectionViewItem class] forItemWithIdentifier:@"collectionViewItemId"];
+		[_collectionView registerClass:[CGTDDCollectionViewItem class] forItemWithIdentifier:@"collectionViewItemId"];
 	}
 	
 	return _collectionView;
