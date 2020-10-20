@@ -30,12 +30,9 @@
 
 @property (nonatomic, strong) NSWindowController *tableWindowCol;
 @property (nonatomic, strong) NSWindowController *collectionWindowCol;
-<<<<<<< Updated upstream
 @property (nonatomic, strong) NSWindowController *deviceTestWindowCol;
-=======
 @property (strong, nonatomic) NSWindowController *openglWindowCol;
 @property (strong, nonatomic) NSWindowController *mouseEventWindowCol;
->>>>>>> Stashed changes
 
 @end
 
@@ -54,12 +51,9 @@
 	[self.view addSubview:self.updateButton];
 	[self.view addSubview:self.tableViewButton];
 	[self.view addSubview:self.collectionViewButton];
-<<<<<<< Updated upstream
     [self.view addSubview:self.deviceTestButton];
-=======
     [self.view addSubview:self.openglButton];
     [self.view addSubview:self.mouseButton];
->>>>>>> Stashed changes
 	
 	[self layoutSubViews];
 	
@@ -91,21 +85,18 @@
 		make.left.equalTo(self.tableViewButton.mas_right).offset(12);
 		make.top.equalTo(self.tableViewButton);
 	}];
-<<<<<<< Updated upstream
     [self.deviceTestButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.titleLabel);
         make.top.equalTo(self.tableViewButton.mas_bottom).offset(20);
     }];
-=======
     [self.openglButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.titleLabel);
-        make.top.equalTo(self.tableViewButton.mas_bottom).offset(20);
+        make.top.equalTo(self.deviceTestButton.mas_bottom).offset(20);
     }];
     [self.mouseButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.titleLabel);
         make.top.equalTo(self.openglButton.mas_bottom).offset(20);
     }];
->>>>>>> Stashed changes
 }
 
 #pragma mark - button action
@@ -194,7 +185,6 @@
 	[self.collectionWindowCol.window makeKeyAndOrderFront:nil];
 }
 
-<<<<<<< Updated upstream
 - (void)showDeviceTestView:(NSButton *)button {
     NSWindowController *windowCol = [self windowColMakingFromWindowColName:@"CGTDeviceTestWindowController"];
     if (windowCol == nil) {
@@ -204,7 +194,8 @@
     [self.deviceTestWindowCol.window close];
     self.deviceTestWindowCol = windowCol;
     [self.deviceTestWindowCol.window makeKeyAndOrderFront:nil];
-=======
+}
+
 - (void)showOpenglDemo:(NSButton *)button {
     NSWindowController *windowCol = [self windowColMakingFromWindowColName:@"CGTOpenglWindowController"];
     if (windowCol == nil) {
@@ -224,7 +215,6 @@
     [self.mouseEventWindowCol.window close];
     self.mouseEventWindowCol = windowCol;
     [self.mouseEventWindowCol.window makeKeyAndOrderFront:nil];
->>>>>>> Stashed changes
 }
 
 #pragma mark - NSComboBoxDataSource
@@ -320,14 +310,14 @@
 	return _collectionViewButton;
 }
 
-<<<<<<< Updated upstream
 - (NSButton *)deviceTestButton {
     if (!_deviceTestButton) {
         _deviceTestButton = [NSButton buttonWithTitle:@"设备检测" target:self action:@selector(showDeviceTestView:)];
     }
     
     return _deviceTestButton;
-=======
+}
+
 - (NSButton *)openglButton {
     if (!_openglButton) {
         _openglButton = [NSButton buttonWithTitle:@"opengl" target:self action:@selector(showOpenglDemo:)];
@@ -342,7 +332,6 @@
     }
     
     return _mouseButton;
->>>>>>> Stashed changes
 }
 
 @end

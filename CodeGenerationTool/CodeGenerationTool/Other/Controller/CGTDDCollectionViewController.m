@@ -62,9 +62,7 @@
 	if (!item) {
 		item = [[CGTDDCollectionViewItem alloc] init];
 	}
-//	NSTextField *textField = [[NSTextField alloc] in
-    
-    it];
+//	NSTextField *textField = [[NSTextField alloc] init];
 //	textField.stringValue = self.dataSource[indexPath.item];
 //	item.textField = textField;
     
