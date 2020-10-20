@@ -18,7 +18,7 @@
 
 - (instancetype)initWithWindow:(NSWindow *)window {
 	if (self = [super initWithWindow:window]) {
-		window.title = @"自动生成工具";
+		window.title = @"滴滴滴项目";
 		self.contentViewController = [self vc];
 	}
 	

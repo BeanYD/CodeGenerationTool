@@ -7,9 +7,11 @@
 //
 
 #import "CGTInvokeConfig.h"
+#import <objc/runtime.h>
 
 @implementation CGTInvokeConfig
 
+// 类方法的调用，返回一个对象
 + (id)className:(NSString *)className invokeMethodName:(NSString *)methodName {
 	Class class = NSClassFromString(className);
 	SEL sel = NSSelectorFromString(methodName);
@@ -21,6 +23,16 @@
 #pragma clang diagnostic pop
 	}
 	return res;
+}
+
+// 实例方法的调用
++ (void)className:(NSString *)className invokeInstanceMethodName:(NSString *)methodName {
+    
+    SEL sel = NSSelectorFromString(methodName);
+    Method method = class_getInstanceMethod(NSClassFromString(className), sel);
+    IMP imp = method_getImplementation(method);
+    // 执行method
+//    (void *)imp()
 }
 
 @end
