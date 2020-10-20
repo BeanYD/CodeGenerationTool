@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		043E00D3253ED5730089AB8C /* CGTCoreBlueToothWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E00D1253ED5730089AB8C /* CGTCoreBlueToothWindowController.m */; };
+		043E00D4253ED5730089AB8C /* CGTCoreBlueToothWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043E00D2253ED5730089AB8C /* CGTCoreBlueToothWindowController.xib */; };
+		043E00DB253ED5940089AB8C /* CGTIOBlueToothWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E00D9253ED5940089AB8C /* CGTIOBlueToothWindowController.m */; };
+		043E00DC253ED5940089AB8C /* CGTIOBlueToothWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043E00DA253ED5940089AB8C /* CGTIOBlueToothWindowController.xib */; };
+		043E00E2253EE1250089AB8C /* DeviceMediaManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E00E1253EE1240089AB8C /* DeviceMediaManager.m */; };
 		0440118D2537DB6900798BCD /* AudioVoicePlugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0440118C2537DB6900798BCD /* AudioVoicePlugin.mm */; };
 		044011FC2539685D00798BCD /* CGTCommonTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 044011FB2539685D00798BCD /* CGTCommonTitleView.m */; };
 		044012032539694500798BCD /* CGTTitleBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 044012012539694500798BCD /* CGTTitleBarViewController.m */; };
@@ -60,6 +65,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		043E00D0253ED5730089AB8C /* CGTCoreBlueToothWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTCoreBlueToothWindowController.h; sourceTree = "<group>"; };
+		043E00D1253ED5730089AB8C /* CGTCoreBlueToothWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTCoreBlueToothWindowController.m; sourceTree = "<group>"; };
+		043E00D2253ED5730089AB8C /* CGTCoreBlueToothWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CGTCoreBlueToothWindowController.xib; sourceTree = "<group>"; };
+		043E00D8253ED5940089AB8C /* CGTIOBlueToothWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTIOBlueToothWindowController.h; sourceTree = "<group>"; };
+		043E00D9253ED5940089AB8C /* CGTIOBlueToothWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTIOBlueToothWindowController.m; sourceTree = "<group>"; };
+		043E00DA253ED5940089AB8C /* CGTIOBlueToothWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CGTIOBlueToothWindowController.xib; sourceTree = "<group>"; };
+		043E00E0253EE1240089AB8C /* DeviceMediaManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceMediaManager.h; sourceTree = "<group>"; };
+		043E00E1253EE1240089AB8C /* DeviceMediaManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceMediaManager.m; sourceTree = "<group>"; };
 		0440118B2537DB6900798BCD /* AudioVoicePlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioVoicePlugin.h; sourceTree = "<group>"; };
 		0440118C2537DB6900798BCD /* AudioVoicePlugin.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AudioVoicePlugin.mm; sourceTree = "<group>"; };
 		044011FA2539685D00798BCD /* CGTCommonTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTCommonTitleView.h; sourceTree = "<group>"; };
@@ -198,6 +211,12 @@
 				045C63EB2536C633009F6922 /* CGTDeviceTestWindowController.m */,
 				045C63F32536C646009F6922 /* CGTDeviceTestViewController.h */,
 				045C63F42536C646009F6922 /* CGTDeviceTestViewController.m */,
+				043E00D0253ED5730089AB8C /* CGTCoreBlueToothWindowController.h */,
+				043E00D1253ED5730089AB8C /* CGTCoreBlueToothWindowController.m */,
+				043E00D2253ED5730089AB8C /* CGTCoreBlueToothWindowController.xib */,
+				043E00D8253ED5940089AB8C /* CGTIOBlueToothWindowController.h */,
+				043E00D9253ED5940089AB8C /* CGTIOBlueToothWindowController.m */,
+				043E00DA253ED5940089AB8C /* CGTIOBlueToothWindowController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -205,6 +224,8 @@
 		045C64092537017A009F6922 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				043E00E0253EE1240089AB8C /* DeviceMediaManager.h */,
+				043E00E1253EE1240089AB8C /* DeviceMediaManager.m */,
 				045C640B25370184009F6922 /* AudioPlugin.h */,
 				045C640A25370184009F6922 /* AudioPlugin.mm */,
 				0440118B2537DB6900798BCD /* AudioVoicePlugin.h */,
@@ -590,7 +611,9 @@
 			files = (
 				D70D5F4824B0641800675E89 /* Assets.xcassets in Resources */,
 				044012042539694500798BCD /* CGTTitleBarViewController.xib in Resources */,
+				043E00D4253ED5730089AB8C /* CGTCoreBlueToothWindowController.xib in Resources */,
 				D70D5F4B24B0641800675E89 /* Main.storyboard in Resources */,
+				043E00DC253ED5940089AB8C /* CGTIOBlueToothWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -718,11 +741,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				043E00DB253ED5940089AB8C /* CGTIOBlueToothWindowController.m in Sources */,
 				D7D117D1251C842D0019212F /* CGTInvokeConfig.m in Sources */,
 				0440121F25398FE500798BCD /* CGTCustomScrollView.m in Sources */,
 				D70D5F4E24B0641800675E89 /* main.m in Sources */,
 				D7F42C2124B2D1C700EF1C38 /* CGTFilePathPlistMgr.m in Sources */,
 				D7D11797251C44270019212F /* CGTDDTableViewController.m in Sources */,
+				043E00E2253EE1250089AB8C /* DeviceMediaManager.m in Sources */,
 				D7D117A6251C6B050019212F /* CGTDDTableWindowController.m in Sources */,
 				D7D117AF251C6B1B0019212F /* CGTDDCollectionWindowController.m in Sources */,
 				045C63EC2536C633009F6922 /* CGTDeviceTestWindowController.m in Sources */,
@@ -736,6 +761,7 @@
 				D7D117C5251C6D7B0019212F /* CGTFrameConfig.m in Sources */,
 				D7F42C1D24B2D1B300EF1C38 /* CGTMainModelLayer.m in Sources */,
 				0440118D2537DB6900798BCD /* AudioVoicePlugin.mm in Sources */,
+				043E00D3253ED5730089AB8C /* CGTCoreBlueToothWindowController.m in Sources */,
 				044012032539694500798BCD /* CGTTitleBarViewController.m in Sources */,
 				D7574AA824C6826200EEEA98 /* CGTUpdateModelLayer.m in Sources */,
 				D7574AE724C692CD00EEEA98 /* CGTCmdTool.m in Sources */,
