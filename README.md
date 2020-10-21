@@ -8,6 +8,12 @@
 
    有默认的样式。
 
+   ------
+
+   **样式接口的封装待优化：`borderColor`, `borderWidth`, `alignment`, `textColor`, `backgroundColor`, `cornerRadius`。仿造`NSMutableAttributedString`的方式，通过传入`@{}`键值对的方式进行修改，定义键值对的键的宏提供给其他页面使用**
+
+   ------
+
    通过`xib`加载`window`，在`- (void)windowDidLoad`中直接修改样式即可。其他方式待补充。
 
    如果单独在方法中修改边框颜色等样式，需要手动调用`-updateLayout`，如：
@@ -22,6 +28,44 @@
    
 
 2. CGTCustomScrollView
+
+3. CGTCustomTextField
+
+   封装富文本下，点击链接`url`，跳转其他页面（不一定是`url`）的方法，未在`demo`中使用-后续使用
+
+   调用方式：
+
+   ```objective-c
+   - (void)windowDidLoad {
+       [super windowDidLoad];
+   
+     	self.remindLabel.textColor = [NSColor whiteColor];
+       self.remindLabel.delegate = self;
+       NSString *urlText = @"直播设置>上下课设置";
+       NSString *textStr = [NSString stringWithFormat:@"确定要下课？下课5分钟后将自动结束课堂。如要修改时 间，请先前往%@进行修改", urlText];
+       NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:textStr];
+       [attrStr beginEditing];
+       [attrStr addAttributes:@{NSForegroundColorAttributeName : [NSColor colorWithRed:47./256 green:154./256 blue:255./256 alpha:1.f], NSLinkAttributeName : [NSURL URLWithString : @"set_to_class"]} range:[textStr rangeOfString:urlText]];
+       [attrStr endEditing];
+   
+       self.remindLabel.attributedStringValue = attrStr;
+   }
+   
+   #pragma mark - CustomTextFieldDelegate
+   - (void)hyperlinkToUrl:(NSURL *)url {
+       if ([url.absoluteString isEqual:@"set_to_class"]) {
+           // 弹出设置框
+           NSLog(@"go to class set");
+       }
+   }
+   
+   ```
+
+   
+
+4. CGTPopover
+
+   待开发
 
 ## Base模块
 
@@ -74,3 +118,7 @@ App的主页面，所有其他窗口都由该页面进入
   未实践，理论上不可行：如果程序还在运行，mv后覆盖需要当前程序退出；当前程序退出，无法继续执行mv操作
   
   
+
+## 经验记录：
+
+`NSTextField`在`xib`中创建后，会自带白色背景，在`xib`中修改：找到`Display`，勾选`Draw Background`，所选的背景色才会生效。

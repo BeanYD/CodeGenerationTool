@@ -9,6 +9,7 @@
 #import "CGTMainWindowController.h"
 #import "CGTTitleBarViewController.h"
 #import "CGTCommonTitleView.h"
+#import "NSWindowController+TitleBar.h"
 
 @interface CGTMainWindowController ()
 
@@ -45,6 +46,11 @@
     [v setWantsLayer:YES];
     [v.layer setBackgroundColor:[[NSColor clearColor] CGColor]];
     [v addSubview:titleView positioned:NSWindowBelow relativeTo:nil];
+    
+#pragma mark - 2020-10-21 更新 上述代码可废弃
+    // 已在NSWindowController+TitleBar中封装，直接调用该分类中的方法即可，后续修改
+
+
     
 }
 
