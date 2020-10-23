@@ -67,6 +67,10 @@
 
    待开发
 
+5. CGTCustomTableHeaderCell
+
+   重写`NSTableHeaderCell`，修改`header`的背景色和文字位置，内部目前写死样式，后续可添加样式传入的接口，统一使用
+
 ## Base模块
 
 创建基类，子类化`NSWindowController`和`NSViewController`，统一的样式在该类中进行添加

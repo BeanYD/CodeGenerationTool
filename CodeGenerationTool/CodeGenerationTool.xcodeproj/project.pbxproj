@@ -20,6 +20,7 @@
 		043E015625403B570089AB8C /* CGTTitleBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E015325403B570089AB8C /* CGTTitleBarViewController.m */; };
 		043E015725403B570089AB8C /* CGTTitleBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043E015525403B570089AB8C /* CGTTitleBarViewController.xib */; };
 		043E015D25403B6B0089AB8C /* CGTCommonTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E015C25403B6B0089AB8C /* CGTCommonTitleView.m */; };
+		043E01922542AF040089AB8C /* CGTCustomTableHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E01912542AF040089AB8C /* CGTCustomTableHeaderCell.m */; };
 		0440118D2537DB6900798BCD /* AudioVoicePlugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0440118C2537DB6900798BCD /* AudioVoicePlugin.mm */; };
 		0440121F25398FE500798BCD /* CGTCustomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0440121B25398FE500798BCD /* CGTCustomScrollView.m */; };
 		0440122025398FE500798BCD /* CGTCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0440121E25398FE500798BCD /* CGTCustomButton.m */; };
@@ -97,6 +98,8 @@
 		043E015525403B570089AB8C /* CGTTitleBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CGTTitleBarViewController.xib; sourceTree = "<group>"; };
 		043E015B25403B6B0089AB8C /* CGTCommonTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGTCommonTitleView.h; sourceTree = "<group>"; };
 		043E015C25403B6B0089AB8C /* CGTCommonTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGTCommonTitleView.m; sourceTree = "<group>"; };
+		043E01902542AF040089AB8C /* CGTCustomTableHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGTCustomTableHeaderCell.h; sourceTree = "<group>"; };
+		043E01912542AF040089AB8C /* CGTCustomTableHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGTCustomTableHeaderCell.m; sourceTree = "<group>"; };
 		0440118B2537DB6900798BCD /* AudioVoicePlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioVoicePlugin.h; sourceTree = "<group>"; };
 		0440118C2537DB6900798BCD /* AudioVoicePlugin.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AudioVoicePlugin.mm; sourceTree = "<group>"; };
 		0440121B25398FE500798BCD /* CGTCustomScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGTCustomScrollView.m; sourceTree = "<group>"; };
@@ -231,6 +234,8 @@
 				0440121B25398FE500798BCD /* CGTCustomScrollView.m */,
 				043E014A25403AED0089AB8C /* CGTCustomTextField.h */,
 				043E014B25403AED0089AB8C /* CGTCustomTextField.m */,
+				043E01902542AF040089AB8C /* CGTCustomTableHeaderCell.h */,
+				043E01912542AF040089AB8C /* CGTCustomTableHeaderCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -846,6 +851,7 @@
 				D70D5F7F24B0657700675E89 /* CGTBaseViewController.m in Sources */,
 				D793D8582526E26B00497562 /* CGTOpenglWindowController.m in Sources */,
 				D72A368425283BF300C82A44 /* CGTDDCollectionViewItem.m in Sources */,
+				043E01922542AF040089AB8C /* CGTCustomTableHeaderCell.m in Sources */,
 				043E0101253EEA7B0089AB8C /* CommonTitleBarViewController.m in Sources */,
 				D7D1179E251C44390019212F /* CGTDDCollectionViewController.m in Sources */,
 				043E014C25403AED0089AB8C /* CGTCustomTextField.m in Sources */,
