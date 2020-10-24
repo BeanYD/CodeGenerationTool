@@ -10,6 +10,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+extern NSString * const kTextColorKey;
+extern NSString * const kFontKey;
+extern NSString * const kBackgroundColorKey;
+extern NSString * const kBorderColorKey;
+extern NSString * const kBorderWidthKey;
+extern NSString * const kCornerRadiusKey;
+extern NSString * const kShadowOffsetKey;
+
 @interface CGTCustomButton : NSButton
 
 /**
@@ -47,7 +55,15 @@ NS_ASSUME_NONNULL_BEGIN
  @param title 内容
  @param textColor 颜色
  */
-- (void)setTitle:(NSAttributedString *)title color:(NSColor *)textColor font:(CGFloat)fontsize alignment:(NSTextAlignment)alignment;
+- (void)setTitle:(NSAttributedString *)title
+       textColor:(NSColor *)textColor
+            font:(NSFont *)font
+       alignment:(NSTextAlignment)alignment;
+
+/**
+ * 通过传入的字典设置样式
+ */
+- (void)addAttributes:(NSDictionary *)attrs;
 
 @end
 

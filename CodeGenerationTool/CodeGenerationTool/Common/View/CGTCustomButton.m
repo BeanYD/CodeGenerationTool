@@ -8,9 +8,18 @@
 
 #import "CGTCustomButton.h"
 
+NSString * const kTextColorKey = @"textColor";
+NSString * const kFontKey = @"font";
+NSString * const kBackgroundColorKey = @"backgroundColor";
+NSString * const kBorderColorKey = @"borderColor";
+NSString * const kBorderWidthKey = @"borderWidth";
+NSString * const kCornerRadiusKey = @"cornerRadius";
+NSString * const kShadowOffsetKey = @"shadowOffset";
+
 @interface CGTCustomButton() {
     NSColor *_textColor;
     NSTextAlignment _alignment;
+    NSFont *_font;
 }
 
 @end
@@ -39,26 +48,29 @@
 }
 
 - (void)setup {
-    _backgroundColor = [NSColor colorWithRed:56.0/256 green:59.0/256 blue:66.0/256 alpha:1.0];
+    _backgroundColor = [NSColor whiteColor];
     _shadowOffset = CGSizeZero;
-    _cornerRadius = 1.f;
-    _borderColor = [NSColor colorWithRed:91./256 green:92./256 blue:99./256 alpha:1.];
-    _borderWidth = 1.f;
+    _cornerRadius = 0.f;
+    _borderColor = [NSColor whiteColor];
+    _borderWidth = 0.f;
+    _alignment = NSTextAlignmentCenter;
+    _textColor = [NSColor blackColor];
     
-    [self setTextColor:[NSColor whiteColor] alignment:NSTextAlignmentLeft];
+    [self setTitle:[self attributedTitle] textColor:_textColor font:self.font alignment:_alignment];
 }
 
 - (void)setTextString:(NSString *)textString {
-    [self setTitle:[[NSAttributedString alloc] initWithString:textString] color:_textColor font:[self font].pointSize alignment:_alignment];
+    [self setTitle:[[NSAttributedString alloc] initWithString:textString] textColor:_textColor font:self.font alignment:_alignment];
 }
 
 - (void)setTextColor:(NSColor *)textColor alignment:(NSTextAlignment)alignment {
-    [self setTitle:[self attributedTitle] color:textColor font:[self font].pointSize alignment:alignment];
+    [self setTitle:[self attributedTitle] textColor:textColor font:self.font alignment:alignment];
 }
 
-- (void)setTitle:(NSAttributedString *)title color:(NSColor *)textColor font:(CGFloat)fontsize alignment:(NSTextAlignment)alignment {
-    _textColor = textColor;
-    _alignment = alignment;
+- (void)setTitle:(NSAttributedString *)title
+       textColor:(NSColor *)textColor
+            font:(NSFont *)font
+       alignment:(NSTextAlignment)alignment {
     NSMutableAttributedString *attrTitle = [[NSMutableAttributedString alloc] initWithAttributedString:title];
     NSUInteger len = [attrTitle length];
     NSRange range = NSMakeRange(0, len);
@@ -66,7 +78,7 @@
     paragraphStyle.alignment = alignment;
     [attrTitle addAttribute:NSForegroundColorAttributeName value:textColor
                       range:range];
-    [attrTitle addAttribute:NSFontAttributeName value:[NSFont systemFontOfSize:fontsize]
+    [attrTitle addAttribute:NSFontAttributeName value:font
                       range:range];
     
     [attrTitle addAttribute:NSParagraphStyleAttributeName value:paragraphStyle
@@ -76,6 +88,37 @@
     attrTitle = nil;
     [self setNeedsDisplay:YES];
 }
+
+- (void)addAttributes:(NSDictionary *)attrs {
+    if (attrs == nil || attrs.count == 0) {
+        return;
+    }
+    if ([attrs valueForKey:kBorderWidthKey]) {
+        _borderWidth = [[attrs valueForKey:kBorderWidthKey] floatValue];
+    }
+    if ([attrs valueForKey:kBorderColorKey]) {
+        _borderColor = [attrs valueForKey:kBorderColorKey];
+    }
+    if ([attrs valueForKey:kTextColorKey]) {
+        _textColor = [attrs valueForKey:kTextColorKey];
+    }
+    if ([attrs valueForKey:kFontKey]) {
+        _font = [attrs valueForKey:kFontKey];
+    }
+    if ([attrs valueForKey:kBackgroundColorKey]) {
+        _backgroundColor = [attrs valueForKey:kBackgroundColorKey];
+    }
+    if ([attrs valueForKey:kCornerRadiusKey]) {
+        _cornerRadius = [[attrs valueForKey:kCornerRadiusKey] floatValue];
+    }
+    if ([attrs valueForKey:kShadowOffsetKey]) {
+        _shadowOffset = [[attrs valueForKey:kShadowOffsetKey] sizeValue];
+    }
+    
+    
+}
+
+#pragma mark - Rewrite Method
 
 /**
  绘制方法由updateLayer替换

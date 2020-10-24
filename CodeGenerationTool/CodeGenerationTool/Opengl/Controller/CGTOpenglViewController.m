@@ -7,9 +7,12 @@
 //
 
 #import "CGTOpenglViewController.h"
-#import <VideoToolbox/VideoToolbox.h>
+#import "DeviceMediaManager.h"
 
 @interface CGTOpenglViewController ()
+
+@property (strong, nonatomic) DeviceMediaManager *mediaManager;
+
 
 @end
 
@@ -18,6 +21,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do view setup here.
+}
+
+#pragma mark - getter
+
+- (DeviceMediaManager *)mediaManager {
+    if (!_mediaManager) {
+        _mediaManager = [[DeviceMediaManager alloc] init];
+    }
+    
+    return _mediaManager;
 }
 
 @end

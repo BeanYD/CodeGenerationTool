@@ -1036,7 +1036,7 @@
 				CODE_SIGN_ENTITLEMENTS = CodeGenerationTool/CodeGenerationTool.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				GCC_PREFIX_HEADER = /Users/mac/CodeGenerationTool/CodeGenerationTool/CodeGenerationTool/CGTPrefixHeader.pch;
+				GCC_PREFIX_HEADER = /Users/dingbinbin/CodeGenerationTool/CodeGenerationTool/CodeGenerationTool/CGTPrefixHeader.pch;
 				INFOPLIST_FILE = CodeGenerationTool/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1056,7 +1056,7 @@
 				CODE_SIGN_ENTITLEMENTS = CodeGenerationTool/CodeGenerationTool.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				GCC_PREFIX_HEADER = /Users/mac/CodeGenerationTool/CodeGenerationTool/CodeGenerationTool/CGTPrefixHeader.pch;
+				GCC_PREFIX_HEADER = /Users/dingbinbin/CodeGenerationTool/CodeGenerationTool/CodeGenerationTool/CGTPrefixHeader.pch;
 				INFOPLIST_FILE = CodeGenerationTool/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
