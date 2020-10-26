@@ -27,12 +27,15 @@
 @property (nonatomic, strong) NSButton *openglButton;
 @property (strong, nonatomic) NSButton *mouseButton;
 
+@property (nonatomic, strong) NSButton *commonDemoButton;
+
 
 @property (nonatomic, strong) NSWindowController *tableWindowCol;
 @property (nonatomic, strong) NSWindowController *collectionWindowCol;
 @property (nonatomic, strong) NSWindowController *deviceTestWindowCol;
 @property (strong, nonatomic) NSWindowController *openglWindowCol;
 @property (strong, nonatomic) NSWindowController *mouseEventWindowCol;
+@property (nonatomic, strong) NSWindowController *commonDemoWindowCol;
 
 @end
 
@@ -54,6 +57,7 @@
     [self.view addSubview:self.deviceTestButton];
     [self.view addSubview:self.openglButton];
     [self.view addSubview:self.mouseButton];
+    [self.view addSubview:self.commonDemoButton];
 	
 	[self layoutSubViews];
 	
@@ -96,6 +100,10 @@
     [self.mouseButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.titleLabel);
         make.top.equalTo(self.openglButton.mas_bottom).offset(20);
+    }];
+    [self.commonDemoButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.titleLabel);
+        make.top.equalTo(self.mouseButton.mas_bottom).offset(20);
     }];
 }
 
@@ -217,6 +225,16 @@
     [self.mouseEventWindowCol.window makeKeyAndOrderFront:nil];
 }
 
+- (void)showCommonDemoView:(NSButton *)button {
+    NSWindowController *windowCol = [self windowColMakingFromWindowColName:@"CGTCommonDemoWindowController"];
+    if (windowCol == nil) {
+        
+    }
+    [self.commonDemoWindowCol.window close];
+    self.commonDemoWindowCol = windowCol;
+    [self.commonDemoWindowCol.window makeKeyAndOrderFront:nil];
+}
+
 #pragma mark - NSComboBoxDataSource
 - (NSInteger)numberOfItemsInComboBox:(NSComboBox *)comboBox {
 	return [self.model readAllFilePaths].count;
@@ -332,6 +350,14 @@
     }
     
     return _mouseButton;
+}
+
+- (NSButton *)commonDemoButton {
+    if (!_commonDemoButton) {
+        _commonDemoButton = [NSButton buttonWithTitle:@"commonDemo" target:self action:@selector(showCommonDemoView:)];
+    }
+    
+    return _commonDemoButton;
 }
 
 @end

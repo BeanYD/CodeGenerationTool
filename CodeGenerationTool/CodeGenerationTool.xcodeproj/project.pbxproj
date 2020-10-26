@@ -21,6 +21,10 @@
 		043E015725403B570089AB8C /* CGTTitleBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043E015525403B570089AB8C /* CGTTitleBarViewController.xib */; };
 		043E015D25403B6B0089AB8C /* CGTCommonTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E015C25403B6B0089AB8C /* CGTCommonTitleView.m */; };
 		043E01922542AF040089AB8C /* CGTCustomTableHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E01912542AF040089AB8C /* CGTCustomTableHeaderCell.m */; };
+		043E01A42542BA130089AB8C /* CGTProcessRateTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E01A32542BA130089AB8C /* CGTProcessRateTextField.m */; };
+		043E01AC2542BB710089AB8C /* CGTCommonDemoWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E01AB2542BB710089AB8C /* CGTCommonDemoWindowController.m */; };
+		043E01B52542BD480089AB8C /* CGTCommonDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E01B42542BD480089AB8C /* CGTCommonDemoViewController.m */; };
+		043E01BB2542BF310089AB8C /* CGTProcessRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E01BA2542BF310089AB8C /* CGTProcessRateView.m */; };
 		0440118D2537DB6900798BCD /* AudioVoicePlugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0440118C2537DB6900798BCD /* AudioVoicePlugin.mm */; };
 		0440121F25398FE500798BCD /* CGTCustomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0440121B25398FE500798BCD /* CGTCustomScrollView.m */; };
 		0440122025398FE500798BCD /* CGTCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0440121E25398FE500798BCD /* CGTCustomButton.m */; };
@@ -100,6 +104,14 @@
 		043E015C25403B6B0089AB8C /* CGTCommonTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGTCommonTitleView.m; sourceTree = "<group>"; };
 		043E01902542AF040089AB8C /* CGTCustomTableHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGTCustomTableHeaderCell.h; sourceTree = "<group>"; };
 		043E01912542AF040089AB8C /* CGTCustomTableHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGTCustomTableHeaderCell.m; sourceTree = "<group>"; };
+		043E01A22542BA130089AB8C /* CGTProcessRateTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTProcessRateTextField.h; sourceTree = "<group>"; };
+		043E01A32542BA130089AB8C /* CGTProcessRateTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTProcessRateTextField.m; sourceTree = "<group>"; };
+		043E01AA2542BB710089AB8C /* CGTCommonDemoWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTCommonDemoWindowController.h; sourceTree = "<group>"; };
+		043E01AB2542BB710089AB8C /* CGTCommonDemoWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTCommonDemoWindowController.m; sourceTree = "<group>"; };
+		043E01B32542BD480089AB8C /* CGTCommonDemoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTCommonDemoViewController.h; sourceTree = "<group>"; };
+		043E01B42542BD480089AB8C /* CGTCommonDemoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTCommonDemoViewController.m; sourceTree = "<group>"; };
+		043E01B92542BF310089AB8C /* CGTProcessRateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTProcessRateView.h; sourceTree = "<group>"; };
+		043E01BA2542BF310089AB8C /* CGTProcessRateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTProcessRateView.m; sourceTree = "<group>"; };
 		0440118B2537DB6900798BCD /* AudioVoicePlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioVoicePlugin.h; sourceTree = "<group>"; };
 		0440118C2537DB6900798BCD /* AudioVoicePlugin.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AudioVoicePlugin.mm; sourceTree = "<group>"; };
 		0440121B25398FE500798BCD /* CGTCustomScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGTCustomScrollView.m; sourceTree = "<group>"; };
@@ -216,6 +228,25 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		043E01A82542BB2D0089AB8C /* CommonDemo */ = {
+			isa = PBXGroup;
+			children = (
+				043E01A92542BB590089AB8C /* Controller */,
+			);
+			path = CommonDemo;
+			sourceTree = "<group>";
+		};
+		043E01A92542BB590089AB8C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				043E01AA2542BB710089AB8C /* CGTCommonDemoWindowController.h */,
+				043E01AB2542BB710089AB8C /* CGTCommonDemoWindowController.m */,
+				043E01B32542BD480089AB8C /* CGTCommonDemoViewController.h */,
+				043E01B42542BD480089AB8C /* CGTCommonDemoViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		044011F92539684300798BCD /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,6 +267,10 @@
 				043E014B25403AED0089AB8C /* CGTCustomTextField.m */,
 				043E01902542AF040089AB8C /* CGTCustomTableHeaderCell.h */,
 				043E01912542AF040089AB8C /* CGTCustomTableHeaderCell.m */,
+				043E01A22542BA130089AB8C /* CGTProcessRateTextField.h */,
+				043E01A32542BA130089AB8C /* CGTProcessRateTextField.m */,
+				043E01B92542BF310089AB8C /* CGTProcessRateView.h */,
+				043E01BA2542BF310089AB8C /* CGTProcessRateView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -337,6 +372,7 @@
 				D7574A9F24C6819100EEEA98 /* Update */,
 				D7D11786251C43A10019212F /* Other */,
 				045C63E82536C5C3009F6922 /* 设备检测 */,
+				043E01A82542BB2D0089AB8C /* CommonDemo */,
 				D70D5F4724B0641800675E89 /* Assets.xcassets */,
 				D70D5F4924B0641800675E89 /* Main.storyboard */,
 				D70D5F4C24B0641800675E89 /* Info.plist */,
@@ -837,6 +873,8 @@
 			files = (
 				043E00DB253ED5940089AB8C /* CGTIOBlueToothWindowController.m in Sources */,
 				D7D117D1251C842D0019212F /* CGTInvokeConfig.m in Sources */,
+				043E01AC2542BB710089AB8C /* CGTCommonDemoWindowController.m in Sources */,
+				043E01BB2542BF310089AB8C /* CGTProcessRateView.m in Sources */,
 				0440121F25398FE500798BCD /* CGTCustomScrollView.m in Sources */,
 				D70D5F4E24B0641800675E89 /* main.m in Sources */,
 				D7F42C2124B2D1C700EF1C38 /* CGTFilePathPlistMgr.m in Sources */,
@@ -868,11 +906,13 @@
 				D72A36672528372000C82A44 /* CGTMouseEventWindowController.m in Sources */,
 				043E015D25403B6B0089AB8C /* CGTCommonTitleView.m in Sources */,
 				D7574AE724C692CD00EEEA98 /* CGTCmdTool.m in Sources */,
+				043E01B52542BD480089AB8C /* CGTCommonDemoViewController.m in Sources */,
 				045C63F52536C646009F6922 /* CGTDeviceTestViewController.m in Sources */,
 				D70D5F8324B0659E00675E89 /* CGTMainWindowController.m in Sources */,
 				043E0108253EEAF70089AB8C /* CommonTitleView.m in Sources */,
 				043E015625403B570089AB8C /* CGTTitleBarViewController.m in Sources */,
 				D7574AA424C681D800EEEA98 /* CGTUpdateView.m in Sources */,
+				043E01A42542BA130089AB8C /* CGTProcessRateTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
