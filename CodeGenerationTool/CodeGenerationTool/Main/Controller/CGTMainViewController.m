@@ -8,6 +8,8 @@
 
 #import "CGTMainViewController.h"
 #import "CGTMainModelLayer.h"
+#import "CGTSecondaryViewController.h"
+#import <AFNetworking/AFNetworking.h>
 
 @interface CGTMainViewController ()<NSComboBoxDelegate, NSComboBoxDataSource>
 
@@ -28,6 +30,8 @@
 @property (strong, nonatomic) NSButton *mouseButton;
 
 @property (nonatomic, strong) NSButton *commonDemoButton;
+
+@property (nonatomic, strong) NSButton *secondaryButton;
 
 
 @property (nonatomic, strong) NSWindowController *tableWindowCol;
@@ -58,6 +62,7 @@
     [self.view addSubview:self.openglButton];
     [self.view addSubview:self.mouseButton];
     [self.view addSubview:self.commonDemoButton];
+    [self.view addSubview:self.secondaryButton];
 	
 	[self layoutSubViews];
 	
@@ -104,6 +109,10 @@
     [self.commonDemoButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.titleLabel);
         make.top.equalTo(self.mouseButton.mas_bottom).offset(20);
+    }];
+    [self.secondaryButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.titleLabel);
+        make.top.equalTo(self.commonDemoButton.mas_bottom).offset(20);
     }];
 }
 
@@ -235,6 +244,47 @@
     [self.commonDemoWindowCol.window makeKeyAndOrderFront:nil];
 }
 
+- (void)showSecondaryView:(NSButton *)button {
+//    CGTSecondaryViewController *vc = [[CGTSecondaryViewController alloc] initWithFrame:[CGTFrameConfig getDefaultWindowFrame]];
+//    // 模态弹出，window其他view都无法点击
+//    [self presentViewControllerAsModalWindow:vc];
+    
+//    [self presentViewController:vc asPopoverRelativeToRect:NSMakeRect(0, 0, 200, 200) ofView:self.view preferredEdge:NSRectEdgeMaxY behavior:NSPopoverBehaviorApplicationDefined];
+    
+    NSOpenPanel *panel = [NSOpenPanel openPanel];
+    panel.canCreateDirectories = YES;
+    panel.canChooseFiles = YES;
+    panel.canChooseDirectories = NO;
+    panel.allowsMultipleSelection = NO;
+    panel.allowedFileTypes = [NSArray arrayWithObjects:@"jpg", @"png", @"jpeg", nil];
+    [panel beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse result) {
+        if (result == NSModalResponseOK) {
+            NSString *path = [panel.URL path];
+            NSData *data = [NSData dataWithContentsOfFile:path options:NSDataReadingMappedIfSafe error:nil];
+            if (data.length > 1024 * 1024 * 2) {
+            } else {
+                // 上传图片
+                NSURL *url = [NSURL URLWithString:@"http://192.168.1.5:8090/media-storage-service/info/upload/deal"];
+                
+                
+                NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:5.f];
+                request.HTTPMethod = @"POST";
+                NSError *error = nil;
+                NSData *paramData = [NSJSONSerialization dataWithJSONObject:@{@"file": [path lastPathComponent], @"siteId": @"1"} options:NSJSONWritingPrettyPrinted error:&error];
+
+                request.HTTPBody = paramData;
+
+                [[AFHTTPSessionManager manager] uploadTaskWithRequest:request fromData:data progress:^(NSProgress * _Nonnull uploadProgress) {
+                    NSLog(@"proress:%lld", uploadProgress.completedUnitCount);
+                } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+                    NSLog(@"%@", response);
+                }];
+            }
+        }
+    }];
+
+}
+
 #pragma mark - NSComboBoxDataSource
 - (NSInteger)numberOfItemsInComboBox:(NSComboBox *)comboBox {
 	return [self.model readAllFilePaths].count;
@@ -358,6 +408,14 @@
     }
     
     return _commonDemoButton;
+}
+
+- (NSButton *)secondaryButton {
+    if (!_secondaryButton) {
+        _secondaryButton = [NSButton buttonWithTitle:@"二级页面" target:self action:@selector(showSecondaryView:)];
+    }
+    
+    return _secondaryButton;
 }
 
 @end

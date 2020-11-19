@@ -28,6 +28,7 @@
 		0440118D2537DB6900798BCD /* AudioVoicePlugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0440118C2537DB6900798BCD /* AudioVoicePlugin.mm */; };
 		0440121F25398FE500798BCD /* CGTCustomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0440121B25398FE500798BCD /* CGTCustomScrollView.m */; };
 		0440122025398FE500798BCD /* CGTCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0440121E25398FE500798BCD /* CGTCustomButton.m */; };
+		04411A782549809D00337A41 /* CGTSecondaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04411A772549809D00337A41 /* CGTSecondaryViewController.m */; };
 		045C63EC2536C633009F6922 /* CGTDeviceTestWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 045C63EB2536C633009F6922 /* CGTDeviceTestWindowController.m */; };
 		045C63F52536C646009F6922 /* CGTDeviceTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 045C63F42536C646009F6922 /* CGTDeviceTestViewController.m */; };
 		045C640C25370184009F6922 /* AudioPlugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = 045C640A25370184009F6922 /* AudioPlugin.mm */; };
@@ -118,6 +119,8 @@
 		0440121C25398FE500798BCD /* CGTCustomScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGTCustomScrollView.h; sourceTree = "<group>"; };
 		0440121D25398FE500798BCD /* CGTCustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGTCustomButton.h; sourceTree = "<group>"; };
 		0440121E25398FE500798BCD /* CGTCustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGTCustomButton.m; sourceTree = "<group>"; };
+		04411A762549809D00337A41 /* CGTSecondaryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTSecondaryViewController.h; sourceTree = "<group>"; };
+		04411A772549809D00337A41 /* CGTSecondaryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTSecondaryViewController.m; sourceTree = "<group>"; };
 		045C63EA2536C633009F6922 /* CGTDeviceTestWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTDeviceTestWindowController.h; sourceTree = "<group>"; };
 		045C63EB2536C633009F6922 /* CGTDeviceTestWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTDeviceTestWindowController.m; sourceTree = "<group>"; };
 		045C63F32536C646009F6922 /* CGTDeviceTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTDeviceTestViewController.h; sourceTree = "<group>"; };
@@ -605,6 +608,8 @@
 				D70D5F8224B0659E00675E89 /* CGTMainWindowController.m */,
 				D70D5F8424B065B700675E89 /* CGTMainViewController.h */,
 				D70D5F8524B065B700675E89 /* CGTMainViewController.m */,
+				04411A762549809D00337A41 /* CGTSecondaryViewController.h */,
+				04411A772549809D00337A41 /* CGTSecondaryViewController.m */,
 				043E015425403B570089AB8C /* CGTTitleBarViewController.h */,
 				043E015325403B570089AB8C /* CGTTitleBarViewController.m */,
 				043E015525403B570089AB8C /* CGTTitleBarViewController.xib */,
@@ -877,6 +882,7 @@
 				043E01BB2542BF310089AB8C /* CGTProcessRateView.m in Sources */,
 				0440121F25398FE500798BCD /* CGTCustomScrollView.m in Sources */,
 				D70D5F4E24B0641800675E89 /* main.m in Sources */,
+				04411A782549809D00337A41 /* CGTSecondaryViewController.m in Sources */,
 				D7F42C2124B2D1C700EF1C38 /* CGTFilePathPlistMgr.m in Sources */,
 				D7D11797251C44270019212F /* CGTDDTableViewController.m in Sources */,
 				043E00E2253EE1250089AB8C /* DeviceMediaManager.m in Sources */,
