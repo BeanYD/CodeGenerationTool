@@ -7,13 +7,10 @@
 //
 
 #import "CGTMainModelLayer.h"
-#import "CGTFilePathPlistMgr.h"
 
 @interface CGTMainModelLayer ()
 
-@property (nonatomic, strong) CGTFilePathPlistMgr *mgr;
 
-@property (nonatomic, strong) dispatch_queue_t concurrentQueue;
 
 @end
 
@@ -21,51 +18,43 @@
 
 - (instancetype)init {
 	if (self = [super init]) {
-		
+        self.moduleList = [NSMutableArray arrayWithArray:[self baseModuleList]];
 	}
 	
 	return self;
 }
 
-- (NSString *)readFirstFilePath {
-	NSMutableArray *array = [self readAllFilePaths];
-	if (array.count > 0) {
-		return [array firstObject];
-	}
-	
-	return @"";
+
+
+- (NSArray *)baseModuleList {
+    return @[
+        @{
+            @"name" : @"列表",
+            @"winCol" : @"CGTDDTableWindowController",
+        },
+        @{
+            @"name" : @"网格",
+            @"winCol" : @"CGTDDCollectionWindowController",
+        },
+        @{
+            @"name" : @"opengl",
+            @"winCol" : @"CGTOpenglWindowController",
+        },
+        @{
+            @"name" : @"鼠标事件",
+            @"winCol" : @"CGTMouseEventWindowController",
+        },
+        @{
+            @"name" : @"commonDemo",
+            @"winCol" : @"CGTCommonDemoWindowController",
+        },
+    ];
 }
 
-- (NSMutableArray *)readAllFilePaths {
-	__block NSMutableArray *array;
-	dispatch_sync(self.concurrentQueue, ^{
-		array = [self.mgr filePaths];
-	});
-	
-	return array;
+- (void)addModule:(NSDictionary *)dict {
+    [self.moduleList addObject:dict];
 }
 
-- (void)saveNewFilePath:(NSString *)filePath {
-	dispatch_barrier_sync(self.concurrentQueue, ^{
-		[self.mgr insertFilePath:filePath];
-	});
-}
 
-#pragma mark - setter && getter
-- (CGTFilePathPlistMgr *)mgr {
-	if (!_mgr) {
-		_mgr = [[CGTFilePathPlistMgr alloc] init];
-	}
-	
-	return _mgr;
-}
-
-- (dispatch_queue_t)concurrentQueue {
-	if (!_concurrentQueue) {
-		_concurrentQueue = dispatch_queue_create("com.file-path-plist-concurrent.queue", DISPATCH_QUEUE_CONCURRENT);
-	}
-	
-	return _concurrentQueue;
-}
 
 @end

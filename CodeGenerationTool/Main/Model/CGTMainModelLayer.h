@@ -12,12 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CGTMainModelLayer : NSObject
 
+@property (nonatomic, strong) NSMutableArray *moduleList;
 
-- (NSMutableArray *)readAllFilePaths;
 
-- (void)saveNewFilePath:(NSString *)filePath;
-
-- (NSString *)readFirstFilePath;
 
 @end
 

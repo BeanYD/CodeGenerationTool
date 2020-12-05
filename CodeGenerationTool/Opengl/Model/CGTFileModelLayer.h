@@ -12,6 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CGTFileModelLayer : NSObject
 
+- (NSMutableArray *)readAllFilePaths;
+
+- (void)saveNewFilePath:(NSString *)filePath;
+
+- (NSString *)readFirstFilePath;
+
 @end
 
 NS_ASSUME_NONNULL_END

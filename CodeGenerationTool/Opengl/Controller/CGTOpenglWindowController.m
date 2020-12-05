@@ -10,6 +10,8 @@
 
 @interface CGTOpenglWindowController ()
 
+
+
 @end
 
 @implementation CGTOpenglWindowController
