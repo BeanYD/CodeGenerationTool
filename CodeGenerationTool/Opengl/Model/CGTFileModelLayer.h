@@ -1,8 +1,8 @@
 //
-//  AudioVoicePlugin.h
+//  CGTFileModelLayer.h
 //  CodeGenerationTool
 //
-//  Created by mac on 2020/10/15.
+//  Created by dingbinbin on 2020/12/5.
 //  Copyright © 2020 dingbinbin. All rights reserved.
 //
 
@@ -10,10 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-// 获取默认设备的音量
-float GetDefaultOutputDeviceVolume(void);
-
-@interface AudioVoicePlugin : NSObject
+@interface CGTFileModelLayer : NSObject
 
 @end
 
