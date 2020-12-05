@@ -55,7 +55,7 @@ NSString * const kShadowOffsetKey = @"shadowOffset";
     _borderWidth = 0.f;
     _alignment = NSTextAlignmentCenter;
     _textColor = [NSColor blackColor];
-    
+      
     [self setTitle:[self attributedTitle] textColor:_textColor font:self.font alignment:_alignment];
 }
 
