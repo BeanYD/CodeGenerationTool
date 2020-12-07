@@ -15,15 +15,20 @@
 
 /**
  * 持有所有的windowController
- * 暂时使用数组存储，后续考虑其他数据结构存储
+ * 目前使用数组存储，
+ * TODO: 其他数据结构存储
  */
 @property (nonatomic, strong) NSMutableArray<NSWindowController *> *winColList;
 
 /**
  * 持有所有的viewController
- * 暂时使用数组存储，后续考虑其他数据结构存储
+ * 目前使用数组存储，
+ * TODO: 其他数据结构存储
  */
 @property (nonatomic, strong) NSMutableArray<NSViewController *> *viewColList;
+
+@property (nonatomic, strong) NSButton *addButton;
+@property (nonatomic, strong) NSButton *delButton;
 
 @end
 
@@ -41,13 +46,56 @@
         NSButton *moduleButton = [NSButton buttonWithTitle:moduleDict[@"name"] target:self action:@selector(showModuleWindow:)];
         moduleButton.tag = 100 + i;
         [self.view addSubview:moduleButton];
+        
+        int maxCountVer = NSHeight(self.view.frame) / 32;
+        CGFloat unitWidth = NSWidth(self.view.frame) / 4;
+        CGFloat left = (i + 1) / maxCountVer * unitWidth + 20;
+        CGFloat top = (i % maxCountVer) * (20 + 12) + 12;
         [moduleButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.view).offset(40);
-            make.height.equalTo(@40);
-            make.top.equalTo(self.view).offset((20 + 40) * i);
+            make.left.equalTo(self.view).offset(left);
+            make.top.equalTo(self.view).offset(top);
         }];
     }
-		
+    
+    [self.view addSubview:self.addButton];
+    [self.view addSubview:self.delButton];
+    
+    [self.addButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.view);
+        make.bottom.equalTo(self.view);
+    }];
+    [self.delButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.addButton.mas_left).offset(-10);
+        make.bottom.equalTo(self.view);
+    }];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addModule:) name:@"AddModuleNotify" object:nil];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - Notification Sel
+- (void)addModule:(NSNotification *)noti {
+    NSDictionary *dict = noti.userInfo;
+    
+    // 记录当前的module数量
+    NSInteger i = self.model.moduleList.count;
+    NSButton *button = [NSButton buttonWithTitle:dict[@"name"] target:self action:@selector(showModuleWindow:)];
+    button.tag = 100 + i;
+    [self.view addSubview:button];
+    int maxCountVer = NSHeight(self.view.frame) / 32;
+    CGFloat unitWidth = NSWidth(self.view.frame) / 4;
+    CGFloat left = i / maxCountVer * unitWidth + 20;
+    CGFloat top = (i % maxCountVer) * (20 + 12) + 12;
+    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(left);
+        make.top.equalTo(self.view).offset(top);
+    }];
+    
+    [self.model addModule:dict];
+    
 }
 
 #pragma mark - Button Click
@@ -70,6 +118,15 @@
     }
     
     [self.winColList addObject:winCol];
+}
+
+- (void)addButtonClick:(NSButton *)button {
+    NSViewController *createViewController = [[NSClassFromString(@"CGTCreateWindowController") alloc] initWithFrame:NSMakeRect(0, 0, 300, 200)];
+    [self presentViewControllerAsSheet:createViewController];
+}
+
+- (void)delButtonClick:(NSButton *)button {
+    
 }
 
 #pragma mark - setter && getter
@@ -96,6 +153,22 @@
     }
     
     return _viewColList;
+}
+
+- (NSButton *)addButton {
+    if (!_addButton) {
+        _addButton = [NSButton buttonWithImage:[NSImage imageNamed:NSImageNameAddTemplate] target:self action:@selector(addButtonClick:)];
+    }
+    
+    return _addButton;
+}
+
+- (NSButton *)delButton {
+    if (!_delButton) {
+        _delButton = [NSButton buttonWithImage:[NSImage imageNamed:NSImageNameMenuMixedStateTemplate] target:self action:@selector(delButtonClick:)];
+    }
+    
+    return _delButton;
 }
 
 @end

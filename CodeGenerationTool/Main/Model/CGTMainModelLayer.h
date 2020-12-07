@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSMutableArray *moduleList;
 
-
+- (void)addModule:(NSDictionary *)dict;
 
 @end
 

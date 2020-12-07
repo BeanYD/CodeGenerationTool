@@ -11,7 +11,6 @@
 @interface CGTMainModelLayer ()
 
 
-
 @end
 
 @implementation CGTMainModelLayer
@@ -46,10 +45,13 @@
         },
         @{
             @"name" : @"commonDemo",
-            @"winCol" : @"CGTCommonDemoWindowController",
+            @"winCol" : @"CGTCommonDem oWindowController",
         },
     ];
 }
+
+
+// 添加plist文件，将新写入创建的windowController写入文件中保存
 
 - (void)addModule:(NSDictionary *)dict {
     [self.moduleList addObject:dict];
