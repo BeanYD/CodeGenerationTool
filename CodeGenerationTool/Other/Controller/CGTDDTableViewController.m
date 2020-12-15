@@ -7,6 +7,8 @@
 //
 
 #import "CGTDDTableViewController.h"
+#import "NSTextField+Tip.h"
+#import "NSTableCellView+Tip.h"
 
 @interface CGTDDTableViewController ()<NSTableViewDataSource, NSTableViewDelegate>
 
@@ -35,7 +37,7 @@
 	[self.view addSubview:self.scrollView];
 	
 	[self layoutSubviews];
-	
+    
 }
 
 - (void)layoutSubviews {
@@ -101,10 +103,15 @@
 	if (!cellView) {
 		cellView = [[NSTableCellView alloc] init];
 	}
-	
 	NSTextField *textField = [[NSTextField alloc] init];
-//	textField.backgroundColor = [NSColor redColor];
+    textField.editable = NO;
+    textField.usesSingleLineMode = YES;
+    textField.drawsBackground = YES;
+    textField.backgroundColor = [NSColor clearColor];
+    textField.textColor = [NSColor whiteColor];
+    textField.font = [NSFont systemFontOfSize:12.f];
 	[cellView addSubview:textField];
+    [textField addTips];
 	[textField mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.edges.equalTo(cellView);
 	}];
@@ -162,6 +169,7 @@
 		_objcTableView = [[NSTableView alloc] init];
 		_objcTableView.dataSource = self;
 		_objcTableView.delegate = self;
+        _objcTableView.selectionHighlightStyle = NSTableViewSelectionHighlightStyleNone;
 		NSTableHeaderView *tableHeadView=[[NSTableHeaderView alloc] init];
 		[_objcTableView setHeaderView:tableHeadView];
 		

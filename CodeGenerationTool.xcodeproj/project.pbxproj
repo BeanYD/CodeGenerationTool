@@ -39,6 +39,8 @@
 		D72A36612528370700C82A44 /* CGTMouseEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72A36602528370700C82A44 /* CGTMouseEventViewController.m */; };
 		D72A36672528372000C82A44 /* CGTMouseEventWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72A36662528372000C82A44 /* CGTMouseEventWindowController.m */; };
 		D72A368425283BF300C82A44 /* CGTDDCollectionViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D72A368225283BF300C82A44 /* CGTDDCollectionViewItem.m */; };
+		D752E118258856AC0054EC04 /* NSTextField+Tip.m in Sources */ = {isa = PBXBuildFile; fileRef = D752E117258856AC0054EC04 /* NSTextField+Tip.m */; };
+		D752E11E25885D560054EC04 /* NSTableCellView+Tip.m in Sources */ = {isa = PBXBuildFile; fileRef = D752E11D25885D560054EC04 /* NSTableCellView+Tip.m */; };
 		D7574AA424C681D800EEEA98 /* CGTUpdateView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7574AA324C681D800EEEA98 /* CGTUpdateView.m */; };
 		D7574AA824C6826200EEEA98 /* CGTUpdateModelLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D7574AA724C6826200EEEA98 /* CGTUpdateModelLayer.m */; };
 		D7574AE724C692CD00EEEA98 /* CGTCmdTool.m in Sources */ = {isa = PBXBuildFile; fileRef = D7574AE624C692CD00EEEA98 /* CGTCmdTool.m */; };
@@ -142,6 +144,10 @@
 		D72A36662528372000C82A44 /* CGTMouseEventWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTMouseEventWindowController.m; sourceTree = "<group>"; };
 		D72A368125283BF300C82A44 /* CGTDDCollectionViewItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTDDCollectionViewItem.h; sourceTree = "<group>"; };
 		D72A368225283BF300C82A44 /* CGTDDCollectionViewItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTDDCollectionViewItem.m; sourceTree = "<group>"; };
+		D752E116258856AC0054EC04 /* NSTextField+Tip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSTextField+Tip.h"; sourceTree = "<group>"; };
+		D752E117258856AC0054EC04 /* NSTextField+Tip.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSTextField+Tip.m"; sourceTree = "<group>"; };
+		D752E11C25885D560054EC04 /* NSTableCellView+Tip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSTableCellView+Tip.h"; sourceTree = "<group>"; };
+		D752E11D25885D560054EC04 /* NSTableCellView+Tip.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSTableCellView+Tip.m"; sourceTree = "<group>"; };
 		D7574AA224C681D800EEEA98 /* CGTUpdateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTUpdateView.h; sourceTree = "<group>"; };
 		D7574AA324C681D800EEEA98 /* CGTUpdateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTUpdateView.m; sourceTree = "<group>"; };
 		D7574AA624C6826200EEEA98 /* CGTUpdateModelLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTUpdateModelLayer.h; sourceTree = "<group>"; };
@@ -414,6 +420,10 @@
 			children = (
 				D72A368125283BF300C82A44 /* CGTDDCollectionViewItem.h */,
 				D72A368225283BF300C82A44 /* CGTDDCollectionViewItem.m */,
+				D752E116258856AC0054EC04 /* NSTextField+Tip.h */,
+				D752E117258856AC0054EC04 /* NSTextField+Tip.m */,
+				D752E11C25885D560054EC04 /* NSTableCellView+Tip.h */,
+				D752E11D25885D560054EC04 /* NSTableCellView+Tip.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -831,6 +841,7 @@
 				D7D117A6251C6B050019212F /* CGTDDTableWindowController.m in Sources */,
 				D7D117AF251C6B1B0019212F /* CGTDDCollectionWindowController.m in Sources */,
 				D793D85B2526E27F00497562 /* CGTOpenglViewController.m in Sources */,
+				D752E118258856AC0054EC04 /* NSTextField+Tip.m in Sources */,
 				D70D5F7F24B0657700675E89 /* CGTBaseViewController.m in Sources */,
 				D793D8582526E26B00497562 /* CGTOpenglWindowController.m in Sources */,
 				D72A368425283BF300C82A44 /* CGTDDCollectionViewItem.m in Sources */,
@@ -854,6 +865,7 @@
 				D70D5F8324B0659E00675E89 /* CGTMainWindowController.m in Sources */,
 				043E0108253EEAF70089AB8C /* CommonTitleView.m in Sources */,
 				043E015625403B570089AB8C /* CGTTitleBarViewController.m in Sources */,
+				D752E11E25885D560054EC04 /* NSTableCellView+Tip.m in Sources */,
 				D7574AA424C681D800EEEA98 /* CGTUpdateView.m in Sources */,
 				D7FCAFA8257BB39B00B9715E /* CGTCreateWindowController.m in Sources */,
 				043E01A42542BA130089AB8C /* CGTProcessRateTextField.m in Sources */,

@@ -70,6 +70,27 @@
     }];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addModule:) name:@"AddModuleNotify" object:nil];
+    
+//    [self testSort];
+}
+
+- (void)testSort {
+    NSMutableArray *array = [@[@"83分56秒", @"37分58秒", @"718分43秒", @"53分46秒"] mutableCopy];
+    
+    [array sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        NSString *str1 = obj1;
+        NSString *str2 = obj2;
+        
+        if ([str1 compare:str2] > 0) {
+            return NSOrderedAscending;
+        } else if ([str1 compare:str2] < 0) {
+            return NSOrderedDescending;
+        } else {
+            return NSOrderedSame;
+        }
+    }];
+    
+    NSLog(@"%@", array);
 }
 
 - (void)dealloc {
