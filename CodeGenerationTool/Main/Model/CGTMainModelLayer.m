@@ -45,7 +45,7 @@
         },
         @{
             @"name" : @"commonDemo",
-            @"winCol" : @"CGTCommonDem oWindowController",
+            @"winCol" : @"CGTCommonDemoWindowController",
         },
     ];
 }

@@ -11,7 +11,7 @@
 @implementation NSTextField (Tip)
 
 - (void)addTips {
-    NSTrackingArea *trackingArea = [[NSTrackingArea alloc] initWithRect:self.frame options:NSTrackingMouseEnteredAndExited | NSTrackingActiveInActiveApp owner:self userInfo:nil];
+    NSTrackingArea *trackingArea = [[NSTrackingArea alloc] initWithRect:self.frame options:NSTrackingMouseEnteredAndExited | NSTrackingActiveWhenFirstResponder owner:self userInfo:nil];
     [self addTrackingArea:trackingArea];
 }
 

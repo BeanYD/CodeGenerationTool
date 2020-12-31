@@ -108,10 +108,9 @@
     textField.usesSingleLineMode = YES;
     textField.drawsBackground = YES;
     textField.backgroundColor = [NSColor clearColor];
-    textField.textColor = [NSColor whiteColor];
+    textField.textColor = [NSColor blackColor];
     textField.font = [NSFont systemFontOfSize:12.f];
 	[cellView addSubview:textField];
-    [textField addTips];
 	[textField mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.edges.equalTo(cellView);
 	}];
@@ -119,7 +118,7 @@
 		textField.stringValue = self.stringDataSource[row];
 		return cellView;
 	}
-	
+
 	NSArray *stringArr = self.objcDataSource[tableColumn.identifier];
 	
 	// 数组保护
