@@ -7,6 +7,7 @@
 //
 
 #import "CGTDDTableWindowController.h"
+#import "NSWindowController+TitleBar.h"
 
 @interface CGTDDTableWindowController ()
 
@@ -16,8 +17,11 @@
 
 - (instancetype)initWithWindow:(NSWindow *)window {
 	if (self = [super initWithWindow:window]) {
-		window.title = @"列表视图";
+//		window.title = @"列表视图";
 		self.contentViewController = [self vc];
+        
+        [self resetTitleBarWithTitle:@"列表视图"];
+        
 	}
 	
 	return self;

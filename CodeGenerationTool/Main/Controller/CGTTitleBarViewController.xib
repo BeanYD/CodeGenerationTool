@@ -18,5 +18,11 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <point key="canvasLocation" x="-139" y="122"/>
         </customView>
+        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="jDn-34-c1O">
+            <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="JRc-sw-vL7"/>
+            <point key="canvasLocation" x="-282" y="32"/>
+        </imageView>
     </objects>
 </document>
