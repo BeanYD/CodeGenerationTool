@@ -50,7 +50,6 @@
     self.wantsLayer = YES;
     
     self.bezelStyle = NSBezelStyleRegularSquare;
-    self.imagePosition = NSNoImage;
     self.lineBreakMode = NSLineBreakByWordWrapping;
     self.autoresizesSubviews = YES;
     _backgroundColor = [NSColor clearColor];
