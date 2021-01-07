@@ -4,9 +4,9 @@
 
 对通用的UI样式进行修改，子类化，重写`-drawRect`方法，达到某些特定的效果，暂时只封装如下控件
 
-1. CGTCustomButton
+1. CustomButton
 
-   有默认的样式。
+   有默认的样式，一般使用在高度自定义的界面中。
 
    ------
 
@@ -70,6 +70,22 @@
 5. CGTCustomTableHeaderCell
 
    重写`NSTableHeaderCell`，修改`header`的背景色和文字位置，内部目前写死样式，后续可添加样式传入的接口，统一使用
+   
+6. ProgressHUD
+
+   自定义加载视图，加载动画图片名称为`加载`，可进行替换
+
+   通过重写鼠标事件，屏蔽加载视图背后的各类事件，目前仍有缺陷，无法屏蔽鼠标移动事件的传递
+
+   ```objective-c
+   - (void)mouseDown:(NSEvent *)event
+   - (void)mouseUp:(NSEvent *)event
+   - (void)mouseMoved:(NSEvent *)event
+   - (void)mouseEntered:(NSEvent *)event
+   - (void)mouseExited:(NSEvent *)event
+   ```
+
+   
 
 ## Base模块
 

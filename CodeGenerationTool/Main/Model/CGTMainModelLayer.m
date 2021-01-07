@@ -38,7 +38,7 @@
     NSArray *sandBoxPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentPath = [sandBoxPath objectAtIndex:0];
     NSString *plistPath = [documentPath stringByAppendingPathComponent:@"ClassInfo.plist"];
-    NSLog(@"------------------------------------------\nplist path:\n%@\n------------------------------------------", plistPath);
+    NSLog(@"\n------------------------------------------\nplist path:\n%@\n------------------------------------------", plistPath);
     return plistPath;
 }
 
@@ -75,6 +75,12 @@
 
 - (void)saveBaseList {
     NSArray *baseList = [self baseModuleList];
+    
+    NSMutableArray *moduleList = [NSMutableArray arrayWithArray:[_dataDict objectForKey:@"classInfo"]];
+    if (moduleList.count != 0) {
+        return;
+    }
+    
     [_dataDict setObject:baseList forKey:@"classInfo"];
     [_dataDict writeToFile:_classPath atomically:YES];
 }

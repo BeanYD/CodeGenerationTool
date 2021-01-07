@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CGTCreateViewController : CGTBaseViewController
 
-
+@property (nonatomic, copy) NSString *titleStr;
 
 @end
 

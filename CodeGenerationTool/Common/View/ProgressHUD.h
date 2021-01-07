@@ -17,11 +17,23 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSTextField *textLabel;
 @property (nonatomic, strong) NSView *topView;
 
+/**
+ * parentView   HUD父视图
+ * message      加载图标下的文案
+ * topTitle         顶部提示视图，项目特定的离线加载UI
+ */
 + (instancetype)HUDWithParentView:(NSView *)parentView;
 + (instancetype)HUDWithParentView:(NSView *)parentView message:(NSString *)message;
 + (instancetype)HUDWithParentView:(NSView *)parentView message:(NSString *)message topTitle:(NSString *)topTitle;
+
+/**
+ * 移除HUD
+ */
 - (void)hideProgressHUD;
 
+/**
+ * 窗口进行resize时需要进行同步调用，暂时需要外部调用，后续可修改为内部实现适配
+ */
 - (void)updateFrame;
 
 @end

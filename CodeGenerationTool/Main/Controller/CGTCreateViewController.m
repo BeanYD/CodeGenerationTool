@@ -8,26 +8,17 @@
 
 #import "CGTCreateViewController.h"
 
-@interface CGTCreateViewController () {
-    NSString *_remindStr;
-}
+@interface CGTCreateViewController ()
 
 @property (nonatomic, strong) NSTextField *remindTextField;
 @property (nonatomic, strong) NSTextField *nameTextField;
 @property (nonatomic, strong) NSTextField *winColTextField;
 @property (nonatomic, strong) NSButton *sureButton;
+@property (nonatomic, strong) NSButton *cancelButton;
 
 @end
 
 @implementation CGTCreateViewController
-
-- (instancetype)initWithFrame:(CGRect)frame remindStr:(NSString *)remindStr {
-    if (self = [super initWithFrame:frame]) {
-        _remindStr = remindStr;
-    }
-    
-    return self;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -60,9 +51,12 @@
         make.top.equalTo(self.winColTextField.mas_bottom).offset(15);
         make.centerX.equalTo(self.view);
     }];
+}
+
+- (void)setTitleStr:(NSString *)titleStr {
+    _titleStr = titleStr;
     
-    self.remindTextField.stringValue = _remindStr;
-    
+    self.remindTextField.stringValue = _titleStr;
 }
 
 - (void)sureButtonClick:(NSButton *)button {
@@ -80,7 +74,11 @@
 - (NSTextField *)remindTextField {
     if (!_remindTextField) {
         _remindTextField = [[NSTextField alloc] init];
+        _remindTextField.font = [NSFont systemFontOfSize:16.];
         _remindTextField.editable = NO;
+        _remindTextField.bordered = NO;
+        _remindTextField.drawsBackground = YES;
+        _remindTextField.backgroundColor = [NSColor clearColor];
         _remindTextField.alignment = NSTextAlignmentCenter;
     }
     

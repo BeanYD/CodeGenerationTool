@@ -142,7 +142,8 @@
 }
 
 - (void)addButtonClick:(NSButton *)button {
-    NSViewController *createViewController = [[NSClassFromString(@"CGTCreateWindowController") alloc] initWithFrame:NSMakeRect(0, 0, 300, 200)];
+    NSViewController *createViewController = [[NSClassFromString(@"CGTCreateViewController") alloc] initWithFrame:NSMakeRect(0, 0, 300, 200)];
+    [createViewController setValue:@"添加控制器" forKey:@"titleStr"];
     [self presentViewControllerAsSheet:createViewController];
 }
 

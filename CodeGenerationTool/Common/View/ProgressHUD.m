@@ -110,6 +110,7 @@
 
 - (void)transformImage{
     NSImageView *transImage = self.imageView;
+    // 防止低版本兼容性问题，无论上层是否wantsLayer，需要动画的View都需要添加wantsLayer
     transImage.wantsLayer = YES;
     NSRect oldFrame = transImage.layer.frame;
     transImage.layer.anchorPoint = CGPointMake(0.5, 0.5);
@@ -133,7 +134,7 @@
 - (NSImageView *)imageView {
     if (!_imageView) {
         _imageView = [[NSImageView alloc] initWithFrame:NSMakeRect((NSWidth(self.frame) - 40) / 2, (NSHeight(self.frame) - 40) / 2 + 50, 40, 40)];
-        _imageView.image = [NSImage imageNamed:@"加载-1"];
+        _imageView.image = [NSImage imageNamed:@"加载"];
     }
     
     return _imageView;
