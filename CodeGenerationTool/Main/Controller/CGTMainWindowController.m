@@ -21,6 +21,9 @@
 	if (self = [super initWithWindow:window]) {
 		window.title = @"Home";
 		self.contentViewController = [self vc];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willCloseWindow:) name:NSWindowWillCloseNotification object:nil];
+
 	}
 	
 	return self;
@@ -47,10 +50,15 @@
 //    [v.layer setBackgroundColor:[[NSColor clearColor] CGColor]];
 //    [v addSubview:titleView positioned:NSWindowBelow relativeTo:nil];
     
-    
-    
 #pragma mark - 2020-10-21 更新 上述代码可废弃
     // TODO: 已在NSWindowController+TitleBar中封装，直接调用该分类中的方法即可，后续修改
+}
+
+- (void)willCloseWindow:(NSNotification *)noti {
+    NSWindow *window = noti.object;
+    if (window == self.window) {
+        [NSApp terminate:nil];
+    }
 }
 
 - (NSViewController *)vc {
