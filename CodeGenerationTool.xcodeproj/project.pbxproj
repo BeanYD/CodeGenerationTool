@@ -22,6 +22,7 @@
 		043E01BB2542BF310089AB8C /* CGTProcessRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E01BA2542BF310089AB8C /* CGTProcessRateView.m */; };
 		0440121F25398FE500798BCD /* CGTCustomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0440121B25398FE500798BCD /* CGTCustomScrollView.m */; };
 		04411A782549809D00337A41 /* CGTSecondaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04411A772549809D00337A41 /* CGTSecondaryViewController.m */; };
+		04465D8325A69D37009850D0 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 04465D8125A69D37009850D0 /* ProgressHUD.m */; };
 		0476509B259DBA5C0006F3FC /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04765099259DBA5B0006F3FC /* CustomButton.m */; };
 		43C11816E38B44FB1932AEC9 /* Pods_CodeGenerationTool_CodeGenerationToolUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7157C1C24A046B11838466DE /* Pods_CodeGenerationTool_CodeGenerationToolUITests.framework */; };
 		A47A75996D596E4CF449CEBC /* Pods_CodeGenerationToolTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B86CFA6999CA1026AA62E68 /* Pods_CodeGenerationToolTests.framework */; };
@@ -54,7 +55,7 @@
 		D7D117D1251C842D0019212F /* CGTInvokeConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D117D0251C842D0019212F /* CGTInvokeConfig.m */; };
 		D7F42C1D24B2D1B300EF1C38 /* CGTMainModelLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F42C1C24B2D1B300EF1C38 /* CGTMainModelLayer.m */; };
 		D7F42C2124B2D1C700EF1C38 /* CGTFilePathPlistMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F42C2024B2D1C700EF1C38 /* CGTFilePathPlistMgr.m */; };
-		D7FCAFA8257BB39B00B9715E /* CGTCreateWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FCAFA7257BB39B00B9715E /* CGTCreateWindowController.m */; };
+		D7FCAFA8257BB39B00B9715E /* CGTCreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FCAFA7257BB39B00B9715E /* CGTCreateViewController.m */; };
 		E75D09A20E5E8977B0F9DF16 /* Pods_CodeGenerationTool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B187A328932D431717A2517C /* Pods_CodeGenerationTool.framework */; };
 /* End PBXBuildFile section */
 
@@ -104,6 +105,8 @@
 		0440121C25398FE500798BCD /* CGTCustomScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGTCustomScrollView.h; sourceTree = "<group>"; };
 		04411A762549809D00337A41 /* CGTSecondaryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTSecondaryViewController.h; sourceTree = "<group>"; };
 		04411A772549809D00337A41 /* CGTSecondaryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTSecondaryViewController.m; sourceTree = "<group>"; };
+		04465D8125A69D37009850D0 /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
+		04465D8225A69D37009850D0 /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
 		04765099259DBA5B0006F3FC /* CustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomButton.m; sourceTree = "<group>"; };
 		0476509A259DBA5B0006F3FC /* CustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomButton.h; sourceTree = "<group>"; };
 		1C5AAB70915A693E8B031E33 /* Pods-CodeGenerationTool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodeGenerationTool.release.xcconfig"; path = "Target Support Files/Pods-CodeGenerationTool/Pods-CodeGenerationTool.release.xcconfig"; sourceTree = "<group>"; };
@@ -175,8 +178,8 @@
 		D7F42C1C24B2D1B300EF1C38 /* CGTMainModelLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTMainModelLayer.m; sourceTree = "<group>"; };
 		D7F42C1F24B2D1C700EF1C38 /* CGTFilePathPlistMgr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTFilePathPlistMgr.h; sourceTree = "<group>"; };
 		D7F42C2024B2D1C700EF1C38 /* CGTFilePathPlistMgr.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTFilePathPlistMgr.m; sourceTree = "<group>"; };
-		D7FCAFA6257BB39B00B9715E /* CGTCreateWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTCreateWindowController.h; sourceTree = "<group>"; };
-		D7FCAFA7257BB39B00B9715E /* CGTCreateWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTCreateWindowController.m; sourceTree = "<group>"; };
+		D7FCAFA6257BB39B00B9715E /* CGTCreateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTCreateViewController.h; sourceTree = "<group>"; };
+		D7FCAFA7257BB39B00B9715E /* CGTCreateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTCreateViewController.m; sourceTree = "<group>"; };
 		E734CF580DA38A2E089EF96C /* Pods-CodeGenerationToolTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodeGenerationToolTests.release.xcconfig"; path = "Target Support Files/Pods-CodeGenerationToolTests/Pods-CodeGenerationToolTests.release.xcconfig"; sourceTree = "<group>"; };
 		E9402F7BDF328AA0417A7BAE /* Pods-CodeGenerationToolTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodeGenerationToolTests.debug.xcconfig"; path = "Target Support Files/Pods-CodeGenerationToolTests/Pods-CodeGenerationToolTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -261,6 +264,8 @@
 				043E01A32542BA130089AB8C /* CGTProcessRateTextField.m */,
 				043E01B92542BF310089AB8C /* CGTProcessRateView.h */,
 				043E01BA2542BF310089AB8C /* CGTProcessRateView.m */,
+				04465D8225A69D37009850D0 /* ProgressHUD.h */,
+				04465D8125A69D37009850D0 /* ProgressHUD.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -563,8 +568,8 @@
 				D70D5F8224B0659E00675E89 /* CGTMainWindowController.m */,
 				D70D5F8424B065B700675E89 /* CGTMainViewController.h */,
 				D70D5F8524B065B700675E89 /* CGTMainViewController.m */,
-				D7FCAFA6257BB39B00B9715E /* CGTCreateWindowController.h */,
-				D7FCAFA7257BB39B00B9715E /* CGTCreateWindowController.m */,
+				D7FCAFA6257BB39B00B9715E /* CGTCreateViewController.h */,
+				D7FCAFA7257BB39B00B9715E /* CGTCreateViewController.m */,
 				04411A762549809D00337A41 /* CGTSecondaryViewController.h */,
 				04411A772549809D00337A41 /* CGTSecondaryViewController.m */,
 				043E015425403B570089AB8C /* CGTTitleBarViewController.h */,
@@ -836,6 +841,7 @@
 				0440121F25398FE500798BCD /* CGTCustomScrollView.m in Sources */,
 				D70D5F4E24B0641800675E89 /* main.m in Sources */,
 				04411A782549809D00337A41 /* CGTSecondaryViewController.m in Sources */,
+				04465D8325A69D37009850D0 /* ProgressHUD.m in Sources */,
 				D7F42C2124B2D1C700EF1C38 /* CGTFilePathPlistMgr.m in Sources */,
 				D7D11797251C44270019212F /* CGTDDTableViewController.m in Sources */,
 				D72A36612528370700C82A44 /* CGTMouseEventViewController.m in Sources */,
@@ -867,7 +873,7 @@
 				043E015625403B570089AB8C /* CGTTitleBarViewController.m in Sources */,
 				D752E11E25885D560054EC04 /* NSTableCellView+Tip.m in Sources */,
 				D7574AA424C681D800EEEA98 /* CGTUpdateView.m in Sources */,
-				D7FCAFA8257BB39B00B9715E /* CGTCreateWindowController.m in Sources */,
+				D7FCAFA8257BB39B00B9715E /* CGTCreateViewController.m in Sources */,
 				043E01A42542BA130089AB8C /* CGTProcessRateTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

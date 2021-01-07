@@ -8,7 +8,9 @@
 
 #import "CGTCreateViewController.h"
 
-@interface CGTCreateViewController ()
+@interface CGTCreateViewController () {
+    NSString *_remindStr;
+}
 
 @property (nonatomic, strong) NSTextField *remindTextField;
 @property (nonatomic, strong) NSTextField *nameTextField;
@@ -18,6 +20,14 @@
 @end
 
 @implementation CGTCreateViewController
+
+- (instancetype)initWithFrame:(CGRect)frame remindStr:(NSString *)remindStr {
+    if (self = [super initWithFrame:frame]) {
+        _remindStr = remindStr;
+    }
+    
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -50,6 +60,8 @@
         make.top.equalTo(self.winColTextField.mas_bottom).offset(15);
         make.centerX.equalTo(self.view);
     }];
+    
+    self.remindTextField.stringValue = _remindStr;
     
 }
 

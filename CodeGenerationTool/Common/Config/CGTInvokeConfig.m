@@ -32,6 +32,8 @@
     Method method = class_getInstanceMethod(NSClassFromString(className), sel);
     IMP imp = method_getImplementation(method);
     // 执行method
+    
+    NSObject *obj = [[NSClassFromString(className) alloc] init];
 //    (void *)imp()
 }
 

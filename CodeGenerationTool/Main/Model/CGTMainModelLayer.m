@@ -8,8 +8,10 @@
 
 #import "CGTMainModelLayer.h"
 
-@interface CGTMainModelLayer ()
-
+@interface CGTMainModelLayer () {
+    NSString *_classPath;
+    NSMutableDictionary *_dataDict;
+}
 
 @end
 
@@ -17,13 +19,65 @@
 
 - (instancetype)init {
 	if (self = [super init]) {
-        self.moduleList = [NSMutableArray arrayWithArray:[self baseModuleList]];
+        [self plistData];
+        [self saveBaseList];
+        self.moduleList = [self getAllModules];
 	}
 	
 	return self;
 }
 
+- (void)plistData {
+    NSString *path = [self getPlistPath];
+    _classPath = path;
+    NSMutableDictionary *dataDict = [NSMutableDictionary dictionaryWithContentsOfFile:path];
+    _dataDict = [NSMutableDictionary dictionaryWithDictionary:dataDict];
+}
 
+- (NSString *)getPlistPath {
+    NSArray *sandBoxPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentPath = [sandBoxPath objectAtIndex:0];
+    NSString *plistPath = [documentPath stringByAppendingPathComponent:@"ClassInfo.plist"];
+    NSLog(@"------------------------------------------\nplist path:\n%@\n------------------------------------------", plistPath);
+    return plistPath;
+}
+
+- (NSMutableArray *)getAllModules {
+    return [NSMutableArray arrayWithArray:[_dataDict objectForKey:@"classInfo"]];
+}
+
+- (void)addModule:(NSDictionary *)dict {
+    NSMutableArray *moduleList = [NSMutableArray arrayWithArray:[_dataDict objectForKey:@"classInfo"]];
+    [moduleList addObject:dict];
+    
+    [_dataDict setObject:moduleList forKey:@"classInfo"];
+    [_dataDict writeToFile:_classPath atomically:YES];
+}
+
+- (void)delModule:(NSDictionary *)dict {
+    NSMutableArray *moduleList = [NSMutableArray arrayWithArray:[_dataDict objectForKey:@"classInfo"]];
+    if (moduleList.count == 0) {
+        NSLog(@"无多余的类需要删除");
+        return;
+    }
+    
+    for (int i = 0; i < moduleList.count; i++) {
+        NSDictionary *module = moduleList[i];
+        if ([[module valueForKey:@"winCol"] isEqualToString:[dict valueForKey:@"winCol"]]) {
+            [moduleList removeObject:module];
+            break;
+        }
+    }
+    
+    [_dataDict setObject:moduleList forKey:@"classInfo"];
+    [_dataDict writeToFile:_classPath atomically:YES];
+}
+
+- (void)saveBaseList {
+    NSArray *baseList = [self baseModuleList];
+    [_dataDict setObject:baseList forKey:@"classInfo"];
+    [_dataDict writeToFile:_classPath atomically:YES];
+}
 
 - (NSArray *)baseModuleList {
     return @[
@@ -51,11 +105,6 @@
 }
 
 
-// 添加plist文件，将新写入创建的windowController写入文件中保存
-
-- (void)addModule:(NSDictionary *)dict {
-    [self.moduleList addObject:dict];
-}
 
 
 

@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)addModule:(NSDictionary *)dict;
 
+- (void)delModule:(NSDictionary *)dict;
+
 @end
 
 NS_ASSUME_NONNULL_END
