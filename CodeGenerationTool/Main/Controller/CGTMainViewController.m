@@ -70,7 +70,7 @@
     }];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addModule:) name:@"AddModuleNotify" object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(delModule:) name:@"DelModuleNotify" object:nil];
 //    [self testSort];
 }
 
@@ -119,6 +119,21 @@
     
 }
 
+- (void)delModule:(NSNotification *)noti {
+    NSDictionary *dict = noti.userInfo;
+    [self.model delModule:dict];
+    NSArray *subviews = self.view.subviews;
+    for (int i = 0; i < subviews.count; i++) {
+        NSView *subview = subviews[i];
+        if ([subview isMemberOfClass:[NSButton class]]) {
+            NSButton *button = (NSButton *)subview;
+            if ([button.title isEqualToString:dict[@"name"]]) {
+                [button removeFromSuperview];
+            }
+        }
+    }
+}
+
 #pragma mark - Button Click
 - (void)showModuleWindow:(NSButton *)button {
     NSInteger index = button.tag - 100;
@@ -148,7 +163,9 @@
 }
 
 - (void)delButtonClick:(NSButton *)button {
-    
+    NSViewController *vc = [[NSClassFromString(@"CGTCreateViewController") alloc] initWithFrame:NSMakeRect(0, 0, 300, 200)];
+    [vc setValue:@"删除控制器" forKey:@"titleStr"];
+    [self presentViewControllerAsSheet:vc];
 }
 
 #pragma mark - setter && getter

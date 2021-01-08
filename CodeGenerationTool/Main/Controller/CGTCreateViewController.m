@@ -28,6 +28,7 @@
     [self.view addSubview:self.nameTextField];
     [self.view addSubview:self.winColTextField];
     [self.view addSubview:self.sureButton];
+    [self.view addSubview:self.cancelButton];
     
     [self.remindTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
@@ -49,7 +50,12 @@
     
     [self.sureButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.winColTextField.mas_bottom).offset(15);
-        make.centerX.equalTo(self.view);
+        make.centerX.equalTo(self.view).offset(-30);
+    }];
+    
+    [self.cancelButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.winColTextField.mas_bottom).offset(15);
+        make.centerX.equalTo(self.view).offset(30);
     }];
 }
 
@@ -61,11 +67,22 @@
 
 - (void)sureButtonClick:(NSButton *)button {
     
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setValue:self.nameTextField.stringValue forKey:@"name"];
-    [dict setValue:self.winColTextField.stringValue forKey:@"winCol"];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"AddModuleNotify" object:nil userInfo:dict];
+    if ([self.titleStr isEqualToString:@"添加控制器"]) {
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        [dict setValue:self.nameTextField.stringValue forKey:@"name"];
+        [dict setValue:self.winColTextField.stringValue forKey:@"winCol"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"AddModuleNotify" object:nil userInfo:dict];
+    } else if ([self.titleStr isEqualToString:@"删除控制器"]) {
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        [dict setValue:self.nameTextField.stringValue forKey:@"name"];
+        [dict setValue:self.winColTextField.stringValue forKey:@"winCol"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"DelModuleNotify" object:nil userInfo:dict];
+    }
     
+    [self dismissController:nil];
+}
+
+- (void)cancelButtonClick:(NSButton *)button {
     [self dismissController:nil];
 }
 
@@ -107,6 +124,14 @@
     }
     
     return _sureButton;
+}
+
+- (NSButton *)cancelButton {
+    if (!_cancelButton) {
+        _cancelButton = [NSButton buttonWithTitle:@"取消" target:self action:@selector(cancelButtonClick:)];
+    }
+    
+    return _cancelButton;
 }
 
 @end
