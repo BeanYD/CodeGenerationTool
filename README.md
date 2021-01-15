@@ -70,7 +70,7 @@
 5. CGTCustomTableHeaderCell
 
    重写`NSTableHeaderCell`，修改`header`的背景色和文字位置，内部目前写死样式，后续可添加样式传入的接口，统一使用
-   
+
 6. ProgressHUD
 
    自定义加载视图，加载动画图片名称为`加载`，可进行替换
@@ -132,13 +132,43 @@ App的主页面，所有其他窗口都由该页面进入
 
 - 方案1：下载安装包dmg文件，下载完成后open。
   缺陷：还是需要用户手动拖拽覆盖应用程序内的程序。
+
 - 方案2：直接下载.app文件，进行打开。
   实践中，只在开发环境下试过，可以打开，但是会开启另一个同名app。
+
 - 方案3：通过命令行mv操作将cache中的.app文件移动到mac的应用程序中进行覆盖。
   未实践，理论上不可行：如果程序还在运行，mv后覆盖需要当前程序退出；当前程序退出，无法继续执行mv操作
-  
+
   
 
 ## 经验记录：
 
 `NSTextField`在`xib`中创建后，会自带白色背景，在`xib`中修改：找到`Display`，勾选`Draw Background`，所选的背景色才会生效。
+
+## OSX10.15系统下，修改鼠标图标的方法说明
+
+[Github上相关问题修复](https://github.com/AvaloniaUI/Avalonia/issues/3000])
+
+`NSCursor`相关方法
+
+```objective-c
+- (void)resetCursorRects;
+// 在10.15系统下，容易发生崩溃
+- (void)addCursorRect:(NSRect)rect cursor:(NSCursor *)object;
+- (void)set;
+```
+
+崩溃日志：
+
+```objective-c
+Application Specific Information:
+assertion failure: "_needsGeometryInWindowDidChangeNotificationCount < (1 << 8) - 1" -> %lld
+:
+:  
+5 com.apple.AppKit 0x00007fff30a4771c -[NSView(NSInternal) enableGeometryInWindowDidChangeNotification] + 216
+6 com.apple.AppKit 0x00007fff30bf9d99 -[NSWindow(NSCursorRects) _addCursorRect:cursor:forView:] + 962
+7 com.apple.AppKit 0x00007fff30bf95c4 -[NSView addCursorRect:cursor:] + 607
+8 libAvaloniaNative.dylib 0x000000010aaecf01 WindowBaseImpl::UpdateCursor() + 125
+9 libAvaloniaNative.dylib 0x000000010aaece6e WindowBaseImpl::SetCursor(IAvnCursor*) + 78
+```
+
