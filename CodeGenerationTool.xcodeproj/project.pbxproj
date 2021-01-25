@@ -24,6 +24,8 @@
 		04411A782549809D00337A41 /* CGTSecondaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04411A772549809D00337A41 /* CGTSecondaryViewController.m */; };
 		04465D8325A69D37009850D0 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 04465D8125A69D37009850D0 /* ProgressHUD.m */; };
 		0476509B259DBA5C0006F3FC /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04765099259DBA5B0006F3FC /* CustomButton.m */; };
+		04D496BD25BEDD4C007A0157 /* CGTDrawWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D496BC25BEDD4C007A0157 /* CGTDrawWindowController.m */; };
+		04D496C625BEDD58007A0157 /* CGTDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D496C525BEDD58007A0157 /* CGTDrawViewController.m */; };
 		43C11816E38B44FB1932AEC9 /* Pods_CodeGenerationTool_CodeGenerationToolUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7157C1C24A046B11838466DE /* Pods_CodeGenerationTool_CodeGenerationToolUITests.framework */; };
 		A47A75996D596E4CF449CEBC /* Pods_CodeGenerationToolTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B86CFA6999CA1026AA62E68 /* Pods_CodeGenerationToolTests.framework */; };
 		D704CD77257B5451003DC276 /* CGTFileModelLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D704CD76257B5451003DC276 /* CGTFileModelLayer.m */; };
@@ -109,6 +111,10 @@
 		04465D8225A69D37009850D0 /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
 		04765099259DBA5B0006F3FC /* CustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomButton.m; sourceTree = "<group>"; };
 		0476509A259DBA5B0006F3FC /* CustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomButton.h; sourceTree = "<group>"; };
+		04D496BB25BEDD4C007A0157 /* CGTDrawWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTDrawWindowController.h; sourceTree = "<group>"; };
+		04D496BC25BEDD4C007A0157 /* CGTDrawWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTDrawWindowController.m; sourceTree = "<group>"; };
+		04D496C425BEDD58007A0157 /* CGTDrawViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTDrawViewController.h; sourceTree = "<group>"; };
+		04D496C525BEDD58007A0157 /* CGTDrawViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTDrawViewController.m; sourceTree = "<group>"; };
 		1C5AAB70915A693E8B031E33 /* Pods-CodeGenerationTool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodeGenerationTool.release.xcconfig"; path = "Target Support Files/Pods-CodeGenerationTool/Pods-CodeGenerationTool.release.xcconfig"; sourceTree = "<group>"; };
 		3B86CFA6999CA1026AA62E68 /* Pods_CodeGenerationToolTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CodeGenerationToolTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B30D908BD2AEBA57070A513 /* Pods-CodeGenerationTool-CodeGenerationToolUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodeGenerationTool-CodeGenerationToolUITests.release.xcconfig"; path = "Target Support Files/Pods-CodeGenerationTool-CodeGenerationToolUITests/Pods-CodeGenerationTool-CodeGenerationToolUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -270,6 +276,25 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		04D496B925BEDD19007A0157 /* DrawLayer */ = {
+			isa = PBXGroup;
+			children = (
+				04D496BA25BEDD2C007A0157 /* Controller */,
+			);
+			path = DrawLayer;
+			sourceTree = "<group>";
+		};
+		04D496BA25BEDD2C007A0157 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				04D496BB25BEDD4C007A0157 /* CGTDrawWindowController.h */,
+				04D496BC25BEDD4C007A0157 /* CGTDrawWindowController.m */,
+				04D496C425BEDD58007A0157 /* CGTDrawViewController.h */,
+				04D496C525BEDD58007A0157 /* CGTDrawViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		6D10A181CCCCE0B4472A02CD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -328,6 +353,7 @@
 				D7574A9F24C6819100EEEA98 /* Update */,
 				D7D11786251C43A10019212F /* Other */,
 				043E01A82542BB2D0089AB8C /* CommonDemo */,
+				04D496B925BEDD19007A0157 /* DrawLayer */,
 				D70D5F4724B0641800675E89 /* Assets.xcassets */,
 				D70D5F4924B0641800675E89 /* Main.storyboard */,
 				D70D5F4C24B0641800675E89 /* Info.plist */,
@@ -850,6 +876,7 @@
 				D793D85B2526E27F00497562 /* CGTOpenglViewController.m in Sources */,
 				D752E118258856AC0054EC04 /* NSTextField+Tip.m in Sources */,
 				D70D5F7F24B0657700675E89 /* CGTBaseViewController.m in Sources */,
+				04D496BD25BEDD4C007A0157 /* CGTDrawWindowController.m in Sources */,
 				D793D8582526E26B00497562 /* CGTOpenglWindowController.m in Sources */,
 				D72A368425283BF300C82A44 /* CGTDDCollectionViewItem.m in Sources */,
 				043E01922542AF040089AB8C /* CGTCustomTableHeaderCell.m in Sources */,
@@ -866,6 +893,7 @@
 				D7574AA824C6826200EEEA98 /* CGTUpdateModelLayer.m in Sources */,
 				D72A36672528372000C82A44 /* CGTMouseEventWindowController.m in Sources */,
 				043E015D25403B6B0089AB8C /* CGTCommonTitleView.m in Sources */,
+				04D496C625BEDD58007A0157 /* CGTDrawViewController.m in Sources */,
 				D7574AE724C692CD00EEEA98 /* CGTCmdTool.m in Sources */,
 				043E01B52542BD480089AB8C /* CGTCommonDemoViewController.m in Sources */,
 				D70D5F8324B0659E00675E89 /* CGTMainWindowController.m in Sources */,
@@ -1046,7 +1074,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dingbinbin.demo.CodeGenerationTool;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1068,7 +1096,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dingbinbin.demo.CodeGenerationTool;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

@@ -105,6 +105,7 @@
 - (NSTextField *)nameTextField {
     if (!_nameTextField) {
         _nameTextField = [[NSTextField alloc] init];
+        _nameTextField.placeholderString = @"col标题";
     }
     
     return _nameTextField;
@@ -113,6 +114,7 @@
 - (NSTextField *)winColTextField {
     if (!_winColTextField) {
         _winColTextField = [[NSTextField alloc] init];
+        _winColTextField.placeholderString = @"col类名";
     }
     
     return _winColTextField;
