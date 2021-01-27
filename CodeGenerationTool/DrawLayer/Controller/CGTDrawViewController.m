@@ -7,8 +7,13 @@
 //
 
 #import "CGTDrawViewController.h"
+#import "CGTDrawView.h"
 
-@interface CGTDrawViewController () <CALayerDelegate>
+@interface CGTDrawViewController ()
+
+@property (nonatomic, strong) NSButton *lineButton;
+@property (nonatomic, strong) NSButton *direLineButton;
+@property (nonatomic, strong) NSButton *direDashButton;
 
 @end
 
@@ -18,25 +23,74 @@
     [super viewDidLoad];
     // Do view setup here.
     
-    CALayer *subLayer = [[CALayer alloc] init];
+    CGTDrawView *drawView = [[CGTDrawView alloc] initWithFrame:self.view.frame];
+    [self.view addSubview:drawView];
     
-    subLayer.bounds = self.view.bounds;
-    subLayer.position = CGPointMake(160, 200);
-    subLayer.backgroundColor = [NSColor redColor].CGColor;
-    subLayer.delegate = self;
-    [self.view.layer addSublayer:subLayer];
-    [subLayer setNeedsDisplay];
+    [self.view addSubview:self.lineButton];
+    [self.view addSubview:self.direLineButton];
+    [self.view addSubview:self.direDashButton];
 }
 
-- (void)drawlayer:(CALayer *)layer inContext:(CGContextRef)ctx {
-    CGContextSaveGState(ctx);
-    CGContextScaleCTM(ctx, 1, -1);
-    CGContextTranslateCTM(ctx, 0, -NSHeight(self.view.frame));
-    NSImage *image = [NSImage imageNamed:@"加载"];
-    CGImageSourceRef source = CGImageSourceCreateWithData((CFDataRef)[image TIFFRepresentation], NULL);
-    CGImageRef imageRef = CGImageSourceCreateImageAtIndex(source, 0, NULL);
-    CGContextDrawImage(ctx, CGRectMake(0, 0, 100, 100), imageRef);
-    CGContextRestoreGState(ctx);
+- (void)layoutSubviews {
+    [self.lineButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(12);
+        make.top.equalTo(self.view).offset(20);
+    }];
+    
+    [self.direLineButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+    }];
+    
+    [self.direDashButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+    }];
+}
+
+#pragma mark - Button Click
+- (void)lineButtonClick:(NSButton *)button {
+    
+}
+
+- (void)direLineButtonClick:(NSButton *)button {
+    
+}
+
+- (void)direDashButtonClick:(NSButton *)button {
+    
+}
+
+#pragma mark - Getter
+- (NSButton *)lineButton {
+    if (!_lineButton) {
+        _lineButton = [[NSButton alloc] init];
+        _lineButton.title = @"连续线条";
+        _lineButton.target = self;
+        _lineButton.action = @selector(lineButtonClick:);
+    }
+    
+    return _lineButton;
+}
+
+- (NSButton *)direLineButton {
+    if (!_direLineButton) {
+        _direLineButton = [[NSButton alloc] init];
+        _direLineButton.title = @"直线";
+        _direLineButton.target = self;
+        _direLineButton.action = @selector(direLineButtonClick:);
+    }
+    
+    return _direLineButton;
+}
+
+- (NSButton *)direDashButton {
+    if (!_direDashButton) {
+        _direDashButton = [[NSButton alloc] init];
+        _direDashButton.title = @"虚线";
+        _direDashButton.target = self;
+        _direDashButton.action = @selector(direDashButtonClick:);
+    }
+    
+    return _direDashButton;
 }
 
 @end

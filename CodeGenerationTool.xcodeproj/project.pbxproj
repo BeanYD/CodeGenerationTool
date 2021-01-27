@@ -26,6 +26,9 @@
 		0476509B259DBA5C0006F3FC /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04765099259DBA5B0006F3FC /* CustomButton.m */; };
 		04D496BD25BEDD4C007A0157 /* CGTDrawWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D496BC25BEDD4C007A0157 /* CGTDrawWindowController.m */; };
 		04D496C625BEDD58007A0157 /* CGTDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D496C525BEDD58007A0157 /* CGTDrawViewController.m */; };
+		04D496D225BFBD24007A0157 /* CGTDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D496D125BFBD24007A0157 /* CGTDrawView.m */; };
+		04D496E225BFE521007A0157 /* CustomDrawingTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D496E125BFE521007A0157 /* CustomDrawingTools.m */; };
+		04D496EC25BFFE7B007A0157 /* CGTDrawLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D496EB25BFFE7B007A0157 /* CGTDrawLayer.m */; };
 		43C11816E38B44FB1932AEC9 /* Pods_CodeGenerationTool_CodeGenerationToolUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7157C1C24A046B11838466DE /* Pods_CodeGenerationTool_CodeGenerationToolUITests.framework */; };
 		A47A75996D596E4CF449CEBC /* Pods_CodeGenerationToolTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B86CFA6999CA1026AA62E68 /* Pods_CodeGenerationToolTests.framework */; };
 		D704CD77257B5451003DC276 /* CGTFileModelLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D704CD76257B5451003DC276 /* CGTFileModelLayer.m */; };
@@ -115,6 +118,12 @@
 		04D496BC25BEDD4C007A0157 /* CGTDrawWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTDrawWindowController.m; sourceTree = "<group>"; };
 		04D496C425BEDD58007A0157 /* CGTDrawViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTDrawViewController.h; sourceTree = "<group>"; };
 		04D496C525BEDD58007A0157 /* CGTDrawViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTDrawViewController.m; sourceTree = "<group>"; };
+		04D496D025BFBD24007A0157 /* CGTDrawView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTDrawView.h; sourceTree = "<group>"; };
+		04D496D125BFBD24007A0157 /* CGTDrawView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTDrawView.m; sourceTree = "<group>"; };
+		04D496E025BFE520007A0157 /* CustomDrawingTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomDrawingTools.h; sourceTree = "<group>"; };
+		04D496E125BFE521007A0157 /* CustomDrawingTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomDrawingTools.m; sourceTree = "<group>"; };
+		04D496EA25BFFE7B007A0157 /* CGTDrawLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTDrawLayer.h; sourceTree = "<group>"; };
+		04D496EB25BFFE7B007A0157 /* CGTDrawLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTDrawLayer.m; sourceTree = "<group>"; };
 		1C5AAB70915A693E8B031E33 /* Pods-CodeGenerationTool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodeGenerationTool.release.xcconfig"; path = "Target Support Files/Pods-CodeGenerationTool/Pods-CodeGenerationTool.release.xcconfig"; sourceTree = "<group>"; };
 		3B86CFA6999CA1026AA62E68 /* Pods_CodeGenerationToolTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CodeGenerationToolTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B30D908BD2AEBA57070A513 /* Pods-CodeGenerationTool-CodeGenerationToolUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodeGenerationTool-CodeGenerationToolUITests.release.xcconfig"; path = "Target Support Files/Pods-CodeGenerationTool-CodeGenerationToolUITests/Pods-CodeGenerationTool-CodeGenerationToolUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -279,6 +288,8 @@
 		04D496B925BEDD19007A0157 /* DrawLayer */ = {
 			isa = PBXGroup;
 			children = (
+				04D496D925BFE46D007A0157 /* Model */,
+				04D496CF25BFBD15007A0157 /* View */,
 				04D496BA25BEDD2C007A0157 /* Controller */,
 			);
 			path = DrawLayer;
@@ -293,6 +304,26 @@
 				04D496C525BEDD58007A0157 /* CGTDrawViewController.m */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		04D496CF25BFBD15007A0157 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04D496D025BFBD24007A0157 /* CGTDrawView.h */,
+				04D496D125BFBD24007A0157 /* CGTDrawView.m */,
+				04D496EA25BFFE7B007A0157 /* CGTDrawLayer.h */,
+				04D496EB25BFFE7B007A0157 /* CGTDrawLayer.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04D496D925BFE46D007A0157 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				04D496E025BFE520007A0157 /* CustomDrawingTools.h */,
+				04D496E125BFE521007A0157 /* CustomDrawingTools.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		6D10A181CCCCE0B4472A02CD /* Frameworks */ = {
@@ -877,6 +908,7 @@
 				D752E118258856AC0054EC04 /* NSTextField+Tip.m in Sources */,
 				D70D5F7F24B0657700675E89 /* CGTBaseViewController.m in Sources */,
 				04D496BD25BEDD4C007A0157 /* CGTDrawWindowController.m in Sources */,
+				04D496E225BFE521007A0157 /* CustomDrawingTools.m in Sources */,
 				D793D8582526E26B00497562 /* CGTOpenglWindowController.m in Sources */,
 				D72A368425283BF300C82A44 /* CGTDDCollectionViewItem.m in Sources */,
 				043E01922542AF040089AB8C /* CGTCustomTableHeaderCell.m in Sources */,
@@ -886,6 +918,7 @@
 				D70D5F8624B065B700675E89 /* CGTMainViewController.m in Sources */,
 				D704CD77257B5451003DC276 /* CGTFileModelLayer.m in Sources */,
 				D70D5F7B24B0655D00675E89 /* CGTBaseWindowController.m in Sources */,
+				04D496D225BFBD24007A0157 /* CGTDrawView.m in Sources */,
 				D70D5F4324B0641400675E89 /* AppDelegate.m in Sources */,
 				043E00FA253EEA3E0089AB8C /* NSWindowController+TitleBar.m in Sources */,
 				D7D117C5251C6D7B0019212F /* CGTFrameConfig.m in Sources */,
@@ -899,6 +932,7 @@
 				D70D5F8324B0659E00675E89 /* CGTMainWindowController.m in Sources */,
 				043E0108253EEAF70089AB8C /* CommonTitleView.m in Sources */,
 				043E015625403B570089AB8C /* CGTTitleBarViewController.m in Sources */,
+				04D496EC25BFFE7B007A0157 /* CGTDrawLayer.m in Sources */,
 				D752E11E25885D560054EC04 /* NSTableCellView+Tip.m in Sources */,
 				D7574AA424C681D800EEEA98 /* CGTUpdateView.m in Sources */,
 				D7FCAFA8257BB39B00B9715E /* CGTCreateViewController.m in Sources */,
