@@ -15,6 +15,8 @@
 @property (nonatomic, strong) NSButton *direLineButton;
 @property (nonatomic, strong) NSButton *direDashButton;
 
+@property (nonatomic, strong) CGTDrawView *drawView;
+
 @end
 
 @implementation CGTDrawViewController
@@ -23,12 +25,12 @@
     [super viewDidLoad];
     // Do view setup here.
     
-    CGTDrawView *drawView = [[CGTDrawView alloc] initWithFrame:self.view.frame];
-    [self.view addSubview:drawView];
-    
+    [self.view addSubview:self.drawView];
     [self.view addSubview:self.lineButton];
     [self.view addSubview:self.direLineButton];
     [self.view addSubview:self.direDashButton];
+    
+    [self layoutSubviews];
 }
 
 - (void)layoutSubviews {
@@ -38,28 +40,45 @@
     }];
     
     [self.direLineButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        
+        make.left.equalTo(self.lineButton);
+        make.top.equalTo(self.lineButton.mas_bottom).offset(10);
     }];
     
     [self.direDashButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            
+        make.left.equalTo(self.lineButton);
+        make.top.equalTo(self.direLineButton.mas_bottom).offset(10);
+    }];
+    
+    [self.drawView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(100);
+        make.top.equalTo(self.view).offset(10);
+        make.right.bottom.equalTo(self.view).offset(-10);
     }];
 }
 
 #pragma mark - Button Click
 - (void)lineButtonClick:(NSButton *)button {
-    
+    self.drawView.type = CGTDrawTypeLine;
 }
 
 - (void)direLineButtonClick:(NSButton *)button {
-    
+    self.drawView.type = CGTDrawTypeDirectLine;
 }
 
 - (void)direDashButtonClick:(NSButton *)button {
-    
+    self.drawView.type = CGTDrawTypeDirectDash;
 }
 
 #pragma mark - Getter
+
+- (CGTDrawView *)drawView {
+    if (!_drawView) {
+        _drawView = [[CGTDrawView alloc] init];
+    }
+    
+    return _drawView;
+}
+
 - (NSButton *)lineButton {
     if (!_lineButton) {
         _lineButton = [[NSButton alloc] init];

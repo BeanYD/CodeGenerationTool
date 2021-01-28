@@ -45,6 +45,8 @@
     if (self = [super initWithFrame:frameRect]) {
         
         self.wantsLayer = YES;
+        self.layer.borderColor = [NSColor redColor].CGColor;
+        self.layer.borderWidth = 1.f;
         self.drawLayers = [NSMutableArray array];
         NSTrackingArea *trackingArea = [[NSTrackingArea alloc] initWithRect:self.bounds options:NSTrackingMouseEnteredAndExited | NSTrackingMouseMoved | NSTrackingActiveInKeyWindow owner:self userInfo:@{}];
         [self addTrackingArea:trackingArea];
@@ -55,7 +57,6 @@
 
 - (void)mouseDown:(NSEvent *)event {
     _previousPoint = [self convertPoint:[event locationInWindow] fromView:nil];
-
     CGTDrawLayer *drawLayer = [[CGTDrawLayer alloc] init];
     drawLayer.fillColor = [NSColor clearColor].CGColor;
     drawLayer.strokeColor = [NSColor blueColor].CGColor;
@@ -63,8 +64,18 @@
     drawLayer.strokeStart = 0;
     drawLayer.strokeEnd = 1;
     
-    // 虚线
-//    [drawLayer setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithInt:2], [NSNumber numberWithInt:3],nil]];
+    switch (self.type) {
+        case CGTDrawTypeLine:
+            break;
+        case CGTDrawTypeDirectLine:
+            break;
+        case CGTDrawTypeDirectDash:
+            [drawLayer setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithInt:2], [NSNumber numberWithInt:2], nil]];
+            break;
+            
+        default:
+            break;
+    }
 
     [self.layer addSublayer:drawLayer];
 
@@ -80,10 +91,26 @@
     _currentPoint = [self convertPoint:[event locationInWindow] fromView:nil];
 
     CGTDrawLayer *drawLayer = [self.drawLayers objectAtIndex:self.currentIndex];
-    [drawLayer moveFromPoint:_previousPoint toPoint:_currentPoint];
     
-    _previousPoint = _currentPoint;
+    switch (self.type) {
+        case CGTDrawTypeLine:
+            [drawLayer drawLineFromPoint:_previousPoint toPoint:_currentPoint];
+            _previousPoint = _currentPoint;
+            break;
+        case CGTDrawTypeDirectLine:
+            [drawLayer drawDireLineFromPoint:_previousPoint toPoint:_currentPoint];
+            break;
+        case CGTDrawTypeDirectDash:
+            [drawLayer drawDireLineFromPoint:_previousPoint toPoint:_currentPoint];
+            break;
+        default:
+            break;
+    }
+    
 
+}
+
+- (void)mouseUp:(NSEvent *)event {
 }
 
 @end

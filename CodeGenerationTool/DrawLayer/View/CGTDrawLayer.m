@@ -21,8 +21,16 @@
 - (void)drawLineFromPoint:(NSPoint)startPoint toPoint:(NSPoint)endPoint {
     CGPathMoveToPoint(_path, NULL, startPoint.x, startPoint.y);
     CGPathAddLineToPoint(_path, NULL, endPoint.x, endPoint.y);
-//    CGPathCloseSubpath(_path);
     self.path = _path;
+}
+
+- (void)drawDireLineFromPoint:(NSPoint)startPoint toPoint:(NSPoint)endPoint {
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathMoveToPoint(path, NULL, startPoint.x, startPoint.y);
+    CGPathAddLineToPoint(path, NULL, endPoint.x, endPoint.y);
+    CGPathCloseSubpath(path);
+    self.path = path;
+    CGPathRelease(path);
 }
 
 - (void)setDirectLinePoint:(NSPoint)startPoint {
@@ -31,7 +39,6 @@
 
 - (void)moveDirectLineToPoint:(NSPoint)endPoint {
     CGPathAddLineToPoint(_path, NULL, endPoint.x, endPoint.y);
-    self.path = _path;
 }
 
 - (void)drawInContext:(CGContextRef)ctx {
