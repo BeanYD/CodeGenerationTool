@@ -33,13 +33,6 @@
     CGPathRelease(path);
 }
 
-- (void)setDirectLinePoint:(NSPoint)startPoint {
-    CGPathMoveToPoint(_path, NULL, startPoint.x, startPoint.y);
-}
-
-- (void)moveDirectLineToPoint:(NSPoint)endPoint {
-    CGPathAddLineToPoint(_path, NULL, endPoint.x, endPoint.y);
-}
 
 - (void)drawInContext:(CGContextRef)ctx {
 //    CGRect drawRect = NSMakeRect(50, 50, 100, 100);

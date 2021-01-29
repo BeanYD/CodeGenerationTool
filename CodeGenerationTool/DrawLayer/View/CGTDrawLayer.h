@@ -48,8 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 直线(实线虚线由外部定义)
 - (void)drawDireLineFromPoint:(NSPoint)startPoint toPoint:(NSPoint)endPoint;
-- (void)setDirectLinePoint:(NSPoint)startPoint;
-- (void)moveDirectLineToPoint:(NSPoint)endPoint;
+
 
 @end
 

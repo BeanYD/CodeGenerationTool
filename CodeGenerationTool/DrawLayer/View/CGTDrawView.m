@@ -9,6 +9,7 @@
 #import "CGTDrawView.h"
 #import "CustomDrawingTools.h"
 #import "CGTDrawLayer.h"
+#import "CGTDrawModel.h"
 
 @interface CGTDrawView ()
 
@@ -58,11 +59,13 @@
 - (void)mouseDown:(NSEvent *)event {
     _previousPoint = [self convertPoint:[event locationInWindow] fromView:nil];
     CGTDrawLayer *drawLayer = [[CGTDrawLayer alloc] init];
+    drawLayer.frame = self.bounds;
     drawLayer.fillColor = [NSColor clearColor].CGColor;
     drawLayer.strokeColor = [NSColor blueColor].CGColor;
     drawLayer.lineWidth = 1.f;
     drawLayer.strokeStart = 0;
     drawLayer.strokeEnd = 1;
+    drawLayer.backgroundColor = [NSColor redColor].CGColor;
     
     switch (self.type) {
         case CGTDrawTypeLine:
@@ -70,7 +73,6 @@
         case CGTDrawTypeDirectLine:
             break;
         case CGTDrawTypeDirectDash:
-            [drawLayer setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithInt:2], [NSNumber numberWithInt:2], nil]];
             break;
             
         default:
@@ -84,24 +86,37 @@
     } else {
         self.currentIndex = 0;
     }
-    [self.drawLayers addObject:drawLayer];
+    
+    CGTDrawModel *model = [[CGTDrawModel alloc] init];
+    model.drawLayer = drawLayer;
+    model.startPoint = _previousPoint;
+    [self.drawLayers addObject:model];
 }
 
 - (void)mouseDragged:(NSEvent *)event {
     _currentPoint = [self convertPoint:[event locationInWindow] fromView:nil];
 
-    CGTDrawLayer *drawLayer = [self.drawLayers objectAtIndex:self.currentIndex];
+    CGTDrawModel *model = [self.drawLayers objectAtIndex:self.currentIndex];
     
     switch (self.type) {
         case CGTDrawTypeLine:
-            [drawLayer drawLineFromPoint:_previousPoint toPoint:_currentPoint];
+            [model.drawLayer drawLineFromPoint:_previousPoint toPoint:_currentPoint];
             _previousPoint = _currentPoint;
+            // 更新model中的startPoint和endPoint
+            CGFloat minX = MIN(model.startPoint.x, _previousPoint.x);
+            CGFloat minY = MIN(model.startPoint.y, _previousPoint.y);
+            model.startPoint = NSMakePoint(minX, minY);
+            CGFloat maxX = MAX(MAX(_currentPoint.x, _previousPoint.x), model.endPoint.x);
+            CGFloat maxY = MAX(MAX(_currentPoint.y, _previousPoint.y), model.endPoint.y);
+            NSLog(@"minx:%f, miny:%f, maxx:%f, maxy:%f", minX, minY, maxX, maxY);
+            model.endPoint = NSMakePoint(maxX, maxY);
             break;
         case CGTDrawTypeDirectLine:
-            [drawLayer drawDireLineFromPoint:_previousPoint toPoint:_currentPoint];
+            [model.drawLayer drawDireLineFromPoint:_previousPoint toPoint:_currentPoint];
             break;
         case CGTDrawTypeDirectDash:
-            [drawLayer drawDireLineFromPoint:_previousPoint toPoint:_currentPoint];
+            [model.drawLayer setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithInt:2], [NSNumber numberWithInt:2], nil]];
+            [model.drawLayer drawDireLineFromPoint:_previousPoint toPoint:_currentPoint];
             break;
         default:
             break;
@@ -111,6 +126,25 @@
 }
 
 - (void)mouseUp:(NSEvent *)event {
+    CGTDrawModel *model = [self.drawLayers objectAtIndex:self.currentIndex];
+    
+    // 更新layer的frame
+    CGFloat width = ABS(model.endPoint.x - model.startPoint.x);
+    CGFloat height = ABS(model.endPoint.y - model.startPoint.y);
+    CGRect frame = model.drawLayer.frame;
+    frame.origin.x = model.startPoint.x;
+    frame.origin.y = model.startPoint.y;
+    frame.size.width = width;
+    frame.size.height = height;
+    
+    // drawLayer做缩放
+//    CGFloat sx = frame.size.width / self.frame.size.width;
+//    CGFloat sy = frame.size.height / self.frame.size.height;
+//    [model.drawLayer setAffineTransform:CGAffineTransformMakeScale(sx, sy)];
+    
+    model.drawLayer.frame = frame;
+    model.drawLayer.position = NSMakePoint(frame.size.width / 2, frame.size.height / 2);
+    model.drawLayer.anchorPoint = NSMakePoint(0.5, 0.5);
 }
 
 @end

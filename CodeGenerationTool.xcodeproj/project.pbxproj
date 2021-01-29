@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0424FF7525C3DB91008607C6 /* CGTDrawModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0424FF7425C3DB91008607C6 /* CGTDrawModel.m */; };
 		043E00FA253EEA3E0089AB8C /* NSWindowController+TitleBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E00F8253EEA3E0089AB8C /* NSWindowController+TitleBar.m */; };
 		043E0101253EEA7B0089AB8C /* CommonTitleBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043E00FE253EEA7B0089AB8C /* CommonTitleBarViewController.m */; };
 		043E0102253EEA7B0089AB8C /* CommonTitleBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043E0100253EEA7B0089AB8C /* CommonTitleBarViewController.xib */; };
@@ -82,6 +83,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0424FF7325C3DB91008607C6 /* CGTDrawModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTDrawModel.h; sourceTree = "<group>"; };
+		0424FF7425C3DB91008607C6 /* CGTDrawModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTDrawModel.m; sourceTree = "<group>"; };
 		043E00F8253EEA3E0089AB8C /* NSWindowController+TitleBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWindowController+TitleBar.m"; sourceTree = "<group>"; };
 		043E00F9253EEA3E0089AB8C /* NSWindowController+TitleBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWindowController+TitleBar.h"; sourceTree = "<group>"; };
 		043E00FE253EEA7B0089AB8C /* CommonTitleBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTitleBarViewController.m; sourceTree = "<group>"; };
@@ -322,6 +325,8 @@
 			children = (
 				04D496E025BFE520007A0157 /* CustomDrawingTools.h */,
 				04D496E125BFE521007A0157 /* CustomDrawingTools.m */,
+				0424FF7325C3DB91008607C6 /* CGTDrawModel.h */,
+				0424FF7425C3DB91008607C6 /* CGTDrawModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -927,6 +932,7 @@
 				D72A36672528372000C82A44 /* CGTMouseEventWindowController.m in Sources */,
 				043E015D25403B6B0089AB8C /* CGTCommonTitleView.m in Sources */,
 				04D496C625BEDD58007A0157 /* CGTDrawViewController.m in Sources */,
+				0424FF7525C3DB91008607C6 /* CGTDrawModel.m in Sources */,
 				D7574AE724C692CD00EEEA98 /* CGTCmdTool.m in Sources */,
 				043E01B52542BD480089AB8C /* CGTCommonDemoViewController.m in Sources */,
 				D70D5F8324B0659E00675E89 /* CGTMainWindowController.m in Sources */,
