@@ -65,7 +65,7 @@
     drawLayer.lineWidth = 1.f;
     drawLayer.strokeStart = 0;
     drawLayer.strokeEnd = 1;
-    drawLayer.backgroundColor = [NSColor redColor].CGColor;
+//    drawLayer.backgroundColor = [NSColor redColor].CGColor;
     
     switch (self.type) {
         case CGTDrawTypeLine:
@@ -81,11 +81,7 @@
 
     [self.layer addSublayer:drawLayer];
 
-    if (self.drawLayers.count > 0) {
-        self.currentIndex = self.drawLayers.count-1;
-    } else {
-        self.currentIndex = 0;
-    }
+    self.currentIndex = self.drawLayers.count;
     
     CGTDrawModel *model = [[CGTDrawModel alloc] init];
     model.drawLayer = drawLayer;
@@ -126,25 +122,28 @@
 }
 
 - (void)mouseUp:(NSEvent *)event {
+    // 更新model内容
     CGTDrawModel *model = [self.drawLayers objectAtIndex:self.currentIndex];
+    model.endPoint = [self convertPoint:[event locationInWindow] fromView:nil];
     
     // 更新layer的frame
-    CGFloat width = ABS(model.endPoint.x - model.startPoint.x);
-    CGFloat height = ABS(model.endPoint.y - model.startPoint.y);
-    CGRect frame = model.drawLayer.frame;
-    frame.origin.x = model.startPoint.x;
-    frame.origin.y = model.startPoint.y;
-    frame.size.width = width;
-    frame.size.height = height;
+//    CGFloat width = ABS(model.endPoint.x - model.startPoint.x);
+//    CGFloat height = ABS(model.endPoint.y - model.startPoint.y);
+//    model.drawLayer.position = NSMakePoint(width / 2, height / 2);
+//    model.drawLayer.anchorPoint = NSMakePoint(0.5, 0.5);
+//    CGRect frame = model.drawLayer.frame;
+//    frame.origin.x = model.startPoint.x;
+//    frame.origin.y = model.startPoint.y;
+//    frame.size.width = width;
+//    frame.size.height = height;
     
     // drawLayer做缩放
 //    CGFloat sx = frame.size.width / self.frame.size.width;
 //    CGFloat sy = frame.size.height / self.frame.size.height;
 //    [model.drawLayer setAffineTransform:CGAffineTransformMakeScale(sx, sy)];
     
-    model.drawLayer.frame = frame;
-    model.drawLayer.position = NSMakePoint(frame.size.width / 2, frame.size.height / 2);
-    model.drawLayer.anchorPoint = NSMakePoint(0.5, 0.5);
+//    model.drawLayer.frame = frame;
+
 }
 
 @end
