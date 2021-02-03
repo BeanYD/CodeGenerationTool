@@ -7,19 +7,16 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "CGTDrawHeader.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-typedef NS_ENUM(NSUInteger, CGTDrawType) {
-    CGTDrawTypeLine,
-    CGTDrawTypeDirectLine,
-    CGTDrawTypeDirectDash,
-};
 
 @interface CGTDrawView : NSView
 
 
 @property (assign) CGTDrawType type;
+
+- (void)loadImage:(NSImage *)image;
 
 @end
 

@@ -7,6 +7,7 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
+#import "CGTDrawHeader.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -40,16 +41,22 @@ NS_ASSUME_NONNULL_BEGIN
  */
 
 @interface CGTDrawLayer : CAShapeLayer {
-    CGMutablePathRef _path;
+    CGMutablePathRef _path;     // 画连续线条的path
+    CGRect _borderRect;         // 显示线条所在区域边框的rect
 }
 
-// 不间断线
+// 连续线条
 - (void)drawLineFromPoint:(NSPoint)startPoint toPoint:(NSPoint)endPoint;
 
 // 直线(实线虚线由外部定义)
 - (void)drawDireLineFromPoint:(NSPoint)startPoint toPoint:(NSPoint)endPoint;
 
+// 画边框
+- (void)drawRectLines:(CGRect)rect;
 
+// 画图
+- (void)drawImage:(NSImage *)image rect:(CGRect)rect;
+- (void)resetImageRect:(CGRect)rect;
 @end
 
 NS_ASSUME_NONNULL_END

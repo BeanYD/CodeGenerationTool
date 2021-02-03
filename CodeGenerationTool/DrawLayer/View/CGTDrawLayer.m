@@ -34,22 +34,53 @@
 //    CGPathRelease(path);
 }
 
+- (void)drawImage:(NSImage *)image rect:(CGRect)rect {
+//    CGFloat width = image.size.width;
+//    CGFloat height = image.size.height;
+//    self.frame = NSMakeRect(20, 20, width, height);
+//    self.contents = image;
+    
+    CALayer *imageLayer = [[CALayer alloc] init];
+    imageLayer.frame = rect;
+    imageLayer.position = NSMakePoint(rect.size.width / 2 + 10, rect.size.height / 2 + 10);
+    imageLayer.contentsGravity = kCAGravityResizeAspect;
+    imageLayer.contents = image;
+    [self addSublayer:imageLayer];
+}
+
+- (void)resetImageRect:(CGRect)rect {
+    if (self.sublayers.count == 0) {
+        return;
+    }
+    
+    CALayer *layer = [self.sublayers lastObject];
+    [layer removeFromSuperlayer];
+
+    CALayer *imageLayer = [[CALayer alloc] init];
+    imageLayer.bounds = rect;
+    imageLayer.position = NSMakePoint(rect.size.width / 2 + rect.origin.x, rect.size.height / 2 + rect.origin.y);
+    imageLayer.contentsGravity = kCAGravityResizeAspect;
+    imageLayer.contents = layer.contents;
+    [self addSublayer:imageLayer];
+}
+
+- (void)drawRectLines:(CGRect)rect {
+    _borderRect = rect;
+    [self setNeedsDisplayInRect:self.frame];
+}
 
 - (void)drawInContext:(CGContextRef)ctx {
-//    CGRect drawRect = NSMakeRect(50, 50, 100, 100);
-//
-//    CGContextSetLineWidth(ctx, self.lineWidth);
-//    CGContextSetFillColorWithColor(ctx, [NSColor clearColor].CGColor);
-//    CGContextSetStrokeColorWithColor(ctx, self.lineColor.CGColor);
-//    CGContextMoveToPoint(ctx, NSMinX(drawRect), NSMinY(drawRect));
-//    CGContextAddLineToPoint(ctx, NSMaxX(drawRect), NSMinY(drawRect));
-//    CGContextAddLineToPoint(ctx, NSMaxX(drawRect), NSMaxY(drawRect));
-//    CGContextAddLineToPoint(ctx, NSMinX(drawRect), NSMaxY(drawRect));
-//    CGContextAddLineToPoint(ctx, NSMinX(drawRect), NSMinY(drawRect));
-//    CGContextSetAlpha(ctx, self.lineAlpha);
-//    CGContextStrokePath(ctx);
+    CGContextSetLineWidth(ctx, self.lineWidth);
+    CGContextSetFillColorWithColor(ctx, [NSColor clearColor].CGColor);
+    CGContextSetStrokeColorWithColor(ctx, [NSColor greenColor].CGColor);
+    CGContextMoveToPoint(ctx, NSMinX(_borderRect), NSMinY(_borderRect));
+    CGContextAddLineToPoint(ctx, NSMaxX(_borderRect), NSMinY(_borderRect));
+    CGContextAddLineToPoint(ctx, NSMaxX(_borderRect), NSMaxY(_borderRect));
+    CGContextAddLineToPoint(ctx, NSMinX(_borderRect), NSMaxY(_borderRect));
+    CGContextAddLineToPoint(ctx, NSMinX(_borderRect), NSMinY(_borderRect));
+    CGContextSetAlpha(ctx, 1.f);
+    CGContextStrokePath(ctx);
 //    CGContextClosePath(ctx);
-    
 }
 
 @end

@@ -83,6 +83,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0421A40025C7D9B400ED0FCE /* CGTDrawHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTDrawHeader.h; sourceTree = "<group>"; };
 		0424FF7325C3DB91008607C6 /* CGTDrawModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTDrawModel.h; sourceTree = "<group>"; };
 		0424FF7425C3DB91008607C6 /* CGTDrawModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTDrawModel.m; sourceTree = "<group>"; };
 		043E00F8253EEA3E0089AB8C /* NSWindowController+TitleBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWindowController+TitleBar.m"; sourceTree = "<group>"; };
@@ -291,6 +292,7 @@
 		04D496B925BEDD19007A0157 /* DrawLayer */ = {
 			isa = PBXGroup;
 			children = (
+				0421A40025C7D9B400ED0FCE /* CGTDrawHeader.h */,
 				04D496D925BFE46D007A0157 /* Model */,
 				04D496CF25BFBD15007A0157 /* View */,
 				04D496BA25BEDD2C007A0157 /* Controller */,
