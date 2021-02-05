@@ -169,7 +169,7 @@
             model.endPoint = NSMakePoint(maxX, maxY);
             _previousPoint = _currentPoint;
         } else if (self.type == CGTDrawTypeDirectDash) {
-            [model.drawLayer setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithInt:2], [NSNumber numberWithInt:2], nil]];
+            [model.drawLayer setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithInt:10], [NSNumber numberWithInt:10], nil]];
             [model.drawLayer drawDireLineFromPoint:_previousPoint toPoint:_currentPoint];
         } else if (self.type == CGTDrawTypeDirectLine) {
             [model.drawLayer drawDireLineFromPoint:_previousPoint toPoint:_currentPoint];
