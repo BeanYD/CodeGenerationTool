@@ -15,6 +15,8 @@
 @property (nonatomic, strong) NSButton *direLineButton;
 @property (nonatomic, strong) NSButton *direDashButton;
 @property (nonatomic, strong) NSButton *arrowLineButton;
+@property (nonatomic, strong) NSButton *rectButton;
+@property (nonatomic, strong) NSButton *ellipseButton;
 @property (nonatomic, strong) NSButton *eraserButton;
 @property (nonatomic, strong) NSButton *uploadButton;
 @property (nonatomic, strong) NSButton *normalButton;
@@ -35,6 +37,8 @@
     [self.view addSubview:self.direLineButton];
     [self.view addSubview:self.direDashButton];
     [self.view addSubview:self.arrowLineButton];
+    [self.view addSubview:self.rectButton];
+    [self.view addSubview:self.ellipseButton];
     [self.view addSubview:self.eraserButton];
     [self.view addSubview:self.uploadButton];
     
@@ -68,9 +72,19 @@
         make.top.equalTo(self.direDashButton.mas_bottom).offset(10);
     }];
     
-    [self.eraserButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.rectButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.normalButton);
         make.top.equalTo(self.arrowLineButton.mas_bottom).offset(10);
+    }];
+    
+    [self.ellipseButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.normalButton);
+        make.top.equalTo(self.rectButton.mas_bottom).offset(10);
+    }];
+    
+    [self.eraserButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.normalButton);
+        make.top.equalTo(self.ellipseButton.mas_bottom).offset(10);
     }];
     
     [self.uploadButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -104,6 +118,14 @@
 
 - (void)arrowLineButtonClick:(NSButton *)button {
     self.drawView.type = CGTDrawTypeArrowDirectLine;
+}
+
+- (void)rectButtonClick:(NSButton *)button {
+    self.drawView.type = CGTDrawTypeRect;
+}
+
+- (void)ellipseButtonClick:(NSButton *)button {
+    self.drawView.type = CGTDrawTypeEllipse;
 }
 
 - (void)eraserButtonClick:(NSButton *)button {
@@ -193,6 +215,28 @@
     }
     
     return _arrowLineButton;
+}
+
+- (NSButton *)rectButton {
+    if (!_rectButton) {
+        _rectButton = [[NSButton alloc] init];
+        _rectButton.title = @"长方形";
+        _rectButton.target = self;
+        _rectButton.action = @selector((rectButtonClick:));
+    }
+    
+    return _rectButton;
+}
+
+- (NSButton *)ellipseButton {
+    if (!_ellipseButton) {
+        _ellipseButton = [[NSButton alloc] init];
+        _ellipseButton.title = @"椭圆";
+        _ellipseButton.target = self;
+        _ellipseButton.action = @selector(ellipseButtonClick:);
+    }
+    
+    return _ellipseButton;
 }
 
 - (NSButton *)eraserButton {

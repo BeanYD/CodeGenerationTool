@@ -56,15 +56,20 @@ NS_ASSUME_NONNULL_BEGIN
 // 箭头直线
 - (void)drawArrowDireLineFromPoint:(NSPoint)startPoint toPoint:(NSPoint)endPoint;
 
-// 画边框
+// 画边框(包含橡皮和标注框)
 - (void)drawRectLines:(CGRect)rect;
+
+// 画椭圆
+- (void)drawEllipseInRect:(CGRect)rect;
+
+// 画边框(选中和删除标记框)
+- (void)drawBorderRectLines:(CGRect)rect;
 
 // 画图
 - (void)drawImage:(NSImage *)image rect:(CGRect)rect;
 - (void)resetImageRect:(CGRect)rect;
 
-// 画橡皮边框
-- (void)drawEraserRect:(CGRect)rect;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -92,13 +92,21 @@
     [self addSublayer:imageLayer];
 }
 
-- (void)drawRectLines:(CGRect)rect {
+- (void)drawBorderRectLines:(CGRect)rect {
     _borderRect = rect;
     NSLog(@"%f, %f, %f, %f", _borderRect.origin.x, _borderRect.origin.y, _borderRect.size.width, _borderRect.size.height);
     [self setNeedsDisplayInRect:self.frame];
 }
 
-- (void)drawEraserRect:(CGRect)rect {
+- (void)drawRectLines:(CGRect)rect {
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathMoveToPoint(path, NULL, rect.origin.x, rect.origin.y);
+    CGPathAddRect(path, NULL, rect);
+    CGPathCloseSubpath(path);
+    self.path = path;
+}
+
+- (void)drawRectLines1:(CGRect)rect {
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathMoveToPoint(path, NULL, rect.origin.x, rect.origin.y);
     CGPathAddLineToPoint(path, NULL, rect.origin.x + rect.size.width, rect.origin.y);
@@ -109,18 +117,52 @@
     self.path = path;
 }
 
+- (void)drawEllipseInRect:(CGRect)rect {
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathMoveToPoint(path, NULL, rect.origin.x, rect.origin.y);
+    CGPathAddEllipseInRect(path, NULL, rect);
+    CGPathCloseSubpath(path);
+    self.path = path;
+}
+
 - (void)drawInContext:(CGContextRef)ctx {
     CGContextSetLineWidth(ctx, self.lineWidth);
     CGContextSetFillColorWithColor(ctx, [NSColor clearColor].CGColor);
-    CGContextSetStrokeColorWithColor(ctx, [NSColor greenColor].CGColor);
-    CGContextMoveToPoint(ctx, NSMinX(_borderRect), NSMinY(_borderRect));
-    CGContextAddLineToPoint(ctx, NSMaxX(_borderRect), NSMinY(_borderRect));
-    CGContextAddLineToPoint(ctx, NSMaxX(_borderRect), NSMaxY(_borderRect));
-    CGContextAddLineToPoint(ctx, NSMinX(_borderRect), NSMaxY(_borderRect));
-    CGContextAddLineToPoint(ctx, NSMinX(_borderRect), NSMinY(_borderRect));
-    CGContextSetAlpha(ctx, 1.f);
-    CGContextStrokePath(ctx);
+    CGContextSetStrokeColorWithColor(ctx, [NSColor redColor].CGColor);
+//    CGContextMoveToPoint(ctx, NSMinX(_borderRect), NSMinY(_borderRect));
+//    CGContextAddLineToPoint(ctx, NSMaxX(_borderRect), NSMinY(_borderRect));
+//    CGContextAddLineToPoint(ctx, NSMaxX(_borderRect), NSMaxY(_borderRect));
+//    CGContextAddLineToPoint(ctx, NSMinX(_borderRect), NSMaxY(_borderRect));
+//    CGContextAddLineToPoint(ctx, NSMinX(_borderRect), NSMinY(_borderRect));
+//    CGContextStrokePath(ctx);
 //    CGContextClosePath(ctx);
+    
+    // 防止与边界重合
+    CGFloat minX;
+    CGFloat minY;
+    CGFloat width;
+    CGFloat height;
+    if (NSWidth(_borderRect) > 0) {
+        minX = NSMinX(_borderRect) - self.lineWidth;
+        width = NSWidth(_borderRect) + self.lineWidth * 2;
+    } else {
+        minX = NSMinX(_borderRect) + self.lineWidth;
+        width = NSWidth(_borderRect) - self.lineWidth * 2;
+    }
+    
+    if (NSHeight(_borderRect) > 0) {
+        minY = NSMinY(_borderRect) - self.lineWidth;
+        height = NSHeight(_borderRect) + self.lineWidth * 2;
+    } else {
+        minY = NSMinY(_borderRect) + self.lineWidth;
+        height = NSHeight(_borderRect) - self.lineWidth * 2;
+    }
+    
+    CGRect rect = NSMakeRect(minX, minY, width, height);
+    
+    CGContextFillRect(ctx, rect);
+    CGContextSetAlpha(ctx, 1.f);
+    CGContextStrokeRect(ctx, rect);
 }
 
 @end

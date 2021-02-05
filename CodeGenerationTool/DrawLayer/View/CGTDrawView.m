@@ -79,7 +79,7 @@
     _previousPoint = [self convertPoint:[event locationInWindow] fromView:nil];
 
 //    drawLayer.backgroundColor = [NSColor redColor].CGColor;
-    if (self.type == CGTDrawTypeCurveLine || self.type == CGTDrawTypeDirectDash || self.type == CGTDrawTypeDirectLine || self.type == CGTDrawTypeEraser || self.type == CGTDrawTypeArrowDirectLine) {
+    if (self.type == CGTDrawTypeCurveLine || self.type == CGTDrawTypeDirectDash || self.type == CGTDrawTypeDirectLine || self.type == CGTDrawTypeEraser || self.type == CGTDrawTypeArrowDirectLine || self.type == CGTDrawTypeRect || self.type == CGTDrawTypeEllipse) {
         CGTDrawLayer *drawLayer = [[CGTDrawLayer alloc] init];
         drawLayer.frame = self.bounds;
         drawLayer.fillColor = [NSColor clearColor].CGColor;
@@ -109,7 +109,7 @@
             if (model.type == CGTDrawTypeImage) {
                 CGRect modelRect = [model getLayerRect];
                 if (CGRectContainsPoint(modelRect, _previousPoint)) {
-                    [model.drawLayer drawRectLines:[model getLayerRect]];
+                    [model.drawLayer drawBorderRectLines:[model getLayerRect]];
                     // 更新当前选中的layer下标+1
                     self.currentIndex = i + 1;
                     break;
@@ -123,7 +123,7 @@
             CGTDrawModel *model = self.drawLayers[i];
             if (model.type == CGTDrawTypeImage) {
                 if (i != self.currentIndex - 1) {
-                    [model.drawLayer drawRectLines:CGRectZero];
+                    [model.drawLayer drawBorderRectLines:CGRectZero];
                 }
             }
         }
@@ -154,7 +154,7 @@
 - (void)mouseDragged:(NSEvent *)event {
     _currentPoint = [self convertPoint:[event locationInWindow] fromView:nil];
 
-    if (self.type == CGTDrawTypeCurveLine || self.type == CGTDrawTypeDirectDash || self.type == CGTDrawTypeDirectLine || self.type == CGTDrawTypeArrowDirectLine) {
+    if (self.type == CGTDrawTypeCurveLine || self.type == CGTDrawTypeDirectDash || self.type == CGTDrawTypeDirectLine || self.type == CGTDrawTypeArrowDirectLine || self.type == CGTDrawTypeRect || self.type == CGTDrawTypeEllipse) {
         // 画线
         CGTDrawModel *model = [self.drawLayers objectAtIndex:self.currentIndex];
         if (self.type == CGTDrawTypeCurveLine) {
@@ -175,6 +175,12 @@
             [model.drawLayer drawDireLineFromPoint:_previousPoint toPoint:_currentPoint];
         } else if (self.type == CGTDrawTypeArrowDirectLine) {
             [model.drawLayer drawArrowDireLineFromPoint:_previousPoint toPoint:_currentPoint];
+        } else if (self.type == CGTDrawTypeRect) {
+            NSRect rect = NSMakeRect(_previousPoint.x, _previousPoint.y, _currentPoint.x - _previousPoint.x, _currentPoint.y - _previousPoint.y);
+            [model.drawLayer drawRectLines:rect];
+        } else if (self.type == CGTDrawTypeEllipse) {
+            NSRect rect = NSMakeRect(_previousPoint.x, _previousPoint.y, _currentPoint.x - _previousPoint.x, _currentPoint.y - _previousPoint.y);
+            [model.drawLayer drawEllipseInRect:rect];
         }
     } else if (self.type == CGTDrawTypeEraser) {
         // 橡皮擦
@@ -190,12 +196,12 @@
             
             if (CGRectContainsRect([eraserModel getLayerRect], [model getLayerRect])) {
 //                NSLog(@"1111");
-                [model.drawLayer drawRectLines:[model getLayerRect]];
+                [model.drawLayer drawBorderRectLines:[model getLayerRect]];
             } else {
-                [model.drawLayer drawRectLines:CGRectZero];
+                [model.drawLayer drawBorderRectLines:CGRectZero];
             }
         }
-        [eraserModel.drawLayer drawEraserRect:[eraserModel getLayerRect]];
+        [eraserModel.drawLayer drawRectLines:[eraserModel getLayerRect]];
 //        [self setNeedsDisplay:YES];
     } else if (self.type == CGTDrawTypeNormal) {
         // 普通状态下
@@ -226,7 +232,7 @@
         }
         
         [model.drawLayer resetImageRect:[model getLayerRect]];
-        [model.drawLayer drawRectLines:[model getLayerRect]];
+        [model.drawLayer drawBorderRectLines:[model getLayerRect]];
         _previousPoint = _currentPoint;
 
     }
@@ -235,7 +241,7 @@
 - (void)mouseUp:(NSEvent *)event {
     // 更新model内容
     
-    if (self.type == CGTDrawTypeDirectDash || self.type == CGTDrawTypeDirectLine || self.type == CGTDrawTypeArrowDirectLine) {
+    if (self.type == CGTDrawTypeDirectDash || self.type == CGTDrawTypeDirectLine || self.type == CGTDrawTypeArrowDirectLine || self.type == CGTDrawTypeRect || self.type == CGTDrawTypeEllipse) {
         CGTDrawModel *model = [self.drawLayers objectAtIndex:self.currentIndex];
         model.endPoint = [self convertPoint:[event locationInWindow] fromView:nil];
     } else if (self.type == CGTDrawTypeEraser) {
