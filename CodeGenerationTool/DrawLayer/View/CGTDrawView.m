@@ -18,8 +18,6 @@
 @property (strong) NSMutableArray *drawLayers;
 @property (assign) NSInteger currentIndex;
 
-@property (assign) CGRect eraserRect;
-
 @end
 
 @implementation CGTDrawView
@@ -29,19 +27,19 @@
     // Drawing code here.
     
 
-    if (self.type == CGTDrawTypeEraser) {
-        CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
-        CGContextSetLineWidth(ctx, 2);
-        CGContextSetFillColorWithColor(ctx, [NSColor clearColor].CGColor);
-        CGContextSetStrokeColorWithColor(ctx, [NSColor blueColor].CGColor);
-        CGContextMoveToPoint(ctx, NSMinX(self.eraserRect), NSMinY(self.eraserRect));
-        CGContextAddLineToPoint(ctx, NSMaxX(self.eraserRect), NSMinY(self.eraserRect));
-        CGContextAddLineToPoint(ctx, NSMaxX(self.eraserRect), NSMaxY(self.eraserRect));
-        CGContextAddLineToPoint(ctx, NSMinX(self.eraserRect), NSMaxY(self.eraserRect));
-        CGContextAddLineToPoint(ctx, NSMinX(self.eraserRect), NSMinY(self.eraserRect));
-        CGContextSetAlpha(ctx, 1.f);
-        CGContextStrokePath(ctx);
-    }
+//    if (self.type == CGTDrawTypeEraser) {
+//        CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
+//        CGContextSetLineWidth(ctx, 2);
+//        CGContextSetFillColorWithColor(ctx, [NSColor clearColor].CGColor);
+//        CGContextSetStrokeColorWithColor(ctx, [NSColor blueColor].CGColor);
+//        CGContextMoveToPoint(ctx, NSMinX(self.eraserRect), NSMinY(self.eraserRect));
+//        CGContextAddLineToPoint(ctx, NSMaxX(self.eraserRect), NSMinY(self.eraserRect));
+//        CGContextAddLineToPoint(ctx, NSMaxX(self.eraserRect), NSMaxY(self.eraserRect));
+//        CGContextAddLineToPoint(ctx, NSMinX(self.eraserRect), NSMaxY(self.eraserRect));
+//        CGContextAddLineToPoint(ctx, NSMinX(self.eraserRect), NSMinY(self.eraserRect));
+//        CGContextSetAlpha(ctx, 1.f);
+//        CGContextStrokePath(ctx);
+//    }
 }
 
 - (instancetype)initWithFrame:(NSRect)frameRect {
@@ -81,11 +79,17 @@
     _previousPoint = [self convertPoint:[event locationInWindow] fromView:nil];
 
 //    drawLayer.backgroundColor = [NSColor redColor].CGColor;
-    if (self.type == CGTDrawTypeLine || self.type == CGTDrawTypeDirectDash || self.type == CGTDrawTypeDirectLine) {
+    if (self.type == CGTDrawTypeCurveLine || self.type == CGTDrawTypeDirectDash || self.type == CGTDrawTypeDirectLine || self.type == CGTDrawTypeEraser || self.type == CGTDrawTypeArrowDirectLine) {
         CGTDrawLayer *drawLayer = [[CGTDrawLayer alloc] init];
         drawLayer.frame = self.bounds;
         drawLayer.fillColor = [NSColor clearColor].CGColor;
-        drawLayer.strokeColor = [NSColor blueColor].CGColor;
+    
+        if (self.type == CGTDrawTypeEraser) {
+            drawLayer.strokeColor = [NSColor redColor].CGColor;
+        } else {
+            drawLayer.strokeColor = [NSColor blueColor].CGColor;
+        }
+        
         drawLayer.lineWidth = 1.f;
         drawLayer.strokeStart = 0;
         drawLayer.strokeEnd = 1;
@@ -97,8 +101,8 @@
         model.type = self.type;
         model.startPoint = _previousPoint;
         [self.drawLayers addObject:model];
-    } else if (self.type == CGTDrawTypeEraser) {
-        self.eraserRect = NSMakeRect(_previousPoint.x, _previousPoint.y, 0, 0);
+//    } else if (self.type == CGTDrawTypeEraser) {
+//        self.eraserRect = NSMakeRect(_previousPoint.x, _previousPoint.y, 0, 0);
     } else if (self.type == CGTDrawTypeNormal) {
         for (NSInteger i = self.drawLayers.count - 1; i >= 0; i--) {
             CGTDrawModel *model = self.drawLayers[i];
@@ -150,42 +154,54 @@
 - (void)mouseDragged:(NSEvent *)event {
     _currentPoint = [self convertPoint:[event locationInWindow] fromView:nil];
 
-    if (self.type == CGTDrawTypeLine || self.type == CGTDrawTypeDirectDash || self.type == CGTDrawTypeDirectLine) {
+    if (self.type == CGTDrawTypeCurveLine || self.type == CGTDrawTypeDirectDash || self.type == CGTDrawTypeDirectLine || self.type == CGTDrawTypeArrowDirectLine) {
         // 画线
         CGTDrawModel *model = [self.drawLayers objectAtIndex:self.currentIndex];
-        if (self.type == CGTDrawTypeLine) {
-            [model.drawLayer drawLineFromPoint:_previousPoint toPoint:_currentPoint];
-            _previousPoint = _currentPoint;
+        if (self.type == CGTDrawTypeCurveLine) {
+            [model.drawLayer drawCurveFromPoint:_previousPoint toPoint:_currentPoint];
             // 更新model中的startPoint和endPoint
             CGFloat minX = MIN(model.startPoint.x, _previousPoint.x);
             CGFloat minY = MIN(model.startPoint.y, _previousPoint.y);
             model.startPoint = NSMakePoint(minX, minY);
             CGFloat maxX = MAX(MAX(_currentPoint.x, _previousPoint.x), model.endPoint.x);
             CGFloat maxY = MAX(MAX(_currentPoint.y, _previousPoint.y), model.endPoint.y);
+            NSLog(@"maxX:%f, maxY:%f", maxX, maxY);
             model.endPoint = NSMakePoint(maxX, maxY);
+            _previousPoint = _currentPoint;
         } else if (self.type == CGTDrawTypeDirectDash) {
             [model.drawLayer setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithInt:2], [NSNumber numberWithInt:2], nil]];
             [model.drawLayer drawDireLineFromPoint:_previousPoint toPoint:_currentPoint];
         } else if (self.type == CGTDrawTypeDirectLine) {
             [model.drawLayer drawDireLineFromPoint:_previousPoint toPoint:_currentPoint];
+        } else if (self.type == CGTDrawTypeArrowDirectLine) {
+            [model.drawLayer drawArrowDireLineFromPoint:_previousPoint toPoint:_currentPoint];
         }
     } else if (self.type == CGTDrawTypeEraser) {
         // 橡皮擦
-        self.eraserRect = NSMakeRect(_previousPoint.x, _previousPoint.y, _currentPoint.x - _previousPoint.x, _currentPoint.y - _previousPoint.y);
-        NSLog(@"oriX:%f, oriY:%f, width:%f, height:%f", self.eraserRect.origin.x, self.eraserRect.origin.y, self.eraserRect.size.width, self.eraserRect.size.height);
+        CGTDrawModel *eraserModel = [self.drawLayers objectAtIndex:self.currentIndex];
+        eraserModel.endPoint = _currentPoint;
         for (int i = 0; i < self.drawLayers.count; i++) {
             CGTDrawModel *model = self.drawLayers[i];
-            if (CGRectContainsRect(self.eraserRect, [model getLayerRect])) {
+            
+            if (model.type == CGTDrawTypeEraser) {
+                // 橡皮擦区域排除
+                continue;
+            }
+            
+            if (CGRectContainsRect([eraserModel getLayerRect], [model getLayerRect])) {
 //                NSLog(@"1111");
                 [model.drawLayer drawRectLines:[model getLayerRect]];
             } else {
                 [model.drawLayer drawRectLines:CGRectZero];
             }
         }
-        
-        [self setNeedsDisplay:YES];
+        [eraserModel.drawLayer drawEraserRect:[eraserModel getLayerRect]];
+//        [self setNeedsDisplay:YES];
     } else if (self.type == CGTDrawTypeNormal) {
         // 普通状态下
+        if (self.drawLayers.count == 0 || self.currentIndex == 0) {
+            return;
+        }
         CGTDrawModel *model = self.drawLayers[self.currentIndex-1];
         if (CGRectContainsPoint([model getLayerTopRightRect], _currentPoint)) {
             CGFloat minOffset = MIN(_currentPoint.x - model.endPoint.x, _currentPoint.y - model.endPoint.y);
@@ -219,24 +235,26 @@
 - (void)mouseUp:(NSEvent *)event {
     // 更新model内容
     
-    if (self.type == CGTDrawTypeLine || self.type == CGTDrawTypeDirectDash || self.type == CGTDrawTypeDirectLine) {
+    if (self.type == CGTDrawTypeDirectDash || self.type == CGTDrawTypeDirectLine || self.type == CGTDrawTypeArrowDirectLine) {
         CGTDrawModel *model = [self.drawLayers objectAtIndex:self.currentIndex];
         model.endPoint = [self convertPoint:[event locationInWindow] fromView:nil];
     } else if (self.type == CGTDrawTypeEraser) {
+        CGTDrawModel *eraserModel = [self.drawLayers objectAtIndex:self.currentIndex];
         NSMutableArray *removeModels = [NSMutableArray array];
         for (int i = 0; i < self.drawLayers.count; i++) {
             CGTDrawModel *model = self.drawLayers[i];
-            CGRect modelRect = NSMakeRect(model.startPoint.x, model.startPoint.y, model.endPoint.x - model.startPoint.x, model.endPoint.y - model.startPoint.y);
-            if (CGRectContainsRect(self.eraserRect, modelRect)) {
+            CGRect modelRect = [model getLayerRect];
+            if (CGRectContainsRect([eraserModel getLayerRect], modelRect)) {
                 [model.drawLayer removeFromSuperlayer];
                 [removeModels addObject:model];
             }
         }
         
         [self.drawLayers removeObjectsInArray:removeModels];
-        
-        self.eraserRect = CGRectZero;
-        [self setNeedsDisplay:YES];
+        [eraserModel.drawLayer removeFromSuperlayer];
+        [self.drawLayers removeObject:eraserModel];
+        self.currentIndex = 0;
+//        [self setNeedsDisplay:YES];
     }
     
     // 更新layer的frame

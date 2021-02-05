@@ -11,7 +11,11 @@
 @implementation CGTDrawModel
 
 - (CGRect)getLayerRect {
-    return NSMakeRect(self.startPoint.x, self.startPoint.y, self.endPoint.x - self.startPoint.x, self.endPoint.y - self.startPoint.y);
+    CGRect rect = NSMakeRect(self.startPoint.x, self.startPoint.y, self.endPoint.x - self.startPoint.x, self.endPoint.y - self.startPoint.y);
+    
+//    NSLog(@"oriX:%f, oriY:%f, width:%f, height:%f", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
+    
+    return rect;
 }
 
 - (CGRect)getLayerTopLeftRect {

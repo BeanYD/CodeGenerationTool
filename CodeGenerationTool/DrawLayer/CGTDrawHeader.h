@@ -12,9 +12,10 @@
 // draw类型枚举
 typedef NS_ENUM(NSUInteger, CGTDrawType) {
     CGTDrawTypeNormal,
-    CGTDrawTypeLine,
+    CGTDrawTypeCurveLine,
     CGTDrawTypeDirectLine,
     CGTDrawTypeDirectDash,
+    CGTDrawTypeArrowDirectLine,
     CGTDrawTypeEraser,
     CGTDrawTypeImage,
 };

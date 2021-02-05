@@ -45,11 +45,16 @@ NS_ASSUME_NONNULL_BEGIN
     CGRect _borderRect;         // 显示线条所在区域边框的rect
 }
 
++ (CGTDrawLayer *)layerWithFrame:(CGRect)frame strokeColor:(NSColor *)strokeColor lineWidth:(CGFloat)lineWidth;
+
 // 连续线条
-- (void)drawLineFromPoint:(NSPoint)startPoint toPoint:(NSPoint)endPoint;
+- (void)drawCurveFromPoint:(NSPoint)startPoint toPoint:(NSPoint)endPoint;
 
 // 直线(实线虚线由外部定义)
 - (void)drawDireLineFromPoint:(NSPoint)startPoint toPoint:(NSPoint)endPoint;
+
+// 箭头直线
+- (void)drawArrowDireLineFromPoint:(NSPoint)startPoint toPoint:(NSPoint)endPoint;
 
 // 画边框
 - (void)drawRectLines:(CGRect)rect;
@@ -57,6 +62,9 @@ NS_ASSUME_NONNULL_BEGIN
 // 画图
 - (void)drawImage:(NSImage *)image rect:(CGRect)rect;
 - (void)resetImageRect:(CGRect)rect;
+
+// 画橡皮边框
+- (void)drawEraserRect:(CGRect)rect;
 @end
 
 NS_ASSUME_NONNULL_END

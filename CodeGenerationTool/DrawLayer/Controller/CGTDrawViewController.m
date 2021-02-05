@@ -14,6 +14,7 @@
 @property (nonatomic, strong) NSButton *lineButton;
 @property (nonatomic, strong) NSButton *direLineButton;
 @property (nonatomic, strong) NSButton *direDashButton;
+@property (nonatomic, strong) NSButton *arrowLineButton;
 @property (nonatomic, strong) NSButton *eraserButton;
 @property (nonatomic, strong) NSButton *uploadButton;
 @property (nonatomic, strong) NSButton *normalButton;
@@ -33,6 +34,7 @@
     [self.view addSubview:self.lineButton];
     [self.view addSubview:self.direLineButton];
     [self.view addSubview:self.direDashButton];
+    [self.view addSubview:self.arrowLineButton];
     [self.view addSubview:self.eraserButton];
     [self.view addSubview:self.uploadButton];
     
@@ -61,9 +63,14 @@
         make.top.equalTo(self.direLineButton.mas_bottom).offset(10);
     }];
     
-    [self.eraserButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.arrowLineButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.normalButton);
         make.top.equalTo(self.direDashButton.mas_bottom).offset(10);
+    }];
+    
+    [self.eraserButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.normalButton);
+        make.top.equalTo(self.arrowLineButton.mas_bottom).offset(10);
     }];
     
     [self.uploadButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -84,7 +91,7 @@
 }
 
 - (void)lineButtonClick:(NSButton *)button {
-    self.drawView.type = CGTDrawTypeLine;
+    self.drawView.type = CGTDrawTypeCurveLine;
 }
 
 - (void)direLineButtonClick:(NSButton *)button {
@@ -93,6 +100,10 @@
 
 - (void)direDashButtonClick:(NSButton *)button {
     self.drawView.type = CGTDrawTypeDirectDash;
+}
+
+- (void)arrowLineButtonClick:(NSButton *)button {
+    self.drawView.type = CGTDrawTypeArrowDirectLine;
 }
 
 - (void)eraserButtonClick:(NSButton *)button {
@@ -171,6 +182,17 @@
     }
     
     return _direDashButton;
+}
+
+- (NSButton *)arrowLineButton {
+    if (!_arrowLineButton) {
+        _arrowLineButton = [[NSButton alloc] init];
+        _arrowLineButton.title = @"箭头线";
+        _arrowLineButton.target = self;
+        _arrowLineButton.action = @selector(arrowLineButtonClick:);
+    }
+    
+    return _arrowLineButton;
 }
 
 - (NSButton *)eraserButton {
