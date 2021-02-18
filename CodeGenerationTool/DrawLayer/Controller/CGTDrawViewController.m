@@ -17,6 +17,7 @@
 @property (nonatomic, strong) NSButton *arrowLineButton;
 @property (nonatomic, strong) NSButton *rectButton;
 @property (nonatomic, strong) NSButton *ellipseButton;
+@property (nonatomic, strong) NSButton *textButton;
 @property (nonatomic, strong) NSButton *eraserButton;
 @property (nonatomic, strong) NSButton *uploadButton;
 @property (nonatomic, strong) NSButton *normalButton;
@@ -39,6 +40,7 @@
     [self.view addSubview:self.arrowLineButton];
     [self.view addSubview:self.rectButton];
     [self.view addSubview:self.ellipseButton];
+    [self.view addSubview:self.textButton];
     [self.view addSubview:self.eraserButton];
     [self.view addSubview:self.uploadButton];
     
@@ -82,9 +84,14 @@
         make.top.equalTo(self.rectButton.mas_bottom).offset(10);
     }];
     
-    [self.eraserButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.textButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.normalButton);
         make.top.equalTo(self.ellipseButton.mas_bottom).offset(10);
+    }];
+    
+    [self.eraserButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.normalButton);
+        make.top.equalTo(self.textButton.mas_bottom).offset(10);
     }];
     
     [self.uploadButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -126,6 +133,10 @@
 
 - (void)ellipseButtonClick:(NSButton *)button {
     self.drawView.type = CGTDrawTypeEllipse;
+}
+
+- (void)textButtonClick:(NSButton *)button {
+    self.drawView.type = CGTDrawTypeText;
 }
 
 - (void)eraserButtonClick:(NSButton *)button {
@@ -248,6 +259,17 @@
     }
     
     return _eraserButton;
+}
+
+- (NSButton *)textButton {
+    if (!_textButton) {
+        _textButton = [[NSButton alloc] init];
+        _textButton.title = @"文本";
+        _textButton.target = self;
+        _textButton.action = @selector(textButtonClick:);
+    }
+    
+    return _textButton;
 }
 
 - (NSButton *)uploadButton {

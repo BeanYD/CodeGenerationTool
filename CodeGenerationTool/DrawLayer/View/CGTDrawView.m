@@ -11,12 +11,14 @@
 #import "CGTDrawLayer.h"
 #import "CGTDrawModel.h"
 
-@interface CGTDrawView ()
+@interface CGTDrawView ()<NSTextViewDelegate>
 
 @property (assign) NSPoint previousPoint;
 @property (assign) NSPoint currentPoint;
 @property (strong) NSMutableArray *drawLayers;
 @property (assign) NSInteger currentIndex;
+
+@property (strong) NSTextView *textView;
 
 @end
 
@@ -40,6 +42,13 @@
 //        CGContextSetAlpha(ctx, 1.f);
 //        CGContextStrokePath(ctx);
 //    }
+    
+    if (self.currentIndex < self.drawLayers.count) {
+        CGTDrawModel *model = self.drawLayers[self.currentIndex];
+        if (model.type == CGTDrawTypeText) {
+            [model.drawLayer drawTextInRect:[model getLayerRect] string:model.textStr];
+        }
+    }
 }
 
 - (instancetype)initWithFrame:(NSRect)frameRect {
@@ -51,6 +60,11 @@
         self.drawLayers = [NSMutableArray array];
         NSTrackingArea *trackingArea = [[NSTrackingArea alloc] initWithRect:self.bounds options:NSTrackingMouseEnteredAndExited | NSTrackingMouseMoved | NSTrackingActiveInKeyWindow owner:self userInfo:@{}];
         [self addTrackingArea:trackingArea];
+        
+        CGTDrawLayer *layer = [CGTDrawLayer layerWithFrame:self.bounds strokeColor:[NSColor redColor] lineWidth:1.f];
+        [self.layer addSublayer:layer];
+        [layer drawTextInRect:NSMakeRect(100, 100, 100, 100) string:@"aabb"];
+
     }
     
     return self;
@@ -110,8 +124,8 @@
                 CGRect modelRect = [model getLayerRect];
                 if (CGRectContainsPoint(modelRect, _previousPoint)) {
                     [model.drawLayer drawBorderRectLines:[model getLayerRect]];
-                    // 更新当前选中的layer下标+1
-                    self.currentIndex = i + 1;
+                    // 更新当前选中的layer下标
+                    self.currentIndex = i;
                     break;
                 }
 
@@ -122,10 +136,43 @@
         for (NSInteger i = self.drawLayers.count - 1; i >= 0; i--) {
             CGTDrawModel *model = self.drawLayers[i];
             if (model.type == CGTDrawTypeImage) {
-                if (i != self.currentIndex - 1) {
+                if (i != self.currentIndex) {
                     [model.drawLayer drawBorderRectLines:CGRectZero];
                 }
             }
+        }
+    } else if (self.type == CGTDrawTypeText) {
+        // 先将全部已存在的textview全部删除，添加文本layer
+        if (self.textView.string.length > 0) {
+            NSString *string = self.textView.string;
+            CGTDrawLayer *layer = [CGTDrawLayer layerWithFrame:self.bounds strokeColor:[NSColor redColor] lineWidth:1.f];
+            [self.layer addSublayer:layer];
+            self.currentIndex = self.drawLayers.count;
+
+            CGTDrawModel *model = [[CGTDrawModel alloc] init];
+            model.drawLayer = layer;
+            model.type = self.type;
+            model.startPoint = self.textView.frame.origin;
+            model.endPoint = NSMakePoint(NSMinX(self.textView.frame) + NSWidth(self.textView.frame), NSMinY(self.textView.frame) + NSHeight(self.textView.frame));
+            model.textStr = string;
+            [self.drawLayers addObject:model];
+            
+            // 在model中保存string字段，文本的绘制暂时需要在drawRect:中执行
+//            NSRect rect = [model getLayerRect];
+//            [layer drawTextInRect:rect string:string];
+            [self setNeedsDisplayInRect:self.frame];
+            
+            [self.textView removeFromSuperview];
+            self.textView.string = @"";
+        } else {
+            NSTextView *textView = [[NSTextView alloc] initWithFrame:NSMakeRect(_previousPoint.x, _previousPoint.y - 100, 100, 100)];
+            [textView setFont:[NSFont systemFontOfSize:12.f]];
+            [textView setTextColor:[NSColor redColor]];
+            [textView setBackgroundColor:[NSColor blueColor]];
+            [self addSubview:textView];
+            self.textView = textView;
+            
+            [self.window makeFirstResponder:textView];
         }
     }
 }
@@ -140,6 +187,11 @@
 
 - (void)mouseMoved:(NSEvent *)event {
     CGPoint point = [self convertPoint:[event locationInWindow] fromView:nil];
+    
+    if (self.type == CGTDrawTypeText) {
+        return;
+    }
+    
     CGTDrawModel *model = [self.drawLayers objectAtIndex:self.currentIndex];
     if (CGRectContainsPoint([model getLayerTopRightRect], point) || CGRectContainsPoint([model getLayerBottomLeftRect], point)) {
         NSCursor *cursor = [[NSCursor alloc] initWithImage:[NSImage imageNamed:@"缩放2"] hotSpot:NSMakePoint(16, 16)];
@@ -205,10 +257,13 @@
 //        [self setNeedsDisplay:YES];
     } else if (self.type == CGTDrawTypeNormal) {
         // 普通状态下
-        if (self.drawLayers.count == 0 || self.currentIndex == 0) {
+        if (self.drawLayers.count == 0) {
             return;
         }
-        CGTDrawModel *model = self.drawLayers[self.currentIndex-1];
+        CGTDrawModel *model = self.drawLayers[self.currentIndex];
+        if (model.type != CGTDrawTypeImage) {
+            return;
+        }
         if (CGRectContainsPoint([model getLayerTopRightRect], _currentPoint)) {
             CGFloat minOffset = MIN(_currentPoint.x - model.endPoint.x, _currentPoint.y - model.endPoint.y);
             model.endPoint = NSMakePoint(model.endPoint.x + minOffset, model.endPoint.y + minOffset);
@@ -259,7 +314,7 @@
         [self.drawLayers removeObjectsInArray:removeModels];
         [eraserModel.drawLayer removeFromSuperlayer];
         [self.drawLayers removeObject:eraserModel];
-        self.currentIndex = 0;
+        self.currentIndex = self.drawLayers.count;
 //        [self setNeedsDisplay:YES];
     }
     

@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign) CGPoint startPoint;
 @property (assign) CGPoint endPoint;
 @property (assign) CGTDrawType type;
+@property (copy) NSString *textStr;
 
 - (CGRect)getLayerRect;
 - (CGRect)getLayerTopLeftRect;

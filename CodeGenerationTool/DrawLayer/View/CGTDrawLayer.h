@@ -62,6 +62,9 @@ NS_ASSUME_NONNULL_BEGIN
 // 画椭圆
 - (void)drawEllipseInRect:(CGRect)rect;
 
+// 画文本
+- (void)drawTextInRect:(CGRect)rect string:(NSString *)drawStr;
+
 // 画边框(选中和删除标记框)
 - (void)drawBorderRectLines:(CGRect)rect;
 

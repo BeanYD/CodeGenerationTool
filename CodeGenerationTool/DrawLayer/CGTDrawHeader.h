@@ -18,6 +18,7 @@ typedef NS_ENUM(NSUInteger, CGTDrawType) {
     CGTDrawTypeArrowDirectLine,
     CGTDrawTypeRect,
     CGTDrawTypeEllipse,
+    CGTDrawTypeText,
     CGTDrawTypeEraser,
     CGTDrawTypeImage,
 };
