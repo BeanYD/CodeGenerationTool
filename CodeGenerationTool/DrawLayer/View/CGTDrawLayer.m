@@ -125,10 +125,7 @@
     self.path = path;
 }
 
-- (void)drawTextInRect:(CGRect)rect string:(NSString *)drawStr {
-    NSDictionary* dic = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSFont systemFontOfSize:12.], [NSColor blackColor], nil] forKeys:[NSArray arrayWithObjects:NSFontAttributeName,NSForegroundColorAttributeName, nil]];
-    [drawStr drawAtPoint:NSMakePoint(rect.origin.x, rect.origin.y) withAttributes:dic];
-}
+fas
 
 - (void)drawInContext:(CGContextRef)ctx {
     CGContextSetLineWidth(ctx, self.lineWidth);

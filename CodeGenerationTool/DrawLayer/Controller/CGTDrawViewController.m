@@ -24,6 +24,9 @@
 
 @property (nonatomic, strong) CGTDrawView *drawView;
 
+// 记录上一个选中的按钮
+@property (strong) NSButton *previousButton;
+
 @end
 
 @implementation CGTDrawViewController
@@ -109,38 +112,47 @@
 #pragma mark - Button Click
 - (void)normalButtonClick:(NSButton *)button {
     self.drawView.type = CGTDrawTypeNormal;
+    [self updateButton:button];
 }
 
 - (void)lineButtonClick:(NSButton *)button {
     self.drawView.type = CGTDrawTypeCurveLine;
+    [self updateButton:button];
 }
 
 - (void)direLineButtonClick:(NSButton *)button {
     self.drawView.type = CGTDrawTypeDirectLine;
+    [self updateButton:button];
 }
 
 - (void)direDashButtonClick:(NSButton *)button {
     self.drawView.type = CGTDrawTypeDirectDash;
+    [self updateButton:button];
 }
 
 - (void)arrowLineButtonClick:(NSButton *)button {
     self.drawView.type = CGTDrawTypeArrowDirectLine;
+    [self updateButton:button];
 }
 
 - (void)rectButtonClick:(NSButton *)button {
     self.drawView.type = CGTDrawTypeRect;
+    [self updateButton:button];
 }
 
 - (void)ellipseButtonClick:(NSButton *)button {
     self.drawView.type = CGTDrawTypeEllipse;
+    [self updateButton:button];
 }
 
 - (void)textButtonClick:(NSButton *)button {
     self.drawView.type = CGTDrawTypeText;
+    [self updateButton:button];
 }
 
 - (void)eraserButtonClick:(NSButton *)button {
     self.drawView.type = CGTDrawTypeEraser;
+    [self updateButton:button];
 }
 
 - (void)uploadButtonClick:(NSButton *)button {
@@ -161,6 +173,14 @@
             
         }
     }];
+}
+
+- (void)updateButton:(NSButton *)button {
+    self.previousButton.enabled = YES;
+    self.previousButton = button;
+    button.enabled = NO;
+    
+    [self.drawView resetCursor];
 }
 
 #pragma mark - Getter

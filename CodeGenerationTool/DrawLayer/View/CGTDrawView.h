@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)loadImage:(NSImage *)image;
 
+- (void)resetCursor;
 @end
 
 NS_ASSUME_NONNULL_END

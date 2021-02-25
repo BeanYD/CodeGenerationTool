@@ -111,6 +111,86 @@ App的主页面，所有其他窗口都由该页面进入
 
 待开发
 
+## DrawLayer模块
+
+该模块下代码demo主要基于`CALayer`层画图，对其他现有项目中基于NSImage进行绘制的优化
+
+优化原因：基于`NSImage`进行绘制，简单的画线功能可以完成。但是在添加图片内容且需要对图片内容进行拖拽后，持续的拖动加上持续的重绘，占用大量CPU，直接导致应用卡死。在多端同步的情况下，`NSImage`中标注过多也容易导致卡死。
+
+### 优化方案：
+
+方案1.现有现有`DrawLayer`模块中实现的方案。每个标注添加时，都添加一个`CALayer`在`drawView`中，对于不会发生改变的标注，不会有明显效果。当拖动图片标注时，持续的拖动，可单独操作单个`CALayer`，更新`CALayer`中图片的位置实现。
+
+方案2.原有项目中的基于`NSImage`绘制，优化`NSImage`的绘制方式，参考`iOS`中对图片加载的优化方案——暂未实现
+
+### 遇到的困难：
+
+#### 困难1
+
+单个`CALayer`，只能存在一个`Path`内容，当橡皮擦功能选中该`CALayer`中标注内容后，需要添加边框的方式显示出标注已经被橡皮擦框住。
+
+标注绘制使用`Path`，边框在
+
+```objective-c
+- (void)drawInContext:(CGContextRef)ctx
+```
+
+方法中使用`CGContext`实现，通过
+
+```objective-c
+[self setNeedsDisplayInRect:self.frame];
+```
+
+更新。
+
+#### 困难2
+
+图片在`CALayer`下无法通过`Path`的方式绘制
+
+在当前`CALayer`下，添加一个`CALayer`，使用`contents`的方式添加图片
+
+```objective-c
+- (void)drawImage:(NSImage *)image rect:(CGRect)rect {
+//    CGFloat width = image.size.width;
+//    CGFloat height = image.size.height;
+//    self.frame = NSMakeRect(20, 20, width, height);
+//    self.contents = image;
+    
+    CALayer *imageLayer = [[CALayer alloc] init];
+    imageLayer.frame = rect;
+    imageLayer.position = NSMakePoint(rect.size.width / 2 + 10, rect.size.height / 2 + 10);
+    imageLayer.contentsGravity = kCAGravityResizeAspect;
+    imageLayer.contents = image;
+    [self addSublayer:imageLayer];
+}
+```
+
+但是在后续进行移动缩放时，需要遍历`CALayer`的`sublayers`进行更新内容
+
+#### 困难3
+
+`NSTextView`文本框输入后，添加到`CALayer`中。
+
+也是通过添加子`CALayer`的方式进行实现
+
+```objective-c
+- (void)drawTextInRect:(CGRect)rect string:(NSString *)drawStr {
+//    NSDictionary* dic = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSFont systemFontOfSize:12.], [NSColor blackColor], nil] forKeys:[NSArray arrayWithObjects:NSFontAttributeName,NSForegroundColorAttributeName, nil]];
+//    [drawStr drawAtPoint:NSMakePoint(rect.origin.x, rect.origin.y) withAttributes:dic];
+    CATextLayer *textLayer = [CATextLayer layer];
+    textLayer.frame = rect;
+    textLayer.backgroundColor = [NSColor clearColor].CGColor;
+    textLayer.string = drawStr;
+    textLayer.font = (__bridge CFTypeRef _Nullable)(@"HiraKakuProN-W3");
+    textLayer.fontSize = 12.;
+    textLayer.alignmentMode = kCAAlignmentLeft;
+    textLayer.foregroundColor = [NSColor redColor].CGColor;
+    [self addSublayer:textLayer];
+}
+```
+
+
+
 ## Other模块
 
 目前功能：纯代码实现`NSCollectionView`和`NSTableView`
