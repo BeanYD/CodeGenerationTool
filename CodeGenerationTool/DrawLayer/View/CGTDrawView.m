@@ -154,7 +154,7 @@
             if (model.type == CGTDrawTypeImage) {
                 CGRect modelRect = [model getLayerRect];
                 if (CGRectContainsPoint(modelRect, _previousPoint)) {
-                    [model.drawLayer drawBorderRectLines:modelRect];
+                    [model.drawLayer focusImageRect:modelRect];
                     // 更新当前选中的layer下标
                     drawModel = model;
                     self.currentIndex = i;
@@ -170,7 +170,7 @@
                 CGTDrawModel *model = self.drawLayers[i];
                 if (model.type == CGTDrawTypeImage) {
                     if (i != self.currentIndex) {
-                        [model.drawLayer drawBorderRectLines:CGRectZero];
+                        [model.drawLayer focusImageRect:CGRectZero];
                     }
                 }
             }
@@ -178,7 +178,7 @@
             for (NSInteger i = self.drawLayers.count - 1; i >= 0; i--) {
                 CGTDrawModel *model = self.drawLayers[i];
                 if (model.type == CGTDrawTypeImage) {
-                    [model.drawLayer drawBorderRectLines:CGRectZero];
+                    [model.drawLayer focusImageRect:CGRectZero];
                 }
             }
             self.currentIndex = -1;
@@ -353,7 +353,7 @@
         }
         
         [model.drawLayer resetImageRect:[model getLayerRect]];
-        [model.drawLayer drawBorderRectLines:[model getLayerRect]];
+        [model.drawLayer focusImageRect:[model getLayerRect]];
         _previousPoint = _currentPoint;
 
     }

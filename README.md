@@ -129,6 +129,8 @@ App的主页面，所有其他窗口都由该页面进入
 
 单个`CALayer`，只能存在一个`Path`内容，当橡皮擦功能选中该`CALayer`中标注内容后，需要添加边框的方式显示出标注已经被橡皮擦框住。
 
+注：后续研究如何添加多个`Path`。移动端可以通过`CGContextRef context = UIGraphicsGetCurrentContext();`获取当前图形上下文，使用`CGContextRef`比较方便
+
 标注绘制使用`Path`，边框在
 
 ```objective-c

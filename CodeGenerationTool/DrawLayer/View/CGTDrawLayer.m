@@ -68,9 +68,8 @@
 //    self.frame = NSMakeRect(20, 20, width, height);
 //    self.contents = image;
     
-    CALayer *imageLayer = [[CALayer alloc] init];
-    imageLayer.frame = rect;
-    imageLayer.position = NSMakePoint(rect.size.width / 2 + 10, rect.size.height / 2 + 10);
+    CGTDrawLayer *imageLayer = [CGTDrawLayer layerWithFrame:rect strokeColor:[NSColor whiteColor] lineWidth:2];
+    imageLayer.position = NSMakePoint(rect.size.width / 2 + 50, rect.size.height / 2 + 50);
     imageLayer.contentsGravity = kCAGravityResizeAspect;
     imageLayer.contents = image;
     [self addSublayer:imageLayer];
@@ -81,15 +80,75 @@
         return;
     }
     
-    CALayer *layer = [self.sublayers lastObject];
-    [layer removeFromSuperlayer];
+//    id contents;
+//    for (int i = 0; i < self.sublayers.count; i++) {
+//        CALayer *layer = self.sublayers[i];
+//        if (layer.contents) {
+//            contents = layer.contents;
+//        }
+//        [layer removeFromSuperlayer];
+//    }
 
+    CALayer *layer = self.sublayers.lastObject;
+    [layer removeFromSuperlayer];
+    
     CALayer *imageLayer = [[CALayer alloc] init];
     imageLayer.bounds = rect;
     imageLayer.position = NSMakePoint(rect.size.width / 2 + rect.origin.x, rect.size.height / 2 + rect.origin.y);
     imageLayer.contentsGravity = kCAGravityResizeAspect;
     imageLayer.contents = layer.contents;
     [self addSublayer:imageLayer];
+}
+
+- (void)focusImageRect:(CGRect)rect {
+    if (self.sublayers.count == 0) {
+        return;
+    }
+    CALayer *layer = self.sublayers.lastObject;
+    if (layer.sublayers.count > 0) {
+        CALayer *selectLayer = layer.sublayers.lastObject;
+        if (CGRectIsEmpty(rect)) {
+            [selectLayer removeFromSuperlayer];
+            return;
+        }
+        if ([selectLayer isMemberOfClass:[CGTDrawLayer class]]) {
+            return;
+        }
+    } else {
+        if (CGRectIsEmpty(rect)) {
+            return;
+        }
+    }
+
+    CGTDrawLayer *borderLayer = [CGTDrawLayer layerWithFrame:layer.bounds strokeColor:[NSColor whiteColor] lineWidth:2];
+    [borderLayer drawImageBorder:layer.bounds];
+    [layer addSublayer:borderLayer];
+}
+
+- (void)drawImageBorder:(NSRect)rect {
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathMoveToPoint(path, NULL, 4, 0);
+    CGPathAddLineToPoint(path, NULL, rect.size.width - 4, 0);
+    NSRect drawRect;
+    drawRect.size.width = 8;
+    drawRect.size.height = 8;
+    drawRect.origin.x = rect.size.width - 4;
+    drawRect.origin.y = -4;
+    CGPathAddRect(path, NULL, drawRect);
+    CGPathMoveToPoint(path, NULL, rect.size.width, 4);
+    CGPathAddLineToPoint(path, NULL, rect.size.width, rect.size.height - 4);
+    drawRect.origin.y = rect.size.height - 4;
+    CGPathAddRect(path, NULL, drawRect);
+    CGPathMoveToPoint(path, NULL, rect.size.width - 4, rect.size.height);
+    CGPathAddLineToPoint(path, NULL, 4, rect.size.height);
+    drawRect.origin.x =  -4;
+    CGPathAddRect(path, NULL, drawRect);
+    CGPathMoveToPoint(path, NULL, 0, rect.size.height - 4);
+    CGPathAddLineToPoint(path, NULL, 0, 4);
+    drawRect.origin.y = -4;
+    CGPathAddRect(path, NULL, drawRect);
+    CGPathCloseSubpath(path);
+    self.path = path;
 }
 
 - (void)drawBorderRectLines:(CGRect)rect {
@@ -124,8 +183,6 @@
     CGPathCloseSubpath(path);
     self.path = path;
 }
-
-fas
 
 - (void)drawInContext:(CGContextRef)ctx {
     CGContextSetLineWidth(ctx, self.lineWidth);

@@ -71,6 +71,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 画图
 - (void)drawImage:(NSImage *)image rect:(CGRect)rect;
 - (void)resetImageRect:(CGRect)rect;
+- (void)focusImageRect:(CGRect)rect;
 
 
 @end
