@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>classInfo</key>
+	<array>
+		<dict>
+			<key>winCol</key>
+			<string>CGTExcelWindowController</string>
+			<key>name</key>
+			<string>excel</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>drawLayer</string>
+			<key>winCol</key>
+			<string>CGTDrawWindowController</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>commonDemo</string>
+			<key>winCol</key>
+			<string>CGTCommonDemoWindowController</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>鼠标事件</string>
+			<key>winCol</key>
+			<string>CGTMouseEventWindowController</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>opengl</string>
+			<key>winCol</key>
+			<string>CGTOpenglWindowController</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>网格</string>
+			<key>winCol</key>
+			<string>CGTDDCollectionWindowController</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>列表</string>
+			<key>winCol</key>
+			<string>CGTDDTableWindowController</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -25,6 +25,9 @@
 		04411A782549809D00337A41 /* CGTSecondaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04411A772549809D00337A41 /* CGTSecondaryViewController.m */; };
 		04465D8325A69D37009850D0 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 04465D8125A69D37009850D0 /* ProgressHUD.m */; };
 		0476509B259DBA5C0006F3FC /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04765099259DBA5B0006F3FC /* CustomButton.m */; };
+		04AE731E25F223E50057F3B6 /* CGTExcelWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AE731D25F223E50057F3B6 /* CGTExcelWindowController.m */; };
+		04AE732725F223FB0057F3B6 /* CGTExcelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AE732625F223FB0057F3B6 /* CGTExcelViewController.m */; };
+		04AE732C25F225E00057F3B6 /* ClassInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04AE732B25F225E00057F3B6 /* ClassInfo.plist */; };
 		04D496BD25BEDD4C007A0157 /* CGTDrawWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D496BC25BEDD4C007A0157 /* CGTDrawWindowController.m */; };
 		04D496C625BEDD58007A0157 /* CGTDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D496C525BEDD58007A0157 /* CGTDrawViewController.m */; };
 		04D496D225BFBD24007A0157 /* CGTDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D496D125BFBD24007A0157 /* CGTDrawView.m */; };
@@ -118,6 +121,11 @@
 		04465D8225A69D37009850D0 /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
 		04765099259DBA5B0006F3FC /* CustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomButton.m; sourceTree = "<group>"; };
 		0476509A259DBA5B0006F3FC /* CustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomButton.h; sourceTree = "<group>"; };
+		04AE731C25F223E50057F3B6 /* CGTExcelWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTExcelWindowController.h; sourceTree = "<group>"; };
+		04AE731D25F223E50057F3B6 /* CGTExcelWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTExcelWindowController.m; sourceTree = "<group>"; };
+		04AE732525F223FB0057F3B6 /* CGTExcelViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTExcelViewController.h; sourceTree = "<group>"; };
+		04AE732625F223FB0057F3B6 /* CGTExcelViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTExcelViewController.m; sourceTree = "<group>"; };
+		04AE732B25F225E00057F3B6 /* ClassInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ClassInfo.plist; sourceTree = "<group>"; };
 		04D496BB25BEDD4C007A0157 /* CGTDrawWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTDrawWindowController.h; sourceTree = "<group>"; };
 		04D496BC25BEDD4C007A0157 /* CGTDrawWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTDrawWindowController.m; sourceTree = "<group>"; };
 		04D496C425BEDD58007A0157 /* CGTDrawViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTDrawViewController.h; sourceTree = "<group>"; };
@@ -289,6 +297,41 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		04AE731825F223C70057F3B6 /* Excel */ = {
+			isa = PBXGroup;
+			children = (
+				04AE731925F223C70057F3B6 /* Controller */,
+				04AE731A25F223C70057F3B6 /* Model */,
+				04AE731B25F223C70057F3B6 /* View */,
+			);
+			path = Excel;
+			sourceTree = "<group>";
+		};
+		04AE731925F223C70057F3B6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				04AE731C25F223E50057F3B6 /* CGTExcelWindowController.h */,
+				04AE731D25F223E50057F3B6 /* CGTExcelWindowController.m */,
+				04AE732525F223FB0057F3B6 /* CGTExcelViewController.h */,
+				04AE732625F223FB0057F3B6 /* CGTExcelViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		04AE731A25F223C70057F3B6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		04AE731B25F223C70057F3B6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		04D496B925BEDD19007A0157 /* DrawLayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -392,6 +435,7 @@
 				D7D11786251C43A10019212F /* Other */,
 				043E01A82542BB2D0089AB8C /* CommonDemo */,
 				04D496B925BEDD19007A0157 /* DrawLayer */,
+				04AE731825F223C70057F3B6 /* Excel */,
 				D70D5F4724B0641800675E89 /* Assets.xcassets */,
 				D70D5F4924B0641800675E89 /* Main.storyboard */,
 				D70D5F4C24B0641800675E89 /* Info.plist */,
@@ -457,6 +501,7 @@
 		D70D5F8024B0658600675E89 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				04AE732B25F225E00057F3B6 /* ClassInfo.plist */,
 				044011F92539684300798BCD /* View */,
 				D7F42C1E24B2D1B700EF1C38 /* Model */,
 				D7F42C1A24B2CEF800EF1C38 /* Data */,
@@ -769,6 +814,7 @@
 			files = (
 				D70D5F4824B0641800675E89 /* Assets.xcassets in Resources */,
 				D70D5F4B24B0641800675E89 /* Main.storyboard in Resources */,
+				04AE732C25F225E00057F3B6 /* ClassInfo.plist in Resources */,
 				043E0102253EEA7B0089AB8C /* CommonTitleBarViewController.xib in Resources */,
 				043E015725403B570089AB8C /* CGTTitleBarViewController.xib in Resources */,
 			);
@@ -898,6 +944,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04AE731E25F223E50057F3B6 /* CGTExcelWindowController.m in Sources */,
 				D7D117D1251C842D0019212F /* CGTInvokeConfig.m in Sources */,
 				043E01AC2542BB710089AB8C /* CGTCommonDemoWindowController.m in Sources */,
 				0476509B259DBA5C0006F3FC /* CustomButton.m in Sources */,
@@ -907,6 +954,7 @@
 				04411A782549809D00337A41 /* CGTSecondaryViewController.m in Sources */,
 				04465D8325A69D37009850D0 /* ProgressHUD.m in Sources */,
 				D7F42C2124B2D1C700EF1C38 /* CGTFilePathPlistMgr.m in Sources */,
+				04AE732725F223FB0057F3B6 /* CGTExcelViewController.m in Sources */,
 				D7D11797251C44270019212F /* CGTDDTableViewController.m in Sources */,
 				D72A36612528370700C82A44 /* CGTMouseEventViewController.m in Sources */,
 				D7D117A6251C6B050019212F /* CGTDDTableWindowController.m in Sources */,

@@ -34,11 +34,16 @@
     _dataDict = [NSMutableDictionary dictionaryWithDictionary:dataDict];
 }
 
-- (NSString *)getPlistPath {
+- (NSString *)getPlistPath1 {
     NSArray *sandBoxPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentPath = [sandBoxPath objectAtIndex:0];
     NSString *plistPath = [documentPath stringByAppendingPathComponent:@"ClassInfo.plist"];
     NSLog(@"\n------------------------------------------\nplist path:\n%@\n------------------------------------------", plistPath);
+    return plistPath;
+}
+
+- (NSString *)getPlistPath {
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"ClassInfo" ofType:@"plist"];
     return plistPath;
 }
 
@@ -107,6 +112,14 @@
             @"name" : @"commonDemo",
             @"winCol" : @"CGTCommonDemoWindowController",
         },
+        @{
+            @"name" : @"drawLayer",
+            @"winCol" : @"CGTDrawWindowController",
+        },
+        @{
+            @"name" : @"excel导入导出",
+            @"winCol" : @"CGTExcelWindowController",
+        }
     ];
 }
 
