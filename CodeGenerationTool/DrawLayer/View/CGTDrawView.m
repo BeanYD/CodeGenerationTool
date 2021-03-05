@@ -203,7 +203,8 @@
             
             // 在model中保存string字段，文本的绘制暂时需要在drawRect:中执行
             NSRect rect = [model getLayerRect];
-            [layer drawTextInRect:rect string:string];
+            NSDictionary *attrDict = @{NSFontAttributeName : [NSFont systemFontOfSize:12.f], NSForegroundColorAttributeName : [NSColor redColor]};
+            [layer drawTextInRect:rect string:string dict:attrDict];
 //            [self setNeedsDisplayInRect:self.frame];
 
             [self clearTextView];
@@ -309,9 +310,9 @@
             
             if (CGRectContainsRect([eraserModel getLayerRect], [model getLayerRect])) {
 //                NSLog(@"1111");
-                [model.drawLayer drawBorderRectLines:[model getLayerRect]];
+                [model.drawLayer drawBorderRect:[model getLayerRect]];
             } else {
-                [model.drawLayer drawBorderRectLines:CGRectZero];
+                [model.drawLayer drawBorderRect:CGRectZero];
             }
         }
         [eraserModel.drawLayer drawRectLines:[eraserModel getLayerRect]];
@@ -360,13 +361,15 @@
 }
 
 - (void)mouseUp:(NSEvent *)event {
+    _currentPoint = [self convertPoint:[event locationInWindow] fromView:nil];
+
     // 更新model内容
-    
     if (self.type == CGTDrawTypeDirectDash || self.type == CGTDrawTypeDirectLine || self.type == CGTDrawTypeArrowDirectLine || self.type == CGTDrawTypeRect || self.type == CGTDrawTypeEllipse) {
         CGTDrawModel *model = [self.drawLayers objectAtIndex:self.currentIndex];
-        model.endPoint = [self convertPoint:[event locationInWindow] fromView:nil];
+        model.endPoint = _currentPoint;
     } else if (self.type == CGTDrawTypeEraser) {
         CGTDrawModel *eraserModel = [self.drawLayers objectAtIndex:self.currentIndex];
+        eraserModel.endPoint = _currentPoint;
         NSMutableArray *removeModels = [NSMutableArray array];
         for (int i = 0; i < self.drawLayers.count; i++) {
             CGTDrawModel *model = self.drawLayers[i];

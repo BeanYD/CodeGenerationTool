@@ -27,6 +27,7 @@
     return drawLayer;
 }
 
+#pragma mark - Draw Lines
 - (void)drawCurveFromPoint:(NSPoint)startPoint toPoint:(NSPoint)endPoint {
     CGPathMoveToPoint(_path, NULL, startPoint.x, startPoint.y);
     CGPathAddLineToPoint(_path, NULL, endPoint.x, endPoint.y);
@@ -62,6 +63,7 @@
     
 }
 
+#pragma mark - Draw Image
 - (void)drawImage:(NSImage *)image rect:(CGRect)rect {
 //    CGFloat width = image.size.width;
 //    CGFloat height = image.size.height;
@@ -151,12 +153,75 @@
     self.path = path;
 }
 
+#pragma mark - Draw Border
+- (void)drawBorderRect:(CGRect)rect {
+    
+    for (NSInteger i = self.sublayers.count - 1; i >= 0; i--) {
+        CALayer *layer = self.sublayers[i];
+        if ([layer isMemberOfClass:[CGTDrawLayer class]]) {
+            [layer removeFromSuperlayer];
+        }
+    }
+    
+    // NSIsEmptyRect()方法在width或者height小于或等于0时会返回YES，认为是空的。不可用
+//    NSLog(@"%d", NSIsEmptyRect(NSMakeRect(0, 0, 100, 1)));
+    
+    if (rect.size.height == 0 || rect.size.width == 0) {
+        return;
+    }
+    
+    // 防止与边界重合
+    CGFloat minX;
+    CGFloat minY;
+    CGFloat width;
+    CGFloat height;
+    if (NSWidth(rect) > 0) {
+        minX = NSMinX(rect) - self.lineWidth;
+        width = NSWidth(rect) + self.lineWidth * 2;
+    } else {
+        minX = NSMinX(rect) + self.lineWidth;
+        width = NSWidth(rect) - self.lineWidth * 2;
+    }
+    
+    if (NSHeight(rect) > 0) {
+        minY = NSMinY(rect) - self.lineWidth;
+        height = NSHeight(rect) + self.lineWidth * 2;
+    } else {
+        minY = NSMinY(rect) + self.lineWidth;
+        height = NSHeight(rect) - self.lineWidth * 2;
+    }
+    CGRect borderRect = NSMakeRect(minX, minY, width, height);
+//    NSColor *borderColor = [NSColor colorWithCalibratedRed:135/255.0 green:206/255.0 blue:235/255.0 alpha:1];
+    NSColor *borderColor = [NSColor redColor];
+    CGTDrawLayer *borderLayer = [CGTDrawLayer layerWithFrame:self.bounds strokeColor:borderColor lineWidth:2.f];
+    [borderLayer drawRectLines:borderRect];
+    [self addSublayer:borderLayer];
+}
+
 - (void)drawBorderRectLines:(CGRect)rect {
     _borderRect = rect;
     NSLog(@"%f, %f, %f, %f", _borderRect.origin.x, _borderRect.origin.y, _borderRect.size.width, _borderRect.size.height);
     [self setNeedsDisplayInRect:self.frame];
 }
 
+#pragma mark - Draw Text
+- (void)drawTextInRect:(CGRect)rect string:(NSString *)drawStr dict:(NSDictionary *)attrDic {
+    NSFont *font = [attrDic objectForKey:NSFontAttributeName];
+    NSColor *color = [attrDic objectForKey:NSForegroundColorAttributeName];
+    CATextLayer *textLayer = [CATextLayer layer];
+    textLayer.frame = rect;
+    textLayer.position = NSMakePoint(rect.size.width / 2 + rect.origin.x, rect.size.height / 2 + rect.origin.y);
+    textLayer.backgroundColor = [NSColor clearColor].CGColor;
+    textLayer.string = drawStr;
+    textLayer.font = (__bridge CFTypeRef _Nullable)font.fontName;
+    textLayer.fontSize = font.pointSize;
+    textLayer.alignmentMode = kCAAlignmentLeft;
+    textLayer.foregroundColor = color.CGColor;
+    [self addSublayer:textLayer];
+
+}
+
+#pragma mark - Draw Rect
 - (void)drawRectLines:(CGRect)rect {
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathMoveToPoint(path, NULL, rect.origin.x, rect.origin.y);
@@ -184,6 +249,7 @@
     self.path = path;
 }
 
+#pragma mark - Rewrite
 - (void)drawInContext:(CGContextRef)ctx {
     CGContextSetLineWidth(ctx, self.lineWidth);
     CGContextSetFillColorWithColor(ctx, [NSColor clearColor].CGColor);
@@ -222,6 +288,27 @@
     CGContextFillRect(ctx, rect);
     CGContextSetAlpha(ctx, 1.f);
     CGContextStrokeRect(ctx, rect);
+}
+
+#pragma mark - Unuse Method
+- (void)drawImageLayerWithRect:(CGRect)rect {
+    CGSize size = NSMakeSize(100, 100);
+    NSImage *image = [[NSImage alloc] initWithSize:size];
+    [image lockFocusFlipped:YES];
+    // draw method
+    CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
+    CGContextSetLineWidth(context, self.lineWidth);
+    CGContextMoveToPoint(context, 0, 0);
+    CGContextAddLineToPoint(context, 100, 100);
+    CGContextSetStrokeColorWithColor(context, [NSColor redColor].CGColor);
+    CGContextSetAlpha(context, 1.0f);
+    CGContextStrokePath(context);
+    [image unlockFocus];
+    image.size = size;
+    CALayer *textLayer = [CALayer layer];
+    [textLayer setContents:[[NSImage alloc] initWithData:[image TIFFRepresentation]]];
+    textLayer.frame =  rect;
+    [self addSublayer:textLayer];
 }
 
 @end
