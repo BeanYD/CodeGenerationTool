@@ -71,7 +71,7 @@
 //    self.contents = image;
     
     CGTDrawLayer *imageLayer = [CGTDrawLayer layerWithFrame:rect strokeColor:[NSColor whiteColor] lineWidth:2];
-    imageLayer.position = NSMakePoint(rect.size.width / 2 + 50, rect.size.height / 2 + 50);
+    imageLayer.position = NSMakePoint(rect.size.width / 2 + rect.origin.x, rect.size.height / 2 + rect.origin.y);
     imageLayer.contentsGravity = kCAGravityResizeAspect;
     imageLayer.contents = image;
     [self addSublayer:imageLayer];
@@ -200,7 +200,7 @@
 
 - (void)drawBorderRectLines:(CGRect)rect {
     _borderRect = rect;
-    NSLog(@"%f, %f, %f, %f", _borderRect.origin.x, _borderRect.origin.y, _borderRect.size.width, _borderRect.size.height);
+//    NSLog(@"%f, %f, %f, %f", _borderRect.origin.x, _borderRect.origin.y, _borderRect.size.width, _borderRect.size.height);
     [self setNeedsDisplayInRect:self.frame];
 }
 

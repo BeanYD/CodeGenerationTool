@@ -8,6 +8,8 @@
 
 #import "CGTDrawModel.h"
 
+#define BORDER_RECT_WIDTH 10
+
 @implementation CGTDrawModel
 
 - (CGRect)getLayerRect {
@@ -18,24 +20,28 @@
     return rect;
 }
 
+- (CGRect)getSelectRect {
+    CGRect rect = NSMakeRect(self.startPoint.x - BORDER_RECT_WIDTH / 2, self.startPoint.y - BORDER_RECT_WIDTH / 2, self.endPoint.x - self.startPoint.x + BORDER_RECT_WIDTH, self.endPoint.y - self.startPoint.y + BORDER_RECT_WIDTH);
+    return  rect;
+}
+
 - (CGRect)getLayerTopLeftRect {
     CGRect modelRect = [self getLayerRect];
-    return NSMakeRect(NSMinX(modelRect) - 1, NSMaxY(modelRect) - 1, 2, 2);
+    return NSMakeRect(NSMinX(modelRect) - BORDER_RECT_WIDTH / 2, NSMaxY(modelRect) - BORDER_RECT_WIDTH / 2, BORDER_RECT_WIDTH, BORDER_RECT_WIDTH);
 }
 
 - (CGRect)getLayerTopRightRect {
     CGRect modelRect = [self getLayerRect];
-    return NSMakeRect(NSMaxX(modelRect) - 1, NSMaxY(modelRect) - 1, 2, 2);
+    return NSMakeRect(NSMaxX(modelRect) - BORDER_RECT_WIDTH / 2, NSMaxY(modelRect) - BORDER_RECT_WIDTH / 2, BORDER_RECT_WIDTH, BORDER_RECT_WIDTH);
 }
 
 - (CGRect)getLayerBottomLeftRect {
     CGRect modelRect = [self getLayerRect];
-    return NSMakeRect(NSMinX(modelRect) - 1, NSMinY(modelRect) - 1, 2, 2);
+    return NSMakeRect(NSMinX(modelRect) - BORDER_RECT_WIDTH / 2, NSMinY(modelRect) - BORDER_RECT_WIDTH / 2, BORDER_RECT_WIDTH, BORDER_RECT_WIDTH);
 }
 
 - (CGRect)getLayerBottomRightRect {
     CGRect modelRect = [self getLayerRect];
-    return NSMakeRect(NSMaxX(modelRect) - 1, NSMinY(modelRect) - 1, 2, 2);
+    return NSMakeRect(NSMaxX(modelRect) - BORDER_RECT_WIDTH / 2, NSMinY(modelRect) - BORDER_RECT_WIDTH / 2, BORDER_RECT_WIDTH, BORDER_RECT_WIDTH);
 }
-
 @end

@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy) NSString *textStr;
 
 - (CGRect)getLayerRect;
+- (CGRect)getSelectRect;
 - (CGRect)getLayerTopLeftRect;
 - (CGRect)getLayerTopRightRect;
 - (CGRect)getLayerBottomLeftRect;

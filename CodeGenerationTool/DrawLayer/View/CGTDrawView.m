@@ -24,6 +24,14 @@
 
 @property (strong) NSCursor *currentCursor;
 
+// 拉伸图片
+@property (assign) BOOL isScaleRightB;
+@property (assign) BOOL isScaleRightT;
+@property (assign) BOOL isScaleLeftB;
+@property (assign) BOOL isScaleLeftT;
+@property (assign) NSPoint lastLocation;
+@property (assign) NSRect selectRect;
+
 @end
 
 @implementation CGTDrawView
@@ -129,6 +137,7 @@
         drawLayer.fillColor = [NSColor clearColor].CGColor;
     
         if (self.type == CGTDrawTypeEraser) {
+            // 有透明度方面修改，修改color的alpha值
             drawLayer.strokeColor = [NSColor redColor].CGColor;
         } else {
             drawLayer.strokeColor = [NSColor blueColor].CGColor;
@@ -152,9 +161,10 @@
         for (NSInteger i = self.drawLayers.count - 1; i >= 0; i--) {
             CGTDrawModel *model = self.drawLayers[i];
             if (model.type == CGTDrawTypeImage) {
-                CGRect modelRect = [model getLayerRect];
-                if (CGRectContainsPoint(modelRect, _previousPoint)) {
-                    [model.drawLayer focusImageRect:modelRect];
+                NSRect rect = [model getLayerRect];
+                CGRect selectRect = [model getSelectRect];
+                if (CGRectContainsPoint(selectRect, _previousPoint)) {
+                    [model.drawLayer focusImageRect:rect];
                     // 更新当前选中的layer下标
                     drawModel = model;
                     self.currentIndex = i;
@@ -174,7 +184,28 @@
                     }
                 }
             }
+            // 判断是否在图片边框区域
+            NSRect leftTopRect = [drawModel getLayerTopLeftRect];
+            NSRect rightBottomRect = [drawModel getLayerBottomRightRect];
+            NSRect leftBottomRect = [drawModel getLayerBottomLeftRect];
+            NSRect rightTopRect = [drawModel getLayerTopRightRect];
+            _lastLocation = [self convertPoint:[event locationInWindow] fromView:nil];
+            _selectRect = [drawModel getLayerRect];
+            if (CGRectContainsPoint(rightTopRect, _previousPoint)) {
+                _isScaleRightT = YES;
+            }
+            if (CGRectContainsPoint(leftTopRect, _previousPoint)) {
+                _isScaleLeftT = YES;
+            }
+            if (CGRectContainsPoint(rightBottomRect, _previousPoint)) {
+                _isScaleRightB = YES;
+            }
+            if (CGRectContainsPoint(leftBottomRect, _previousPoint)) {
+                _isScaleLeftB = YES;
+            }
+            
         } else {
+            // 清空所有图片选中状态
             for (NSInteger i = self.drawLayers.count - 1; i >= 0; i--) {
                 CGTDrawModel *model = self.drawLayers[i];
                 if (model.type == CGTDrawTypeImage) {
@@ -309,8 +340,15 @@
             }
             
             if (CGRectContainsRect([eraserModel getLayerRect], [model getLayerRect])) {
-//                NSLog(@"1111");
-                [model.drawLayer drawBorderRect:[model getLayerRect]];
+                // 通过手动记录startPoint和endPoint获得
+                CGRect rect = [model getLayerRect];
+                
+                // 通过CGPath实现的标注，可以通过以下方法获得边框rect
+//                rect = CGPathGetPathBoundingBox(model.drawLayer.path);
+                
+                [model.drawLayer drawBorderRect:rect];
+                
+                
             } else {
                 [model.drawLayer drawBorderRect:CGRectZero];
             }
@@ -331,27 +369,23 @@
         if (model.type != CGTDrawTypeImage) {
             return;
         }
-        if (CGRectContainsPoint([model getLayerTopRightRect], _currentPoint)) {
-            CGFloat minOffset = MIN(_currentPoint.x - model.endPoint.x, _currentPoint.y - model.endPoint.y);
-            model.endPoint = NSMakePoint(model.endPoint.x + minOffset, model.endPoint.y + minOffset);
-        } else if (CGRectContainsPoint([model getLayerBottomRightRect], _currentPoint)) {
-            CGFloat minOffset = MIN(_currentPoint.x - model.endPoint.x, _currentPoint.y - model.startPoint.y);
-            model.startPoint = NSMakePoint(model.startPoint.x, model.startPoint.y + minOffset);
-            model.endPoint = NSMakePoint(model.endPoint.x + minOffset, model.endPoint.y);
-        } else if (CGRectContainsPoint([model getLayerBottomLeftRect], _currentPoint)) {
-            CGFloat minOffset = MIN(_currentPoint.x - model.startPoint.x, _currentPoint.y - model.startPoint.y);
-            model.startPoint = NSMakePoint(model.startPoint.x + minOffset, model.startPoint.y + minOffset);
-        } else if (CGRectContainsPoint([model getLayerTopLeftRect], _currentPoint)) {
-            CGFloat minOffset = MIN(_currentPoint.x - model.startPoint.x, _currentPoint.y - model.endPoint.y);
-            model.startPoint = NSMakePoint(model.startPoint.x + minOffset, model.startPoint.y);
-            model.endPoint = NSMakePoint(model.endPoint.x, model.endPoint.y + minOffset);
+        
+        
+        NSPoint point = [self convertPoint:[event locationInWindow] fromView:nil];
+        if (_isScaleRightB || _isScaleRightT) {
+            // 计算右侧拖动
+            
+        } else if (_isScaleLeftB || _isScaleLeftT) {
+            // 计算左侧拖动
+            
         } else {
-            // 拖动图片
+            // 拖动
             CGFloat offsetX = _currentPoint.x - _previousPoint.x;
             CGFloat offsetY = _currentPoint.y - _previousPoint.y;
             model.startPoint = NSMakePoint(model.startPoint.x + offsetX, model.startPoint.y + offsetY);
             model.endPoint = NSMakePoint(model.endPoint.x + offsetX, model.endPoint.y + offsetY);
         }
+        
         
         [model.drawLayer resetImageRect:[model getLayerRect]];
         [model.drawLayer focusImageRect:[model getLayerRect]];
@@ -370,10 +404,22 @@
     } else if (self.type == CGTDrawTypeEraser) {
         CGTDrawModel *eraserModel = [self.drawLayers objectAtIndex:self.currentIndex];
         eraserModel.endPoint = _currentPoint;
+        NSRect eraserRect = [eraserModel getLayerRect];
         NSMutableArray *removeModels = [NSMutableArray array];
         for (int i = 0; i < self.drawLayers.count; i++) {
             CGTDrawModel *model = self.drawLayers[i];
             CGRect modelRect = [model getLayerRect];
+            
+            if (model.type == CGTDrawTypeEraser) {
+                continue;
+            }
+            
+            if (NSWidth(eraserRect) == 0 && NSHeight(eraserRect) == 0) {
+                // 单击删除
+                NSRect rect = CGPathGetBoundingBox(model.drawLayer.path);
+//                NSLog(@"rect");
+            }
+            
             if (CGRectContainsRect([eraserModel getLayerRect], modelRect)) {
                 [model.drawLayer removeFromSuperlayer];
                 [removeModels addObject:model];
@@ -385,6 +431,11 @@
         [self.drawLayers removeObject:eraserModel];
         self.currentIndex = self.drawLayers.count - 1;
 //        [self setNeedsDisplay:YES];
+    } else if (self.type == CGTDrawTypeNormal) {
+        _isScaleLeftT = NO;
+        _isScaleLeftB = NO;
+        _isScaleRightT = NO;
+        _isScaleRightB = NO;
     }
     
     // 更新layer的frame

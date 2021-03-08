@@ -7,7 +7,10 @@ target 'CodeGenerationTool' do
 
   pod 'MJExtension'
   pod 'Masonry'
-	pod 'AFNetworking'
+  pod 'AFNetworking'
+  pod 'libxlsxwriter'
+  pod 'GDataXML-HTML'
+  pod 'SSZipArchive'
   # Pods for CodeGenerationTool
 
   target 'CodeGenerationToolTests' do

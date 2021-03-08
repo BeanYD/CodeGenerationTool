@@ -12,25 +12,37 @@ PODS:
   - AFNetworking/Reachability (4.0.0)
   - AFNetworking/Security (4.0.0)
   - AFNetworking/Serialization (4.0.0)
+  - GDataXML-HTML (1.4.1)
+  - libxlsxwriter (1.0.0)
   - Masonry (1.1.0)
   - MJExtension (3.2.1)
+  - SSZipArchive (2.2.3)
 
 DEPENDENCIES:
   - AFNetworking
+  - GDataXML-HTML
+  - libxlsxwriter
   - Masonry
   - MJExtension
+  - SSZipArchive
 
 SPEC REPOS:
   trunk:
     - AFNetworking
+    - GDataXML-HTML
+    - libxlsxwriter
     - Masonry
     - MJExtension
+    - SSZipArchive
 
 SPEC CHECKSUMS:
   AFNetworking: d9fdf484a3c723ec3c558a41cc5754c7e845ee77
+  GDataXML-HTML: a4f11079b48d9fe96ff1fe478943a317185227e2
+  libxlsxwriter: 36728628804bc23f1b61a4fe2b65f49937ff4e38
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJExtension: 635f2c663dcb1bf76fa4b715b2570a5710aec545
+  SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
 
-PODFILE CHECKSUM: ea8b0916bb0d20c308174ca1a02f17f1a9960d04
+PODFILE CHECKSUM: 16959887f7486d4e16dd2c31da6546a18a3c4476
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.10.1

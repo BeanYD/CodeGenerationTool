@@ -180,7 +180,7 @@
     self.previousButton = button;
     button.enabled = NO;
     
-    [self.drawView resetCursor];
+//    [self.drawView resetCursor];
 }
 
 #pragma mark - Getter

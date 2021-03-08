@@ -28,6 +28,7 @@
 		04AE731E25F223E50057F3B6 /* CGTExcelWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AE731D25F223E50057F3B6 /* CGTExcelWindowController.m */; };
 		04AE732725F223FB0057F3B6 /* CGTExcelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AE732625F223FB0057F3B6 /* CGTExcelViewController.m */; };
 		04AE732C25F225E00057F3B6 /* ClassInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04AE732B25F225E00057F3B6 /* ClassInfo.plist */; };
+		04AE738525F6133D0057F3B6 /* CGTExcelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AE738425F6133D0057F3B6 /* CGTExcelModel.m */; };
 		04D496BD25BEDD4C007A0157 /* CGTDrawWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D496BC25BEDD4C007A0157 /* CGTDrawWindowController.m */; };
 		04D496C625BEDD58007A0157 /* CGTDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D496C525BEDD58007A0157 /* CGTDrawViewController.m */; };
 		04D496D225BFBD24007A0157 /* CGTDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D496D125BFBD24007A0157 /* CGTDrawView.m */; };
@@ -126,6 +127,8 @@
 		04AE732525F223FB0057F3B6 /* CGTExcelViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTExcelViewController.h; sourceTree = "<group>"; };
 		04AE732625F223FB0057F3B6 /* CGTExcelViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTExcelViewController.m; sourceTree = "<group>"; };
 		04AE732B25F225E00057F3B6 /* ClassInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ClassInfo.plist; sourceTree = "<group>"; };
+		04AE738325F6133D0057F3B6 /* CGTExcelModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTExcelModel.h; sourceTree = "<group>"; };
+		04AE738425F6133D0057F3B6 /* CGTExcelModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTExcelModel.m; sourceTree = "<group>"; };
 		04D496BB25BEDD4C007A0157 /* CGTDrawWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTDrawWindowController.h; sourceTree = "<group>"; };
 		04D496BC25BEDD4C007A0157 /* CGTDrawWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTDrawWindowController.m; sourceTree = "<group>"; };
 		04D496C425BEDD58007A0157 /* CGTDrawViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTDrawViewController.h; sourceTree = "<group>"; };
@@ -321,6 +324,8 @@
 		04AE731A25F223C70057F3B6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				04AE738325F6133D0057F3B6 /* CGTExcelModel.h */,
+				04AE738425F6133D0057F3B6 /* CGTExcelModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -992,6 +997,7 @@
 				D752E11E25885D560054EC04 /* NSTableCellView+Tip.m in Sources */,
 				D7574AA424C681D800EEEA98 /* CGTUpdateView.m in Sources */,
 				D7FCAFA8257BB39B00B9715E /* CGTCreateViewController.m in Sources */,
+				04AE738525F6133D0057F3B6 /* CGTExcelModel.m in Sources */,
 				043E01A42542BA130089AB8C /* CGTProcessRateTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
