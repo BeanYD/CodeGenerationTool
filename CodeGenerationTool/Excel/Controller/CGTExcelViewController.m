@@ -18,6 +18,8 @@
 @property (nonatomic, strong) NSTableView *tableView;
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
+
+@property (nonatomic, strong) NSMutableArray *sheetButtons;
 @end
 
 @implementation CGTExcelViewController
@@ -28,10 +30,8 @@
     
     [self.view addSubview:self.importButton];
     [self.view addSubview:self.exportButton];
-
     
     [self layoutSubviews];
-    
 }
 
 - (void)layoutSubviews {
@@ -46,6 +46,7 @@
         make.left.equalTo(self.view.mas_centerX).offset(20);
         make.top.equalTo(self.importButton);
     }];
+
 }
 
 #pragma mark - Button Click
@@ -67,7 +68,23 @@
         if (result == NSModalResponseOK) {
             NSString *path = [panel.URL path];
             
-            NSArray *sheetArray = [CGTExcelModel readSheetArrayFromPath:path];
+            NSDictionary *sheetInfo = [CGTExcelModel readSheetInfosFromPath:path];
+            
+            for (int i = 0; i < sheetInfo.allKeys.count; i++) {
+                NSString *sheetTitle = sheetInfo.allKeys[i];
+                NSButton *sheetBtn = [[NSButton alloc] init];
+                sheetBtn.title = sheetTitle;
+                sheetBtn.target = self;
+                sheetBtn.tag = 100 + i;
+                sheetBtn.action = @selector(sheetBtnClick:);
+                [self.view addSubview:sheetBtn];
+                [self.sheetButtons addObject:sheetBtn];
+                [sheetBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.equalTo(self.view).offset(20);
+                    make.top.equalTo(self.importButton.mas_bottom).offset(60 * i);
+                }];
+                
+            }
         }
         
     }];
@@ -77,8 +94,13 @@
     
 }
 
+- (void)sheetBtnClick:(NSButton *)button {
+    
+}
+
 #pragma mark - NSTableViewDataSource && NSTableViewDelegate
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
+    
     return self.dataArray.count;
 }
 

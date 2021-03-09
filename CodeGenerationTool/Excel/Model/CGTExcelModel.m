@@ -50,14 +50,14 @@
 }
 
 // 导入excel内容
-+ (NSArray *)readSheetArrayFromPath:(NSString *)path {
++ (NSDictionary *)readSheetInfosFromPath:(NSString *)path {
     
     NSString *xlStr = [self unzipExcelWithPath:path];
     NSArray *textArray = [self readTextXMLFromPath:xlStr];
     
     NSString *workSheetStr = [xlStr stringByAppendingPathComponent:@"worksheets"];
     NSArray *files = [[NSFileManager defaultManager] subpathsOfDirectoryAtPath:workSheetStr error:nil];
-    NSMutableArray *sheetArray = [NSMutableArray array];
+    NSMutableDictionary *sheetInfo = [NSMutableDictionary dictionary];
     for (int i = 0; i < files.count; i++) {
         NSString *fileName = files[i];
         NSString *sheetPath = [workSheetStr stringByAppendingPathComponent:fileName];
@@ -88,6 +88,27 @@
             NSMutableArray *colArray = [NSMutableArray array];
             for (int k = 0; k < colEles.count; k++) {
                 GDataXMLElement *colEle = colEles[k];
+                
+                /**
+                 * 存在部分纯数字的内容不需要再sharedString.xml中查找内容
+                 *         <c r="B2" t="s" s="7"><v>19</v></c>
+                 *         存在 t="s" 需要到表中查找
+                 *         <c r="C2" s="8"><v>5</v></c>
+                 *         不存在 t="s" 直接获取内容即可
+                 */
+                
+                NSArray *attrs = colEle.attributes;
+                BOOL isIndex = NO;
+                int attrIndex = 0;
+                while (attrIndex < attrs.count) {
+                    GDataXMLNode *node = attrs[attrIndex];
+                    if ([node.name isEqualToString:@"t"]) {
+                        isIndex = YES;
+                        break;
+                    }
+                    attrIndex++;
+                }
+                
                 NSArray *vEles = [colEle elementsForName:@"v"];
                 
                 NSString *value;
@@ -103,10 +124,15 @@
                     continue;
                 }
                 
-                int index = vEle.stringValue.intValue;
-                if (textArray.count > index) {
-                    value = [textArray objectAtIndex:index];
-                    [colArray addObject:value];
+                if (isIndex) {
+                    int index = vEle.stringValue.intValue;
+                    // 如果index存在于textarray中
+                    if (textArray.count > index) {
+                        value = [textArray objectAtIndex:index];
+                        [colArray addObject:value];
+                    }
+                } else {
+                    [colArray addObject:vEle.stringValue];
                 }
             }
             
@@ -128,11 +154,11 @@
         }
         
         if (rowArray.count > 0) {
-            [sheetArray addObject:rowArray];
+            [sheetInfo setValue:rowArray forKey:fileName];
         }
     }
     
-    return sheetArray;
+    return sheetInfo;
 }
 
 + (NSArray *)readTextXMLFromPath:(NSString *)path {
@@ -143,18 +169,47 @@
     if (!doc) {
         return nil;
     }
-    
+    /**
+     * excel的文本xml根据格式存在各种标签
+     * 目前遇到的是单元格下有多个字体的时候会分标签
+     * <si>
+     *      <t>如果某细胞兴奋期周期的绝对不应期为2ms，理论上每秒内所能产生和传导的动作电位数最多不超过（   ）</t>
+     * </si>
+     * <si>
+     *      <r><rPr><sz val="10"/><color indexed="8"/><rFont val="Calibri"/></rPr><t>5</t></r>
+     *      <r><rPr><sz val="10"/><color indexed="8"/><rFont val="宋体"/></rPr><t>次</t></r>
+     * </si>
+     */
     NSArray *siEles = [doc.rootElement elementsForName:@"si"];
     
     NSMutableArray *textList = [NSMutableArray array];
     
     for (int i = 0; i < siEles.count; i++) {
         GDataXMLElement *siEle = siEles[i];
-        NSArray *tEles = [siEle elementsForName:@"t"];
         
-        if (tEles.count > 0) {
-            GDataXMLElement *tEle = [tEles lastObject];
-            NSString *text = tEle.stringValue;
+        // 先尝试查找r标签，不存在，则寻找t标签
+        NSArray *rEles = [siEle elementsForName:@"r"];
+        if (rEles.count == 0) {
+            NSArray *tEles = [siEle elementsForName:@"t"];
+            if (tEles.count > 0) {
+                GDataXMLElement *tEle = [tEles lastObject];
+                NSString *text = tEle.stringValue;
+                if (text.length == 0) {
+                    text = @"";
+                }
+                [textList addObject:text];
+            }
+        } else {
+            NSString *text = @"";
+            for (int k = 0; k < rEles.count; k++) {
+                GDataXMLElement *rEle = rEles[k];
+                NSArray *tEles = [rEle elementsForName:@"t"];
+                if (tEles.count > 0) {
+                    GDataXMLElement *tEle = [tEles lastObject];
+                    text = [text stringByAppendingString:tEle.stringValue];
+                }
+            }
+            text = [text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
             if (text.length == 0) {
                 text = @"";
             }
