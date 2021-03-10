@@ -29,6 +29,7 @@
 		04AE732725F223FB0057F3B6 /* CGTExcelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AE732625F223FB0057F3B6 /* CGTExcelViewController.m */; };
 		04AE732C25F225E00057F3B6 /* ClassInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04AE732B25F225E00057F3B6 /* ClassInfo.plist */; };
 		04AE738525F6133D0057F3B6 /* CGTExcelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AE738425F6133D0057F3B6 /* CGTExcelModel.m */; };
+		04AE738B25F86A150057F3B6 /* CGTTestModalWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AE738A25F86A150057F3B6 /* CGTTestModalWindowController.m */; };
 		04D496BD25BEDD4C007A0157 /* CGTDrawWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D496BC25BEDD4C007A0157 /* CGTDrawWindowController.m */; };
 		04D496C625BEDD58007A0157 /* CGTDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D496C525BEDD58007A0157 /* CGTDrawViewController.m */; };
 		04D496D225BFBD24007A0157 /* CGTDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D496D125BFBD24007A0157 /* CGTDrawView.m */; };
@@ -129,6 +130,8 @@
 		04AE732B25F225E00057F3B6 /* ClassInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ClassInfo.plist; sourceTree = "<group>"; };
 		04AE738325F6133D0057F3B6 /* CGTExcelModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTExcelModel.h; sourceTree = "<group>"; };
 		04AE738425F6133D0057F3B6 /* CGTExcelModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTExcelModel.m; sourceTree = "<group>"; };
+		04AE738925F86A150057F3B6 /* CGTTestModalWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTTestModalWindowController.h; sourceTree = "<group>"; };
+		04AE738A25F86A150057F3B6 /* CGTTestModalWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTTestModalWindowController.m; sourceTree = "<group>"; };
 		04D496BB25BEDD4C007A0157 /* CGTDrawWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTDrawWindowController.h; sourceTree = "<group>"; };
 		04D496BC25BEDD4C007A0157 /* CGTDrawWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTDrawWindowController.m; sourceTree = "<group>"; };
 		04D496C425BEDD58007A0157 /* CGTDrawViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTDrawViewController.h; sourceTree = "<group>"; };
@@ -266,6 +269,8 @@
 				043E01AB2542BB710089AB8C /* CGTCommonDemoWindowController.m */,
 				043E01B32542BD480089AB8C /* CGTCommonDemoViewController.h */,
 				043E01B42542BD480089AB8C /* CGTCommonDemoViewController.m */,
+				04AE738925F86A150057F3B6 /* CGTTestModalWindowController.h */,
+				04AE738A25F86A150057F3B6 /* CGTTestModalWindowController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -970,6 +975,7 @@
 				04D496BD25BEDD4C007A0157 /* CGTDrawWindowController.m in Sources */,
 				04D496E225BFE521007A0157 /* CustomDrawingTools.m in Sources */,
 				D793D8582526E26B00497562 /* CGTOpenglWindowController.m in Sources */,
+				04AE738B25F86A150057F3B6 /* CGTTestModalWindowController.m in Sources */,
 				D72A368425283BF300C82A44 /* CGTDDCollectionViewItem.m in Sources */,
 				043E01922542AF040089AB8C /* CGTCustomTableHeaderCell.m in Sources */,
 				043E0101253EEA7B0089AB8C /* CommonTitleBarViewController.m in Sources */,

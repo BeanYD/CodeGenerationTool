@@ -14,6 +14,8 @@
 
 @property (strong) CGTProcessRateView *rateView;
 
+@property (strong) NSWindowController *testWindow;
+
 @end
 
 @implementation CGTCommonDemoViewController
@@ -41,6 +43,11 @@
 
 - (void)updateProcess:(NSButton *)button {
     [self.rateView updateProcess:30.];
+    
+    
+    self.testWindow = [self windowColMakingFromWindowColName:@"CGTTestModalWindowController"];
+    [NSApp runModalForWindow:self.testWindow.window];
+
 }
 
 @end

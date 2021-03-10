@@ -141,11 +141,11 @@
     NSWindowController *winCol = [self windowColMakingFromWindowColName:winColName];
     NSAssert(winCol, @"%@不存在，请创建", winColName);
     
-//    [winCol.window makeKeyAndOrderFront:nil];
+    [winCol.window makeKeyAndOrderFront:nil];
     
     // 模态窗口-关闭时停止modal
-    [NSApp runModalForWindow:winCol.window];
-    
+//    [NSApp runModalForWindow:winCol.window];
+        
     for (int i = 0; i < self.winColList.count; i++) {
         NSWindowController *listWinCol = self.winColList[i];
         if ([NSStringFromClass([listWinCol class]) isEqualToString:winColName]) {

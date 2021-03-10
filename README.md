@@ -105,6 +105,40 @@ App的主页面，所有其他窗口都由该页面进入
 
 子窗口显示方式：模态
 
+```objective-c
+/** 
+ *  Application.h
+ *  应用层的模态，所有其他窗口都无法使用
+ */
+[NSApp runModalForWindow:modalWindow];
+[NSApp stopModal];
+
+/** 
+ *  NSWindow.h
+ *  窗口添加子窗口，位置相对父窗口移动，随父窗口的关闭而关闭，但是父窗口其他功能可以使用
+ */
+[fatherWindow addChildWindow:childWindow ordered:NSWindowAbove];
+
+/** 
+ *  NSWindow.h
+ *  sheet的方式出现在窗口中
+ */
+[window beginSheet:sheetWindow completionHandler:^(NSModalResponse returnCode) {}];
+[window endSheet:sheetWindow];
+
+/** 
+ *  NSViewController.h
+ *  NSViewControllerPresentationAndTransitionStyles
+ *  viewController弹出和转场框
+ */
+- (void)presentViewControllerAsSheet:(NSViewController *)viewController;
+- (void)presentViewControllerAsModalWindow:(NSViewController *)viewController;
+- (void)presentViewController:(NSViewController *)viewController asPopoverRelativeToRect:(NSRect)positioningRect ofView:(NSView *)positioningView preferredEdge:(NSRectEdge)preferredEdge behavior:(NSPopoverBehavior)behavior;
+- (void)transitionFromViewController:(NSViewController *)fromViewController toViewController:(NSViewController *)toViewController options:(NSViewControllerTransitionOptions)options completionHandler:(void (^ _Nullable)(void))completion API_AVAILABLE(macos(10.10));
+```
+
+
+
 ## Opengl模块
 
 待开发
