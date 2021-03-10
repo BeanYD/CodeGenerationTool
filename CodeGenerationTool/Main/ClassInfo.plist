@@ -34,18 +34,6 @@
 			<key>winCol</key>
 			<string>CGTOpenglWindowController</string>
 		</dict>
-		<dict>
-			<key>name</key>
-			<string>网格</string>
-			<key>winCol</key>
-			<string>CGTDDCollectionWindowController</string>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>列表</string>
-			<key>winCol</key>
-			<string>CGTDDTableWindowController</string>
-		</dict>
 	</array>
 </dict>
 </plist>

@@ -58,6 +58,8 @@
     NSWindow *window = noti.object;
     if (window == self.window) {
         [NSApp terminate:nil];
+    } else {
+        [NSApp stopModal];
     }
 }
 
