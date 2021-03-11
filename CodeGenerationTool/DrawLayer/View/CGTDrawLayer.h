@@ -49,10 +49,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (CGTDrawLayer *)layerWithFrame:(CGRect)frame strokeColor:(NSColor *)strokeColor lineWidth:(CGFloat)lineWidth;
 
 // 连续线条
-// 方式1
+// 方式1-粗线条下，保证曲线弧度完整
 - (void)setBezierCurveStartPoint:(NSPoint)startPoint;
 - (void)drawBezierCurveFromPoint:(NSPoint)startPoint toPoint:(NSPoint)endPoint;
-// 方式2
+// 方式2-直线方式绘制，没有弧度，曲线的弧度容易消失
 - (void)drawCurveFromPoint:(NSPoint)startPoint toPoint:(NSPoint)endPoint;
 
 // 直线(实线虚线由外部定义)
