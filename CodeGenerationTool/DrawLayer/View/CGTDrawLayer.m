@@ -7,12 +7,14 @@
 //
 
 #import "CGTDrawLayer.h"
+#import "NSBezierPath+CGPath.h"
 
 @implementation CGTDrawLayer
 
 - (instancetype)init {
     if (self = [super init]) {
         _path = CGPathCreateMutable();
+        _bezierPath = [NSBezierPath bezierPath];
     }
     
     return self;
@@ -27,12 +29,27 @@
     return drawLayer;
 }
 
+- (void)updateLayerFrame:(CGRect)frame {
+    
+}
+
 #pragma mark - Draw Lines
+- (void)setBezierCurveStartPoint:(NSPoint)startPoint {
+    [_bezierPath moveToPoint:startPoint];
+}
+
+- (void)drawBezierCurveFromPoint:(NSPoint)startPoint toPoint:(NSPoint)endPoint {
+    [_bezierPath curveToPoint:startPoint controlPoint1:endPoint controlPoint2:NSMakePoint((startPoint.x + endPoint.x) / 2, (startPoint.y + endPoint.y) / 2)];
+    self.path = [_bezierPath CGPath];
+}
+
 - (void)drawCurveFromPoint:(NSPoint)startPoint toPoint:(NSPoint)endPoint {
     CGPathMoveToPoint(_path, NULL, startPoint.x, startPoint.y);
     CGPathAddLineToPoint(_path, NULL, endPoint.x, endPoint.y);
     CGPathCloseSubpath(_path);
     self.path = _path;
+
+    
 }
 
 - (void)drawDireLineFromPoint:(NSPoint)startPoint toPoint:(NSPoint)endPoint {

@@ -80,8 +80,8 @@
                 [self.view addSubview:sheetBtn];
                 [self.sheetButtons addObject:sheetBtn];
                 [sheetBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.left.equalTo(self.view).offset(20);
-                    make.top.equalTo(self.importButton.mas_bottom).offset(60 * i);
+                    make.left.equalTo(self.view).offset(100);
+                    make.top.equalTo(self.importButton.mas_bottom).offset(20 * i);
                 }];
                 
             }

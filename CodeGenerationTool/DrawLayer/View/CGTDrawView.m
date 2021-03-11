@@ -464,4 +464,16 @@
 
 }
 
+- (void)setFrame:(NSRect)frame {
+    [super setFrame:frame];
+    
+    // 更新tracking内容
+    [self resetTrackingArea];
+    
+    for (int i = 0; i < self.drawLayers.count; i++) {
+        CGTDrawModel *model = self.drawLayers[i];
+        model.drawLayer.bounds = self.bounds;
+    }
+}
+
 @end

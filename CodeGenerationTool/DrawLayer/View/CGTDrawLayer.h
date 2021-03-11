@@ -42,12 +42,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CGTDrawLayer : CAShapeLayer {
     CGMutablePathRef _path;     // 画连续线条的path
+    NSBezierPath *_bezierPath;        // 使用贝塞尔画线
     CGRect _borderRect;         // 显示线条所在区域边框的rect
 }
 
 + (CGTDrawLayer *)layerWithFrame:(CGRect)frame strokeColor:(NSColor *)strokeColor lineWidth:(CGFloat)lineWidth;
 
 // 连续线条
+// 方式1
+- (void)setBezierCurveStartPoint:(NSPoint)startPoint;
+- (void)drawBezierCurveFromPoint:(NSPoint)startPoint toPoint:(NSPoint)endPoint;
+// 方式2
 - (void)drawCurveFromPoint:(NSPoint)startPoint toPoint:(NSPoint)endPoint;
 
 // 直线(实线虚线由外部定义)

@@ -230,7 +230,7 @@
     
     BOOL succeed = [SSZipArchive unzipFileAtPath:path toDestination:unzipPath];
     
-    if (succeed) {
+    if (!succeed) {
         NSLog(@"解压xlsx的zip文件失败，直接返回");
         return nil;
     }
