@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSMutableArray *sheetButtons;
 
 @property (nonatomic, strong) NSDictionary *sheetDict;
+
 @end
 
 @implementation CGTExcelViewController
@@ -91,15 +92,14 @@
 }
 
 - (void)exportButtonClick:(NSButton *)button {
-    
+
 }
 
 - (void)sheetBtnClick:(NSButton *)button {
     NSString *name = button.title;
-    NSArray *rowArray = self.sheetDict[name];
+    NSArray *sheetArray = self.sheetDict[name];
     
-//    NSString *str = [rowArray componentsJoinedByString:@"\n"];
-    NSLog(@"data:%@", rowArray);
+    NSLog(@"%@", sheetArray);
 }
 
 #pragma mark - Setter && Getter

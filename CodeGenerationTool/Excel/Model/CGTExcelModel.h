@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CGTExcelModel : NSObject
 
++ (BOOL)writeExcelToPath:(NSString *)path data:(NSArray *)dataArray;
 + (NSDictionary *)readSheetInfosFromPath:(NSString *)path;
 
 @end
