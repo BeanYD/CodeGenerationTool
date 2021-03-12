@@ -32,6 +32,9 @@
 @property (assign) NSPoint lastLocation;
 @property (assign) NSRect selectRect;
 
+
+@property (assign) NSInteger testI;
+
 @end
 
 @implementation CGTDrawView
@@ -154,6 +157,11 @@
         model.type = self.type;
         model.startPoint = _previousPoint;
         [self.drawLayers addObject:model];
+        if (self.type == CGTDrawTypeDirectDash) {
+//            [model.drawLayer drawDireLineFromPoint:NSMakePoint(_previousPoint.x, _previousPoint.y) toPoint:NSMakePoint(_previousPoint.x + 100 + _testI, _previousPoint.y)];
+            [model.drawLayer setLineDashPattern:@[@(10), @(10)]];
+//            _testI++;
+        }
 //    } else if (self.type == CGTDrawTypeEraser) {
 //        self.eraserRect = NSMakeRect(_previousPoint.x, _previousPoint.y, 0, 0);
     } else if (self.type == CGTDrawTypeNormal) {
@@ -314,7 +322,6 @@
             model.endPoint = NSMakePoint(maxX, maxY);
             _previousPoint = _currentPoint;
         } else if (self.type == CGTDrawTypeDirectDash) {
-            [model.drawLayer setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithInt:10], [NSNumber numberWithInt:10], nil]];
             [model.drawLayer drawDireLineFromPoint:_previousPoint toPoint:_currentPoint];
         } else if (self.type == CGTDrawTypeDirectLine) {
             [model.drawLayer drawDireLineFromPoint:_previousPoint toPoint:_currentPoint];

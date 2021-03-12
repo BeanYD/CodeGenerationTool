@@ -46,7 +46,6 @@
 - (void)drawCurveFromPoint:(NSPoint)startPoint toPoint:(NSPoint)endPoint {
     CGPathMoveToPoint(_path, NULL, startPoint.x, startPoint.y);
     CGPathAddLineToPoint(_path, NULL, endPoint.x, endPoint.y);
-    CGPathCloseSubpath(_path);
     self.path = _path;
 
     
@@ -56,9 +55,7 @@
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathMoveToPoint(path, NULL, startPoint.x, startPoint.y);
     CGPathAddLineToPoint(path, NULL, endPoint.x, endPoint.y);
-    CGPathCloseSubpath(path);
     self.path = path;
-//    CGPathRelease(path);
 }
 
 - (void)drawArrowDireLineFromPoint:(NSPoint)startPoint toPoint:(NSPoint)endPoint {
@@ -73,8 +70,8 @@
     CGPathAddLineToPoint(path, NULL, endPoint.x-((startPoint.y-endPoint.y)/r),endPoint.y-((endPoint.x-startPoint.x)/r));
     CGPathAddLineToPoint(path, NULL, endPoint.x+(2*(endPoint.x-startPoint.x)/r), endPoint.y-(2*(startPoint.y-endPoint.y)/r));
     CGPathAddLineToPoint(path, NULL, endPoint.x+((startPoint.y-endPoint.y)/r),endPoint.y+((endPoint.x-startPoint.x)/r));
-    
     CGPathCloseSubpath(path);
+    
     self.path = path;
     
     
@@ -166,7 +163,6 @@
     CGPathAddLineToPoint(path, NULL, 0, 4);
     drawRect.origin.y = -4;
     CGPathAddRect(path, NULL, drawRect);
-    CGPathCloseSubpath(path);
     self.path = path;
 }
 
@@ -243,7 +239,6 @@
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathMoveToPoint(path, NULL, rect.origin.x, rect.origin.y);
     CGPathAddRect(path, NULL, rect);
-    CGPathCloseSubpath(path);
     self.path = path;
 }
 
@@ -254,7 +249,6 @@
     CGPathAddLineToPoint(path, NULL, rect.origin.x + rect.size.width, rect.origin.y + rect.size.height);
     CGPathAddLineToPoint(path, NULL, rect.origin.x, rect.origin.y + rect.size.height);
     CGPathAddLineToPoint(path, NULL, rect.origin.x, rect.origin.y);
-    CGPathCloseSubpath(path);
     self.path = path;
 }
 
@@ -262,7 +256,6 @@
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathMoveToPoint(path, NULL, rect.origin.x, rect.origin.y);
     CGPathAddEllipseInRect(path, NULL, rect);
-    CGPathCloseSubpath(path);
     self.path = path;
 }
 
