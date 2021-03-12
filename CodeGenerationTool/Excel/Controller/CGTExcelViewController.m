@@ -9,17 +9,13 @@
 #import "CGTExcelViewController.h"
 #import "CGTExcelModel.h"
 
-@interface CGTExcelViewController () <NSTableViewDataSource, NSTableViewDelegate>
+@interface CGTExcelViewController ()
 
 @property (nonatomic, strong) NSButton *importButton;
 @property (nonatomic, strong) NSButton *exportButton;
-
-@property (nonatomic, strong) NSScrollView *scrollView;
-@property (nonatomic, strong) NSTableView *tableView;
-
-@property (nonatomic, strong) NSMutableArray *dataArray;
-
 @property (nonatomic, strong) NSMutableArray *sheetButtons;
+
+@property (nonatomic, strong) NSDictionary *sheetDict;
 @end
 
 @implementation CGTExcelViewController
@@ -30,19 +26,17 @@
     
     [self.view addSubview:self.importButton];
     [self.view addSubview:self.exportButton];
-    
+
     [self layoutSubviews];
 }
 
 - (void)layoutSubviews {
     [self.importButton mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(self.view).offset(20);
         make.right.equalTo(self.view.mas_centerX).offset(-20);
         make.top.equalTo(self.view).offset(20);
     }];
     
     [self.exportButton mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(self.importButton.mas_right).offset(20);
         make.left.equalTo(self.view.mas_centerX).offset(20);
         make.top.equalTo(self.importButton);
     }];
@@ -68,8 +62,14 @@
         if (result == NSModalResponseOK) {
             NSString *path = [panel.URL path];
             
-            NSDictionary *sheetInfo = [CGTExcelModel readSheetInfosFromPath:path];
+            for (int i = 0; i < self.sheetButtons.count; i++) {
+                NSButton *button = self.sheetButtons[i];
+                [button removeFromSuperview];
+            }
+            [self.sheetButtons removeAllObjects];
             
+            NSDictionary *sheetInfo = [CGTExcelModel readSheetInfosFromPath:path];
+            self.sheetDict = sheetInfo;
             for (int i = 0; i < sheetInfo.allKeys.count; i++) {
                 NSString *sheetTitle = sheetInfo.allKeys[i];
                 NSButton *sheetBtn = [[NSButton alloc] init];
@@ -81,7 +81,7 @@
                 [self.sheetButtons addObject:sheetBtn];
                 [sheetBtn mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.left.equalTo(self.view).offset(100);
-                    make.top.equalTo(self.importButton.mas_bottom).offset(20 * i);
+                    make.top.equalTo(self.importButton.mas_bottom).offset(40 * i + 40);
                 }];
                 
             }
@@ -95,35 +95,11 @@
 }
 
 - (void)sheetBtnClick:(NSButton *)button {
+    NSString *name = button.title;
+    NSArray *rowArray = self.sheetDict[name];
     
-}
-
-#pragma mark - NSTableViewDataSource && NSTableViewDelegate
-- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
-    
-    return self.dataArray.count;
-}
-
-- (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    NSTableCellView *cellView = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
-    if (!cellView) {
-        cellView = [[NSTableCellView alloc] init];
-    }
-    NSTextField *textField = [[NSTextField alloc] init];
-    textField.editable = NO;
-    textField.usesSingleLineMode = YES;
-    textField.drawsBackground = YES;
-    textField.backgroundColor = [NSColor clearColor];
-    textField.textColor = [NSColor blackColor];
-    textField.font = [NSFont systemFontOfSize:12.f];
-    [cellView addSubview:textField];
-    [textField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(cellView);
-    }];
-    
-    textField.stringValue = self.dataArray[row];
-    
-    return cellView;
+//    NSString *str = [rowArray componentsJoinedByString:@"\n"];
+    NSLog(@"data:%@", rowArray);
 }
 
 #pragma mark - Setter && Getter
@@ -147,33 +123,6 @@
     }
     
     return _exportButton;
-}
-
-- (NSScrollView *)scrollView {
-    if (!_scrollView) {
-        _scrollView = [[NSScrollView alloc] init];
-    }
-    
-    return _scrollView;
-}
-
-- (NSTableView *)tableView {
-    if (!_tableView) {
-        _tableView = [[NSTableView alloc] init];
-        _tableView.dataSource = self;
-        _tableView.delegate = self;
-        _tableView.selectionHighlightStyle = NSTableViewSelectionHighlightStyleNone;
-    }
-    
-    return _tableView;
-}
-
-- (NSMutableArray *)dataArray {
-    if (!_dataArray) {
-        _dataArray = [NSMutableArray array];
-    }
-    
-    return _dataArray;
 }
 
 @end

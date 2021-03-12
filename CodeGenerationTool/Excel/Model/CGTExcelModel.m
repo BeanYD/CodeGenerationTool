@@ -158,6 +158,10 @@
         }
     }
     
+    NSString *removePath = [xlStr stringByDeletingLastPathComponent];
+    
+    [[NSFileManager defaultManager] removeItemAtPath:removePath error:nil];
+    
     return sheetInfo;
 }
 
