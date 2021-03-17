@@ -54,6 +54,7 @@
     
     NSString *xlStr = [self unzipExcelWithPath:path];
     NSArray *textArray = [self readTextXMLFromPath:xlStr];
+    NSArray *sheetInfos = [self readSheetFileInfosFromXlPath:xlStr];
     
     NSString *workSheetStr = [xlStr stringByAppendingPathComponent:@"worksheets"];
     NSArray *files = [[NSFileManager defaultManager] subpathsOfDirectoryAtPath:workSheetStr error:nil];
@@ -154,6 +155,11 @@
         }
         
         if (rowArray.count > 0) {
+            if (i < sheetInfos.count) {
+                NSDictionary *fileInfo = sheetInfos[i];
+                fileName = [fileInfo valueForKey:@"sheetName"];
+            }
+            
             [sheetInfo setValue:rowArray forKey:fileName];
         }
     }
@@ -222,6 +228,50 @@
     }
     
     return textList;
+}
+
++ (NSArray *)readSheetFileInfosFromPath:(NSString *)path {
+    NSString *xlStr = [self unzipExcelWithPath:path];
+    return  [self readSheetFileInfosFromXlPath:xlStr];
+}
+
++ (NSArray *)readSheetFileInfosFromXlPath:(NSString *)xlPath {
+    NSString *workBookStr = [xlPath stringByAppendingPathComponent:@"workbook.xml"];
+    NSData *data = [[NSData alloc] initWithContentsOfFile:workBookStr];
+    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:data error:nil];
+    if (!doc) {
+        return nil;
+    }
+    
+    NSArray *sheetsEles = [doc.rootElement elementsForName:@"sheets"];
+    
+    NSMutableArray *sheetInfos = [NSMutableArray array];
+    
+    if (sheetsEles.count == 0) {
+        return nil;
+    }
+    
+    GDataXMLElement *sheetsEle = [sheetsEles lastObject];
+    NSArray *sheetEles = [sheetsEle elementsForName:@"sheet"];
+    
+    
+    for (int i = 0; i < sheetEles.count; i++) {
+        GDataXMLElement *sheetEle = sheetEles[i];
+        NSArray *attrs = sheetEle.attributes;
+        NSMutableDictionary *fileInfo = [NSMutableDictionary dictionary];
+        for (int j = 0; j < attrs.count; j++) {
+            GDataXMLNode *node = attrs[j];
+            if ([node.name isEqualToString:@"name"]) {
+                [fileInfo setValue:node.stringValue forKey:@"sheetName"];
+            }
+            if ([node.name isEqualToString:@"sheetId"]) {
+                [fileInfo setValue:node.stringValue forKey:@"sheetIndex"];
+            }
+        }
+        [sheetInfos addObject:fileInfo];
+    }
+    
+    return sheetInfos;
 }
 
 + (NSString *)unzipExcelWithPath:(NSString *)path {
