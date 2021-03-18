@@ -12,6 +12,8 @@
 @interface CGTDrawViewController ()
 
 @property (nonatomic, strong) NSButton *lineButton;
+@property (nonatomic, strong) NSButton *thinButton;
+@property (nonatomic, strong) NSButton *thinkerButton;
 @property (nonatomic, strong) NSButton *direLineButton;
 @property (nonatomic, strong) NSButton *direDashButton;
 @property (nonatomic, strong) NSButton *arrowLineButton;
@@ -38,6 +40,8 @@
     [self.view addSubview:self.drawView];
     [self.view addSubview:self.normalButton];
     [self.view addSubview:self.lineButton];
+    [self.view addSubview:self.thinButton];
+    [self.view addSubview:self.thinkerButton];
     [self.view addSubview:self.direLineButton];
     [self.view addSubview:self.direDashButton];
     [self.view addSubview:self.arrowLineButton];
@@ -62,9 +66,19 @@
         make.top.equalTo(self.normalButton.mas_bottom).offset(10);
     }];
     
-    [self.direLineButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.thinButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.normalButton);
         make.top.equalTo(self.lineButton.mas_bottom).offset(10);
+    }];
+    
+    [self.thinkerButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.thinButton.mas_right).offset(10);
+        make.top.equalTo(self.thinButton);
+    }];
+    
+    [self.direLineButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.normalButton);
+        make.top.equalTo(self.thinButton.mas_bottom).offset(10);
     }];
     
     [self.direDashButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -118,6 +132,20 @@
 - (void)lineButtonClick:(NSButton *)button {
     self.drawView.type = CGTDrawTypeCurveLine;
     [self updateButton:button];
+}
+
+- (void)thinButtonClick:(NSButton *)button {
+    if (self.drawView.lineWidth <= 1) {
+        return;
+    }
+    self.drawView.lineWidth--;
+}
+
+- (void)thinkerButtonClick:(NSButton *)button {
+    if (self.drawView.lineWidth >= 20) {
+        return;
+    }
+    self.drawView.lineWidth++;
 }
 
 - (void)direLineButtonClick:(NSButton *)button {
@@ -188,6 +216,7 @@
 - (CGTDrawView *)drawView {
     if (!_drawView) {
         _drawView = [[CGTDrawView alloc] init];
+        _drawView.lineWidth = 1.0f;
     }
     
     return _drawView;
@@ -202,6 +231,28 @@
     }
     
     return _normalButton;
+}
+
+- (NSButton *)thinButton {
+    if (!_thinButton) {
+        _thinButton = [[NSButton alloc] init];
+        _thinButton.title = @"-";
+        _thinButton.target = self;
+        _thinButton.action = @selector(thinButtonClick:);
+    }
+    
+    return _thinButton;
+}
+
+- (NSButton *)thinkerButton {
+    if (!_thinkerButton) {
+        _thinkerButton = [[NSButton alloc] init];
+        _thinkerButton.title = @"+";
+        _thinkerButton.target = self;
+        _thinkerButton.action = @selector(thinkerButtonClick:);
+    }
+    
+    return _thinkerButton;
 }
 
 - (NSButton *)lineButton {

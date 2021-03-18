@@ -39,7 +39,7 @@
 }
 
 - (void)drawBezierCurveFromPoint:(NSPoint)startPoint toPoint:(NSPoint)endPoint {
-    [_bezierPath curveToPoint:startPoint controlPoint1:endPoint controlPoint2:NSMakePoint((startPoint.x + endPoint.x) / 2, (startPoint.y + endPoint.y) / 2)];
+    [_bezierPath curveToPoint:endPoint controlPoint1:startPoint controlPoint2:NSMakePoint((startPoint.x + endPoint.x) / 2, (startPoint.y + endPoint.y) / 2)];
     self.path = [_bezierPath CGPath];
 }
 

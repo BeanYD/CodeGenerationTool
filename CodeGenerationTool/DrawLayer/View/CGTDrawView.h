@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (assign) CGTDrawType type;
 
+@property (assign) int lineWidth;
+
 - (void)loadImage:(NSImage *)image;
 
 - (void)resetCursor;

@@ -142,11 +142,12 @@
         if (self.type == CGTDrawTypeEraser) {
             // 有透明度方面修改，修改color的alpha值
             drawLayer.strokeColor = [NSColor redColor].CGColor;
+            drawLayer.lineWidth = 2.0f;
         } else {
             drawLayer.strokeColor = [NSColor blueColor].CGColor;
+            drawLayer.lineWidth = self.lineWidth;
         }
         
-        drawLayer.lineWidth = 1.f;
         drawLayer.strokeStart = 0;
         drawLayer.strokeEnd = 1;
         [self.layer addSublayer:drawLayer];
@@ -157,7 +158,9 @@
         model.type = self.type;
         model.startPoint = _previousPoint;
         [self.drawLayers addObject:model];
-        if (self.type == CGTDrawTypeDirectDash) {
+        if (self.type == CGTDrawTypeCurveLine) {
+            [model.drawLayer setBezierCurveStartPoint:_previousPoint];
+        } else if (self.type == CGTDrawTypeDirectDash) {
 //            [model.drawLayer drawDireLineFromPoint:NSMakePoint(_previousPoint.x, _previousPoint.y) toPoint:NSMakePoint(_previousPoint.x + 100 + _testI, _previousPoint.y)];
             [model.drawLayer setLineDashPattern:@[@(10), @(10)]];
 //            _testI++;
@@ -311,7 +314,8 @@
         // 画线
         CGTDrawModel *model = [self.drawLayers objectAtIndex:self.currentIndex];
         if (self.type == CGTDrawTypeCurveLine) {
-            [model.drawLayer drawCurveFromPoint:_previousPoint toPoint:_currentPoint];
+//            [model.drawLayer drawCurveFromPoint:_previousPoint toPoint:_currentPoint];
+            [model.drawLayer drawBezierCurveFromPoint:_previousPoint toPoint:_currentPoint];
             // 更新model中的startPoint和endPoint
             CGFloat minX = MIN(model.startPoint.x, _previousPoint.x);
             CGFloat minY = MIN(model.startPoint.y, _previousPoint.y);
