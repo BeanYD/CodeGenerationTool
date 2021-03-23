@@ -52,6 +52,10 @@ NS_ASSUME_NONNULL_BEGIN
 // 方式1-粗线条下，保证曲线弧度完整
 - (void)setBezierCurveStartPoint:(NSPoint)startPoint;
 - (void)drawBezierCurveFromPoint:(NSPoint)startPoint toPoint:(NSPoint)endPoint;
+
+// 笔锋
+- (void)drawBezierCurveStrokeFromPoint:(NSPoint)startPoint toPoint:(NSPoint)endPoint;
+
 // 方式2-直线方式绘制，没有弧度，曲线的弧度容易消失
 - (void)drawCurveFromPoint:(NSPoint)startPoint toPoint:(NSPoint)endPoint;
 

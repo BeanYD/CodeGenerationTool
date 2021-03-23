@@ -15,6 +15,8 @@
     if (self = [super init]) {
         _path = CGPathCreateMutable();
         _bezierPath = [NSBezierPath bezierPath];
+        _bezierPath.lineCapStyle = NSLineCapStyleRound;
+        _bezierPath.lineJoinStyle = NSLineJoinStyleRound;
     }
     
     return self;
@@ -36,6 +38,13 @@
 #pragma mark - Draw Lines
 - (void)setBezierCurveStartPoint:(NSPoint)startPoint {
     [_bezierPath moveToPoint:startPoint];
+    
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGFloat r = self.lineWidth / 2;
+    CGPathMoveToPoint(path, NULL, startPoint.x - r, startPoint.y - r);
+    CGPathAddEllipseInRect(path, NULL, NSMakeRect(startPoint.x - r, startPoint.y - r, r * 2, r * 2));
+    
+    self.path = path;
 }
 
 - (void)drawBezierCurveFromPoint:(NSPoint)startPoint toPoint:(NSPoint)endPoint {
@@ -43,12 +52,69 @@
     self.path = [_bezierPath CGPath];
 }
 
+- (void)drawBezierCurveStrokeFromPoint:(NSPoint)startPoint toPoint:(NSPoint)endPoint {
+    
+    CGFloat widthStep = self.lineWidth / 100;
+
+    CGFloat oriWidth = self.lineWidth;
+
+    CGFloat xStep = (endPoint.x - startPoint.x) / 100;
+    CGFloat yStep = (endPoint.y - startPoint.y) / 100;
+
+    NSPoint startP = startPoint;
+    for (int i = 0; i < 100; i++) {
+        NSPoint endP = NSMakePoint(startPoint.x + i * xStep, startPoint.y + i * yStep);
+        CGFloat width = oriWidth - widthStep * i;
+
+        CGTDrawLayer *subLayer = [CGTDrawLayer layerWithFrame:self.bounds strokeColor:[NSColor colorWithCGColor:self.strokeColor] lineWidth:width];
+        [subLayer setBezierCurveStartPoint:startP];
+        [subLayer drawBezierCurveFromPoint:startP toPoint:endP];
+
+        [self addSublayer:subLayer];
+    }
+    
+//    CGFloat widthStep = self.lineWidth / 100;
+//
+//    CGFloat oriWidth = self.lineWidth;
+//
+//    CGFloat xStep = (endPoint.x - startPoint.x) / 100;
+//    CGFloat yStep = (endPoint.y - startPoint.y) / 100;
+//
+//    NSPoint startP = startPoint;
+//    for (int i = 0; i < 100; i++) {
+//        CGFloat width = oriWidth - widthStep * i;
+//
+//        NSBezierPath *newBez = [[NSBezierPath alloc] init];
+//        newBez.lineWidth = width;
+//        [newBez moveToPoint:startP];
+//
+//        NSPoint endP = NSMakePoint(startPoint.x + i * xStep, startPoint.y + i * yStep);
+//
+//        [newBez curveToPoint:endP controlPoint1:startP controlPoint2:NSMakePoint((startP.x + endP.x) / 2, (startP.y + endP.y) / 2)];
+//
+//        [_bezierPath appendBezierPath:newBez];
+//
+//        startP = endP;
+//    }
+    
+//    CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
+//    CGContextAddPath(context, [_bezierPath CGPath]);
+//    CGContextSetLineCap(context, kCGLineCapRound);
+//    CGContextSetLineJoin(context, kCGLineJoinRound);
+//    CGContextSetLineWidth(context, self.lineWidth);
+//    CGContextSetStrokeColorWithColor(context, self.strokeColor);
+//    CGContextSetAlpha(context, 1.f);
+//    CGContextStrokePath(context);
+//    [_bezierPath stroke];
+
+    self.path = [_bezierPath CGPath];
+}
+
 - (void)drawCurveFromPoint:(NSPoint)startPoint toPoint:(NSPoint)endPoint {
     CGPathMoveToPoint(_path, NULL, startPoint.x, startPoint.y);
-    CGPathAddLineToPoint(_path, NULL, endPoint.x, endPoint.y);
+//    CGPathAddLineToPoint(_path, NULL, endPoint.x, endPoint.y);
+    CGPathAddCurveToPoint(_path, NULL, startPoint.x, startPoint.y, (startPoint.x + endPoint.x) / 2, (startPoint.y + endPoint.y) / 2, endPoint.x, endPoint.y);
     self.path = _path;
-
-    
 }
 
 - (void)drawDireLineFromPoint:(NSPoint)startPoint toPoint:(NSPoint)endPoint {

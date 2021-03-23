@@ -14,6 +14,7 @@
 @property (nonatomic, strong) NSButton *lineButton;
 @property (nonatomic, strong) NSButton *thinButton;
 @property (nonatomic, strong) NSButton *thinkerButton;
+@property (nonatomic, strong) NSButton *strokeButton;
 @property (nonatomic, strong) NSButton *direLineButton;
 @property (nonatomic, strong) NSButton *direDashButton;
 @property (nonatomic, strong) NSButton *arrowLineButton;
@@ -42,6 +43,7 @@
     [self.view addSubview:self.lineButton];
     [self.view addSubview:self.thinButton];
     [self.view addSubview:self.thinkerButton];
+    [self.view addSubview:self.strokeButton];
     [self.view addSubview:self.direLineButton];
     [self.view addSubview:self.direDashButton];
     [self.view addSubview:self.arrowLineButton];
@@ -72,8 +74,13 @@
     }];
     
     [self.thinkerButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.thinButton.mas_right).offset(10);
+        make.left.equalTo(self.thinButton.mas_right).offset(2);
         make.top.equalTo(self.thinButton);
+    }];
+    
+    [self.strokeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.thinkerButton.mas_right).offset(2);
+        make.top.equalTo(self.thinkerButton);
     }];
     
     [self.direLineButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -146,6 +153,16 @@
         return;
     }
     self.drawView.lineWidth++;
+}
+
+- (void)strokeButtonClick:(NSButton *)button {
+    self.drawView.isStroke = !self.drawView.isStroke;
+    
+    if (self.drawView.isStroke) {
+        [self.strokeButton setTitle:@"峰"];
+    } else {
+        [self.strokeButton setTitle:@"无"];
+    }
 }
 
 - (void)direLineButtonClick:(NSButton *)button {
@@ -253,6 +270,17 @@
     }
     
     return _thinkerButton;
+}
+
+- (NSButton *)strokeButton {
+    if (!_strokeButton) {
+        _strokeButton = [[NSButton alloc] init];
+        _strokeButton.title = @"无";
+        _strokeButton.target = self;
+        _strokeButton.action = @selector(strokeButtonClick:);
+    }
+    
+    return _strokeButton;
 }
 
 - (NSButton *)lineButton {

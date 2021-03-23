@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign) CGTDrawType type;
 
 @property (assign) int lineWidth;
+@property (assign) BOOL isStroke;   // 是否有笔锋效果
 
 - (void)loadImage:(NSImage *)image;
 

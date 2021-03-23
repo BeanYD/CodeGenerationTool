@@ -32,7 +32,6 @@
 @property (assign) NSPoint lastLocation;
 @property (assign) NSRect selectRect;
 
-
 @property (assign) NSInteger testI;
 
 @end
@@ -73,8 +72,11 @@
         
         self.currentIndex = -1;
         
-        CGTDrawLayer *layer = [CGTDrawLayer layerWithFrame:self.bounds strokeColor:[NSColor redColor] lineWidth:1.f];
-        [self.layer addSublayer:layer];
+//        CGTDrawLayer *layer = [CGTDrawLayer layerWithFrame:self.bounds strokeColor:[NSColor clearColor] lineWidth:30];
+//        [layer setBezierCurveStartPoint:NSMakePoint(100, 100)];
+////        [layer drawBezierCurveFromPoint:NSMakePoint(100, 100) toPoint:NSMakePoint(150, 100)];
+//        [layer drawBezierCurveStrokeFromPoint:NSMakePoint(100, 100) toPoint:NSMakePoint(150, 100)];
+//        [self.layer addSublayer:layer];
     }
     
     return self;
@@ -160,6 +162,8 @@
         [self.drawLayers addObject:model];
         if (self.type == CGTDrawTypeCurveLine) {
             [model.drawLayer setBezierCurveStartPoint:_previousPoint];
+            model.startPoint = NSMakePoint(_previousPoint.x - self.lineWidth / 2, _previousPoint.y - self.lineWidth / 2);
+            model.endPoint = NSMakePoint(_previousPoint.x + self.lineWidth / 2, _previousPoint.y + self.lineWidth / 2);
         } else if (self.type == CGTDrawTypeDirectDash) {
 //            [model.drawLayer drawDireLineFromPoint:NSMakePoint(_previousPoint.x, _previousPoint.y) toPoint:NSMakePoint(_previousPoint.x + 100 + _testI, _previousPoint.y)];
             [model.drawLayer setLineDashPattern:@[@(10), @(10)]];
@@ -309,12 +313,17 @@
 
 - (void)mouseDragged:(NSEvent *)event {
     _currentPoint = [self convertPoint:[event locationInWindow] fromView:nil];
-
     if (self.type == CGTDrawTypeCurveLine || self.type == CGTDrawTypeDirectDash || self.type == CGTDrawTypeDirectLine || self.type == CGTDrawTypeArrowDirectLine || self.type == CGTDrawTypeRect || self.type == CGTDrawTypeEllipse) {
         // 画线
         CGTDrawModel *model = [self.drawLayers objectAtIndex:self.currentIndex];
         if (self.type == CGTDrawTypeCurveLine) {
 //            [model.drawLayer drawCurveFromPoint:_previousPoint toPoint:_currentPoint];
+            
+//            CGFloat length = sqrt((_currentPoint.x - _previousPoint.x) * (_currentPoint.x - _previousPoint.x) + (_currentPoint.y - _previousPoint.y) * (_currentPoint.y - _previousPoint.y));
+//            if (length < 3.0) {
+//                // 标注优化，小于3的，不进行绘制
+//                return;
+//            }
             [model.drawLayer drawBezierCurveFromPoint:_previousPoint toPoint:_currentPoint];
             // 更新model中的startPoint和endPoint
             CGFloat minX = MIN(model.startPoint.x, _previousPoint.x);
@@ -322,8 +331,9 @@
             model.startPoint = NSMakePoint(minX, minY);
             CGFloat maxX = MAX(MAX(_currentPoint.x, _previousPoint.x), model.endPoint.x);
             CGFloat maxY = MAX(MAX(_currentPoint.y, _previousPoint.y), model.endPoint.y);
-            NSLog(@"maxX:%f, maxY:%f", maxX, maxY);
             model.endPoint = NSMakePoint(maxX, maxY);
+            model.previousPoint = _previousPoint;
+            NSLog(@"drag:%f,%f,%f,%f", model.startPoint.x, model.startPoint.y, model.endPoint.x, model.endPoint.y);
             _previousPoint = _currentPoint;
         } else if (self.type == CGTDrawTypeDirectDash) {
             [model.drawLayer drawDireLineFromPoint:_previousPoint toPoint:_currentPoint];
@@ -382,7 +392,6 @@
         }
         
         
-        NSPoint point = [self convertPoint:[event locationInWindow] fromView:nil];
         if (_isScaleRightB || _isScaleRightT) {
             // 计算右侧拖动
             
@@ -409,7 +418,30 @@
     _currentPoint = [self convertPoint:[event locationInWindow] fromView:nil];
 
     // 更新model内容
-    if (self.type == CGTDrawTypeDirectDash || self.type == CGTDrawTypeDirectLine || self.type == CGTDrawTypeArrowDirectLine || self.type == CGTDrawTypeRect || self.type == CGTDrawTypeEllipse) {
+    if (self.type == CGTDrawTypeCurveLine) {
+        CGTDrawModel *model = [self.drawLayers objectAtIndex:self.currentIndex];
+        if (self.isStroke) {
+            // 尾部添加笔锋
+            if (model.previousPoint.x == 0 && model.previousPoint.y == 0) {
+                return;
+            }
+            CGPoint endPoint = NSMakePoint(_currentPoint.x + (_currentPoint.x - model.previousPoint.x), _currentPoint.y + (_currentPoint.y - model.previousPoint.y));
+            [model.drawLayer drawBezierCurveStrokeFromPoint:_previousPoint toPoint:endPoint];
+            
+        } else {
+            
+        }
+        
+        CGFloat minX = MIN(model.startPoint.x, _currentPoint.x);
+        CGFloat minY = MIN(model.startPoint.y, _currentPoint.y);
+        model.startPoint = NSMakePoint(minX, minY);
+        CGFloat maxX = MAX(_currentPoint.x, model.endPoint.x);
+        CGFloat maxY = MAX(_currentPoint.y, model.endPoint.y);
+        model.endPoint = NSMakePoint(maxX, maxY);
+        
+        NSLog(@"up:%f,%f,%f,%f", model.startPoint.x, model.startPoint.y, model.endPoint.x, model.endPoint.y);
+        
+    } else if (self.type == CGTDrawTypeDirectDash || self.type == CGTDrawTypeDirectLine || self.type == CGTDrawTypeArrowDirectLine || self.type == CGTDrawTypeRect || self.type == CGTDrawTypeEllipse) {
         CGTDrawModel *model = [self.drawLayers objectAtIndex:self.currentIndex];
         model.endPoint = _currentPoint;
     } else if (self.type == CGTDrawTypeEraser) {
@@ -427,7 +459,7 @@
             
             if (NSWidth(eraserRect) == 0 && NSHeight(eraserRect) == 0) {
                 // 单击删除
-                NSRect rect = CGPathGetBoundingBox(model.drawLayer.path);
+//                NSRect rect = CGPathGetBoundingBox(model.drawLayer.path);
 //                NSLog(@"rect");
             }
             
