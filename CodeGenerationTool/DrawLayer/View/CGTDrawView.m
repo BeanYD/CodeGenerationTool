@@ -319,11 +319,11 @@
         if (self.type == CGTDrawTypeCurveLine) {
 //            [model.drawLayer drawCurveFromPoint:_previousPoint toPoint:_currentPoint];
             
-//            CGFloat length = sqrt((_currentPoint.x - _previousPoint.x) * (_currentPoint.x - _previousPoint.x) + (_currentPoint.y - _previousPoint.y) * (_currentPoint.y - _previousPoint.y));
-//            if (length < 3.0) {
-//                // 标注优化，小于3的，不进行绘制
-//                return;
-//            }
+            CGFloat length = sqrt((_currentPoint.x - _previousPoint.x) * (_currentPoint.x - _previousPoint.x) + (_currentPoint.y - _previousPoint.y) * (_currentPoint.y - _previousPoint.y));
+            if (length < 3.0) {
+                // 标注优化，小于3的，不进行绘制
+                return;
+            }
             [model.drawLayer drawBezierCurveFromPoint:_previousPoint toPoint:_currentPoint];
             // 更新model中的startPoint和endPoint
             CGFloat minX = MIN(model.startPoint.x, _previousPoint.x);
