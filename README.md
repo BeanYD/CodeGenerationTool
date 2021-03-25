@@ -275,7 +275,15 @@ App的主页面，所有其他窗口都由该页面进入
 
 ## Mark：
 
-`NSTextField`在`xib`中创建后，会自带白色背景，在`xib`中修改：找到`Display`，勾选`Draw Background`，所选的背景色才会生效。
+1. `NSTextField`在`xib`中创建后，会自带白色背景，在`xib`中修改：找到`Display`，勾选`Draw Background`，所选的背景色才会生效。
+
+2. 关于`NSView`属性`toolTip`使用的说明：常规使用直接添加字符串`view.toolTip = @"..."`，在特定情况下需要不显示内容，可以置为`@""`或者`nil`，但尽量使用`nil`，在一些情况下，置为`@""`在后续需要显示时，无法显示正常的字符串。
+
+   ```objective-c
+   @property (nullable, copy) NSString *toolTip;
+   ```
+
+   
 
 ## OSX10.15系统下，修改鼠标图标的方法说明
 
