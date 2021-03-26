@@ -160,8 +160,10 @@
     
     if (self.drawView.isStroke) {
         [self.strokeButton setTitle:@"峰"];
+        self.strokeButton.toolTip = @"取消笔锋";
     } else {
         [self.strokeButton setTitle:@"无"];
+        self.strokeButton.toolTip = @"添加笔锋";
     }
 }
 

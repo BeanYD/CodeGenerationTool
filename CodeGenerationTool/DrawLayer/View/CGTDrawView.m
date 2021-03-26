@@ -333,7 +333,6 @@
             CGFloat maxY = MAX(MAX(_currentPoint.y, _previousPoint.y), model.endPoint.y);
             model.endPoint = NSMakePoint(maxX, maxY);
             model.previousPoint = _previousPoint;
-            NSLog(@"drag:%f,%f,%f,%f", model.startPoint.x, model.startPoint.y, model.endPoint.x, model.endPoint.y);
             _previousPoint = _currentPoint;
         } else if (self.type == CGTDrawTypeDirectDash) {
             [model.drawLayer drawDireLineFromPoint:_previousPoint toPoint:_currentPoint];
@@ -419,8 +418,8 @@
 
     // 更新model内容
     if (self.type == CGTDrawTypeCurveLine) {
-        CGTDrawModel *model = [self.drawLayers objectAtIndex:self.currentIndex];
         if (self.isStroke) {
+            CGTDrawModel *model = [self.drawLayers objectAtIndex:self.currentIndex];
             // 尾部添加笔锋
             if (model.previousPoint.x == 0 && model.previousPoint.y == 0) {
                 return;
@@ -428,19 +427,14 @@
             CGPoint endPoint = NSMakePoint(_currentPoint.x + (_currentPoint.x - model.previousPoint.x), _currentPoint.y + (_currentPoint.y - model.previousPoint.y));
             [model.drawLayer drawBezierCurveStrokeFromPoint:_previousPoint toPoint:endPoint];
             
-        } else {
-            
+            CGFloat minX = MIN(model.startPoint.x, endPoint.x);
+            CGFloat minY = MIN(model.startPoint.y, endPoint.y);
+            model.startPoint = NSMakePoint(minX, minY);
+            CGFloat maxX = MAX(endPoint.x, model.endPoint.x);
+            CGFloat maxY = MAX(endPoint.y, model.endPoint.y);
+            model.endPoint = NSMakePoint(maxX, maxY);
         }
-        
-        CGFloat minX = MIN(model.startPoint.x, _currentPoint.x);
-        CGFloat minY = MIN(model.startPoint.y, _currentPoint.y);
-        model.startPoint = NSMakePoint(minX, minY);
-        CGFloat maxX = MAX(_currentPoint.x, model.endPoint.x);
-        CGFloat maxY = MAX(_currentPoint.y, model.endPoint.y);
-        model.endPoint = NSMakePoint(maxX, maxY);
-        
-        NSLog(@"up:%f,%f,%f,%f", model.startPoint.x, model.startPoint.y, model.endPoint.x, model.endPoint.y);
-        
+                
     } else if (self.type == CGTDrawTypeDirectDash || self.type == CGTDrawTypeDirectLine || self.type == CGTDrawTypeArrowDirectLine || self.type == CGTDrawTypeRect || self.type == CGTDrawTypeEllipse) {
         CGTDrawModel *model = [self.drawLayers objectAtIndex:self.currentIndex];
         model.endPoint = _currentPoint;

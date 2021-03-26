@@ -72,8 +72,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addModule:) name:@"AddModuleNotify" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(delModule:) name:@"DelModuleNotify" object:nil];
 //    [self testSort];
-    
-    
 }
 
 - (void)testSort {

@@ -28,6 +28,7 @@
     drawLayer.fillColor = [NSColor clearColor].CGColor;
     drawLayer.strokeColor = strokeColor.CGColor;
     drawLayer.lineWidth = lineWidth;
+    drawLayer.layerType = CGTLayerTypeDraw;
     return drawLayer;
 }
 
@@ -54,6 +55,31 @@
 
 - (void)drawBezierCurveStrokeFromPoint:(NSPoint)startPoint toPoint:(NSPoint)endPoint {
     
+    CGTDrawLayer *subLayer = [CGTDrawLayer layerWithFrame:self.bounds strokeColor:[NSColor colorWithCGColor:self.strokeColor] lineWidth:1];
+    subLayer.layerType = CGTLayerTypeStroke;
+    [subLayer drawStrokeFromPoint:startPoint toPoint:endPoint width:self.lineWidth];
+    
+    [self addSublayer:subLayer];
+
+}
+
+- (void)drawStrokeFromPoint:(NSPoint)startPoint toPoint:(NSPoint)endPoint width:(CGFloat)width {
+    CGMutablePathRef path = CGPathCreateMutable();
+    double r = sqrt((endPoint.x-startPoint.x)*(endPoint.x-startPoint.x)+(startPoint.y-endPoint.y)*(startPoint.y-endPoint.y));//线条长度
+    width -= 1;
+    CGPathMoveToPoint(path, NULL, startPoint.x - width / 2 * (endPoint.y - startPoint.y) / r, startPoint.y + width / 2 * (endPoint.x - startPoint.x) / r);
+    CGPathAddLineToPoint(path, NULL, endPoint.x, endPoint.y);
+    CGPathAddLineToPoint(path, NULL, startPoint.x + width / 2 * (endPoint.y - startPoint.y) / r, startPoint.y - width / 2 * (endPoint.x - startPoint.x) / r);
+    CGPathCloseSubpath(path);
+    
+    self.fillColor = self.strokeColor;
+    
+    self.path = path;
+}
+
+// 废弃：添加过多sublayer可能会影响性能
+- (void)drawBezierCurveStrokeFromPoint1:(NSPoint)startPoint toPoint:(NSPoint)endPoint {
+    
     CGFloat widthStep = self.lineWidth / 100;
 
     CGFloat oriWidth = self.lineWidth;
@@ -67,6 +93,7 @@
         CGFloat width = oriWidth - widthStep * i;
 
         CGTDrawLayer *subLayer = [CGTDrawLayer layerWithFrame:self.bounds strokeColor:[NSColor colorWithCGColor:self.strokeColor] lineWidth:width];
+        subLayer.layerType = CGTLayerTypeStroke;
         [subLayer setBezierCurveStartPoint:startP];
         [subLayer drawBezierCurveFromPoint:startP toPoint:endP];
 
@@ -151,6 +178,7 @@
 //    self.contents = image;
     
     CGTDrawLayer *imageLayer = [CGTDrawLayer layerWithFrame:rect strokeColor:[NSColor whiteColor] lineWidth:2];
+    imageLayer.layerType = CGTLayerTypeImage;
     imageLayer.position = NSMakePoint(rect.size.width / 2 + rect.origin.x, rect.size.height / 2 + rect.origin.y);
     imageLayer.contentsGravity = kCAGravityResizeAspect;
     imageLayer.contents = image;
@@ -203,6 +231,7 @@
     }
 
     CGTDrawLayer *borderLayer = [CGTDrawLayer layerWithFrame:layer.bounds strokeColor:[NSColor whiteColor] lineWidth:2];
+    borderLayer.layerType = CGTLayerTypeBorder;
     [borderLayer drawImageBorder:layer.bounds];
     [layer addSublayer:borderLayer];
 }
@@ -238,7 +267,10 @@
     for (NSInteger i = self.sublayers.count - 1; i >= 0; i--) {
         CALayer *layer = self.sublayers[i];
         if ([layer isMemberOfClass:[CGTDrawLayer class]]) {
-            [layer removeFromSuperlayer];
+            CGTDrawLayer *drawLayer = (CGTDrawLayer *)layer;
+            if (drawLayer.layerType == CGTLayerTypeBorder) {
+                [layer removeFromSuperlayer];
+            }
         }
     }
     
@@ -273,6 +305,7 @@
 //    NSColor *borderColor = [NSColor colorWithCalibratedRed:135/255.0 green:206/255.0 blue:235/255.0 alpha:1];
     NSColor *borderColor = [NSColor redColor];
     CGTDrawLayer *borderLayer = [CGTDrawLayer layerWithFrame:self.bounds strokeColor:borderColor lineWidth:2.f];
+    borderLayer.layerType = CGTLayerTypeBorder;
     [borderLayer drawRectLines:borderRect];
     [self addSublayer:borderLayer];
 }
@@ -326,6 +359,8 @@
 }
 
 #pragma mark - Rewrite
+
+// 方案废弃
 - (void)drawInContext:(CGContextRef)ctx {
     CGContextSetLineWidth(ctx, self.lineWidth);
     CGContextSetFillColorWithColor(ctx, [NSColor clearColor].CGColor);

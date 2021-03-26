@@ -25,6 +25,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+typedef NS_ENUM(NSUInteger, CGTLayerType) {
+    CGTLayerTypeDraw,   // 画板layer
+    CGTLayerTypeBorder, // 边框layer
+    CGTLayerTypeImage,  // 图片layer
+    CGTLayerTypeStroke, // 笔锋layer
+};
+
 /**
  * CGContextSetFlatness              设置弯曲的路径中的图形上下文的准确性。
  * CGContextSetInterpolationQuality  设置图形上下文的插值质量水平。
@@ -45,6 +52,8 @@ NS_ASSUME_NONNULL_BEGIN
     NSBezierPath *_bezierPath;        // 使用贝塞尔画线
     CGRect _borderRect;         // 显示线条所在区域边框的rect
 }
+
+@property (assign) CGTLayerType layerType;
 
 + (CGTDrawLayer *)layerWithFrame:(CGRect)frame strokeColor:(NSColor *)strokeColor lineWidth:(CGFloat)lineWidth;
 
