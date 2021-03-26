@@ -16,6 +16,9 @@ PODS:
   - libxlsxwriter (1.0.0)
   - Masonry (1.1.0)
   - MJExtension (3.2.1)
+  - SDWebImage (5.10.4):
+    - SDWebImage/Core (= 5.10.4)
+  - SDWebImage/Core (5.10.4)
   - SSZipArchive (2.2.3)
 
 DEPENDENCIES:
@@ -24,6 +27,7 @@ DEPENDENCIES:
   - libxlsxwriter
   - Masonry
   - MJExtension
+  - SDWebImage
   - SSZipArchive
 
 SPEC REPOS:
@@ -33,6 +37,7 @@ SPEC REPOS:
     - libxlsxwriter
     - Masonry
     - MJExtension
+    - SDWebImage
     - SSZipArchive
 
 SPEC CHECKSUMS:
@@ -41,8 +46,9 @@ SPEC CHECKSUMS:
   libxlsxwriter: 36728628804bc23f1b61a4fe2b65f49937ff4e38
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJExtension: 635f2c663dcb1bf76fa4b715b2570a5710aec545
+  SDWebImage: c666b97e1fa9c64b4909816a903322018f0a9c84
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
 
-PODFILE CHECKSUM: 16959887f7486d4e16dd2c31da6546a18a3c4476
+PODFILE CHECKSUM: 27a7cc5104ecc471f53891e32bf19b1cf903fd6a
 
 COCOAPODS: 1.10.1

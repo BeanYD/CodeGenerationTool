@@ -113,13 +113,7 @@
 }
 
 - (void)loadImage:(NSImage *)image {
-    CGTDrawLayer *drawLayer = [[CGTDrawLayer alloc] init];
-    drawLayer.frame = self.bounds;
-    drawLayer.fillColor = [NSColor clearColor].CGColor;
-    drawLayer.strokeColor = [NSColor blueColor].CGColor;
-    drawLayer.lineWidth = 1.f;
-    drawLayer.strokeStart = 0;
-    drawLayer.strokeEnd = 1;
+    CGTDrawLayer *drawLayer = [CGTDrawLayer layerWithFrame:self.bounds strokeColor:[NSColor blueColor] lineWidth:1.f];
     [self.layer addSublayer:drawLayer];
     CGTDrawModel *model = [[CGTDrawModel alloc] init];
     model.drawLayer = drawLayer;
@@ -137,11 +131,8 @@
 
 //    drawLayer.backgroundColor = [NSColor redColor].CGColor;
     if (self.type == CGTDrawTypeCurveLine || self.type == CGTDrawTypeDirectDash || self.type == CGTDrawTypeDirectLine || self.type == CGTDrawTypeEraser || self.type == CGTDrawTypeArrowDirectLine || self.type == CGTDrawTypeRect || self.type == CGTDrawTypeEllipse) {
-        CGTDrawLayer *drawLayer = [[CGTDrawLayer alloc] init];
-        drawLayer.frame = self.bounds;
-        drawLayer.fillColor = [NSColor clearColor].CGColor;
-    
-        if (self.type == CGTDrawTypeEraser) {
+        CGTDrawLayer *drawLayer = [CGTDrawLayer layerWithFrame:self.bounds strokeColor:[NSColor redColor] lineWidth:2.0f];
+            if (self.type == CGTDrawTypeEraser) {
             // 有透明度方面修改，修改color的alpha值
             drawLayer.strokeColor = [NSColor redColor].CGColor;
             drawLayer.lineWidth = 2.0f;
@@ -149,9 +140,7 @@
             drawLayer.strokeColor = [NSColor blueColor].CGColor;
             drawLayer.lineWidth = self.lineWidth;
         }
-        
-        drawLayer.strokeStart = 0;
-        drawLayer.strokeEnd = 1;
+
         [self.layer addSublayer:drawLayer];
 
         self.currentIndex = self.drawLayers.count;

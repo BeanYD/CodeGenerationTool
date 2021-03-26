@@ -11,6 +11,7 @@ target 'CodeGenerationTool' do
   pod 'libxlsxwriter'
   pod 'GDataXML-HTML'
   pod 'SSZipArchive'
+  pod 'SDWebImage'
   # Pods for CodeGenerationTool
 
   target 'CodeGenerationToolTests' do

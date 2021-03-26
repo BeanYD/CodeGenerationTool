@@ -28,6 +28,8 @@
     drawLayer.fillColor = [NSColor clearColor].CGColor;
     drawLayer.strokeColor = strokeColor.CGColor;
     drawLayer.lineWidth = lineWidth;
+    drawLayer.strokeStart = 0;
+    drawLayer.strokeEnd = 1;
     drawLayer.layerType = CGTLayerTypeDraw;
     return drawLayer;
 }
