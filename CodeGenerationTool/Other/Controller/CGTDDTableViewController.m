@@ -35,6 +35,15 @@
 	[self.view addSubview:self.stringTableView];
 	// 通过scrollView来滚动内部的tableview
 	[self.view addSubview:self.scrollView];
+    
+    
+    // 只沿一个方向进行滚动，滚动过程中不会在其他方向偏移。
+    [[self.scrollView contentView] setPostsBoundsChangedNotifications:YES];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(boundsDidChangeNotification:)
+                                                 name:NSViewBoundsDidChangeNotification
+                                               object:[self.scrollView contentView]];
+
 	
 	[self layoutSubviews];
     
@@ -74,6 +83,26 @@
 	for (NSArray *array in self.objcDataSource.allValues) {
 		self.maxRowNum = MAX(self.maxRowNum, array.count);
 	}
+}
+
+
+// noti
+- (void)boundsDidChangeNotification:(NSNotification *)notification {
+    // 在这里进行处理
+    NSClipView *clipView = [notification object];
+
+    // get the origin of the NSClipView of the scroll view that
+    // we're watching
+    NSPoint changedBoundsOrigin = [clipView documentVisibleRect].origin;
+    changedBoundsOrigin.x = 0;
+    if (clipView == self.scrollView.contentView) {
+        [self.scrollView scrollClipView:clipView toPoint:changedBoundsOrigin];
+        // 监控滚轮日志，如果使用xib文件，去除xib中tableview的cellview，部分版本下会影响滚轮位移
+        NSLog(@"1++++++++++++++++++++++++=%.2f",changedBoundsOrigin.y);
+    }
+    if (clipView == self.scrollView.contentView) {
+        [self.scrollView scrollClipView:clipView toPoint:changedBoundsOrigin];
+    }
 }
 
 #pragma mark - NSTableViewDataSource
