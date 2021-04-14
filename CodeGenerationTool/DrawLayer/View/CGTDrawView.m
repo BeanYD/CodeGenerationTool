@@ -77,6 +77,15 @@
 ////        [layer drawBezierCurveFromPoint:NSMakePoint(100, 100) toPoint:NSMakePoint(150, 100)];
 //        [layer drawBezierCurveStrokeFromPoint:NSMakePoint(100, 100) toPoint:NSMakePoint(150, 100)];
 //        [self.layer addSublayer:layer];
+        CGTDrawLayer *layer = [CGTDrawLayer layerWithFrame:self.bounds strokeColor:[NSColor redColor] lineWidth:2];
+        [layer setBezierCurveStartPoint:NSMakePoint(0, 0)];
+        [self.layer addSublayer:layer];
+
+        NSPoint lastPoint = NSMakePoint(0, 0);
+        for (int i = 1; i < 1000; i++) {
+            [layer drawBezierCurveFromPoint:lastPoint toPoint:NSMakePoint(i, i)];
+            lastPoint = NSMakePoint(i % 100, i % 100);
+        }
     }
     
     return self;

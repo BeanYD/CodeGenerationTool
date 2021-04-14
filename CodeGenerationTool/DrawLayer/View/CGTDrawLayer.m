@@ -42,11 +42,19 @@
 - (void)setBezierCurveStartPoint:(NSPoint)startPoint {
     [_bezierPath moveToPoint:startPoint];
     
+    CGTDrawLayer *layer = [CGTDrawLayer layerWithFrame:self.bounds strokeColor:[NSColor colorWithCGColor:self.strokeColor] lineWidth:self.lineWidth / 2];
+    layer.layerType = CGTLayerTypeStart;
+    [self addSublayer:layer];
+    [layer drawStartCircle:startPoint];
+}
+
+// 第一个点为原点
+- (void)drawStartCircle:(NSPoint)startPoint {
     CGMutablePathRef path = CGPathCreateMutable();
     CGFloat r = self.lineWidth / 2;
     CGPathMoveToPoint(path, NULL, startPoint.x - r, startPoint.y - r);
     CGPathAddEllipseInRect(path, NULL, NSMakeRect(startPoint.x - r, startPoint.y - r, r * 2, r * 2));
-    
+
     self.path = path;
 }
 

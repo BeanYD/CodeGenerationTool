@@ -30,6 +30,7 @@ typedef NS_ENUM(NSUInteger, CGTLayerType) {
     CGTLayerTypeBorder, // 边框layer
     CGTLayerTypeImage,  // 图片layer
     CGTLayerTypeStroke, // 笔锋layer
+    CGTLayerTypeStart, // 起点layer
 };
 
 /**
