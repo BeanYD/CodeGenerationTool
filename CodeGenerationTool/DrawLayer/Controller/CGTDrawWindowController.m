@@ -18,6 +18,12 @@
     if (self = [super initWithWindow:window]) {
         self.window.title = @"画图";
         self.contentViewController = [self vc];
+        
+        // 隐藏zoom按钮
+        [self.window standardWindowButton:NSWindowZoomButton].hidden = YES;
+        
+        // MARK: 代码设置窗口无法resize，NSWindowStyleMaskResizable按位取反后&，去除NSWindowStyleMaskResizable标志位
+        [window setStyleMask:[window styleMask] & ~NSWindowStyleMaskResizable];
     }
     
     return self;

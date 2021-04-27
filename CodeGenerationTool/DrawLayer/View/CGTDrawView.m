@@ -74,18 +74,9 @@
         
 //        CGTDrawLayer *layer = [CGTDrawLayer layerWithFrame:self.bounds strokeColor:[NSColor clearColor] lineWidth:30];
 //        [layer setBezierCurveStartPoint:NSMakePoint(100, 100)];
-////        [layer drawBezierCurveFromPoint:NSMakePoint(100, 100) toPoint:NSMakePoint(150, 100)];
+///        [layer drawBezierCurveFromPoint:NSMakePoint(100, 100) toPoint:NSMakePoint(150, 100)];
 //        [layer drawBezierCurveStrokeFromPoint:NSMakePoint(100, 100) toPoint:NSMakePoint(150, 100)];
 //        [self.layer addSublayer:layer];
-        CGTDrawLayer *layer = [CGTDrawLayer layerWithFrame:self.bounds strokeColor:[NSColor redColor] lineWidth:2];
-        [layer setBezierCurveStartPoint:NSMakePoint(0, 0)];
-        [self.layer addSublayer:layer];
-
-        NSPoint lastPoint = NSMakePoint(0, 0);
-        for (int i = 1; i < 1000; i++) {
-            [layer drawBezierCurveFromPoint:lastPoint toPoint:NSMakePoint(i, i)];
-            lastPoint = NSMakePoint(i % 100, i % 100);
-        }
     }
     
     return self;
@@ -184,6 +175,14 @@
                     break;
                 }
 
+            } else {
+                if (CGPathContainsPoint(model.drawLayer.path, NULL, _previousPoint, NO)) {
+                    // 点包含在路径上，path是指区域内，不是单纯的路径上
+                    [model.drawLayer drawBorderRect:[model getLayerRect]];
+                    drawModel = model;
+                    self.currentIndex = i;
+                    break;
+                }
             }
         }
         
@@ -194,6 +193,10 @@
                 if (model.type == CGTDrawTypeImage) {
                     if (i != self.currentIndex) {
                         [model.drawLayer focusImageRect:CGRectZero];
+                    }
+                } else {
+                    if (i != self.currentIndex) {
+                        [model.drawLayer drawBorderRect:CGRectZero];
                     }
                 }
             }
@@ -223,6 +226,8 @@
                 CGTDrawModel *model = self.drawLayers[i];
                 if (model.type == CGTDrawTypeImage) {
                     [model.drawLayer focusImageRect:CGRectZero];
+                } else {
+                    [model.drawLayer drawBorderRect:CGRectZero];
                 }
             }
             self.currentIndex = -1;
@@ -490,7 +495,10 @@
 //    [model.drawLayer setAffineTransform:CGAffineTransformMakeScale(sx, sy)];
     
 //    model.drawLayer.frame = frame;
-
+//    for (int i = 0; i < self.drawLayers.count; i++) {
+//        NSLog(@"Pointer Number:%ld", (long)CFGetRetainCount((__bridge CFTypeRef)self.drawLayers[i]));
+//
+//    }
 }
 
 #pragma mark - Override

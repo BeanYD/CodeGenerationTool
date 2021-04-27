@@ -34,10 +34,6 @@
     return drawLayer;
 }
 
-- (void)updateLayerFrame:(CGRect)frame {
-    
-}
-
 #pragma mark - Draw Lines
 - (void)setBezierCurveStartPoint:(NSPoint)startPoint {
     [_bezierPath moveToPoint:startPoint];
