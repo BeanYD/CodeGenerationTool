@@ -30,7 +30,7 @@
 }
 
 - (NSViewController *)vc {
-    NSViewController *vc = [[NSClassFromString(@"CGTExcelViewController") alloc] initWithFrame:[CGTFrameConfig getDefaultWindowFrame]];
+    NSViewController *vc = [[NSClassFromString(@"CGTExcelViewController") alloc] initWithFrame:[CGTFrameConfig getHalfWidthDefaultWindowFrame]];
     return vc;
 }
 
