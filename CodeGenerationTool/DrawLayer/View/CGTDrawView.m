@@ -127,6 +127,8 @@
 }
 
 - (void)mouseDown:(NSEvent *)event {
+    NSLog(@"%s", __func__);
+    
     _previousPoint = [self convertPoint:[event locationInWindow] fromView:nil];
 
 //    drawLayer.backgroundColor = [NSColor redColor].CGColor;
@@ -315,6 +317,9 @@
 }
 
 - (void)mouseDragged:(NSEvent *)event {
+    
+    NSLog(@"%s", __func__);
+    
     _currentPoint = [self convertPoint:[event locationInWindow] fromView:nil];
     if (self.type == CGTDrawTypeCurveLine || self.type == CGTDrawTypeDirectDash || self.type == CGTDrawTypeDirectLine || self.type == CGTDrawTypeArrowDirectLine || self.type == CGTDrawTypeRect || self.type == CGTDrawTypeEllipse) {
         // 画线

@@ -11,6 +11,14 @@
 
 @implementation CGTFrameConfig
 
++ (CGRect)getWeiQiBoardWindowFrame {
+    CGRect screenFrame = [NSScreen mainScreen].frame;
+    screenFrame.size.width = screenFrame.size.width / 4 * 3;
+    screenFrame.size.height = screenFrame.size.height / 4 * 3;
+
+    return screenFrame;
+}
+
 + (CGRect)getDefaultWindowFrame {
 	CGRect screenFrame = [NSScreen mainScreen].frame;
 	screenFrame.size.width = screenFrame.size.width / 2;

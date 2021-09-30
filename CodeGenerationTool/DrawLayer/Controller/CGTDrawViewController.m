@@ -25,6 +25,8 @@
 @property (nonatomic, strong) NSButton *uploadButton;
 @property (nonatomic, strong) NSButton *normalButton;
 
+@property (nonatomic, strong) NSImageView *imageView;
+
 @property (nonatomic, strong) CGTDrawView *drawView;
 
 // 记录上一个选中的按钮
@@ -52,6 +54,8 @@
     [self.view addSubview:self.textButton];
     [self.view addSubview:self.eraserButton];
     [self.view addSubview:self.uploadButton];
+    
+    [self.view addSubview:self.imageView];
     
     
     [self layoutSubviews];
@@ -127,6 +131,12 @@
         make.left.equalTo(self.view).offset(100);
         make.top.equalTo(self.view).offset(10);
         make.right.bottom.equalTo(self.view).offset(-10);
+    }];
+    
+    [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.view);
+        make.width.equalTo(@200);
+        make.height.equalTo(@200);
     }];
 }
 
@@ -382,6 +392,16 @@
     }
     
     return _uploadButton;
+}
+
+- (NSImageView *)imageView {
+    if (!_imageView) {
+        _imageView = [[NSImageView alloc] init];
+//        _imageView.wantsLayer = YES;
+//        _imageView.layer.backgroundColor = [NSColor yellowColor].CGColor;
+    }
+    
+    return _imageView;
 }
 
 @end

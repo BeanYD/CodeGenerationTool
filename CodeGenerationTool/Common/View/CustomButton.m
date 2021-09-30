@@ -75,6 +75,11 @@
 }
 
 - (void)setTitle:(NSAttributedString *)title color:(NSColor *)textColor font:(CGFloat)fontsize alignment:(NSTextAlignment)alignment {
+    
+    // 查看上一个调用类
+    NSArray *syms = [NSThread  callStackSymbols];
+    NSLog(@"<%@ %p> %@ - caller: %@ \n%@", [self class], self, NSStringFromSelector(_cmd),[syms objectAtIndex:1], textColor);
+    
     _textColor = textColor;
     _alignment = alignment;
     NSMutableAttributedString *attrTitle = [[NSMutableAttributedString alloc] initWithAttributedString:title];

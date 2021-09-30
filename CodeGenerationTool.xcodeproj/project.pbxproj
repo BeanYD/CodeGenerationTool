@@ -24,6 +24,11 @@
 		0440121F25398FE500798BCD /* CGTCustomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0440121B25398FE500798BCD /* CGTCustomScrollView.m */; };
 		04411A782549809D00337A41 /* CGTSecondaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04411A772549809D00337A41 /* CGTSecondaryViewController.m */; };
 		04465D8325A69D37009850D0 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 04465D8125A69D37009850D0 /* ProgressHUD.m */; };
+		0455703F2703FFC90024C32C /* CGTChessmanBean.m in Sources */ = {isa = PBXBuildFile; fileRef = 0455703E2703FFC90024C32C /* CGTChessmanBean.m */; };
+		04729F5026FDB31F00466E62 /* CGTWeiQiWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04729F4F26FDB31F00466E62 /* CGTWeiQiWindowController.m */; };
+		04729F5626FDB35F00466E62 /* CGTWeiQiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04729F5526FDB35F00466E62 /* CGTWeiQiViewController.m */; };
+		04729F5C2700024E00466E62 /* CGTWeiQiBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04729F5B2700024E00466E62 /* CGTWeiQiBoardView.m */; };
+		04729F622700123500466E62 /* CGTWeiQiModelLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 04729F612700123500466E62 /* CGTWeiQiModelLayer.m */; };
 		0476509B259DBA5C0006F3FC /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04765099259DBA5B0006F3FC /* CustomButton.m */; };
 		04AE731E25F223E50057F3B6 /* CGTExcelWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AE731D25F223E50057F3B6 /* CGTExcelWindowController.m */; };
 		04AE732725F223FB0057F3B6 /* CGTExcelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AE732625F223FB0057F3B6 /* CGTExcelViewController.m */; };
@@ -36,6 +41,7 @@
 		04D496D225BFBD24007A0157 /* CGTDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D496D125BFBD24007A0157 /* CGTDrawView.m */; };
 		04D496E225BFE521007A0157 /* CustomDrawingTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D496E125BFE521007A0157 /* CustomDrawingTools.m */; };
 		04D496EC25BFFE7B007A0157 /* CGTDrawLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D496EB25BFFE7B007A0157 /* CGTDrawLayer.m */; };
+		04F197FF26B7E7AE0047A022 /* NSImageView+MouseEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F197FE26B7E7AE0047A022 /* NSImageView+MouseEvent.m */; };
 		43C11816E38B44FB1932AEC9 /* Pods_CodeGenerationTool_CodeGenerationToolUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7157C1C24A046B11838466DE /* Pods_CodeGenerationTool_CodeGenerationToolUITests.framework */; };
 		A47A75996D596E4CF449CEBC /* Pods_CodeGenerationToolTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B86CFA6999CA1026AA62E68 /* Pods_CodeGenerationToolTests.framework */; };
 		D704CD77257B5451003DC276 /* CGTFileModelLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D704CD76257B5451003DC276 /* CGTFileModelLayer.m */; };
@@ -122,6 +128,16 @@
 		04411A772549809D00337A41 /* CGTSecondaryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTSecondaryViewController.m; sourceTree = "<group>"; };
 		04465D8125A69D37009850D0 /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
 		04465D8225A69D37009850D0 /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
+		0455703D2703FFC90024C32C /* CGTChessmanBean.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTChessmanBean.h; sourceTree = "<group>"; };
+		0455703E2703FFC90024C32C /* CGTChessmanBean.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTChessmanBean.m; sourceTree = "<group>"; };
+		04729F4E26FDB31F00466E62 /* CGTWeiQiWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTWeiQiWindowController.h; sourceTree = "<group>"; };
+		04729F4F26FDB31F00466E62 /* CGTWeiQiWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTWeiQiWindowController.m; sourceTree = "<group>"; };
+		04729F5426FDB35F00466E62 /* CGTWeiQiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTWeiQiViewController.h; sourceTree = "<group>"; };
+		04729F5526FDB35F00466E62 /* CGTWeiQiViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTWeiQiViewController.m; sourceTree = "<group>"; };
+		04729F5A2700024E00466E62 /* CGTWeiQiBoardView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTWeiQiBoardView.h; sourceTree = "<group>"; };
+		04729F5B2700024E00466E62 /* CGTWeiQiBoardView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTWeiQiBoardView.m; sourceTree = "<group>"; };
+		04729F602700123500466E62 /* CGTWeiQiModelLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTWeiQiModelLayer.h; sourceTree = "<group>"; };
+		04729F612700123500466E62 /* CGTWeiQiModelLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTWeiQiModelLayer.m; sourceTree = "<group>"; };
 		04765099259DBA5B0006F3FC /* CustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomButton.m; sourceTree = "<group>"; };
 		0476509A259DBA5B0006F3FC /* CustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomButton.h; sourceTree = "<group>"; };
 		04AE731C25F223E50057F3B6 /* CGTExcelWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTExcelWindowController.h; sourceTree = "<group>"; };
@@ -145,6 +161,8 @@
 		04D496E125BFE521007A0157 /* CustomDrawingTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomDrawingTools.m; sourceTree = "<group>"; };
 		04D496EA25BFFE7B007A0157 /* CGTDrawLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTDrawLayer.h; sourceTree = "<group>"; };
 		04D496EB25BFFE7B007A0157 /* CGTDrawLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTDrawLayer.m; sourceTree = "<group>"; };
+		04F197FD26B7E7AE0047A022 /* NSImageView+MouseEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSImageView+MouseEvent.h"; sourceTree = "<group>"; };
+		04F197FE26B7E7AE0047A022 /* NSImageView+MouseEvent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSImageView+MouseEvent.m"; sourceTree = "<group>"; };
 		1C5AAB70915A693E8B031E33 /* Pods-CodeGenerationTool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodeGenerationTool.release.xcconfig"; path = "Target Support Files/Pods-CodeGenerationTool/Pods-CodeGenerationTool.release.xcconfig"; sourceTree = "<group>"; };
 		3B86CFA6999CA1026AA62E68 /* Pods_CodeGenerationToolTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CodeGenerationToolTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B30D908BD2AEBA57070A513 /* Pods-CodeGenerationTool-CodeGenerationToolUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodeGenerationTool-CodeGenerationToolUITests.release.xcconfig"; path = "Target Support Files/Pods-CodeGenerationTool-CodeGenerationToolUITests/Pods-CodeGenerationTool-CodeGenerationToolUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -308,6 +326,47 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		04729F4A26FDB2D500466E62 /* WeiQi */ = {
+			isa = PBXGroup;
+			children = (
+				04729F4B26FDB2D500466E62 /* Controller */,
+				04729F4C26FDB2D500466E62 /* Model */,
+				04729F4D26FDB2D500466E62 /* View */,
+			);
+			path = WeiQi;
+			sourceTree = "<group>";
+		};
+		04729F4B26FDB2D500466E62 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				04729F4E26FDB31F00466E62 /* CGTWeiQiWindowController.h */,
+				04729F4F26FDB31F00466E62 /* CGTWeiQiWindowController.m */,
+				04729F5426FDB35F00466E62 /* CGTWeiQiViewController.h */,
+				04729F5526FDB35F00466E62 /* CGTWeiQiViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		04729F4C26FDB2D500466E62 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				04729F602700123500466E62 /* CGTWeiQiModelLayer.h */,
+				04729F612700123500466E62 /* CGTWeiQiModelLayer.m */,
+				0455703D2703FFC90024C32C /* CGTChessmanBean.h */,
+				0455703E2703FFC90024C32C /* CGTChessmanBean.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		04729F4D26FDB2D500466E62 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04729F5A2700024E00466E62 /* CGTWeiQiBoardView.h */,
+				04729F5B2700024E00466E62 /* CGTWeiQiBoardView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		04AE731825F223C70057F3B6 /* Excel */ = {
 			isa = PBXGroup;
 			children = (
@@ -376,6 +435,8 @@
 				04D496EB25BFFE7B007A0157 /* CGTDrawLayer.m */,
 				04AE739B25FA1D960057F3B6 /* NSBezierPath+CGPath.h */,
 				04AE739C25FA1D960057F3B6 /* NSBezierPath+CGPath.m */,
+				04F197FD26B7E7AE0047A022 /* NSImageView+MouseEvent.h */,
+				04F197FE26B7E7AE0047A022 /* NSImageView+MouseEvent.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -451,6 +512,7 @@
 				043E01A82542BB2D0089AB8C /* CommonDemo */,
 				04D496B925BEDD19007A0157 /* DrawLayer */,
 				04AE731825F223C70057F3B6 /* Excel */,
+				04729F4A26FDB2D500466E62 /* WeiQi */,
 				D70D5F4724B0641800675E89 /* Assets.xcassets */,
 				D70D5F4924B0641800675E89 /* Main.storyboard */,
 				D70D5F4C24B0641800675E89 /* Info.plist */,
@@ -981,6 +1043,7 @@
 				04D496BD25BEDD4C007A0157 /* CGTDrawWindowController.m in Sources */,
 				04D496E225BFE521007A0157 /* CustomDrawingTools.m in Sources */,
 				D793D8582526E26B00497562 /* CGTOpenglWindowController.m in Sources */,
+				04F197FF26B7E7AE0047A022 /* NSImageView+MouseEvent.m in Sources */,
 				04AE738B25F86A150057F3B6 /* CGTTestModalWindowController.m in Sources */,
 				D72A368425283BF300C82A44 /* CGTDDCollectionViewItem.m in Sources */,
 				043E01922542AF040089AB8C /* CGTCustomTableHeaderCell.m in Sources */,
@@ -988,20 +1051,25 @@
 				D7D1179E251C44390019212F /* CGTDDCollectionViewController.m in Sources */,
 				043E014C25403AED0089AB8C /* CGTCustomTextField.m in Sources */,
 				D70D5F8624B065B700675E89 /* CGTMainViewController.m in Sources */,
+				04729F5026FDB31F00466E62 /* CGTWeiQiWindowController.m in Sources */,
 				D704CD77257B5451003DC276 /* CGTFileModelLayer.m in Sources */,
 				D70D5F7B24B0655D00675E89 /* CGTBaseWindowController.m in Sources */,
 				04D496D225BFBD24007A0157 /* CGTDrawView.m in Sources */,
 				D70D5F4324B0641400675E89 /* AppDelegate.m in Sources */,
+				04729F622700123500466E62 /* CGTWeiQiModelLayer.m in Sources */,
 				043E00FA253EEA3E0089AB8C /* NSWindowController+TitleBar.m in Sources */,
 				D7D117C5251C6D7B0019212F /* CGTFrameConfig.m in Sources */,
 				D7F42C1D24B2D1B300EF1C38 /* CGTMainModelLayer.m in Sources */,
 				D7574AA824C6826200EEEA98 /* CGTUpdateModelLayer.m in Sources */,
 				D72A36672528372000C82A44 /* CGTMouseEventWindowController.m in Sources */,
 				043E015D25403B6B0089AB8C /* CGTCommonTitleView.m in Sources */,
+				04729F5626FDB35F00466E62 /* CGTWeiQiViewController.m in Sources */,
 				04D496C625BEDD58007A0157 /* CGTDrawViewController.m in Sources */,
+				0455703F2703FFC90024C32C /* CGTChessmanBean.m in Sources */,
 				0424FF7525C3DB91008607C6 /* CGTDrawModel.m in Sources */,
 				D7574AE724C692CD00EEEA98 /* CGTCmdTool.m in Sources */,
 				043E01B52542BD480089AB8C /* CGTCommonDemoViewController.m in Sources */,
+				04729F5C2700024E00466E62 /* CGTWeiQiBoardView.m in Sources */,
 				D70D5F8324B0659E00675E89 /* CGTMainWindowController.m in Sources */,
 				043E0108253EEAF70089AB8C /* CommonTitleView.m in Sources */,
 				043E015625403B570089AB8C /* CGTTitleBarViewController.m in Sources */,

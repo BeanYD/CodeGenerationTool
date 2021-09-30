@@ -6,6 +6,12 @@
 	<array>
 		<dict>
 			<key>winCol</key>
+			<string>CGTWeiQiWindowController</string>
+			<key>name</key>
+			<string>围棋</string>
+		</dict>
+		<dict>
+			<key>winCol</key>
 			<string>CGTExcelWindowController</string>
 			<key>name</key>
 			<string>excel</string>

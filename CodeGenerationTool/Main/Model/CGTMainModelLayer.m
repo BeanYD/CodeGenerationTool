@@ -44,6 +44,7 @@
 
 - (NSString *)getPlistPath {
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"ClassInfo" ofType:@"plist"];
+    NSLog(@"\n------------------------------------------\nplist path:\n%@\n------------------------------------------", plistPath);
     return plistPath;
 }
 
@@ -119,7 +120,11 @@
         @{
             @"name" : @"excel导入导出",
             @"winCol" : @"CGTExcelWindowController",
-        }
+        },
+        @{
+            @"name" : @"围棋",
+            @"winCol" : @"CGTWeiQiWindowController",
+        },
     ];
 }
 
