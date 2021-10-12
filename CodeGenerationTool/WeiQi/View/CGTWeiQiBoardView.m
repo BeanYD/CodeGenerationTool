@@ -171,7 +171,7 @@
     NSArray *blackArray = [basicDict valueForKey:@"AB"];
     for (int i = 0; i < blackArray.count; i++) {
         NSPoint point = NSPointFromString(blackArray[i]);
-        CGTChessmanBean *currentBean = [CGTChessmanBean chessmanBeanWithPosition:point isWhite:YES];
+        CGTChessmanBean *currentBean = [CGTChessmanBean chessmanBeanWithPosition:point isWhite:NO];
         
         NSImageView *chessView = [[NSImageView alloc] initWithFrame:[_model getChessViewRectWithChessmanLocation:point]];
         chessView.wantsLayer = YES;
