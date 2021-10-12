@@ -43,7 +43,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign) NSPoint startPoint;
 
 // 记录已下棋子位置
-@property (strong) NSMutableArray *pressedArray;
+@property (strong) NSMutableDictionary *pressedDict;
+
+// 记录下棋顺序
+@property (strong) NSMutableArray *pressArray;
+
+// 记录棋谱固定棋子
+@property (strong) NSDictionary *basicDict;
 
 @property (assign) BOOL isAuto;
 @property (assign) BOOL isWhite;
@@ -54,14 +60,21 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSArray *)chessmansInBoard;
 - (NSRect)getChessmanRectWithPoint:(NSPoint)point;
 
+- (NSRect)getChessViewRectWithChessmanLocation:(NSPoint)location;
+
 // 获取棋子的位置信息{i , j}
 - (NSPoint)getChessmanLocationWithPoint:(NSPoint)point;
+- (NSPoint)getPointWithChessmanLocation:(NSPoint)location;
 
 // 坐标系原点位置不同的转化
 - (NSPoint)getOrignLTPointFromOrignLBPoint:(NSPoint)lBPoint;
 - (NSPoint)getOrignLBPointFromOrignLTPoint:(NSPoint)lTPoint;
 
 - (BOOL)enablePressWithChessman:(CGTChessmanBean *)chessman;
+
+// 是否有气
+- (NSMutableArray *)areaDifferentColorBreacheWithChessman:(CGTChessmanBean *)chessman;
+- (NSMutableArray *)sameColorBreatheWithChessman:(CGTChessmanBean *)chessman;
 
 // 获取天元和星的位置
 + (NSArray *)getStarsFrom19x19;

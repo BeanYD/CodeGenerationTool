@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (assign) BOOL isWhite;
 @property (assign) NSPoint position;
-
+@property (strong) NSView *chessmanView;
 
 + (CGTChessmanBean *)chessmanBeanWithPosition:(NSPoint)position isWhite:(BOOL)isWhite;
 

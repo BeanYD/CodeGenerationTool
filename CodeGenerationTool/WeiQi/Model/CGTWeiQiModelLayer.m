@@ -32,8 +32,8 @@
     self.step = 0;
     self.isAuto = YES;
     self.isWhite = NO;
-    
-    self.pressedArray = [NSMutableArray array];
+        
+    self.pressedDict = [NSMutableDictionary dictionary];
 }
 
 - (void)setSpaceWidth:(int)spaceWidth {
@@ -76,6 +76,25 @@
     return chessRect;
 }
 
+- (NSRect)getChessViewRectWithChessmanLocation:(NSPoint)location {
+    CGFloat cellWidth = (self.boardWidth - self.spaceWidth * 2) / (self.lineNum - 1);
+    NSPoint point = [self getPointWithChessmanLocation:location];
+    
+    return NSMakeRect(point.x, point.y, cellWidth, cellWidth);
+}
+
+- (NSPoint)getPointWithChessmanLocation:(NSPoint)location {
+    CGFloat cellWidth = (self.boardWidth - self.spaceWidth * 2) / (self.lineNum - 1);
+    CGFloat startX = self.startPoint.x;
+    CGFloat startY = self.startPoint.y;
+    
+    CGFloat pointX = (location.x - 1) * cellWidth - cellWidth / 2 + startX;
+    CGFloat pointY = (18 + 1 - location.y) * cellWidth - cellWidth / 2 + startY;
+    
+    return NSMakePoint(pointX, pointY);
+}
+
+// 左上角原点返回坐标
 - (NSPoint)getChessmanLocationWithPoint:(NSPoint)point {
     CGFloat cellWidth = (self.boardWidth - self.spaceWidth * 2) / (self.lineNum - 1);
     CGFloat startX = self.startPoint.x;
@@ -90,7 +109,7 @@
 // 判断单个棋子没有气，无法落子。
 // TODO: 添加劫的判断
 - (BOOL)enablePressWithChessman:(CGTChessmanBean *)chessman {
-    if (self.pressedArray.count == 0) {
+    if (self.pressedDict.count == 0) {
         return YES;
     }
     
@@ -118,14 +137,21 @@
         maxCount--;
     }
     
-    for (int i = 0; i < self.pressedArray.count; i++) {
-        CGTChessmanBean *bean = self.pressedArray[i];
-        if (CGPointEqualToPoint(bean.position, topPoint) ||
-            CGPointEqualToPoint(bean.position, bottomPoint) ||
-            CGPointEqualToPoint(bean.position, leftPoint) ||
-            CGPointEqualToPoint(bean.position, rightPoint)) {
-            containCount++;
-        }
+    CGTChessmanBean *topBean = [self.pressedDict valueForKey:NSStringFromPoint(topPoint)];
+    CGTChessmanBean *bottomBean = [self.pressedDict valueForKey:NSStringFromPoint(bottomPoint)];
+    CGTChessmanBean *leftBean = [self.pressedDict valueForKey:NSStringFromPoint(leftPoint)];
+    CGTChessmanBean *rightBean = [self.pressedDict valueForKey:NSStringFromPoint(rightPoint)];
+    if (topBean && topBean.isWhite != chessman.isWhite) {
+        containCount++;
+    }
+    if (bottomBean && bottomBean.isWhite != chessman.isWhite) {
+        containCount++;
+    }
+    if (leftBean && leftBean.isWhite != chessman.isWhite) {
+        containCount++;
+    }
+    if (rightBean && rightBean.isWhite != chessman.isWhite) {
+        containCount++;
     }
 
     if (containCount == maxCount) {
@@ -135,11 +161,180 @@
     return YES;
 }
 
-// 是否有气
-- (BOOL)hasBreatheWithChessman:(CGTChessmanBean *)chessman {
+
+// 落子异色子是否有气
+- (NSMutableArray *)areaDifferentColorBreacheWithChessman:(CGTChessmanBean *)chessman {
+    CGPoint point = chessman.position;
     
+    NSMutableArray *removeArray = [NSMutableArray array];
     
-    return YES;
+    // 上下左右寻找异色
+    if (point.y - 1 > 0) {
+        CGTChessmanBean *topBean = [self.pressedDict valueForKey:NSStringFromPoint(NSMakePoint(point.x, point.y - 1))];
+        if (topBean && topBean.isWhite != chessman.isWhite) {
+            [removeArray addObjectsFromArray:[self sameColorBreatheWithChessman:topBean]];
+        }
+    }
+    
+    if (point.y + 1 <= 19) {
+        CGTChessmanBean *bottomBean = [self.pressedDict valueForKey:NSStringFromPoint(NSMakePoint(point.x, point.y + 1))];
+        if (bottomBean && bottomBean.isWhite != chessman.isWhite) {
+            [removeArray addObjectsFromArray:[self sameColorBreatheWithChessman:bottomBean]];
+        }
+    }
+    
+    if (point.x - 1 > 0) {
+        CGTChessmanBean *leftBean = [self.pressedDict valueForKey:NSStringFromPoint(NSMakePoint(point.x - 1, point.y))];
+        if (leftBean && leftBean.isWhite != chessman.isWhite) {
+            [removeArray addObjectsFromArray:[self sameColorBreatheWithChessman:leftBean]];
+        }
+    }
+    
+    if (point.x + 1 <= 19) {
+        CGTChessmanBean *rightBean = [self.pressedDict valueForKey:NSStringFromPoint(NSMakePoint(point.x + 1, point.y))];
+        if (rightBean && rightBean.isWhite != chessman.isWhite) {
+            [removeArray addObjectsFromArray:[self sameColorBreatheWithChessman:rightBean]];
+        }
+    }
+    
+    return removeArray;
+}
+
+// 落子同色子是否有气
+- (NSMutableArray *)sameColorBreatheWithChessman:(CGTChessmanBean *)chessman {
+    
+    CGPoint point = chessman.position;
+    // 四个方向，直到遇到空子或者不同颜色的子
+    
+    // 记录x轴、y轴同色子
+    NSMutableArray *visitedXs = [NSMutableArray array];
+    NSMutableArray *visitedYs = [NSMutableArray array];
+    [visitedXs addObject:@(point.x)];
+    [visitedYs addObject:@(point.y)];
+    
+    // 左侧遍历，找边缘
+    int leftX = point.x;
+    while (leftX > 0) {
+        int tmpX = leftX - 1;
+        NSPoint newPoint = NSMakePoint(tmpX, point.y);
+        CGTChessmanBean *leftBean = [self.pressedDict valueForKey:NSStringFromPoint(newPoint)];
+        if (leftBean) {
+            if (leftBean.isWhite == chessman.isWhite) {
+                leftX = tmpX;
+                [visitedXs addObject:@(tmpX)];
+            } else {
+                // 不同色，路堵死了！退出遍历
+                break;
+            }
+        } else {
+            // 存在气，直接返回YES
+            return [@[] mutableCopy];
+        }
+    }
+    // 右侧遍历，找边缘
+    int rightX = point.x;
+    while (rightX <= 19) {
+        int tmpX = rightX + 1;
+        NSPoint newPoint = NSMakePoint(tmpX, point.y);
+        CGTChessmanBean *rightBean = [self.pressedDict valueForKey:NSStringFromPoint(newPoint)];
+        if (rightBean) {
+            if (rightBean.isWhite == chessman.isWhite) {
+                rightX = tmpX;
+                [visitedXs addObject:@(tmpX)];
+            } else {
+                // 不同色，路堵死了！退出遍历
+                break;
+            }
+        } else {
+            // 存在气，直接返回YES
+            return [@[] mutableCopy];
+        }
+    }
+    // 向上遍历，找边缘
+    int topY = point.y;
+    while (topY > 0) {
+        int tmpY = topY - 1;
+        NSPoint newPoint = NSMakePoint(point.x, tmpY);
+        CGTChessmanBean *topBean = [self.pressedDict valueForKey:NSStringFromPoint(newPoint)];
+        if (topBean) {
+            if (topBean.isWhite == chessman.isWhite) {
+                topY = tmpY;
+                [visitedYs addObject:@(tmpY)];
+            } else {
+                break;
+            }
+        } else {
+            // 存在气，直接返回YES
+            return [@[] mutableCopy];
+        }
+    }
+    // 向下遍历，找边缘
+    int bottomY = point.y;
+    while (topY <= 19) {
+        int tmpY = bottomY + 1;
+        NSPoint newPoint = NSMakePoint(point.x, tmpY);
+        CGTChessmanBean *bottomBean = [self.pressedDict valueForKey:NSStringFromPoint(newPoint)];
+        if (bottomBean) {
+            if (bottomBean.isWhite == chessman.isWhite) {
+                bottomY = tmpY;
+                [visitedYs addObject:@(tmpY)];
+            } else {
+                break;
+            }
+        } else {
+            // 存在气，直接返回YES
+            return [@[] mutableCopy];
+        }
+    }
+    
+//    // y轴数据排序
+//    [visitedYs sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+//        int y1 = [obj1 intValue];
+//        int y2 = [obj2 intValue];
+//        if (y1 > y2) {
+//            return NSOrderedDescending;
+//        } else if (y1 < y2) {
+//            return NSOrderedAscending;
+//        } else {
+//            return NSOrderedSame;
+//        }
+//    }];
+    
+    NSMutableArray *tmpArray = [NSMutableArray array];
+    
+    // visitedXs 内容:pointX, pointX--, pointX++;
+    // visitedYs 内容:pointY, pointY--, pointY++;
+    
+    // 根据x,y方向的同色数据，遍历
+    for (int i = 0; i < visitedXs.count; i++) {
+        int x = [visitedXs[i] intValue];
+        
+        BOOL isTopBorder = NO;
+        for (int j = 0; j < visitedYs.count; j++) {
+            int y = [visitedYs[j] intValue];
+            if (isTopBorder && y < [visitedYs[0] intValue]) {
+                continue;
+            }
+            
+            CGTChessmanBean *bean = [self.pressedDict valueForKey:NSStringFromPoint(NSMakePoint(x, y))];
+            if (!bean) {
+                return [@[] mutableCopy];
+            } else {
+                if (bean.isWhite != chessman.isWhite) {
+                    // 遇到边缘的异色子
+                    if (y < [visitedYs[0] intValue]) {
+                        isTopBorder = YES;
+                    } else {
+                        break;
+                    }
+                } else {
+                    [tmpArray addObject:bean];
+                }
+            }
+        }
+    }
+    
+    return tmpArray;
 }
 
 #pragma mark - Class Method

@@ -10,10 +10,13 @@
 #import <QuartzCore/QuartzCore.h>
 #import "CGTWeiQiModelLayer.h"
 #import "CGTChessmanBean.h"
+#import "CGTSGFFileReader.h"
+#import "CGTSGFNode.h"
 
 @interface CGTWeiQiBoardView () {
     CGTWeiQiModelLayer *_model;
     NSArray *_chessmans;
+    BOOL _isWhite;
 }
 
 @property (strong) NSCursor *currentCursor;
@@ -32,6 +35,7 @@
     if (self = [super initWithFrame:frameRect]) {
         
         self.wantsLayer = YES;
+        _isWhite = NO;
     }
     
     return self;
@@ -141,6 +145,118 @@
     _chessmans = [model chessmansInBoard];
 }
 
+- (void)clearChessmans {
+    NSArray *pressBeans = [_model.pressedDict allValues];
+    for (int i = 0; i < pressBeans.count; i++) {
+        CGTChessmanBean *bean = pressBeans[i];
+        [bean.chessmanView removeFromSuperview];
+    }
+    
+    [_model.pressedDict removeAllObjects];
+    
+}
+
+- (void)loadSgfFileContent:(NSString *)content {
+    
+    [self clearChessmans];
+    
+    content = [content stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    content = [content stringByReplacingOccurrencesOfString:@"\t" withString:@""];
+    content = [content stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+    CGTSGFNode *rootNode = [CGTSGFFileReader readGameTree:content];
+    
+    NSDictionary *basicDict = [CGTSGFFileReader readBasicChessmanContent:rootNode.nodeStr];
+    _model.basicDict = basicDict;
+    
+    NSArray *blackArray = [basicDict valueForKey:@"AB"];
+    for (int i = 0; i < blackArray.count; i++) {
+        NSPoint point = NSPointFromString(blackArray[i]);
+        CGTChessmanBean *currentBean = [CGTChessmanBean chessmanBeanWithPosition:point isWhite:YES];
+        
+        NSImageView *chessView = [[NSImageView alloc] initWithFrame:[_model getChessViewRectWithChessmanLocation:point]];
+        chessView.wantsLayer = YES;
+        chessView.image = [NSImage imageNamed:@"black_chess"];
+        [self addSubview:chessView];
+        currentBean.chessmanView = chessView;
+        [_model.pressedDict setValue:currentBean forKey:NSStringFromPoint(point)];
+    }
+    NSArray *whiteArray = [basicDict valueForKey:@"AW"];
+    for (int i = 0; i < whiteArray.count; i++) {
+        NSPoint point = NSPointFromString(whiteArray[i]);
+        CGTChessmanBean *currentBean = [CGTChessmanBean chessmanBeanWithPosition:point isWhite:YES];
+        
+        NSImageView *chessView = [[NSImageView alloc] initWithFrame:[_model getChessViewRectWithChessmanLocation:point]];
+        chessView.wantsLayer = YES;
+        chessView.image = [NSImage imageNamed:@"white_chess"];
+        [self addSubview:chessView];
+        currentBean.chessmanView = chessView;
+        [_model.pressedDict setValue:currentBean forKey:NSStringFromPoint(point)];
+    }
+    
+    // 判断下一手是黑还是白
+    if (rootNode.subNodes.count > 0) {
+        CGTSGFNode *subNode = [rootNode.subNodes firstObject];
+        if ([[subNode.nodeStr substringWithRange:NSMakeRange(1, 1)] isEqualToString:@"W"]) {
+            // 白色
+            _isWhite = YES;
+        } else if ([[subNode.nodeStr substringWithRange:NSMakeRange(1, 1)] isEqualToString:@"B"]) {
+            // 黑色
+            _isWhite = NO;
+        }
+    }
+    
+    // TODO: 添加棋谱下一手路径
+    
+}
+
+- (void)addAWChessmanWithString:(NSString *)content {
+    NSArray *awArray = [self getStrContainDataWithStr:content start:@"AW\\[" end:@"\\]"];
+    for (int i = 0; i < awArray.count; i++) {
+        NSTextCheckingResult *res = awArray[i];
+        NSLog(@"%@, %@", NSStringFromRange(res.range), [content substringWithRange:res.range]);
+    }
+}
+
+- (void)addABChessmanWithString:(NSString *)content {
+    
+}
+
+- (void)addWhiteChessmanWithString:(NSString *)content {
+    NSArray *array = [self getStrContainDataWithStr:content start:@";W\\[" end:@"\\]"];
+    
+    for (int i = 0; i < array.count; i++) {
+        NSTextCheckingResult *res = array[i];
+//        NSLog(@"%@, %@", NSStringFromRange(res.range), [content substringWithRange:res.range]);
+        
+        NSString *sub = [content substringWithRange:res.range];
+        NSString *xStr = [sub substringWithRange:NSMakeRange(3, 1)];
+        NSString *yStr = [sub substringWithRange:NSMakeRange(4, 1)];
+        
+        // 获取白子位置
+        NSArray *allLetters = @[@"a",@"b",@"c",@"d",@"e",@"f",@"g",@"h",@"i",@"j",@"k",@"l",@"m",@"n",@"o",@"p",@"q",@"r",@"s",@"t",@"u",@"v",@"w",@"x",@"y",@"z"];
+        
+        NSPoint point = NSMakePoint([allLetters indexOfObject:xStr] + 1, [allLetters indexOfObject:yStr] + 1);
+        NSLog(@"point:%@", NSStringFromPoint(point));
+        
+        CGTChessmanBean *currentBean = [CGTChessmanBean chessmanBeanWithPosition:point isWhite:YES];
+        
+        NSImageView *chessView = [[NSImageView alloc] initWithFrame:[_model getChessViewRectWithChessmanLocation:point]];
+        chessView.wantsLayer = YES;
+        chessView.image = [NSImage imageNamed:@"white_chess"];
+        [self addSubview:chessView];
+        currentBean.chessmanView = chessView;
+        [_model.pressedDict setValue:currentBean forKey:NSStringFromPoint(point)];
+    }
+}
+
+- (NSArray *)getStrContainDataWithStr:(NSString *)str start:(NSString *)start end:(NSString *)end {
+    NSString *pattern = [NSString stringWithFormat:@"%@(.*?)%@", start, end];
+    NSRegularExpression *regular = [[NSRegularExpression alloc] initWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:nil];
+    NSArray *results = [regular matchesInString:str options:0 range:NSMakeRange(0, str.length)];
+    
+    return results;
+}
+
 - (CAShapeLayer *)starLayerWithPosition:(NSPoint)point starRadius:(CGFloat)r {
     CAShapeLayer *starLayer = [[CAShapeLayer alloc] init];
     starLayer.frame = self.bounds;
@@ -168,18 +284,14 @@
     }
     
     NSPoint chessPoint = [_model getChessmanLocationWithPoint:location];
-    for (int i = 0; i < _model.pressedArray.count; i++) {
-        CGTChessmanBean *chessmanModel = _model.pressedArray[i];
-        NSPoint pressedPoint = chessmanModel.position;
-        if (NSEqualPoints(chessPoint, pressedPoint)) {
-            return;
-        }
+    CGTChessmanBean *chessBean = [_model.pressedDict valueForKey:NSStringFromPoint(chessPoint)];
+    if (chessBean) {
+        return;
     }
     
     BOOL isWhite = NO;
     if (_model.isAuto) {
-        int tmpStep = _model.step + 1;
-        isWhite = tmpStep % 2 != 1;
+        isWhite = _isWhite;
     } else {
         isWhite = _model.isWhite;
     }
@@ -189,18 +301,42 @@
         NSLog(@"没有气，无法落子");
         return;
     }
+    
+    // 判断同色是否有气
+    NSMutableArray *removeArray = [_model sameColorBreatheWithChessman:currentBean];
+    if (removeArray.count > 0) {
+        // 返回有内容，直接提子
+        for (int i = 0; i < removeArray.count; i++) {
+            CGTChessmanBean *removeBean = removeArray[i];
+            [_model.pressedDict removeObjectForKey:NSStringFromPoint(removeBean.position)];
+            [removeBean.chessmanView removeFromSuperview];
+        }
+        return;
+    }
 
     NSRect chessRect = [_model getChessmanRectWithPoint:location];
     NSImageView *chessView = [[NSImageView alloc] initWithFrame:chessRect];
     chessView.wantsLayer = YES;
     
     if (_model.isAuto) {
-        _model.step++;
+        _isWhite = !_isWhite;
     }
-    chessView.image = isWhite ? [NSImage imageNamed:@"black_chess"] : [NSImage imageNamed:@"white_chess"];
+    chessView.image = isWhite ? [NSImage imageNamed:@"white_chess"] : [NSImage imageNamed:@"black_chess"];
     [self addSubview:chessView];
     
-    [_model.pressedArray addObject:currentBean];
+    currentBean.chessmanView = chessView;
+    
+    [_model.pressedDict setValue:currentBean forKey:NSStringFromPoint(chessPoint)];
+    
+    // 下完当前子之后，判断相邻异色是否有气
+    NSMutableArray *areaRemoveArray = [_model areaDifferentColorBreacheWithChessman:currentBean];
+    if (areaRemoveArray.count > 0) {
+        for (int i = 0; i < areaRemoveArray.count; i++) {
+            CGTChessmanBean *removeBean = areaRemoveArray[i];
+            [_model.pressedDict removeObjectForKey:NSStringFromPoint(removeBean.position)];
+            [removeBean.chessmanView removeFromSuperview];
+        }
+    }
 
     //    [self resetCursor];
 }

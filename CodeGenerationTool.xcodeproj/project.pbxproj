@@ -25,6 +25,10 @@
 		04411A782549809D00337A41 /* CGTSecondaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04411A772549809D00337A41 /* CGTSecondaryViewController.m */; };
 		04465D8325A69D37009850D0 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 04465D8125A69D37009850D0 /* ProgressHUD.m */; };
 		0455703F2703FFC90024C32C /* CGTChessmanBean.m in Sources */ = {isa = PBXBuildFile; fileRef = 0455703E2703FFC90024C32C /* CGTChessmanBean.m */; };
+		046DB625271415A100673633 /* 000.sgf in Resources */ = {isa = PBXBuildFile; fileRef = 046DB624271415A100673633 /* 000.sgf */; };
+		046DB64B271436A600673633 /* CGTSGFFileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DB64A271436A600673633 /* CGTSGFFileReader.m */; };
+		046DB6512714370600673633 /* CGTSGFNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DB6502714370600673633 /* CGTSGFNode.m */; };
+		046DB657271564B900673633 /* CGTSGFBean.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DB656271564B900673633 /* CGTSGFBean.m */; };
 		04729F5026FDB31F00466E62 /* CGTWeiQiWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04729F4F26FDB31F00466E62 /* CGTWeiQiWindowController.m */; };
 		04729F5626FDB35F00466E62 /* CGTWeiQiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04729F5526FDB35F00466E62 /* CGTWeiQiViewController.m */; };
 		04729F5C2700024E00466E62 /* CGTWeiQiBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04729F5B2700024E00466E62 /* CGTWeiQiBoardView.m */; };
@@ -130,6 +134,13 @@
 		04465D8225A69D37009850D0 /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
 		0455703D2703FFC90024C32C /* CGTChessmanBean.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTChessmanBean.h; sourceTree = "<group>"; };
 		0455703E2703FFC90024C32C /* CGTChessmanBean.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTChessmanBean.m; sourceTree = "<group>"; };
+		046DB624271415A100673633 /* 000.sgf */ = {isa = PBXFileReference; fileEncoding = 2147484168; lastKnownFileType = text; path = 000.sgf; sourceTree = "<group>"; };
+		046DB649271436A600673633 /* CGTSGFFileReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTSGFFileReader.h; sourceTree = "<group>"; };
+		046DB64A271436A600673633 /* CGTSGFFileReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTSGFFileReader.m; sourceTree = "<group>"; };
+		046DB64F2714370600673633 /* CGTSGFNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTSGFNode.h; sourceTree = "<group>"; };
+		046DB6502714370600673633 /* CGTSGFNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTSGFNode.m; sourceTree = "<group>"; };
+		046DB655271564B900673633 /* CGTSGFBean.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTSGFBean.h; sourceTree = "<group>"; };
+		046DB656271564B900673633 /* CGTSGFBean.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTSGFBean.m; sourceTree = "<group>"; };
 		04729F4E26FDB31F00466E62 /* CGTWeiQiWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTWeiQiWindowController.h; sourceTree = "<group>"; };
 		04729F4F26FDB31F00466E62 /* CGTWeiQiWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTWeiQiWindowController.m; sourceTree = "<group>"; };
 		04729F5426FDB35F00466E62 /* CGTWeiQiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTWeiQiViewController.h; sourceTree = "<group>"; };
@@ -329,6 +340,7 @@
 		04729F4A26FDB2D500466E62 /* WeiQi */ = {
 			isa = PBXGroup;
 			children = (
+				046DB624271415A100673633 /* 000.sgf */,
 				04729F4B26FDB2D500466E62 /* Controller */,
 				04729F4C26FDB2D500466E62 /* Model */,
 				04729F4D26FDB2D500466E62 /* View */,
@@ -354,6 +366,12 @@
 				04729F612700123500466E62 /* CGTWeiQiModelLayer.m */,
 				0455703D2703FFC90024C32C /* CGTChessmanBean.h */,
 				0455703E2703FFC90024C32C /* CGTChessmanBean.m */,
+				046DB649271436A600673633 /* CGTSGFFileReader.h */,
+				046DB64A271436A600673633 /* CGTSGFFileReader.m */,
+				046DB64F2714370600673633 /* CGTSGFNode.h */,
+				046DB6502714370600673633 /* CGTSGFNode.m */,
+				046DB655271564B900673633 /* CGTSGFBean.h */,
+				046DB656271564B900673633 /* CGTSGFBean.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -892,6 +910,7 @@
 				D70D5F4824B0641800675E89 /* Assets.xcassets in Resources */,
 				D70D5F4B24B0641800675E89 /* Main.storyboard in Resources */,
 				04AE732C25F225E00057F3B6 /* ClassInfo.plist in Resources */,
+				046DB625271415A100673633 /* 000.sgf in Resources */,
 				043E0102253EEA7B0089AB8C /* CommonTitleBarViewController.xib in Resources */,
 				043E015725403B570089AB8C /* CGTTitleBarViewController.xib in Resources */,
 			);
@@ -1024,12 +1043,15 @@
 				04AE731E25F223E50057F3B6 /* CGTExcelWindowController.m in Sources */,
 				04AE739D25FA1D960057F3B6 /* NSBezierPath+CGPath.m in Sources */,
 				D7D117D1251C842D0019212F /* CGTInvokeConfig.m in Sources */,
+				046DB6512714370600673633 /* CGTSGFNode.m in Sources */,
 				043E01AC2542BB710089AB8C /* CGTCommonDemoWindowController.m in Sources */,
 				0476509B259DBA5C0006F3FC /* CustomButton.m in Sources */,
 				043E01BB2542BF310089AB8C /* CGTProcessRateView.m in Sources */,
 				0440121F25398FE500798BCD /* CGTCustomScrollView.m in Sources */,
+				046DB64B271436A600673633 /* CGTSGFFileReader.m in Sources */,
 				D70D5F4E24B0641800675E89 /* main.m in Sources */,
 				04411A782549809D00337A41 /* CGTSecondaryViewController.m in Sources */,
+				046DB657271564B900673633 /* CGTSGFBean.m in Sources */,
 				04465D8325A69D37009850D0 /* ProgressHUD.m in Sources */,
 				D7F42C2124B2D1C700EF1C38 /* CGTFilePathPlistMgr.m in Sources */,
 				04AE732725F223FB0057F3B6 /* CGTExcelViewController.m in Sources */,

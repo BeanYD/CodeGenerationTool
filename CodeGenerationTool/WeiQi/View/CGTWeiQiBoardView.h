@@ -14,6 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)loadModelLayer:(id)modelLayer;
 
+- (void)clearChessmans;
+
+- (void)loadSgfFileContent:(NSString *)content;
+
 @end
 
 NS_ASSUME_NONNULL_END

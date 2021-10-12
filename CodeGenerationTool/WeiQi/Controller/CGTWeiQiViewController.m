@@ -18,6 +18,12 @@
 
 @property (strong) CGTWeiQiModelLayer *model;
 
+@property (nonatomic, strong) NSButton *clearBtn;
+
+@property (strong) CGTWeiQiBoardView *boardView;
+
+@property (nonatomic, strong) NSButton *readSgfBtn;
+
 @end
 
 @implementation CGTWeiQiViewController
@@ -29,11 +35,14 @@
     self.model = [CGTWeiQiModelLayer new];
     CGTWeiQiBoardView *boardView = [[CGTWeiQiBoardView alloc] initWithFrame:NSMakeRect((NSWidth(self.view.frame) - 800) / 2, (NSHeight(self.view.frame) - 800) / 2, 800, 800)];
     [boardView loadModelLayer:self.model];
+    self.boardView = boardView;
     
     [self.view addSubview:boardView];
     
     [self.view addSubview:self.autoChgBtn];
     [self.view addSubview:self.currentChessBtn];
+    [self.view addSubview:self.clearBtn];
+    [self.view addSubview:self.readSgfBtn];
     self.currentChessBtn.hidden = YES;
     
     [self layoutSubviews];
@@ -51,6 +60,16 @@
         make.top.equalTo(self.autoChgBtn);
         make.width.equalTo(@50);
         make.height.equalTo(@50);
+    }];
+    
+    [self.clearBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.currentChessBtn.mas_right).offset(20);
+        make.top.equalTo(self.currentChessBtn);
+    }];
+    
+    [self.readSgfBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.clearBtn.mas_right).offset(20);
+        make.top.equalTo(self.clearBtn);
     }];
 }
 
@@ -79,6 +98,43 @@
     }
 }
 
+- (void)clearButtonClick:(NSButton *)button {
+    [self.boardView clearChessmans];
+}
+
+- (void)readSgfButtonClick:(NSButton *)button {
+    // 弹出panel选择文件或者文件夹
+    NSOpenPanel *panel = [NSOpenPanel openPanel];
+    // 是否可以创建文件夹
+    panel.canCreateDirectories = NO;
+    // 是否可以选择文件夹
+    panel.canChooseDirectories = NO;
+    // 是否可以选择文件
+    panel.canChooseFiles = YES;
+    // 是否支持多选
+    panel.allowsMultipleSelection = YES;
+    
+    [panel beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse result) {
+    
+        if (result == NSModalResponseOK) {
+            
+            NSString *path = [panel.URL path];
+            
+            // MARK: 目标文件的编码方式查看：terminal中输入file xxxx.sgf
+            
+            /* Note that in addition to the values explicitly listed below, NSStringEncoding supports encodings provided by CFString.
+            See CFStringEncodingExt.h for a list of these encodings.
+            See CFString.h for functions which convert between NSStringEncoding and CFStringEncoding.
+            */
+            NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+            NSError *error = nil;
+            NSString *string = [NSString stringWithContentsOfFile:path encoding:enc error:&error];
+            [self.boardView loadSgfFileContent:string];
+        }
+        
+    }];
+}
+
 #pragma mark - Getter
 
 - (NSButton *)autoChgBtn {
@@ -103,6 +159,28 @@
     }
     
     return _currentChessBtn;
+}
+
+- (NSButton *)clearBtn {
+    if (!_clearBtn) {
+        _clearBtn = [[NSButton alloc] init];
+        _clearBtn.title = @"清空棋盘";
+        _clearBtn.target = self;
+        _clearBtn.action = @selector(clearButtonClick:);
+    }
+    
+    return _clearBtn;
+}
+
+- (NSButton *)readSgfBtn {
+    if (!_readSgfBtn) {
+        _readSgfBtn = [[NSButton alloc] init];
+        _readSgfBtn.title = @"读取sgf文件";
+        _readSgfBtn.target = self;
+        _readSgfBtn.action = @selector(readSgfButtonClick:);
+    }
+    
+    return _readSgfBtn;
 }
 
 @end

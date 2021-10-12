@@ -3,12 +3,50 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "+[CGTSGFFileReader readSubGameTree:node:]:CGTSGFFileReader.m">
+      </ContextState>
+      <ContextState
+         contextName = "+[CGTSGFFileReader readGameTree:]:CGTSGFFileReader.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CGTWeiQiBoardView mouseDown:]:CGTWeiQiBoardView.m">
+      </ContextState>
+      <ContextState
          contextName = "-[CGTDrawView mouseUp:]:CGTDrawView.m">
          <PersistentStrings>
             <PersistentString
                value = "_currentPoint">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "+[CGTSGFFileReader locationsFromContent:separateStr:]:CGTSGFFileReader.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "letterArray">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__45-[CGTWeiQiViewController readSgfButtonClick:]_block_invoke:CGTWeiQiViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CGTWeiQiModelLayer enablePressWithChessman:]:CGTWeiQiModelLayer.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CGTWeiQiModelLayer areaDifferentColorBreacheWithChessman:]:CGTWeiQiModelLayer.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CGTWeiQiBoardView loadSgfFileContent:]:CGTWeiQiBoardView.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CGTWeiQiModelLayer sameColorBreatheWithChessman:]:CGTWeiQiModelLayer.m">
+      </ContextState>
+      <ContextState
+         contextName = "+[CGTSGFFileReader readBasicChessmanContent:]:CGTSGFFileReader.m">
+      </ContextState>
+      <ContextState
+         contextName = "+[CGTSGFFileReader readSubGameTree:node:index:]:CGTSGFFileReader.m">
       </ContextState>
    </ContextStates>
 </VariablesViewState>
