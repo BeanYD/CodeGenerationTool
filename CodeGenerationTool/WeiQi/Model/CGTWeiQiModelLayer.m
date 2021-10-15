@@ -8,6 +8,7 @@
 
 #import "CGTWeiQiModelLayer.h"
 #import "CGTChessmanBean.h"
+#import "CGTChessmanStep.h"
 
 @implementation CGTWeiQiModelLayer
 
@@ -34,6 +35,8 @@
     self.isWhite = NO;
         
     self.pressedDict = [NSMutableDictionary dictionary];
+    self.chessmanStep = [[CGTChessmanStep alloc] init];
+    
 }
 
 - (void)setSpaceWidth:(int)spaceWidth {
@@ -106,102 +109,162 @@
     return NSMakePoint(i, j);
 }
 
-// 判断单个棋子没有气，无法落子。
-// TODO: 添加劫的判断
-- (BOOL)enablePressWithChessman:(CGTChessmanBean *)chessman {
-    if (self.pressedDict.count == 0) {
-        return YES;
-    }
-    
-    CGPoint topPoint = NSMakePoint(chessman.position.x, chessman.position.y - 1);
-    CGPoint bottomPoint = NSMakePoint(chessman.position.x, chessman.position.y + 1);
-    CGPoint leftPoint = NSMakePoint(chessman.position.x - 1, chessman.position.y);
-    CGPoint rightPoint = NSMakePoint(chessman.position.x + 1, chessman.position.y);
-    
-    int containCount = 0;
-    int maxCount = 4;
-    
-    if (topPoint.y <= 0) {
-        maxCount--;
-    }
-    
-    if (bottomPoint.y > 19) {
-        maxCount--;
-    }
-    
-    if (leftPoint.x <= 0) {
-        maxCount--;
-    }
-    
-    if (rightPoint.x > 19) {
-        maxCount--;
-    }
-    
-    CGTChessmanBean *topBean = [self.pressedDict valueForKey:NSStringFromPoint(topPoint)];
-    CGTChessmanBean *bottomBean = [self.pressedDict valueForKey:NSStringFromPoint(bottomPoint)];
-    CGTChessmanBean *leftBean = [self.pressedDict valueForKey:NSStringFromPoint(leftPoint)];
-    CGTChessmanBean *rightBean = [self.pressedDict valueForKey:NSStringFromPoint(rightPoint)];
-    if (topBean && topBean.isWhite != chessman.isWhite) {
-        containCount++;
-    }
-    if (bottomBean && bottomBean.isWhite != chessman.isWhite) {
-        containCount++;
-    }
-    if (leftBean && leftBean.isWhite != chessman.isWhite) {
-        containCount++;
-    }
-    if (rightBean && rightBean.isWhite != chessman.isWhite) {
-        containCount++;
-    }
-
-    if (containCount == maxCount) {
-        return NO;
-    }
-    
-    return YES;
-}
-
 
 // 落子异色子是否有气
-- (NSMutableArray *)areaDifferentColorBreacheWithChessman:(CGTChessmanBean *)chessman {
+- (NSSet *)areaDifferentColorBreacheWithChessman:(CGTChessmanBean *)chessman {
     CGPoint point = chessman.position;
     
-    NSMutableArray *removeArray = [NSMutableArray array];
+    NSSet *removeSet = [NSSet set];
     
     // 上下左右寻找异色
     if (point.y - 1 > 0) {
         CGTChessmanBean *topBean = [self.pressedDict valueForKey:NSStringFromPoint(NSMakePoint(point.x, point.y - 1))];
         if (topBean && topBean.isWhite != chessman.isWhite) {
-            [removeArray addObjectsFromArray:[self sameColorBreatheWithChessman:topBean]];
+            NSSet *topSet = [self sameColorBreatheWithChessman:topBean];
+            removeSet = [removeSet setByAddingObjectsFromSet:topSet];
         }
     }
     
     if (point.y + 1 <= 19) {
         CGTChessmanBean *bottomBean = [self.pressedDict valueForKey:NSStringFromPoint(NSMakePoint(point.x, point.y + 1))];
         if (bottomBean && bottomBean.isWhite != chessman.isWhite) {
-            [removeArray addObjectsFromArray:[self sameColorBreatheWithChessman:bottomBean]];
+            NSSet *bottomSet = [self sameColorBreatheWithChessman:bottomBean];
+            removeSet = [removeSet setByAddingObjectsFromSet:bottomSet];
         }
     }
     
     if (point.x - 1 > 0) {
         CGTChessmanBean *leftBean = [self.pressedDict valueForKey:NSStringFromPoint(NSMakePoint(point.x - 1, point.y))];
         if (leftBean && leftBean.isWhite != chessman.isWhite) {
-            [removeArray addObjectsFromArray:[self sameColorBreatheWithChessman:leftBean]];
+            NSSet *leftSet = [self sameColorBreatheWithChessman:leftBean];
+            removeSet = [removeSet setByAddingObjectsFromSet:leftSet];
         }
     }
     
     if (point.x + 1 <= 19) {
         CGTChessmanBean *rightBean = [self.pressedDict valueForKey:NSStringFromPoint(NSMakePoint(point.x + 1, point.y))];
         if (rightBean && rightBean.isWhite != chessman.isWhite) {
-            [removeArray addObjectsFromArray:[self sameColorBreatheWithChessman:rightBean]];
+            NSSet *rightSet = [self sameColorBreatheWithChessman:rightBean];
+            removeSet = [removeSet setByAddingObjectsFromSet:rightSet];
         }
     }
     
-    return removeArray;
+    return removeSet;
 }
 
 // 落子同色子是否有气
-- (NSMutableArray *)sameColorBreatheWithChessman:(CGTChessmanBean *)chessman {
+- (NSSet *)sameColorBreatheWithChessman:(CGTChessmanBean *)chessman {
+    
+    CGPoint point = chessman.position;
+
+    // 用于存储已遍历坐标的数组
+    NSMutableSet *coverSet = [NSMutableSet set];
+    [coverSet addObject:NSStringFromPoint(point)];
+    
+    BOOL res = [self sameColorBreatheWithChessman:chessman coverSet:coverSet];
+    
+    if (res) {
+        [coverSet removeAllObjects];
+    }
+    return coverSet;
+    
+}
+
+- (BOOL)sameColorBreatheWithChessman:(CGTChessmanBean *)chessman coverSet:(NSMutableSet *)coverSet {
+    CGPoint point = chessman.position;
+
+    // 左侧遍历，找边缘
+    if (point.x > 1) {
+        NSPoint left = NSMakePoint(point.x - 1, point.y);
+        CGTChessmanBean *leftBean = [self.pressedDict valueForKey:NSStringFromPoint(left)];
+        if (leftBean) {
+            if (leftBean.isWhite == chessman.isWhite) {
+                if (![coverSet containsObject:NSStringFromPoint(left)]) {
+                    [coverSet addObject:NSStringFromPoint(left)];
+                    if ([self sameColorBreatheWithChessman:leftBean coverSet:coverSet]) {
+                        return YES;
+                    }
+                }
+            } else {
+                
+            }
+        } else {
+            // 空子
+            return YES;
+        }
+    }
+
+    
+    // 右侧遍历，找边缘
+    if (point.x < 19) {
+        NSPoint right = NSMakePoint(point.x + 1, point.y);
+        CGTChessmanBean *rightBean = [self.pressedDict valueForKey:NSStringFromPoint(right)];
+        if (rightBean) {
+            if (rightBean.isWhite == chessman.isWhite) {
+                if (![coverSet containsObject:NSStringFromPoint(right)]) {
+                    [coverSet addObject:NSStringFromPoint(right)];
+                    if ([self sameColorBreatheWithChessman:rightBean coverSet:coverSet]) {
+                        return YES;
+                    }
+                }
+            } else {
+                
+            }
+        } else {
+            // 空子
+            return YES;
+        }
+    }
+
+    
+    // 向上遍历，找边缘
+    if (point.y > 1) {
+        NSPoint top = NSMakePoint(point.x, point.y - 1);
+        CGTChessmanBean *topBean = [self.pressedDict valueForKey:NSStringFromPoint(top)];
+        if (topBean) {
+            if (topBean.isWhite == chessman.isWhite) {
+                if (![coverSet containsObject:NSStringFromPoint(top)]) {
+                    [coverSet addObject:NSStringFromPoint(top)];
+                    if ([self sameColorBreatheWithChessman:topBean coverSet:coverSet]) {
+                        return YES;
+                    }
+                }
+            } else {
+                
+            }
+        } else {
+            // 空子
+            return YES;
+        }
+    }
+
+
+    // 向下遍历，找边缘
+    if (point.y < 19) {
+        NSPoint bottom = NSMakePoint(point.x, point.y + 1);
+        CGTChessmanBean *bottomBean = [self.pressedDict valueForKey:NSStringFromPoint(bottom)];
+        if (bottomBean) {
+            if (bottomBean.isWhite == chessman.isWhite) {
+                if (![coverSet containsObject:NSStringFromPoint(bottom)]) {
+                    [coverSet addObject:NSStringFromPoint(bottom)];
+                    if ([self sameColorBreatheWithChessman:bottomBean coverSet:coverSet]) {
+                        return YES;
+                    }
+                }
+            } else {
+                
+            }
+        } else {
+            // 空子
+            return YES;
+        }
+    }
+
+    
+    return NO;
+}
+
+- (NSMutableArray *)sameColorBreatheWithChessman1:(CGTChessmanBean *)chessman {
     
     CGPoint point = chessman.position;
     // 四个方向，直到遇到空子或者不同颜色的子

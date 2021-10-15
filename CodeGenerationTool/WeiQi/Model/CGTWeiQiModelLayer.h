@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class CGTChessmanBean;
+@class CGTChessmanStep;
 
 @interface CGTWeiQiModelLayer : NSObject
 
@@ -42,8 +43,11 @@ NS_ASSUME_NONNULL_BEGIN
 // 起始位置
 @property (assign) NSPoint startPoint;
 
-// 记录已下棋子位置
+// 记录当前面板存在的棋子位置
 @property (strong) NSMutableDictionary *pressedDict;
+
+// 记录下棋的路径
+@property (strong) CGTChessmanStep *chessmanStep;
 
 // 记录下棋顺序
 @property (strong) NSMutableArray *pressArray;
@@ -70,17 +74,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSPoint)getOrignLTPointFromOrignLBPoint:(NSPoint)lBPoint;
 - (NSPoint)getOrignLBPointFromOrignLTPoint:(NSPoint)lTPoint;
 
-- (BOOL)enablePressWithChessman:(CGTChessmanBean *)chessman;
-
 // 是否有气
-- (NSMutableArray *)areaDifferentColorBreacheWithChessman:(CGTChessmanBean *)chessman;
-- (NSMutableArray *)sameColorBreatheWithChessman:(CGTChessmanBean *)chessman;
+- (NSSet *)areaDifferentColorBreacheWithChessman:(CGTChessmanBean *)chessman;
+- (NSSet *)sameColorBreatheWithChessman:(CGTChessmanBean *)chessman;
 
 // 获取天元和星的位置
 + (NSArray *)getStarsFrom19x19;
-
 + (NSString *)getEnglishCharacterIn19WithNum:(int)i;
-
 + (NSString *)getChineseCharacterIn19WithNum:(int)i;
 
 

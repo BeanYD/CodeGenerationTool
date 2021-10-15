@@ -17,6 +17,7 @@
     CGTWeiQiModelLayer *_model;
     NSArray *_chessmans;
     BOOL _isWhite;
+    CGTChessmanBean *_robBean;  // 记录打劫位置，接下来的对手的一步无法下棋
 }
 
 @property (strong) NSCursor *currentCursor;
@@ -297,23 +298,6 @@
     }
     
     CGTChessmanBean *currentBean = [CGTChessmanBean chessmanBeanWithPosition:chessPoint isWhite:isWhite];
-    if (![_model enablePressWithChessman:currentBean]) {
-        NSLog(@"没有气，无法落子");
-        return;
-    }
-    
-    // 判断同色是否有气
-    NSMutableArray *removeArray = [_model sameColorBreatheWithChessman:currentBean];
-    if (removeArray.count > 0) {
-        // 返回有内容，直接提子
-        for (int i = 0; i < removeArray.count; i++) {
-            CGTChessmanBean *removeBean = removeArray[i];
-            [_model.pressedDict removeObjectForKey:NSStringFromPoint(removeBean.position)];
-            [removeBean.chessmanView removeFromSuperview];
-        }
-        return;
-    }
-
     NSRect chessRect = [_model getChessmanRectWithPoint:location];
     NSImageView *chessView = [[NSImageView alloc] initWithFrame:chessRect];
     chessView.wantsLayer = YES;
@@ -328,15 +312,56 @@
     
     [_model.pressedDict setValue:currentBean forKey:NSStringFromPoint(chessPoint)];
     
-    // 下完当前子之后，判断相邻异色是否有气
-    NSMutableArray *areaRemoveArray = [_model areaDifferentColorBreacheWithChessman:currentBean];
-    if (areaRemoveArray.count > 0) {
+    // 先判断周围是否有异色子可以吃，有，则可以下；无则无法下
+    NSSet *areaRemoveSet = [_model areaDifferentColorBreacheWithChessman:currentBean];
+    BOOL isRobbed = NO;
+    if (areaRemoveSet.count > 0) {
+        NSArray *areaRemoveArray = areaRemoveSet.allObjects;
+
+        // 如果符合打劫条件，记录打劫棋子
+        NSSet *sameRemoveSet = [_model sameColorBreatheWithChessman:currentBean];
+        if (areaRemoveSet.count == 1 && sameRemoveSet.count == 1) {
+            // 情况为打劫，判断上一次是否为打劫
+            if (_robBean && CGPointEqualToPoint(_robBean.position, currentBean.position)) {
+                NSLog(@"形成打劫，先下其他位置棋子");
+                [currentBean.chessmanView removeFromSuperview];
+                [_model.pressedDict removeObjectForKey:NSStringFromPoint(chessPoint)];
+                return;
+            } else {
+                NSPoint location = NSPointFromString([areaRemoveArray lastObject]);
+                _robBean = [CGTChessmanBean chessmanBeanWithPosition:location isWhite:!currentBean.isWhite];
+                isRobbed = YES;
+            }
+        }
+        
         for (int i = 0; i < areaRemoveArray.count; i++) {
-            CGTChessmanBean *removeBean = areaRemoveArray[i];
-            [_model.pressedDict removeObjectForKey:NSStringFromPoint(removeBean.position)];
+            NSPoint location = NSPointFromString(areaRemoveArray[i]);
+            CGTChessmanBean *removeBean = [_model.pressedDict valueForKey:NSStringFromPoint(location)];
             [removeBean.chessmanView removeFromSuperview];
+            [_model.pressedDict removeObjectForKey:NSStringFromPoint(location)];
         }
     }
+    
+    if (!isRobbed) {
+        _robBean = nil;
+    }
+    
+    // 无异色子可吃，无法下
+    NSSet *removeSet = [_model sameColorBreatheWithChessman:currentBean];
+    if (removeSet.count > 0) {
+        NSArray *removeArray = removeSet.allObjects;
+        for (int i = 0; i < removeArray.count; i++) {
+            NSPoint location = NSPointFromString(removeArray[i]);
+            CGTChessmanBean *removeBean = [_model.pressedDict valueForKey:NSStringFromPoint(location)];
+            [removeBean.chessmanView removeFromSuperview];
+            [_model.pressedDict removeObjectForKey:NSStringFromPoint(location)];
+        }
+    }
+    
+//    if (![_model enablePressWithChessman:currentBean]) {
+//        NSLog(@"没有气，无法落子");
+//        return;
+//    }
 
     //    [self resetCursor];
 }
