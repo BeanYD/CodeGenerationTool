@@ -40,7 +40,7 @@
         self.wantsLayer = YES;
         _isWhite = NO;
         
-        [[CGTWeiQiCTest new] testDemo];
+//        [[CGTWeiQiCTest new] testDemo];
     }
     
     return self;
