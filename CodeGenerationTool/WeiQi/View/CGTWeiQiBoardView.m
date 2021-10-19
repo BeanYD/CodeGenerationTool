@@ -13,6 +13,8 @@
 #import "CGTSGFFileReader.h"
 #import "CGTSGFNode.h"
 
+#import "CGTWeiQiCTest.h"
+
 @interface CGTWeiQiBoardView () {
     CGTWeiQiModelLayer *_model;
     NSArray *_chessmans;
@@ -37,6 +39,8 @@
         
         self.wantsLayer = YES;
         _isWhite = NO;
+        
+        [[CGTWeiQiCTest new] testDemo];
     }
     
     return self;

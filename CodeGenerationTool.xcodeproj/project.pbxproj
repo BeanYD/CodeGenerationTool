@@ -30,6 +30,7 @@
 		046DB6752717C62000673633 /* GoBoard.c in Sources */ = {isa = PBXBuildFile; fileRef = 046DB6732717C62000673633 /* GoBoard.c */; };
 		046DB69327182C0600673633 /* CGTChessmanStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DB69227182C0600673633 /* CGTChessmanStep.m */; };
 		046DB69C27194B0A00673633 /* GoRule.c in Sources */ = {isa = PBXBuildFile; fileRef = 046DB69B27194B0A00673633 /* GoRule.c */; };
+		046DB6A6271D4C8800673633 /* CGTWeiQiCTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DB6A5271D4C8800673633 /* CGTWeiQiCTest.m */; };
 		04729F5026FDB31F00466E62 /* CGTWeiQiWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04729F4F26FDB31F00466E62 /* CGTWeiQiWindowController.m */; };
 		04729F5626FDB35F00466E62 /* CGTWeiQiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04729F5526FDB35F00466E62 /* CGTWeiQiViewController.m */; };
 		04729F5C2700024E00466E62 /* CGTWeiQiBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04729F5B2700024E00466E62 /* CGTWeiQiBoardView.m */; };
@@ -145,6 +146,8 @@
 		046DB69227182C0600673633 /* CGTChessmanStep.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTChessmanStep.m; sourceTree = "<group>"; };
 		046DB69A27194B0A00673633 /* GoRule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoRule.h; sourceTree = "<group>"; };
 		046DB69B27194B0A00673633 /* GoRule.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = GoRule.c; sourceTree = "<group>"; };
+		046DB6A4271D4C8800673633 /* CGTWeiQiCTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTWeiQiCTest.h; sourceTree = "<group>"; };
+		046DB6A5271D4C8800673633 /* CGTWeiQiCTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTWeiQiCTest.m; sourceTree = "<group>"; };
 		04729F4E26FDB31F00466E62 /* CGTWeiQiWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTWeiQiWindowController.h; sourceTree = "<group>"; };
 		04729F4F26FDB31F00466E62 /* CGTWeiQiWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTWeiQiWindowController.m; sourceTree = "<group>"; };
 		04729F5426FDB35F00466E62 /* CGTWeiQiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTWeiQiViewController.h; sourceTree = "<group>"; };
@@ -341,13 +344,24 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		04729F4A26FDB2D500466E62 /* WeiQi */ = {
+		046DB6A3271D4C5B00673633 /* CDemo */ = {
 			isa = PBXGroup;
 			children = (
 				046DB6742717C62000673633 /* GoBoard.h */,
 				046DB6732717C62000673633 /* GoBoard.c */,
 				046DB69A27194B0A00673633 /* GoRule.h */,
 				046DB69B27194B0A00673633 /* GoRule.c */,
+				046DB6A4271D4C8800673633 /* CGTWeiQiCTest.h */,
+				046DB6A5271D4C8800673633 /* CGTWeiQiCTest.m */,
+			);
+			name = CDemo;
+			path = CodeGenerationTool/CDemo;
+			sourceTree = SOURCE_ROOT;
+		};
+		04729F4A26FDB2D500466E62 /* WeiQi */ = {
+			isa = PBXGroup;
+			children = (
+				046DB6A3271D4C5B00673633 /* CDemo */,
 				04729F4B26FDB2D500466E62 /* Controller */,
 				04729F4C26FDB2D500466E62 /* Model */,
 				04729F4D26FDB2D500466E62 /* View */,
@@ -1056,6 +1070,7 @@
 				043E01BB2542BF310089AB8C /* CGTProcessRateView.m in Sources */,
 				0440121F25398FE500798BCD /* CGTCustomScrollView.m in Sources */,
 				046DB64B271436A600673633 /* CGTSGFFileReader.m in Sources */,
+				046DB6A6271D4C8800673633 /* CGTWeiQiCTest.m in Sources */,
 				D70D5F4E24B0641800675E89 /* main.m in Sources */,
 				04411A782549809D00337A41 /* CGTSecondaryViewController.m in Sources */,
 				04465D8325A69D37009850D0 /* ProgressHUD.m in Sources */,
