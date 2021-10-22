@@ -27,7 +27,6 @@
 		0455703F2703FFC90024C32C /* CGTChessmanBean.m in Sources */ = {isa = PBXBuildFile; fileRef = 0455703E2703FFC90024C32C /* CGTChessmanBean.m */; };
 		046DB64B271436A600673633 /* CGTSGFFileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DB64A271436A600673633 /* CGTSGFFileReader.m */; };
 		046DB6512714370600673633 /* CGTSGFNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DB6502714370600673633 /* CGTSGFNode.m */; };
-		046DB6752717C62000673633 /* GoBoard.c in Sources */ = {isa = PBXBuildFile; fileRef = 046DB6732717C62000673633 /* GoBoard.c */; };
 		046DB69327182C0600673633 /* CGTChessmanStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DB69227182C0600673633 /* CGTChessmanStep.m */; };
 		046DB69C27194B0A00673633 /* GoRule.c in Sources */ = {isa = PBXBuildFile; fileRef = 046DB69B27194B0A00673633 /* GoRule.c */; };
 		046DB6A6271D4C8800673633 /* CGTWeiQiCTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DB6A5271D4C8800673633 /* CGTWeiQiCTest.m */; };
@@ -140,8 +139,6 @@
 		046DB64A271436A600673633 /* CGTSGFFileReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTSGFFileReader.m; sourceTree = "<group>"; };
 		046DB64F2714370600673633 /* CGTSGFNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTSGFNode.h; sourceTree = "<group>"; };
 		046DB6502714370600673633 /* CGTSGFNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTSGFNode.m; sourceTree = "<group>"; };
-		046DB6732717C62000673633 /* GoBoard.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = GoBoard.c; sourceTree = "<group>"; };
-		046DB6742717C62000673633 /* GoBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoBoard.h; sourceTree = "<group>"; };
 		046DB69127182C0600673633 /* CGTChessmanStep.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTChessmanStep.h; sourceTree = "<group>"; };
 		046DB69227182C0600673633 /* CGTChessmanStep.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTChessmanStep.m; sourceTree = "<group>"; };
 		046DB69A27194B0A00673633 /* GoRule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoRule.h; sourceTree = "<group>"; };
@@ -347,8 +344,6 @@
 		046DB6A3271D4C5B00673633 /* CDemo */ = {
 			isa = PBXGroup;
 			children = (
-				046DB6742717C62000673633 /* GoBoard.h */,
-				046DB6732717C62000673633 /* GoBoard.c */,
 				046DB69A27194B0A00673633 /* GoRule.h */,
 				046DB69B27194B0A00673633 /* GoRule.c */,
 				046DB6A4271D4C8800673633 /* CGTWeiQiCTest.h */,
@@ -1097,7 +1092,6 @@
 				04729F5026FDB31F00466E62 /* CGTWeiQiWindowController.m in Sources */,
 				D704CD77257B5451003DC276 /* CGTFileModelLayer.m in Sources */,
 				D70D5F7B24B0655D00675E89 /* CGTBaseWindowController.m in Sources */,
-				046DB6752717C62000673633 /* GoBoard.c in Sources */,
 				04D496D225BFBD24007A0157 /* CGTDrawView.m in Sources */,
 				D70D5F4324B0641400675E89 /* AppDelegate.m in Sources */,
 				04729F622700123500466E62 /* CGTWeiQiModelLayer.m in Sources */,

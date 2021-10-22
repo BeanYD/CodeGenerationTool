@@ -253,6 +253,8 @@ App的主页面，所有其他窗口都由该页面进入
 
 `NSCollectionView`未完成
 
+
+
 ## 设备检测模块
 
 摄像头数据展示：`DeviceMediaManager`类封装
@@ -260,6 +262,8 @@ App的主页面，所有其他窗口都由该页面进入
 基于`IOBlueTooth`的蓝牙设备搜索：`CGTIOBlueToothWindowController`
 
 基于`CoreBlueTooth`的蓝牙设备搜索：`CGTCoreBlueToothWindowController`
+
+
 
 
 ## 如何在应用内进行应用程序更新？
@@ -275,6 +279,14 @@ App的主页面，所有其他窗口都由该页面进入
 
   
 
+## 围棋规则+围棋sgf文件解析
+
+GoRule类是用c实现的规则判断，CGTWeiQiTest类为简单的测试类
+
+OC实现的规则判断在CGTWeiQiModelLayer类中
+
+
+
 ## Mark：
 
 1. `NSTextField`在`xib`中创建后，会自带白色背景，在`xib`中修改：找到`Display`，勾选`Draw Background`，所选的背景色才会生效。
@@ -285,7 +297,8 @@ App的主页面，所有其他窗口都由该页面进入
    @property (nullable, copy) NSString *toolTip;
    ```
 
-   
+
+
 
 ## OSX10.15系统下，修改鼠标图标的方法说明
 
