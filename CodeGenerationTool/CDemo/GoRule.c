@@ -8,6 +8,7 @@
 
 #include <string.h>
 #include <stdbool.h>
+#include <stdlib.h>
 #include "GoRule.h"
 
 extern bool p_sameColorBreathe(STONEINFO stone, STONEPOINT *coverSet, STONEINFO *currentStones) {
@@ -20,7 +21,7 @@ extern bool p_sameColorBreathe(STONEINFO stone, STONEPOINT *coverSet, STONEINFO 
         while (currentStones[i].location.x != 0) {
             STONEINFO currentStone = currentStones[i];
             if (currentStone.location.x == left.x && currentStone.location.y == left.y) {
-                
+            
                 // 已经有棋子存在
                 exit = true;
                 

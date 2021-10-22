@@ -306,9 +306,6 @@
     NSImageView *chessView = [[NSImageView alloc] initWithFrame:chessRect];
     chessView.wantsLayer = YES;
     
-    if (_model.isAuto) {
-        _isWhite = !_isWhite;
-    }
     chessView.image = isWhite ? [NSImage imageNamed:@"white_chess"] : [NSImage imageNamed:@"black_chess"];
     [self addSubview:chessView];
     
@@ -359,6 +356,10 @@
             CGTChessmanBean *removeBean = [_model.pressedDict valueForKey:NSStringFromPoint(location)];
             [removeBean.chessmanView removeFromSuperview];
             [_model.pressedDict removeObjectForKey:NSStringFromPoint(location)];
+        }
+    } else {
+        if (_model.isAuto) {
+            _isWhite = !_isWhite;
         }
     }
     

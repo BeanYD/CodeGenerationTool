@@ -41,7 +41,7 @@ extern STONEPOINT *sameColorBreatheForStone(STONEINFO stone, STONEINFO *currentS
 
 /**
  *
- * 与所下棋子异色色棋子气的判断
+ * 与所下棋子异色棋子气的判断
  * params:
  * stone 当前所下子信息
  * currentStones    当前棋盘上的所有棋子
