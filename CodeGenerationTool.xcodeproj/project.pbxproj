@@ -28,8 +28,11 @@
 		046DB64B271436A600673633 /* CGTSGFFileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DB64A271436A600673633 /* CGTSGFFileReader.m */; };
 		046DB6512714370600673633 /* CGTSGFNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DB6502714370600673633 /* CGTSGFNode.m */; };
 		046DB69327182C0600673633 /* CGTChessmanStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DB69227182C0600673633 /* CGTChessmanStep.m */; };
-		046DB69C27194B0A00673633 /* GoRule.c in Sources */ = {isa = PBXBuildFile; fileRef = 046DB69B27194B0A00673633 /* GoRule.c */; };
-		046DB6A6271D4C8800673633 /* CGTWeiQiCTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DB6A5271D4C8800673633 /* CGTWeiQiCTest.m */; };
+		046DB6D82726A7AD00673633 /* CGTWeiQiCTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DB6D62726A7AD00673633 /* CGTWeiQiCTest.m */; };
+		046DB6D92726A7AD00673633 /* GoRule.c in Sources */ = {isa = PBXBuildFile; fileRef = 046DB6D72726A7AD00673633 /* GoRule.c */; };
+		046DB7212726B2B400673633 /* 跨平台编译相关.md in Resources */ = {isa = PBXBuildFile; fileRef = 046DB71D2726B2B400673633 /* 跨平台编译相关.md */; };
+		046DB7222726B2B400673633 /* Android.mk in Resources */ = {isa = PBXBuildFile; fileRef = 046DB71F2726B2B400673633 /* Android.mk */; };
+		046DB7232726B2B400673633 /* Application.mk in Resources */ = {isa = PBXBuildFile; fileRef = 046DB7202726B2B400673633 /* Application.mk */; };
 		04729F5026FDB31F00466E62 /* CGTWeiQiWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04729F4F26FDB31F00466E62 /* CGTWeiQiWindowController.m */; };
 		04729F5626FDB35F00466E62 /* CGTWeiQiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04729F5526FDB35F00466E62 /* CGTWeiQiViewController.m */; };
 		04729F5C2700024E00466E62 /* CGTWeiQiBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04729F5B2700024E00466E62 /* CGTWeiQiBoardView.m */; };
@@ -141,10 +144,13 @@
 		046DB6502714370600673633 /* CGTSGFNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTSGFNode.m; sourceTree = "<group>"; };
 		046DB69127182C0600673633 /* CGTChessmanStep.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTChessmanStep.h; sourceTree = "<group>"; };
 		046DB69227182C0600673633 /* CGTChessmanStep.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTChessmanStep.m; sourceTree = "<group>"; };
-		046DB69A27194B0A00673633 /* GoRule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoRule.h; sourceTree = "<group>"; };
-		046DB69B27194B0A00673633 /* GoRule.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = GoRule.c; sourceTree = "<group>"; };
-		046DB6A4271D4C8800673633 /* CGTWeiQiCTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTWeiQiCTest.h; sourceTree = "<group>"; };
-		046DB6A5271D4C8800673633 /* CGTWeiQiCTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTWeiQiCTest.m; sourceTree = "<group>"; };
+		046DB6D42726A7AD00673633 /* CGTWeiQiCTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGTWeiQiCTest.h; sourceTree = "<group>"; };
+		046DB6D52726A7AD00673633 /* GoRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoRule.h; sourceTree = "<group>"; };
+		046DB6D62726A7AD00673633 /* CGTWeiQiCTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGTWeiQiCTest.m; sourceTree = "<group>"; };
+		046DB6D72726A7AD00673633 /* GoRule.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = GoRule.c; sourceTree = "<group>"; };
+		046DB71D2726B2B400673633 /* 跨平台编译相关.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "跨平台编译相关.md"; sourceTree = "<group>"; };
+		046DB71F2726B2B400673633 /* Android.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Android.mk; sourceTree = "<group>"; };
+		046DB7202726B2B400673633 /* Application.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Application.mk; sourceTree = "<group>"; };
 		04729F4E26FDB31F00466E62 /* CGTWeiQiWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTWeiQiWindowController.h; sourceTree = "<group>"; };
 		04729F4F26FDB31F00466E62 /* CGTWeiQiWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTWeiQiWindowController.m; sourceTree = "<group>"; };
 		04729F5426FDB35F00466E62 /* CGTWeiQiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTWeiQiViewController.h; sourceTree = "<group>"; };
@@ -341,22 +347,40 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		046DB6A3271D4C5B00673633 /* CDemo */ = {
+		046DB6D32726A7AD00673633 /* CDemo */ = {
 			isa = PBXGroup;
 			children = (
-				046DB69A27194B0A00673633 /* GoRule.h */,
-				046DB69B27194B0A00673633 /* GoRule.c */,
-				046DB6A4271D4C8800673633 /* CGTWeiQiCTest.h */,
-				046DB6A5271D4C8800673633 /* CGTWeiQiCTest.m */,
+				046DB6D42726A7AD00673633 /* CGTWeiQiCTest.h */,
+				046DB6D52726A7AD00673633 /* GoRule.h */,
+				046DB6D62726A7AD00673633 /* CGTWeiQiCTest.m */,
+				046DB6D72726A7AD00673633 /* GoRule.c */,
 			);
-			name = CDemo;
-			path = CodeGenerationTool/CDemo;
+			path = CDemo;
+			sourceTree = "<group>";
+		};
+		046DB71C2726B2B400673633 /* 跨平台编译 */ = {
+			isa = PBXGroup;
+			children = (
+				046DB71D2726B2B400673633 /* 跨平台编译相关.md */,
+				046DB71E2726B2B400673633 /* jni */,
+			);
+			name = "跨平台编译";
+			path = "CodeGenerationTool/跨平台编译";
 			sourceTree = SOURCE_ROOT;
+		};
+		046DB71E2726B2B400673633 /* jni */ = {
+			isa = PBXGroup;
+			children = (
+				046DB71F2726B2B400673633 /* Android.mk */,
+				046DB7202726B2B400673633 /* Application.mk */,
+			);
+			path = jni;
+			sourceTree = "<group>";
 		};
 		04729F4A26FDB2D500466E62 /* WeiQi */ = {
 			isa = PBXGroup;
 			children = (
-				046DB6A3271D4C5B00673633 /* CDemo */,
+				046DB6D32726A7AD00673633 /* CDemo */,
 				04729F4B26FDB2D500466E62 /* Controller */,
 				04729F4C26FDB2D500466E62 /* Model */,
 				04729F4D26FDB2D500466E62 /* View */,
@@ -546,6 +570,7 @@
 				043E01A82542BB2D0089AB8C /* CommonDemo */,
 				04D496B925BEDD19007A0157 /* DrawLayer */,
 				04AE731825F223C70057F3B6 /* Excel */,
+				046DB71C2726B2B400673633 /* 跨平台编译 */,
 				04729F4A26FDB2D500466E62 /* WeiQi */,
 				D70D5F4724B0641800675E89 /* Assets.xcassets */,
 				D70D5F4924B0641800675E89 /* Main.storyboard */,
@@ -923,10 +948,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				046DB7232726B2B400673633 /* Application.mk in Resources */,
 				D70D5F4824B0641800675E89 /* Assets.xcassets in Resources */,
 				D70D5F4B24B0641800675E89 /* Main.storyboard in Resources */,
 				04AE732C25F225E00057F3B6 /* ClassInfo.plist in Resources */,
 				043E0102253EEA7B0089AB8C /* CommonTitleBarViewController.xib in Resources */,
+				046DB7222726B2B400673633 /* Android.mk in Resources */,
+				046DB7212726B2B400673633 /* 跨平台编译相关.md in Resources */,
 				043E015725403B570089AB8C /* CGTTitleBarViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1058,20 +1086,20 @@
 				04AE731E25F223E50057F3B6 /* CGTExcelWindowController.m in Sources */,
 				04AE739D25FA1D960057F3B6 /* NSBezierPath+CGPath.m in Sources */,
 				D7D117D1251C842D0019212F /* CGTInvokeConfig.m in Sources */,
-				046DB69C27194B0A00673633 /* GoRule.c in Sources */,
 				046DB6512714370600673633 /* CGTSGFNode.m in Sources */,
 				043E01AC2542BB710089AB8C /* CGTCommonDemoWindowController.m in Sources */,
 				0476509B259DBA5C0006F3FC /* CustomButton.m in Sources */,
 				043E01BB2542BF310089AB8C /* CGTProcessRateView.m in Sources */,
 				0440121F25398FE500798BCD /* CGTCustomScrollView.m in Sources */,
 				046DB64B271436A600673633 /* CGTSGFFileReader.m in Sources */,
-				046DB6A6271D4C8800673633 /* CGTWeiQiCTest.m in Sources */,
 				D70D5F4E24B0641800675E89 /* main.m in Sources */,
 				04411A782549809D00337A41 /* CGTSecondaryViewController.m in Sources */,
 				04465D8325A69D37009850D0 /* ProgressHUD.m in Sources */,
+				046DB6D82726A7AD00673633 /* CGTWeiQiCTest.m in Sources */,
 				D7F42C2124B2D1C700EF1C38 /* CGTFilePathPlistMgr.m in Sources */,
 				04AE732725F223FB0057F3B6 /* CGTExcelViewController.m in Sources */,
 				D7D11797251C44270019212F /* CGTDDTableViewController.m in Sources */,
+				046DB6D92726A7AD00673633 /* GoRule.c in Sources */,
 				D72A36612528370700C82A44 /* CGTMouseEventViewController.m in Sources */,
 				D7D117A6251C6B050019212F /* CGTDDTableWindowController.m in Sources */,
 				D7D117AF251C6B1B0019212F /* CGTDDCollectionWindowController.m in Sources */,
