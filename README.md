@@ -286,6 +286,8 @@ GoRule类是用c实现的规则判断，CGTWeiQiTest类为简单的测试类
 OC实现的规则判断在CGTWeiQiModelLayer类中
 
 
+## 跨平台编译
+[](CodeGenerationTool/跨平台编译/跨平台编译相关.md)
 
 ## Mark：
 
