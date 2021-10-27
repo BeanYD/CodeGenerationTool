@@ -377,7 +377,7 @@
 			path = jni;
 			sourceTree = "<group>";
 		};
-		04729F4A26FDB2D500466E62 /* WeiQi */ = {
+		04729F4A26FDB2D500466E62 /* GoPlay */ = {
 			isa = PBXGroup;
 			children = (
 				046DB6D32726A7AD00673633 /* CDemo */,
@@ -385,7 +385,7 @@
 				04729F4C26FDB2D500466E62 /* Model */,
 				04729F4D26FDB2D500466E62 /* View */,
 			);
-			path = WeiQi;
+			path = GoPlay;
 			sourceTree = "<group>";
 		};
 		04729F4B26FDB2D500466E62 /* Controller */ = {
@@ -571,7 +571,7 @@
 				04D496B925BEDD19007A0157 /* DrawLayer */,
 				04AE731825F223C70057F3B6 /* Excel */,
 				046DB71C2726B2B400673633 /* 跨平台编译 */,
-				04729F4A26FDB2D500466E62 /* WeiQi */,
+				04729F4A26FDB2D500466E62 /* GoPlay */,
 				D70D5F4724B0641800675E89 /* Assets.xcassets */,
 				D70D5F4924B0641800675E89 /* Main.storyboard */,
 				D70D5F4C24B0641800675E89 /* Info.plist */,
