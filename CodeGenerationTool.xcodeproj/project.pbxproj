@@ -24,6 +24,9 @@
 		0440121F25398FE500798BCD /* CGTCustomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0440121B25398FE500798BCD /* CGTCustomScrollView.m */; };
 		04411A782549809D00337A41 /* CGTSecondaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04411A772549809D00337A41 /* CGTSecondaryViewController.m */; };
 		04465D8325A69D37009850D0 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 04465D8125A69D37009850D0 /* ProgressHUD.m */; };
+		044FA94C272F78020098A554 /* CGTMPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 044FA945272F78020098A554 /* CGTMPViewController.m */; };
+		044FA94D272F78020098A554 /* CGTMPWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 044FA948272F78020098A554 /* CGTMPWindowController.m */; };
+		044FA95F272F78DE0098A554 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 044FA95E272F78DE0098A554 /* AVKit.framework */; };
 		0455703F2703FFC90024C32C /* CGTChessmanBean.m in Sources */ = {isa = PBXBuildFile; fileRef = 0455703E2703FFC90024C32C /* CGTChessmanBean.m */; };
 		046DB64B271436A600673633 /* CGTSGFFileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DB64A271436A600673633 /* CGTSGFFileReader.m */; };
 		046DB6512714370600673633 /* CGTSGFNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 046DB6502714370600673633 /* CGTSGFNode.m */; };
@@ -136,6 +139,12 @@
 		04411A772549809D00337A41 /* CGTSecondaryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTSecondaryViewController.m; sourceTree = "<group>"; };
 		04465D8125A69D37009850D0 /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
 		04465D8225A69D37009850D0 /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
+		044FA90C272BECA00098A554 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		044FA945272F78020098A554 /* CGTMPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGTMPViewController.m; sourceTree = "<group>"; };
+		044FA946272F78020098A554 /* CGTMPWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGTMPWindowController.h; sourceTree = "<group>"; };
+		044FA947272F78020098A554 /* CGTMPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGTMPViewController.h; sourceTree = "<group>"; };
+		044FA948272F78020098A554 /* CGTMPWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGTMPWindowController.m; sourceTree = "<group>"; };
+		044FA95E272F78DE0098A554 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		0455703D2703FFC90024C32C /* CGTChessmanBean.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTChessmanBean.h; sourceTree = "<group>"; };
 		0455703E2703FFC90024C32C /* CGTChessmanBean.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTChessmanBean.m; sourceTree = "<group>"; };
 		046DB649271436A600673633 /* CGTSGFFileReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTSGFFileReader.h; sourceTree = "<group>"; };
@@ -264,6 +273,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				044FA95F272F78DE0098A554 /* AVKit.framework in Frameworks */,
 				E75D09A20E5E8977B0F9DF16 /* Pods_CodeGenerationTool.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -343,6 +353,33 @@
 				043E01BA2542BF310089AB8C /* CGTProcessRateView.m */,
 				04465D8225A69D37009850D0 /* ProgressHUD.h */,
 				04465D8125A69D37009850D0 /* ProgressHUD.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		044FA943272F78020098A554 /* MediaPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				044FA944272F78020098A554 /* Controller */,
+				044FA949272F78020098A554 /* View */,
+			);
+			path = MediaPlayer;
+			sourceTree = "<group>";
+		};
+		044FA944272F78020098A554 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				044FA946272F78020098A554 /* CGTMPWindowController.h */,
+				044FA948272F78020098A554 /* CGTMPWindowController.m */,
+				044FA947272F78020098A554 /* CGTMPViewController.h */,
+				044FA945272F78020098A554 /* CGTMPViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		044FA949272F78020098A554 /* View */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -513,6 +550,8 @@
 		6D10A181CCCCE0B4472A02CD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				044FA95E272F78DE0098A554 /* AVKit.framework */,
+				044FA90C272BECA00098A554 /* MediaPlayer.framework */,
 				B187A328932D431717A2517C /* Pods_CodeGenerationTool.framework */,
 				7157C1C24A046B11838466DE /* Pods_CodeGenerationTool_CodeGenerationToolUITests.framework */,
 				3B86CFA6999CA1026AA62E68 /* Pods_CodeGenerationToolTests.framework */,
@@ -572,6 +611,7 @@
 				04AE731825F223C70057F3B6 /* Excel */,
 				046DB71C2726B2B400673633 /* 跨平台编译 */,
 				04729F4A26FDB2D500466E62 /* GoPlay */,
+				044FA943272F78020098A554 /* MediaPlayer */,
 				D70D5F4724B0641800675E89 /* Assets.xcassets */,
 				D70D5F4924B0641800675E89 /* Main.storyboard */,
 				D70D5F4C24B0641800675E89 /* Info.plist */,
@@ -1100,6 +1140,7 @@
 				04AE732725F223FB0057F3B6 /* CGTExcelViewController.m in Sources */,
 				D7D11797251C44270019212F /* CGTDDTableViewController.m in Sources */,
 				046DB6D92726A7AD00673633 /* GoRule.c in Sources */,
+				044FA94D272F78020098A554 /* CGTMPWindowController.m in Sources */,
 				D72A36612528370700C82A44 /* CGTMouseEventViewController.m in Sources */,
 				D7D117A6251C6B050019212F /* CGTDDTableWindowController.m in Sources */,
 				D7D117AF251C6B1B0019212F /* CGTDDCollectionWindowController.m in Sources */,
@@ -1125,6 +1166,7 @@
 				04729F622700123500466E62 /* CGTWeiQiModelLayer.m in Sources */,
 				043E00FA253EEA3E0089AB8C /* NSWindowController+TitleBar.m in Sources */,
 				D7D117C5251C6D7B0019212F /* CGTFrameConfig.m in Sources */,
+				044FA94C272F78020098A554 /* CGTMPViewController.m in Sources */,
 				D7F42C1D24B2D1B300EF1C38 /* CGTMainModelLayer.m in Sources */,
 				D7574AA824C6826200EEEA98 /* CGTUpdateModelLayer.m in Sources */,
 				D72A36672528372000C82A44 /* CGTMouseEventWindowController.m in Sources */,
@@ -1307,8 +1349,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CodeGenerationTool/CodeGenerationTool.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = JTM2B46CS6;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CodeGenerationTool/CGTPrefixHeader.pch";
@@ -1333,8 +1377,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CodeGenerationTool/CodeGenerationTool.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = JTM2B46CS6;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CodeGenerationTool/CGTPrefixHeader.pch";

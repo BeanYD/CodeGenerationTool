@@ -5,6 +5,12 @@
 	<key>classInfo</key>
 	<array>
 		<dict>
+			<key>name</key>
+			<string>视频</string>
+			<key>winCol</key>
+			<string>CGTMPWindowController</string>
+		</dict>
+		<dict>
 			<key>winCol</key>
 			<string>CGTWeiQiWindowController</string>
 			<key>name</key>
