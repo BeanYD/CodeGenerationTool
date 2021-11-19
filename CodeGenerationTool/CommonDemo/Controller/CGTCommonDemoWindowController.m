@@ -35,5 +35,4 @@
     NSViewController *vc = [[NSClassFromString(@"CGTCommonDemoViewController") alloc] initWithFrame:[CGTFrameConfig getDefaultWindowFrame]];
     return vc;
 }
-
 @end

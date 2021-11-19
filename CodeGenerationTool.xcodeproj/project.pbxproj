@@ -41,6 +41,10 @@
 		04729F5C2700024E00466E62 /* CGTWeiQiBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04729F5B2700024E00466E62 /* CGTWeiQiBoardView.m */; };
 		04729F622700123500466E62 /* CGTWeiQiModelLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 04729F612700123500466E62 /* CGTWeiQiModelLayer.m */; };
 		0476509B259DBA5C0006F3FC /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04765099259DBA5B0006F3FC /* CustomButton.m */; };
+		0485E6702747387700254D4F /* PrivateImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 0485E6692747387700254D4F /* PrivateImageStore.m */; };
+		0485E6712747387700254D4F /* AliYunImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 0485E66A2747387700254D4F /* AliYunImageStore.m */; };
+		0485E6722747387700254D4F /* ImageProcessJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 0485E66D2747387700254D4F /* ImageProcessJob.m */; };
+		0485E678274738CF00254D4F /* DesignModuleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0485E677274738CF00254D4F /* DesignModuleTest.m */; };
 		04AE731E25F223E50057F3B6 /* CGTExcelWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AE731D25F223E50057F3B6 /* CGTExcelWindowController.m */; };
 		04AE732725F223FB0057F3B6 /* CGTExcelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AE732625F223FB0057F3B6 /* CGTExcelViewController.m */; };
 		04AE732C25F225E00057F3B6 /* ClassInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04AE732B25F225E00057F3B6 /* ClassInfo.plist */; };
@@ -170,6 +174,15 @@
 		04729F612700123500466E62 /* CGTWeiQiModelLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTWeiQiModelLayer.m; sourceTree = "<group>"; };
 		04765099259DBA5B0006F3FC /* CustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomButton.m; sourceTree = "<group>"; };
 		0476509A259DBA5B0006F3FC /* CustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomButton.h; sourceTree = "<group>"; };
+		0485E6672747387700254D4F /* ImageProcessJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageProcessJob.h; sourceTree = "<group>"; };
+		0485E6692747387700254D4F /* PrivateImageStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateImageStore.m; sourceTree = "<group>"; };
+		0485E66A2747387700254D4F /* AliYunImageStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AliYunImageStore.m; sourceTree = "<group>"; };
+		0485E66B2747387700254D4F /* PrivateImageStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateImageStore.h; sourceTree = "<group>"; };
+		0485E66C2747387700254D4F /* AliYunImageStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AliYunImageStore.h; sourceTree = "<group>"; };
+		0485E66D2747387700254D4F /* ImageProcessJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageProcessJob.m; sourceTree = "<group>"; };
+		0485E66F2747387700254D4F /* ImageStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageStore.h; sourceTree = "<group>"; };
+		0485E676274738CF00254D4F /* DesignModuleTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DesignModuleTest.h; sourceTree = "<group>"; };
+		0485E677274738CF00254D4F /* DesignModuleTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DesignModuleTest.m; sourceTree = "<group>"; };
 		04AE731C25F223E50057F3B6 /* CGTExcelWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTExcelWindowController.h; sourceTree = "<group>"; };
 		04AE731D25F223E50057F3B6 /* CGTExcelWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGTExcelWindowController.m; sourceTree = "<group>"; };
 		04AE732525F223FB0057F3B6 /* CGTExcelViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGTExcelViewController.h; sourceTree = "<group>"; };
@@ -462,6 +475,46 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		0485E6512747366A00254D4F /* 设计模式 */ = {
+			isa = PBXGroup;
+			children = (
+				0485E676274738CF00254D4F /* DesignModuleTest.h */,
+				0485E677274738CF00254D4F /* DesignModuleTest.m */,
+				0485E6662747387700254D4F /* 接口的OC实现 */,
+			);
+			path = "设计模式";
+			sourceTree = "<group>";
+		};
+		0485E6662747387700254D4F /* 接口的OC实现 */ = {
+			isa = PBXGroup;
+			children = (
+				0485E6672747387700254D4F /* ImageProcessJob.h */,
+				0485E66D2747387700254D4F /* ImageProcessJob.m */,
+				0485E66E2747387700254D4F /* Header */,
+				0485E6682747387700254D4F /* Object */,
+			);
+			path = "接口的OC实现";
+			sourceTree = "<group>";
+		};
+		0485E6682747387700254D4F /* Object */ = {
+			isa = PBXGroup;
+			children = (
+				0485E66B2747387700254D4F /* PrivateImageStore.h */,
+				0485E6692747387700254D4F /* PrivateImageStore.m */,
+				0485E66C2747387700254D4F /* AliYunImageStore.h */,
+				0485E66A2747387700254D4F /* AliYunImageStore.m */,
+			);
+			path = Object;
+			sourceTree = "<group>";
+		};
+		0485E66E2747387700254D4F /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				0485E66F2747387700254D4F /* ImageStore.h */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
 		04AE731825F223C70057F3B6 /* Excel */ = {
 			isa = PBXGroup;
 			children = (
@@ -612,6 +665,7 @@
 				046DB71C2726B2B400673633 /* 跨平台编译 */,
 				04729F4A26FDB2D500466E62 /* GoPlay */,
 				044FA943272F78020098A554 /* MediaPlayer */,
+				0485E6512747366A00254D4F /* 设计模式 */,
 				D70D5F4724B0641800675E89 /* Assets.xcassets */,
 				D70D5F4924B0641800675E89 /* Main.storyboard */,
 				D70D5F4C24B0641800675E89 /* Info.plist */,
@@ -1128,6 +1182,7 @@
 				D7D117D1251C842D0019212F /* CGTInvokeConfig.m in Sources */,
 				046DB6512714370600673633 /* CGTSGFNode.m in Sources */,
 				043E01AC2542BB710089AB8C /* CGTCommonDemoWindowController.m in Sources */,
+				0485E6712747387700254D4F /* AliYunImageStore.m in Sources */,
 				0476509B259DBA5C0006F3FC /* CustomButton.m in Sources */,
 				043E01BB2542BF310089AB8C /* CGTProcessRateView.m in Sources */,
 				0440121F25398FE500798BCD /* CGTCustomScrollView.m in Sources */,
@@ -1140,6 +1195,7 @@
 				04AE732725F223FB0057F3B6 /* CGTExcelViewController.m in Sources */,
 				D7D11797251C44270019212F /* CGTDDTableViewController.m in Sources */,
 				046DB6D92726A7AD00673633 /* GoRule.c in Sources */,
+				0485E6702747387700254D4F /* PrivateImageStore.m in Sources */,
 				044FA94D272F78020098A554 /* CGTMPWindowController.m in Sources */,
 				D72A36612528370700C82A44 /* CGTMouseEventViewController.m in Sources */,
 				D7D117A6251C6B050019212F /* CGTDDTableWindowController.m in Sources */,
@@ -1154,6 +1210,7 @@
 				04AE738B25F86A150057F3B6 /* CGTTestModalWindowController.m in Sources */,
 				D72A368425283BF300C82A44 /* CGTDDCollectionViewItem.m in Sources */,
 				043E01922542AF040089AB8C /* CGTCustomTableHeaderCell.m in Sources */,
+				0485E678274738CF00254D4F /* DesignModuleTest.m in Sources */,
 				043E0101253EEA7B0089AB8C /* CommonTitleBarViewController.m in Sources */,
 				D7D1179E251C44390019212F /* CGTDDCollectionViewController.m in Sources */,
 				043E014C25403AED0089AB8C /* CGTCustomTextField.m in Sources */,
@@ -1171,6 +1228,7 @@
 				D7574AA824C6826200EEEA98 /* CGTUpdateModelLayer.m in Sources */,
 				D72A36672528372000C82A44 /* CGTMouseEventWindowController.m in Sources */,
 				043E015D25403B6B0089AB8C /* CGTCommonTitleView.m in Sources */,
+				0485E6722747387700254D4F /* ImageProcessJob.m in Sources */,
 				04729F5626FDB35F00466E62 /* CGTWeiQiViewController.m in Sources */,
 				04D496C625BEDD58007A0157 /* CGTDrawViewController.m in Sources */,
 				0455703F2703FFC90024C32C /* CGTChessmanBean.m in Sources */,

@@ -23,7 +23,6 @@
 		self.contentViewController = [self vc];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willCloseWindow:) name:NSWindowWillCloseNotification object:nil];
-
 	}
 	
 	return self;
