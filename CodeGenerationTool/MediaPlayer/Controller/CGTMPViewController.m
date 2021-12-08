@@ -7,11 +7,11 @@
 //
 
 #import "CGTMPViewController.h"
-#import <AVKit/AVPlayerView.h>
+#import "CGTPlayerView.h"
+
 
 @interface CGTMPViewController ()
 
-@property (strong) AVPlayerView *playerView;
 
 @end
 
@@ -21,24 +21,11 @@
     [super viewDidLoad];
     // Do view setup here.
     
-    NSString *urlstring = @"http://192.168.0.172/111.mp4";
+    CGTPlayerView *playerView = [[CGTPlayerView alloc] initWithFrame:CGRectMake(100, 100, 300, 300)];
+
+    [self.view addSubview:playerView];
     
-//    NSString *pathStr = [NSSearchPathForDirectoriesInDomains(NSDesktopDirectory, NSUserDomainMask, YES) lastObject];
-//    NSString *filePath = [NSString stringWithFormat:@"%@/1635234527775850.mp4", pathStr];
-    NSURL *url = [NSURL URLWithString:urlstring];
-    
-    self.playerView = [[AVPlayerView alloc] initWithFrame:NSMakeRect(CGRectGetWidth(self.view.frame) / 4, CGRectGetHeight(self.view.frame) / 4, CGRectGetWidth(self.view.frame) / 2, CGRectGetHeight(self.view.frame) / 2)];
-    [self.view addSubview:self.playerView];
-    
-    AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:url options:nil];
-    AVPlayerItem *item = [[AVPlayerItem alloc] initWithAsset:asset];
-    AVPlayer *avplayer = [[AVPlayer alloc] initWithPlayerItem:item];
-    
-    self.playerView.player = avplayer;
-    [self.playerView.player play];
-    
-    
-    
+    [playerView startPlayer];
 }
 
 @end

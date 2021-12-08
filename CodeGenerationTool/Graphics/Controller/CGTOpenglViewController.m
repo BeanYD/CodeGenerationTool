@@ -149,7 +149,7 @@
         _titleLabel = [NSTextField labelWithString:@"指定文件生成地址:"];
         _titleLabel.bezelStyle = NSTextFieldRoundedBezel;
         _titleLabel.bezeled = YES;
-        _titleLabel.textColor = NSColorFromRGB(0xFFFFFF);
+        _titleLabel.textColor = NSColorFromRGB(0x0);
     }
     
     return _titleLabel;
@@ -160,7 +160,7 @@
         _filePathBox = [[NSComboBox alloc] init];
         _filePathBox.bezelStyle = NSTextFieldRoundedBezel;
         _filePathBox.bezeled = YES;
-        _filePathBox.textColor = NSColorFromRGB(0xFFFFFF);
+        _filePathBox.textColor = NSColorFromRGB(0x0);
         _filePathBox.usesDataSource = YES;
         _filePathBox.delegate = self;
         _filePathBox.dataSource = self;
@@ -173,7 +173,7 @@
 - (NSButton *)selectButton {
     if (!_selectButton) {
         _selectButton = [NSButton buttonWithTitle:@"选择目录" target:self action:@selector(selectPath:)];
-        _selectButton.contentTintColor = NSColorFromRGB(0x000000);
+        _selectButton.contentTintColor = NSColorFromRGB(0x0);
     }
     
     return _selectButton;

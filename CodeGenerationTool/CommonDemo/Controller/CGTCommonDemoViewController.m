@@ -24,6 +24,11 @@
     [super viewDidLoad];
     // Do view setup here.
     
+
+    [self addViews];
+}
+
+- (void)addViews {
     CGTProcessRateTextField *tf = [[CGTProcessRateTextField alloc] initWithFrame:CGRectMake(100, 100, 50, 50)];
     
     [self.view addSubview:tf];

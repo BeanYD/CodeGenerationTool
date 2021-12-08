@@ -42,7 +42,7 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>opengl</string>
+			<string>graphics</string>
 			<key>winCol</key>
 			<string>CGTOpenglWindowController</string>
 		</dict>

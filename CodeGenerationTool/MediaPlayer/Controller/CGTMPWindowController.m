@@ -24,6 +24,11 @@
         
         // MARK: 代码设置窗口无法resize，NSWindowStyleMaskResizable按位取反后&，去除NSWindowStyleMaskResizable标志位
         [window setStyleMask:[window styleMask] & ~NSWindowStyleMaskResizable];
+        
+        
+//        NSButton *closeBtn = [self.window standardWindowButton:NSWindowCloseButton];
+//        [closeBtn setTarget:self];
+//        [closeBtn setAction:@selector(closeBtnClick:)];
     }
     
     return self;
